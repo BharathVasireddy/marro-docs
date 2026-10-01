@@ -1,0 +1,12 @@
+---
+title: "Authentication"
+description: "Send your key as a bearer token, over HTTPS, from your server."
+---
+
+import Auth from "/snippets/generated/authentication.mdx";
+
+<Auth />
+
+If a key has ever been in a URL, a browser or a public repository, revoke it and create a new one. See [Keys and scopes](/keys-and-scopes).
+
+A missing, wrong or expired key returns `401`; a key without the needed scope returns `403`. See [Errors](/errors).

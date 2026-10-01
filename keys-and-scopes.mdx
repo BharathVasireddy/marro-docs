@@ -1,0 +1,22 @@
+---
+title: "Keys and scopes"
+description: "What each scope allows, and how to rotate and revoke keys."
+---
+
+import Scopes from "/snippets/generated/scopes.mdx";
+
+A key belongs to your organization, not to a person. It can do exactly what its scopes allow, and only for modules your organization's subscription includes.
+
+## Scopes
+
+<Scopes />
+
+## Rotate a key without downtime
+
+1. Create a new key with the same scopes.
+2. Switch your server to the new key and deploy.
+3. Revoke the old key in **Settings → Integrations → API keys**.
+
+## Revoke a key
+
+Revoke a key in **Settings → Integrations → API keys**. It stops working on the next request.

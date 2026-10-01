@@ -1,0 +1,25 @@
+---
+title: "Getting started"
+description: "Create an API key and make your first request."
+---
+
+import Auth from "/snippets/generated/authentication.mdx";
+
+<Steps>
+  <Step title="Create a key">
+    An organization administrator opens **Settings → Integrations → API keys → New key**.
+
+    - For a website or landing-page form, choose **Website form**. That key can only capture leads.
+    - For any other application, choose the scopes it needs. See [Keys and scopes](/keys-and-scopes).
+
+    Copy the key as soon as it is shown. Marro cannot show it again.
+  </Step>
+  <Step title="Keep it on your server">
+    Store the key as an environment variable on your server, for example `MARRO_API_KEY`. Never put it in browser JavaScript, a mobile app or a URL.
+  </Step>
+  <Step title="Make a request">
+    <Auth />
+  </Step>
+</Steps>
+
+Next: [Connect a website](/guides/connect-a-website) or browse the [API reference](/api-reference/leads/list-leads).

@@ -1,0 +1,2170 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CRM API",
+    "version": "1.0.0",
+    "description": "Server-to-server access to one organization’s CRM. Each key belongs to an organization and can use only the scopes it was given for modules the organization subscribes to. Keys go only in the Authorization header, over HTTPS, from a server: never in browser code or a URL. The API sends no CORS headers."
+  },
+  "servers": [
+    {
+      "url": "https://app.marro.si"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Leads"
+    },
+    {
+      "name": "Reference",
+      "description": "How this organization is set up: fields, stages, sources and people."
+    }
+  ],
+  "paths": {
+    "/api/v1/leads": {
+      "get": {
+        "operationId": "list-leads",
+        "tags": [
+          "Leads"
+        ],
+        "summary": "List leads",
+        "description": "Leads in the organization, newest first, a page at a time. Filter by stage, source, owner, time of last change, or any field. Archived leads are left out.\n\nScope: `leads.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "How many leads to return, 1–100.",
+            "schema": {
+              "default": 25,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "description": "The `nextCursor` from the previous page.",
+            "schema": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          {
+            "name": "updated_since",
+            "in": "query",
+            "required": false,
+            "description": "Only leads changed at or after this time, for syncing.",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+            }
+          },
+          {
+            "name": "stage_id",
+            "in": "query",
+            "required": false,
+            "description": "Only leads in this stage (IDs from GET /api/v1/lead-stages).",
+            "schema": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          {
+            "name": "pipeline_id",
+            "in": "query",
+            "required": false,
+            "description": "Only leads in this pipeline (IDs from GET /api/v1/pipelines).",
+            "schema": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          {
+            "name": "source_id",
+            "in": "query",
+            "required": false,
+            "description": "Only leads from this source (IDs from GET /api/v1/lead-sources).",
+            "schema": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          {
+            "name": "owner_id",
+            "in": "query",
+            "required": false,
+            "description": "Only leads owned by this person (IDs from GET /api/v1/users).",
+            "schema": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "description": "A JSON array of field filters: `[{\"field\":\"city\",\"operator\":\"contains\",\"value\":\"Hyd\"}]`. Operators by field type are listed in the developer docs.",
+            "schema": {
+              "type": "string",
+              "maxLength": 8000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of leads.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Lead"
+                      }
+                    },
+                    "nextCursor": {
+                      "anyOf": [
+                        {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Pass as `cursor` for the next page; null on the last page."
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "nextCursor"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 1842,
+                      "name": "Priya Sharma",
+                      "phone": "+919812345678",
+                      "email": "priya@example.com",
+                      "leadType": "student",
+                      "stageId": 7,
+                      "pipelineId": 2,
+                      "sourceId": 3,
+                      "assignedTo": 21,
+                      "stage": {
+                        "id": 7,
+                        "name": "Follow Up",
+                        "meaning": "open"
+                      },
+                      "pipeline": {
+                        "id": 2,
+                        "name": "Main pipeline"
+                      },
+                      "source": {
+                        "id": 3,
+                        "name": "Website"
+                      },
+                      "owner": {
+                        "id": 21,
+                        "name": "Ravi Kumar"
+                      },
+                      "fields": {
+                        "city": "Hyderabad",
+                        "target_course": "MBBS",
+                        "intake_term": "sep"
+                      },
+                      "createdAt": "2026-09-20T10:15:00+05:30",
+                      "updatedAt": "2026-09-24T09:02:11+05:30"
+                    }
+                  ],
+                  "nextCursor": 1841
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_QUERY: A parameter is out of range or `filter` is not valid JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "create-lead",
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Create a lead",
+        "description": "Creates a lead with the organization’s own field rules: required fields, option lists and formats are checked exactly as in the app. The lead starts in the starting stage unless you give one, and without an owner the organization’s assignment rules pick one. Phone number and email are unique per organization, so a retry of the same lead returns DUPLICATE_LEAD with the existing ID instead of creating a second.\n\nScope: `leads.write`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.write"
+            ]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fields": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "description": "Values by field key. `name` and `phone` are always required, plus any field the organization requires on create. `source` takes a source ID and `assigned_to` a user ID; without an owner the organization’s assignment rules decide."
+                  },
+                  "stageId": {
+                    "description": "Defaults to the starting stage of the lead’s pipeline. A stage names its own pipeline.",
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "pipelineId": {
+                    "description": "Defaults to the organization’s default pipeline. With a stageId, the stage must be one of this pipeline’s.",
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "fields"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "fields": {
+                  "name": "Priya Sharma",
+                  "phone": "+919812345678",
+                  "city": "Hyderabad",
+                  "source": 3,
+                  "intake_term": "sep"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The new lead.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "lead": {
+                      "$ref": "#/components/schemas/Lead"
+                    }
+                  },
+                  "required": [
+                    "lead"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "lead": {
+                    "id": 1842,
+                    "name": "Priya Sharma",
+                    "phone": "+919812345678",
+                    "email": "priya@example.com",
+                    "leadType": "student",
+                    "stageId": 7,
+                    "pipelineId": 2,
+                    "sourceId": 3,
+                    "assignedTo": 21,
+                    "stage": {
+                      "id": 7,
+                      "name": "Follow Up",
+                      "meaning": "open"
+                    },
+                    "pipeline": {
+                      "id": 2,
+                      "name": "Main pipeline"
+                    },
+                    "source": {
+                      "id": 3,
+                      "name": "Website"
+                    },
+                    "owner": {
+                      "id": 21,
+                      "name": "Ravi Kumar"
+                    },
+                    "fields": {
+                      "city": "Hyderabad",
+                      "target_course": "MBBS",
+                      "intake_term": "sep"
+                    },
+                    "createdAt": "2026-09-20T10:15:00+05:30",
+                    "updatedAt": "2026-09-24T09:02:11+05:30"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "DUPLICATE_LEAD: A lead with this phone number or email already exists; `details.leadId` is its ID when known.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "VALIDATION_FAILED: A field is missing or invalid; `details.fields` says which.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/leads/capture": {
+      "post": {
+        "operationId": "capture-lead",
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Capture a lead",
+        "description": "For website and landing-page forms. Adds the enquiry as a new lead, or, when the organization already has a lead with this phone number or email, fills in that lead instead: only fields it has empty are filled, and values that differ from what a counsellor entered are kept and listed on the lead’s timeline. The owner, stage and pipeline of an existing lead are never changed. A new lead starts in the starting stage and gets an owner from the organization’s assignment rules. Every capture is recorded on the lead’s timeline, naming the API key that sent it.\n\nServer to server only: call it from your website’s server (a route handler, a server action, PHP), never from browser JavaScript, where the key would be visible to anyone. There is no CORS support on purpose.\n\nRetries are safe: send an `Idempotency-Key` header (or an `externalId`), and a repeat within 24 hours returns the first result without capturing again.\n\nScope: `leads.capture` or `leads.write`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.capture"
+            ]
+          },
+          {
+            "ApiKey": [
+              "leads.write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. A unique value per submission, such as a UUID. A retry with the same key within 24 hours returns the first result, with `Idempotent-Replayed: true`; the same key with a different body is refused.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200,
+                    "description": "The person’s name."
+                  },
+                  "phone": {
+                    "type": "string",
+                    "minLength": 6,
+                    "maxLength": 32,
+                    "description": "With the country code, e.g. +919812345678. Numbers without one are read as Indian. Used, with email, to find a lead the organization already has."
+                  },
+                  "email": {
+                    "description": "Also used to find an existing lead when the phone number does not match one.",
+                    "type": "string",
+                    "maxLength": 254
+                  },
+                  "source": {
+                    "description": "The source’s name, e.g. \"Website\" (the default) or \"Google Ads\". A name the organization does not have yet is added to its sources.",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 60
+                  },
+                  "pipelineId": {
+                    "description": "For a new lead, the pipeline it starts in (IDs from GET /api/v1/pipelines); it lands in that pipeline’s starting stage. Defaults to the organization’s default pipeline. Never moves an existing lead.",
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "notes": {
+                    "description": "Free text shown on the lead’s timeline with this enquiry, such as the visitor’s message.",
+                    "type": "string",
+                    "maxLength": 5000
+                  },
+                  "fields": {
+                    "description": "More details, by field key: the organization’s built-in and custom lead fields (GET /api/v1/lead-fields). Values are checked with the same rules as the CRM’s forms: dropdowns take one of their options (value or label), numbers, dates (YYYY-MM-DD) and yes/no fields are parsed. An unknown key is refused with the list of valid keys. On an existing lead only empty fields are filled.",
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "attribution": {
+                    "description": "Where the enquiry came from. Shown on the lead’s timeline.",
+                    "$ref": "#/components/schemas/CaptureAttribution"
+                  },
+                  "externalId": {
+                    "description": "Your own ID for this submission. A resend with the same externalId (per API key) within 24 hours returns the first result instead of capturing again.",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  }
+                },
+                "required": [
+                  "name",
+                  "phone"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "name": "Priya Sharma",
+                "phone": "+919812345678",
+                "email": "priya@example.com",
+                "source": "Website",
+                "notes": "Wants to know the fee structure for 2027.",
+                "fields": {
+                  "city": "Hyderabad",
+                  "state": "Telangana",
+                  "target_course": "MBBS",
+                  "intake_term": "sep"
+                },
+                "attribution": {
+                  "pageUrl": "https://www.example.com/mbbs-abroad?utm_source=google&utm_medium=cpc",
+                  "pageTitle": "MBBS abroad",
+                  "referrer": "https://www.google.com/",
+                  "utmSource": "google",
+                  "utmMedium": "cpc",
+                  "utmCampaign": "mbbs-2027",
+                  "formName": "Footer enquiry"
+                },
+                "externalId": "web-48213"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The organization already had this lead; it was found and any empty fields filled in. `Location` points at it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "lead": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "The lead’s ID, new or existing."
+                        },
+                        "created": {
+                          "type": "boolean",
+                          "description": "True when a new lead was created."
+                        },
+                        "updated": {
+                          "type": "boolean",
+                          "description": "True when an existing lead was found and at least one empty field on it was filled."
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "created",
+                        "updated"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "lead"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "A new lead was created. `Location` points at it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "lead": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991,
+                          "description": "The lead’s ID, new or existing."
+                        },
+                        "created": {
+                          "type": "boolean",
+                          "description": "True when a new lead was created."
+                        },
+                        "updated": {
+                          "type": "boolean",
+                          "description": "True when an existing lead was found and at least one empty field on it was filled."
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "created",
+                        "updated"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "lead"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "lead": {
+                    "id": 1842,
+                    "created": true,
+                    "updated": false
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_IDEMPOTENCY_KEY: The Idempotency-Key header is longer than 200 characters or not plain ASCII.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "IDEMPOTENCY_IN_PROGRESS: A request with this Idempotency-Key is still being handled. Retry in a few seconds. Another request saved the same person at the same moment. Retry; it will find that lead.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "VALIDATION_FAILED: A value is missing or invalid, a key in `fields` is not one of the organization’s active fields (`details.validKeys` lists them), or a field the organization requires for a new lead is missing. This Idempotency-Key was used within 24 hours for a different body. `pipelineId` is not one of the organization’s pipelines.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "NOT_READY: The organization has no stage for new leads, or no active user to own them. Retry after it is set up.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/leads/{leadId}": {
+      "get": {
+        "operationId": "get-lead",
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Get a lead",
+        "description": "One lead with every field.\n\nScope: `leads.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "required": true,
+            "description": "The lead’s ID.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The lead.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "lead": {
+                      "$ref": "#/components/schemas/Lead"
+                    }
+                  },
+                  "required": [
+                    "lead"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "lead": {
+                    "id": 1842,
+                    "name": "Priya Sharma",
+                    "phone": "+919812345678",
+                    "email": "priya@example.com",
+                    "leadType": "student",
+                    "stageId": 7,
+                    "pipelineId": 2,
+                    "sourceId": 3,
+                    "assignedTo": 21,
+                    "stage": {
+                      "id": 7,
+                      "name": "Follow Up",
+                      "meaning": "open"
+                    },
+                    "pipeline": {
+                      "id": 2,
+                      "name": "Main pipeline"
+                    },
+                    "source": {
+                      "id": 3,
+                      "name": "Website"
+                    },
+                    "owner": {
+                      "id": 21,
+                      "name": "Ravi Kumar"
+                    },
+                    "fields": {
+                      "city": "Hyderabad",
+                      "target_course": "MBBS",
+                      "intake_term": "sep"
+                    },
+                    "createdAt": "2026-09-20T10:15:00+05:30",
+                    "updatedAt": "2026-09-24T09:02:11+05:30"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND: No lead with this ID in the organization, or it is archived.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "update-lead",
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Update a lead",
+        "description": "Changes only the fields you send, checked with the organization’s field rules, and optionally the stage or the pipeline (`pipelineId`, with `stageId` for where in it). Every change is recorded on the lead’s timeline as made via the API.\n\nScope: `leads.write`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "required": true,
+            "description": "The lead’s ID.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fields": {
+                    "description": "Only the fields to change, by key. Send null to clear a field.",
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "stageId": {
+                    "description": "A stage of another pipeline moves the lead into that pipeline.",
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "pipelineId": {
+                    "description": "Moves the lead to this pipeline, at `stageId` (one of its stages) or its starting stage.",
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "additionalProperties": false
+              },
+              "example": {
+                "fields": {
+                  "intake_term": "jan",
+                  "assigned_to": 24
+                },
+                "stageId": 9
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The lead after the change.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "lead": {
+                      "$ref": "#/components/schemas/Lead"
+                    }
+                  },
+                  "required": [
+                    "lead"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "lead": {
+                    "id": 1842,
+                    "name": "Priya Sharma",
+                    "phone": "+919812345678",
+                    "email": "priya@example.com",
+                    "leadType": "student",
+                    "stageId": 9,
+                    "pipelineId": 2,
+                    "sourceId": 3,
+                    "assignedTo": 24,
+                    "stage": {
+                      "id": 7,
+                      "name": "Follow Up",
+                      "meaning": "open"
+                    },
+                    "pipeline": {
+                      "id": 2,
+                      "name": "Main pipeline"
+                    },
+                    "source": {
+                      "id": 3,
+                      "name": "Website"
+                    },
+                    "owner": {
+                      "id": 21,
+                      "name": "Ravi Kumar"
+                    },
+                    "fields": {
+                      "city": "Hyderabad",
+                      "target_course": "MBBS",
+                      "intake_term": "sep"
+                    },
+                    "createdAt": "2026-09-20T10:15:00+05:30",
+                    "updatedAt": "2026-09-24T09:02:11+05:30"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND: No lead with this ID in the organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "DUPLICATE_LEAD: The new phone number or email belongs to another lead.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "VALIDATION_FAILED: A field is invalid, or a required field would be emptied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/leads/{leadId}/notes": {
+      "post": {
+        "operationId": "add-note",
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Add a note",
+        "description": "Adds a note to the lead’s timeline, shown as added via the API.\n\nScope: `leads.write`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "required": true,
+            "description": "The lead’s ID.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 5000
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "text": "Asked for the fee structure by email."
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The note.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "note": {
+                      "type": "object",
+                      "properties": {
+                        "leadId": {
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+                        }
+                      },
+                      "required": [
+                        "leadId",
+                        "text",
+                        "createdAt"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "note"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "note": {
+                    "leadId": 1842,
+                    "text": "Asked for the fee structure by email.",
+                    "createdAt": "2026-09-24T09:05:00+05:30"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND: No lead with this ID in the organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/lead-fields": {
+      "get": {
+        "operationId": "list-fields",
+        "tags": [
+          "Reference"
+        ],
+        "summary": "List lead fields",
+        "description": "The organization’s active lead fields, its own custom fields included: their keys, types, options and whether each is required. Use the keys in `fields` when reading, writing and capturing leads. A `leads.capture` key may read this list too, to build a form. Fields an organization adds later appear here at once and are accepted straight away.\n\nScope: `leads.read` or `leads.capture`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.read"
+            ]
+          },
+          {
+            "ApiKey": [
+              "leads.capture"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fields in form order.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/LeadField"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "key": "intake_term",
+                      "label": "Intake term",
+                      "type": "select",
+                      "section": "Preferences",
+                      "storage": "custom",
+                      "options": [
+                        {
+                          "value": "jan",
+                          "label": "January"
+                        },
+                        {
+                          "value": "sep",
+                          "label": "September"
+                        }
+                      ],
+                      "requiredOnCreate": false,
+                      "requiredOnEdit": false,
+                      "showWhen": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/lead-stages": {
+      "get": {
+        "operationId": "list-stages",
+        "tags": [
+          "Reference"
+        ],
+        "summary": "List stages",
+        "description": "Active stages of every pipeline, each pipeline’s in order, with what each means (open, won or lost), which one its new leads start in, and the pipeline it belongs to.\n\nScope: `leads.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.read"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stages in pipeline order.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Stage"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 5,
+                      "name": "New Lead",
+                      "slug": "new_lead",
+                      "order": 1,
+                      "meaning": "open",
+                      "isDefault": true,
+                      "pipelineId": 2
+                    },
+                    {
+                      "id": 11,
+                      "name": "Admission Done",
+                      "slug": "admission_done",
+                      "order": 5,
+                      "meaning": "won",
+                      "isDefault": false,
+                      "pipelineId": 2
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pipelines": {
+      "get": {
+        "operationId": "list-pipelines",
+        "tags": [
+          "Reference"
+        ],
+        "summary": "List pipelines",
+        "description": "The organization’s pipelines in order: separate tracks for leads, each with its own stages. New leads go into the default one unless a `pipelineId` or a stage of another pipeline is given.\n\nScope: `leads.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.read"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pipelines in order.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Pipeline"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 2,
+                      "name": "Main pipeline",
+                      "order": 1,
+                      "isDefault": true
+                    },
+                    {
+                      "id": 9,
+                      "name": "Visa services",
+                      "order": 2,
+                      "isDefault": false
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/lead-sources": {
+      "get": {
+        "operationId": "list-sources",
+        "tags": [
+          "Reference"
+        ],
+        "summary": "List sources",
+        "description": "Active lead sources. Send an ID as the `source` field when creating or updating a lead.\n\nScope: `leads.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.read"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sources by name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/NamedRef"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 3,
+                      "name": "Website"
+                    },
+                    {
+                      "id": 4,
+                      "name": "Meta ads"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "operationId": "list-users",
+        "tags": [
+          "Reference"
+        ],
+        "summary": "List people",
+        "description": "Active people in the organization, to read lead owners and to send `assigned_to`. Names only; no contact details.\n\nScope: `leads.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.read"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "People by name.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/NamedRef"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 21,
+                      "name": "Ravi Kumar"
+                    },
+                    {
+                      "id": 24,
+                      "name": "Asha Rao"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKey": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "An organization API key, created in Settings → Integrations → API. Scopes: `leads.read` (Read leads), `leads.write` (Create and update leads), `leads.capture` (Capture leads)."
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Stable, machine-readable: UNAUTHORIZED, FORBIDDEN, NOT_FOUND, VALIDATION_FAILED, DUPLICATE_LEAD, RATE_LIMITED…"
+              },
+              "message": {
+                "type": "string",
+                "description": "A sentence for people."
+              },
+              "details": {
+                "description": "For VALIDATION_FAILED, `fields` maps each field key to its problem.",
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {}
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "additionalProperties": false,
+        "id": "Error"
+      },
+      "CaptureAttribution": {
+        "type": "object",
+        "properties": {
+          "pageUrl": {
+            "description": "The full address of the page the form was on, with its query string.",
+            "type": "string",
+            "maxLength": 2000
+          },
+          "pageTitle": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "referrer": {
+            "description": "The page the visitor came from (document.referrer).",
+            "type": "string",
+            "maxLength": 2000
+          },
+          "utmSource": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "utmMedium": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "utmCampaign": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "utmTerm": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "utmContent": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "formName": {
+            "description": "Which form or button on the site, e.g. \"Footer enquiry\".",
+            "type": "string",
+            "maxLength": 200
+          }
+        },
+        "additionalProperties": false,
+        "id": "CaptureAttribution"
+      },
+      "Lead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "leadType": {
+            "type": "string",
+            "enum": [
+              "student",
+              "consultant"
+            ]
+          },
+          "stageId": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pipelineId": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991,
+            "description": "The pipeline the lead is in (see GET /api/v1/pipelines). Its stage is always one of this pipeline’s stages."
+          },
+          "sourceId": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "assignedTo": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The owner’s user ID."
+          },
+          "stage": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StageRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pipeline": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamedRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamedRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "owner": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamedRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "fields": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "description": "Every other active field, by field key (see GET /api/v1/lead-fields), including the organization’s own custom fields. Empty fields are omitted."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "phone",
+          "email",
+          "leadType",
+          "stageId",
+          "pipelineId",
+          "sourceId",
+          "assignedTo",
+          "stage",
+          "pipeline",
+          "source",
+          "owner",
+          "fields",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false,
+        "id": "Lead"
+      },
+      "StageRef": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "name": {
+            "type": "string"
+          },
+          "meaning": {
+            "type": "string",
+            "enum": [
+              "open",
+              "won",
+              "lost"
+            ],
+            "description": "What reaching the stage means in this organization."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "meaning"
+        ],
+        "additionalProperties": false,
+        "id": "StageRef"
+      },
+      "NamedRef": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "additionalProperties": false,
+        "id": "NamedRef"
+      },
+      "LeadField": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "text",
+              "textarea",
+              "number",
+              "date",
+              "phone",
+              "email",
+              "url",
+              "select",
+              "multiselect",
+              "checkbox",
+              "lead_source",
+              "user"
+            ]
+          },
+          "section": {
+            "type": "string"
+          },
+          "storage": {
+            "type": "string",
+            "enum": [
+              "column",
+              "custom"
+            ],
+            "description": "`custom` fields were created by the organization."
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "label"
+              ],
+              "additionalProperties": false
+            },
+            "description": "For select and multiselect: send the `value`."
+          },
+          "requiredOnCreate": {
+            "type": "boolean"
+          },
+          "requiredOnEdit": {
+            "type": "boolean"
+          },
+          "showWhen": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "field": {
+                    "type": "string"
+                  },
+                  "equals": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "field",
+                  "equals"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Asked for only when another field has one of these values."
+          }
+        },
+        "required": [
+          "key",
+          "label",
+          "type",
+          "section",
+          "storage",
+          "options",
+          "requiredOnCreate",
+          "requiredOnEdit",
+          "showWhen"
+        ],
+        "additionalProperties": false,
+        "id": "LeadField"
+      },
+      "Stage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "meaning": {
+            "type": "string",
+            "enum": [
+              "open",
+              "won",
+              "lost"
+            ]
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "New leads in its pipeline start here."
+          },
+          "pipelineId": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991,
+            "description": "The pipeline the stage belongs to."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "order",
+          "meaning",
+          "isDefault",
+          "pipelineId"
+        ],
+        "additionalProperties": false,
+        "id": "Stage"
+      },
+      "Pipeline": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "name": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "New leads go into this pipeline unless told otherwise."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "order",
+          "isDefault"
+        ],
+        "additionalProperties": false,
+        "id": "Pipeline"
+      }
+    }
+  }
+}

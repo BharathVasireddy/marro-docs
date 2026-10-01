@@ -1,0 +1,10 @@
+---
+title: "Rate limits"
+description: "How many requests a key and an organization can make."
+---
+
+import Limits from "/snippets/generated/rate-limits.mdx";
+
+<Limits />
+
+When you get a `429`, wait for the number of seconds in `Retry-After`, then retry.

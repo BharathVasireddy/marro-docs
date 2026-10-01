@@ -1,0 +1,12 @@
+{
+  "name": "marro-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update": "node scripts/update.mjs",
+    "check": "npx --yes mint validate && npx --yes mint broken-links"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

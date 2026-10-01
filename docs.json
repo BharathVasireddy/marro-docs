@@ -1,0 +1,97 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "willow",
+  "name": "Marro",
+  "description": "How to connect to and use Marro.",
+  "colors": {
+    "primary": "#008450",
+    "light": "#3DBE8B",
+    "dark": "#006B41"
+  },
+  "favicon": "/favicon.svg",
+  "fonts": {
+    "family": "Plus Jakarta Sans"
+  },
+  "appearance": {
+    "default": "system"
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Open Marro",
+      "href": "https://app.marro.si"
+    }
+  },
+  "api": {
+    "playground": {
+      "display": "interactive"
+    },
+    "examples": {
+      "languages": [
+        "bash",
+        "javascript",
+        "php",
+        "python"
+      ]
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": [
+              "index",
+              "getting-started",
+              "authentication",
+              "keys-and-scopes"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/connect-a-website",
+              "guides/filtering"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "errors",
+              "rate-limits"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API reference",
+        "openapi": "openapi.json",
+        "groups": [
+          {
+            "group": "Leads",
+            "pages": [
+              "api-reference/leads/list-leads",
+              "api-reference/leads/create-lead",
+              "api-reference/leads/capture-lead",
+              "api-reference/leads/get-lead",
+              "api-reference/leads/update-lead",
+              "api-reference/leads/add-note"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "api-reference/reference/list-fields",
+              "api-reference/reference/list-stages",
+              "api-reference/reference/list-pipelines",
+              "api-reference/reference/list-sources",
+              "api-reference/reference/list-users"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
