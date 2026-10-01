@@ -2,13 +2,42 @@
 
 [List leads](/api-reference/leads/list-leads) takes a `filter` query parameter.
 
-A JSON array of field filters: `[{"field":"city","operator":"contains","value":"Hyd"}]`. Operators by field type are listed in the developer docs.
+A JSON array of field filters: `[{"field":"city","operator":"contains","value":"Hyd"}]`. All filters must match. The operators each field type takes are in this parameter’s `x-filter-operators`.
 
 ```bash
 curl -G "https://app.marro.si/api/v1/leads" \
   -H "Authorization: Bearer $MARRO_API_KEY" \
   --data-urlencode 'filter=[{"field":"city","operator":"contains","value":"Hyd"}]'
 ```
+
+Up to 10 conditions; all must match.
+
+| Field type | Operator | Meaning | Takes |
+| --- | --- | --- | --- |
+| text, textarea, phone, email, url | `contains` | contains | `value` |
+|   | `equals` | is | `value` |
+|   | `is_empty` | is empty | No value |
+|   | `is_not_empty` | is not empty | No value |
+| number | `equals` | is | `value` |
+|   | `gt` | is more than | `value` |
+|   | `lt` | is less than | `value` |
+|   | `between` | is between | `values` with two items |
+|   | `is_empty` | is empty | No value |
+|   | `is_not_empty` | is not empty | No value |
+| date | `on` | is on | `value` |
+|   | `before` | is before | `value` |
+|   | `after` | is after | `value` |
+|   | `between` | is between | `values` with two items |
+|   | `is_empty` | is empty | No value |
+|   | `is_not_empty` | is not empty | No value |
+| select, lead_source, user | `is_any_of` | is any of | `values` with one or more items |
+|   | `is_empty` | is empty | No value |
+|   | `is_not_empty` | is not empty | No value |
+| multiselect | `has_any_of` | includes any of | `values` with one or more items |
+|   | `is_empty` | is empty | No value |
+|   | `is_not_empty` | is not empty | No value |
+| checkbox | `is_true` | is yes | No value |
+|   | `is_false` | is no | No value |
 
 Other query parameters on this endpoint:
 

@@ -23,12 +23,17 @@ Every error has this shape:
 | Status | Code | When | Returned by |
 | --- | --- | --- | --- |
 | 400 | `INVALID_IDEMPOTENCY_KEY` | The Idempotency-Key header is longer than 200 characters or not plain ASCII. | [Capture a lead](/api-reference/leads/capture-lead) |
+| 400 | `INVALID_JSON` | The body is not valid JSON. | Any endpoint |
 | 400 | `INVALID_QUERY` | A parameter is out of range or `filter` is not valid JSON. | [List leads](/api-reference/leads/list-leads) |
+| 400 | `KEY_IN_URL` | A key, or a parameter such as `api_key` or `token`, is in the URL. Keys go only in the Authorization header; replace a key that has been in a URL. | Any endpoint |
 | 401 | `UNAUTHORIZED` | The key is missing, wrong, revoked or expired. | Every endpoint |
 | 403 | `FORBIDDEN` | The key lacks the scope, or the organization’s plan does not include it. | Every endpoint |
+| 403 | `HTTPS_REQUIRED` | The request was made over plain HTTP. | Any endpoint |
 | 404 | `NOT_FOUND` | No lead with this ID in the organization, or it is archived. No lead with this ID in the organization. | [Get a lead](/api-reference/leads/get-lead), [Update a lead](/api-reference/leads/update-lead), [Add a note](/api-reference/leads/add-note) |
 | 409 | `DUPLICATE_LEAD` | A lead with this phone number or email already exists; `details.leadId` is its ID when known. The new phone number or email belongs to another lead. | [Create a lead](/api-reference/leads/create-lead), [Update a lead](/api-reference/leads/update-lead) |
 | 409 | `IDEMPOTENCY_IN_PROGRESS` | A request with this Idempotency-Key is still being handled. Retry in a few seconds. Another request saved the same person at the same moment. Retry; it will find that lead. | [Capture a lead](/api-reference/leads/capture-lead) |
+| 413 | `PAYLOAD_TOO_LARGE` | The body is over 100 KB. | Any endpoint |
+| 415 | `UNSUPPORTED_MEDIA_TYPE` | A body was sent without `Content-Type: application/json`. | Any endpoint |
 | 422 | `VALIDATION_FAILED` | A field is missing or invalid; `details.fields` says which. A value is missing or invalid, a key in `fields` is not one of the organization’s active fields (`details.validKeys` lists them), or a field the organization requires for a new lead is missing. This Idempotency-Key was used within 24 hours for a different body. `pipelineId` is not one of the organization’s pipelines. A field is invalid, or a required field would be emptied. | [Create a lead](/api-reference/leads/create-lead), [Capture a lead](/api-reference/leads/capture-lead), [Update a lead](/api-reference/leads/update-lead) |
 | 429 | `RATE_LIMITED` | More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait. | Every endpoint |
 | 503 | `NOT_READY` | The organization has no stage for new leads, or no active user to own them. Retry after it is set up. | [Capture a lead](/api-reference/leads/capture-lead) |
