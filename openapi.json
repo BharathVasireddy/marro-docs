@@ -3,7 +3,7 @@
   "info": {
     "title": "Marro API",
     "version": "1.0.0",
-    "description": "Server-to-server access to one organization’s data in Marro. Each key belongs to an organization and can use only the scopes it was given for modules the organization subscribes to. Keys go only in the Authorization header, over HTTPS, from a server: never in browser code or a URL. The API sends no CORS headers."
+    "description": "Server-to-server access to one organization’s data in Marro. Each key belongs to an organization and can use only the scopes it was given for modules the organization subscribes to. Keys go only in the Authorization header, over HTTPS, from a server: never in browser code or a URL. A key that was ever sent over plain HTTP or in a URL must be treated as leaked: revoke it and create a new one. The API sends no CORS headers.\n\nEvery response carries `X-Request-Id`, to quote to support. Once the key is checked, responses also carry `RateLimit-Limit`, `RateLimit-Remaining` and `RateLimit-Reset` (seconds until the window resets) for whichever limit is closer to running out. An address that is not an endpoint answers 404 `NOT_FOUND` in the same error shape."
   },
   "servers": [
     {
@@ -56,7 +56,7 @@
             "schema": {
               "type": "integer",
               "exclusiveMinimum": 0,
-              "maximum": 9007199254740991
+              "maximum": 2147483647
             }
           },
           {
@@ -78,7 +78,7 @@
             "schema": {
               "type": "integer",
               "exclusiveMinimum": 0,
-              "maximum": 9007199254740991
+              "maximum": 2147483647
             }
           },
           {
@@ -89,7 +89,7 @@
             "schema": {
               "type": "integer",
               "exclusiveMinimum": 0,
-              "maximum": 9007199254740991
+              "maximum": 2147483647
             }
           },
           {
@@ -100,7 +100,7 @@
             "schema": {
               "type": "integer",
               "exclusiveMinimum": 0,
-              "maximum": 9007199254740991
+              "maximum": 2147483647
             }
           },
           {
@@ -111,7 +111,7 @@
             "schema": {
               "type": "integer",
               "exclusiveMinimum": 0,
-              "maximum": 9007199254740991
+              "maximum": 2147483647
             }
           },
           {
@@ -317,7 +317,7 @@
                         {
                           "type": "integer",
                           "exclusiveMinimum": 0,
-                          "maximum": 9007199254740991
+                          "maximum": 2147483647
                         },
                         {
                           "type": "null"
@@ -366,8 +366,8 @@
                         "interest": "Premium plan",
                         "preferred_time": "evening"
                       },
-                      "createdAt": "2026-09-20T10:15:00+05:30",
-                      "updatedAt": "2026-09-24T09:02:11+05:30"
+                      "createdAt": "2026-09-20T04:45:00Z",
+                      "updatedAt": "2026-09-24T03:32:11Z"
                     }
                   ],
                   "nextCursor": 1841
@@ -376,7 +376,7 @@
             }
           },
           "400": {
-            "description": "INVALID_QUERY: A parameter is out of range or `filter` is not valid JSON.",
+            "description": "INVALID_QUERY: A parameter is out of range, `filter` is not valid JSON, or a filter cannot apply (unknown field key, an operator the field does not take, a bad value, more than 10). `details.filters` lists the positions of those filters (0-based); nothing is listed rather than ignoring them.",
             "content": {
               "application/json": {
                 "schema": {
@@ -407,6 +407,16 @@
           },
           "429": {
             "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
             "content": {
               "application/json": {
                 "schema": {
@@ -471,13 +481,13 @@
                     "description": "Defaults to the starting stage of the lead’s pipeline. A stage names its own pipeline.",
                     "type": "integer",
                     "exclusiveMinimum": 0,
-                    "maximum": 9007199254740991
+                    "maximum": 2147483647
                   },
                   "pipelineId": {
                     "description": "Defaults to the organization’s default pipeline. With a stageId, the stage must be one of this pipeline’s.",
                     "type": "integer",
                     "exclusiveMinimum": 0,
-                    "maximum": 9007199254740991
+                    "maximum": 2147483647
                   }
                 },
                 "required": [
@@ -547,8 +557,8 @@
                       "interest": "Premium plan",
                       "preferred_time": "evening"
                     },
-                    "createdAt": "2026-09-20T10:15:00+05:30",
-                    "updatedAt": "2026-09-24T09:02:11+05:30"
+                    "createdAt": "2026-09-20T04:45:00Z",
+                    "updatedAt": "2026-09-24T03:32:11Z"
                   }
                 }
               }
@@ -585,7 +595,7 @@
             }
           },
           "422": {
-            "description": "VALIDATION_FAILED: A field is missing or invalid; `details.fields` says which.",
+            "description": "VALIDATION_FAILED: A field is missing or invalid; `details.fields` says which. A refused stage, pipeline, owner or source gives `details.reason` (for example `STAGE_NOT_IN_PIPELINE`) and `details.field`.",
             "content": {
               "application/json": {
                 "schema": {
@@ -596,6 +606,16 @@
           },
           "429": {
             "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
             "content": {
               "application/json": {
                 "schema": {
@@ -614,7 +634,7 @@
           "Leads"
         ],
         "summary": "Capture a lead",
-        "description": "For website and landing-page forms. Adds the enquiry as a new lead, or, when the organization already has a lead with this phone number or email, fills in that lead instead: only fields it has empty are filled, and values that differ from what your team entered are kept and listed on the lead’s timeline. The owner, stage and pipeline of an existing lead are never changed. A new lead starts in the starting stage and gets an owner from the organization’s assignment rules. Every capture is recorded on the lead’s timeline, naming the API key that sent it.\n\nServer to server only: call it from your website’s server (a route handler, a server action, PHP), never from browser JavaScript, where the key would be visible to anyone. There is no CORS support on purpose.\n\nRetries are safe: send an `Idempotency-Key` header (or an `externalId`), and a repeat within 24 hours returns the first result without capturing again.\n\nScope: `leads.capture` or `leads.write`.",
+        "description": "For website and landing-page forms. Adds the enquiry as a new lead, or, when the organization already has a lead with this phone number or email (matched ignoring case), fills in that lead instead: only fields it has empty are filled, and values that differ from what your team entered are kept and listed on the lead’s timeline. The owner, stage and pipeline of an existing lead are never changed, and an archived lead is not changed at all (the enquiry is noted on its timeline). A new lead starts in the starting stage and gets an owner from the organization’s assignment rules. Every capture is recorded on the lead’s timeline, naming the API key that sent it.\n\nServer to server only: call it from your website’s server (a route handler, a server action, PHP), never from browser JavaScript, where the key would be visible to anyone. There is no CORS support on purpose.\n\nRetries are safe: send an `Idempotency-Key` header (or an `externalId`), and a repeat within 24 hours returns the first result without capturing again.\n\nScope: `leads.capture` or `leads.write`.",
         "security": [
           {
             "ApiKey": [
@@ -632,7 +652,7 @@
             "name": "Idempotency-Key",
             "in": "header",
             "required": false,
-            "description": "Optional. A unique value per submission, such as a UUID. A retry with the same key within 24 hours returns the first result, with `Idempotent-Replayed: true`; the same key with a different body is refused.",
+            "description": "Optional. A unique value per submission, such as a UUID; remembered per API key. A retry with the same key within 24 hours returns the first result, with `Idempotent-Replayed: true`; the same key with a different body is refused.",
             "schema": {
               "type": "string",
               "minLength": 1,
@@ -665,7 +685,7 @@
                     "maxLength": 254
                   },
                   "source": {
-                    "description": "The source’s name, e.g. \"Website\" (the default) or \"Google Ads\". A name the organization does not have yet is added to its sources.",
+                    "description": "The source’s name, e.g. \"Website\" (the default) or \"Google Ads\". It must be one of the organization’s active sources (matched ignoring case; list them with GET /api/v1/lead-sources). Any other name is recorded as \"Website\", so a website key cannot fill the organization’s source list.",
                     "type": "string",
                     "minLength": 1,
                     "maxLength": 60
@@ -674,7 +694,7 @@
                     "description": "For a new lead, the pipeline it starts in (IDs from GET /api/v1/pipelines); it lands in that pipeline’s starting stage. Defaults to the organization’s default pipeline. Never moves an existing lead.",
                     "type": "integer",
                     "exclusiveMinimum": 0,
-                    "maximum": 9007199254740991
+                    "maximum": 2147483647
                   },
                   "notes": {
                     "description": "Free text shown on the lead’s timeline with this enquiry, such as the visitor’s message.",
@@ -768,7 +788,7 @@
                         "id": {
                           "type": "integer",
                           "exclusiveMinimum": 0,
-                          "maximum": 9007199254740991,
+                          "maximum": 2147483647,
                           "description": "The lead’s ID, new or existing."
                         },
                         "created": {
@@ -778,6 +798,11 @@
                         "updated": {
                           "type": "boolean",
                           "description": "True when an existing lead was found and at least one empty field on it was filled."
+                        },
+                        "archived": {
+                          "description": "Present when the person matched an archived lead: nothing on it was changed, the enquiry was noted on its timeline, and there is no `Location`.",
+                          "type": "boolean",
+                          "const": true
                         }
                       },
                       "required": [
@@ -809,7 +834,7 @@
                         "id": {
                           "type": "integer",
                           "exclusiveMinimum": 0,
-                          "maximum": 9007199254740991,
+                          "maximum": 2147483647,
                           "description": "The lead’s ID, new or existing."
                         },
                         "created": {
@@ -819,6 +844,11 @@
                         "updated": {
                           "type": "boolean",
                           "description": "True when an existing lead was found and at least one empty field on it was filled."
+                        },
+                        "archived": {
+                          "description": "Present when the person matched an archived lead: nothing on it was changed, the enquiry was noted on its timeline, and there is no `Location`.",
+                          "type": "boolean",
+                          "const": true
                         }
                       },
                       "required": [
@@ -896,6 +926,16 @@
           },
           "429": {
             "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1011,8 +1051,8 @@
                       "interest": "Premium plan",
                       "preferred_time": "evening"
                     },
-                    "createdAt": "2026-09-20T10:15:00+05:30",
-                    "updatedAt": "2026-09-24T09:02:11+05:30"
+                    "createdAt": "2026-09-20T04:45:00Z",
+                    "updatedAt": "2026-09-24T03:32:11Z"
                   }
                 }
               }
@@ -1050,6 +1090,16 @@
           },
           "429": {
             "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1126,13 +1176,13 @@
                     "description": "A stage of another pipeline moves the lead into that pipeline.",
                     "type": "integer",
                     "exclusiveMinimum": 0,
-                    "maximum": 9007199254740991
+                    "maximum": 2147483647
                   },
                   "pipelineId": {
                     "description": "Moves the lead to this pipeline, at `stageId` (one of its stages) or its starting stage.",
                     "type": "integer",
                     "exclusiveMinimum": 0,
-                    "maximum": 9007199254740991
+                    "maximum": 2147483647
                   }
                 },
                 "additionalProperties": false
@@ -1197,8 +1247,8 @@
                       "interest": "Premium plan",
                       "preferred_time": "evening"
                     },
-                    "createdAt": "2026-09-20T10:15:00+05:30",
-                    "updatedAt": "2026-09-24T09:02:11+05:30"
+                    "createdAt": "2026-09-20T04:45:00Z",
+                    "updatedAt": "2026-09-24T03:32:11Z"
                   }
                 }
               }
@@ -1245,7 +1295,7 @@
             }
           },
           "422": {
-            "description": "VALIDATION_FAILED: A field is invalid, or a required field would be emptied.",
+            "description": "VALIDATION_FAILED: A field is invalid, or a required field would be emptied; `details.fields` says which. A refused stage, pipeline, owner or source gives `details.reason` (for example `STAGE_NOT_IN_PIPELINE`) and `details.field`. Nothing is changed when a request is refused this way.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1256,6 +1306,16 @@
           },
           "429": {
             "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1332,7 +1392,7 @@
                         "leadId": {
                           "type": "integer",
                           "exclusiveMinimum": 0,
-                          "maximum": 9007199254740991
+                          "maximum": 2147483647
                         },
                         "text": {
                           "type": "string"
@@ -1360,7 +1420,7 @@
                   "note": {
                     "leadId": 1842,
                     "text": "Asked for the fee structure by email.",
-                    "createdAt": "2026-09-24T09:05:00+05:30"
+                    "createdAt": "2026-09-24T03:35:00Z"
                   }
                 }
               }
@@ -1398,6 +1458,16 @@
           },
           "429": {
             "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1505,6 +1575,16 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -1591,6 +1671,16 @@
           },
           "429": {
             "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1685,6 +1775,16 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -1761,6 +1861,16 @@
           },
           "429": {
             "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1851,6 +1961,16 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -1861,7 +1981,7 @@
       "ApiKey": {
         "type": "http",
         "scheme": "bearer",
-        "description": "An organization API key, created in Settings → Integrations → API keys. Keys start with `mk_live_`. Marro stores only a hash of a key, so it is shown once, when it is created: copy it then. Revoking a key ends its access at once. To replace a key without downtime, create the new one, switch your server to it, then revoke the old one. Changes made with a key appear on the lead’s timeline as made by the person who created the key, via the API. Scopes: `leads.read` (Read leads), `leads.write` (Create and update leads), `leads.capture` (Capture leads).",
+        "description": "An organization API key, created in Settings → Connections → API keys. Keys start with `mk_live_`. Marro stores only a hash of a key, so it is shown once, when it is created: copy it then. Revoking a key ends its access at once. To replace a key without downtime, create the new one, switch your server to it, then revoke the old one. Changes made with a key appear on the lead’s timeline as made by the person who created the key, via the API. Scopes: `leads.read` (Read leads), `leads.write` (Create and update leads), `leads.capture` (Capture leads).",
         "x-scopes": {
           "leads.read": {
             "label": "Read leads",
@@ -1939,7 +2059,7 @@
           "id": {
             "type": "integer",
             "exclusiveMinimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 2147483647
           },
           "name": {
             "type": "string"
@@ -1969,7 +2089,7 @@
               {
                 "type": "integer",
                 "exclusiveMinimum": 0,
-                "maximum": 9007199254740991
+                "maximum": 2147483647
               },
               {
                 "type": "null"
@@ -1979,7 +2099,7 @@
           "pipelineId": {
             "type": "integer",
             "exclusiveMinimum": 0,
-            "maximum": 9007199254740991,
+            "maximum": 2147483647,
             "description": "The pipeline the lead is in (see GET /api/v1/pipelines). Its stage is always one of this pipeline’s stages."
           },
           "sourceId": {
@@ -1987,7 +2107,7 @@
               {
                 "type": "integer",
                 "exclusiveMinimum": 0,
-                "maximum": 9007199254740991
+                "maximum": 2147483647
               },
               {
                 "type": "null"
@@ -1999,7 +2119,7 @@
               {
                 "type": "integer",
                 "exclusiveMinimum": 0,
-                "maximum": 9007199254740991
+                "maximum": 2147483647
               },
               {
                 "type": "null"
@@ -2114,7 +2234,7 @@
           "id": {
             "type": "integer",
             "exclusiveMinimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 2147483647
           },
           "name": {
             "type": "string"
@@ -2143,7 +2263,7 @@
           "id": {
             "type": "integer",
             "exclusiveMinimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 2147483647
           },
           "name": {
             "type": "string"
@@ -2313,7 +2433,7 @@
           "id": {
             "type": "integer",
             "exclusiveMinimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 2147483647
           },
           "name": {
             "type": "string"
@@ -2341,7 +2461,7 @@
           "pipelineId": {
             "type": "integer",
             "exclusiveMinimum": 0,
-            "maximum": 9007199254740991,
+            "maximum": 2147483647,
             "description": "The pipeline the stage belongs to."
           }
         },
@@ -2363,7 +2483,7 @@
           "id": {
             "type": "integer",
             "exclusiveMinimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 2147483647
           },
           "name": {
             "type": "string"

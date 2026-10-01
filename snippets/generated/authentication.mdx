@@ -2,7 +2,7 @@
 
 Send the key in the `Authorization` header as a bearer token: `Authorization: Bearer <key>`.
 
-An organization API key, created in Settings → Integrations → API keys. Keys start with `mk_live_`. Marro stores only a hash of a key, so it is shown once, when it is created: copy it then. Revoking a key ends its access at once. To replace a key without downtime, create the new one, switch your server to it, then revoke the old one. Changes made with a key appear on the lead’s timeline as made by the person who created the key, via the API. Scopes: `leads.read` (Read leads), `leads.write` (Create and update leads), `leads.capture` (Capture leads).
+An organization API key, created in Settings → Connections → API keys. Keys start with `mk_live_`. Marro stores only a hash of a key, so it is shown once, when it is created: copy it then. Revoking a key ends its access at once. To replace a key without downtime, create the new one, switch your server to it, then revoke the old one. Changes made with a key appear on the lead’s timeline as made by the person who created the key, via the API. Scopes: `leads.read` (Read leads), `leads.write` (Create and update leads), `leads.capture` (Capture leads).
 
 ```bash
 curl "https://app.marro.si/api/v1/lead-fields" \

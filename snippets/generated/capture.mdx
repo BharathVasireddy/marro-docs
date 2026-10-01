@@ -2,7 +2,7 @@
 
 [Capture a lead](/api-reference/leads/capture-lead): `POST /api/v1/leads/capture`
 
-For website and landing-page forms. Adds the enquiry as a new lead, or, when the organization already has a lead with this phone number or email, fills in that lead instead: only fields it has empty are filled, and values that differ from what your team entered are kept and listed on the lead’s timeline. The owner, stage and pipeline of an existing lead are never changed. A new lead starts in the starting stage and gets an owner from the organization’s assignment rules. Every capture is recorded on the lead’s timeline, naming the API key that sent it.
+For website and landing-page forms. Adds the enquiry as a new lead, or, when the organization already has a lead with this phone number or email (matched ignoring case), fills in that lead instead: only fields it has empty are filled, and values that differ from what your team entered are kept and listed on the lead’s timeline. The owner, stage and pipeline of an existing lead are never changed, and an archived lead is not changed at all (the enquiry is noted on its timeline). A new lead starts in the starting stage and gets an owner from the organization’s assignment rules. Every capture is recorded on the lead’s timeline, naming the API key that sent it.
 
 Server to server only: call it from your website’s server (a route handler, a server action, PHP), never from browser JavaScript, where the key would be visible to anyone. There is no CORS support on purpose.
 
@@ -121,7 +121,7 @@ curl -X POST "https://app.marro.si/api/v1/leads/capture" \
 | `name` (required) | string | The person’s name. |
 | `phone` (required) | string | With the country code, e.g. +919812345678. Numbers without one are read as Indian. Used, with email, to find a lead the organization already has. |
 | `email` | string | Also used to find an existing lead when the phone number does not match one. |
-| `source` | string | The source’s name, e.g. "Website" (the default) or "Google Ads". A name the organization does not have yet is added to its sources. |
+| `source` | string | The source’s name, e.g. "Website" (the default) or "Google Ads". It must be one of the organization’s active sources (matched ignoring case; list them with GET /api/v1/lead-sources). Any other name is recorded as "Website", so a website key cannot fill the organization’s source list. |
 | `pipelineId` | integer | For a new lead, the pipeline it starts in (IDs from GET /api/v1/pipelines); it lands in that pipeline’s starting stage. Defaults to the organization’s default pipeline. Never moves an existing lead. |
 | `notes` | string | Free text shown on the lead’s timeline with this enquiry, such as the visitor’s message. |
 | `fields` | object | More details, by field key: the organization’s built-in and custom lead fields (GET /api/v1/lead-fields). Values are checked with the same rules as the CRM’s forms: dropdowns take one of their options (value or label), numbers, dates (YYYY-MM-DD) and yes/no fields are parsed. An unknown key is refused with the list of valid keys. On an existing lead only empty fields are filled. |
@@ -132,7 +132,7 @@ curl -X POST "https://app.marro.si/api/v1/leads/capture" \
 
 | Header | Description |
 | --- | --- |
-| `Idempotency-Key` | Optional. A unique value per submission, such as a UUID. A retry with the same key within 24 hours returns the first result, with `Idempotent-Replayed: true`; the same key with a different body is refused. |
+| `Idempotency-Key` | Optional. A unique value per submission, such as a UUID; remembered per API key. A retry with the same key within 24 hours returns the first result, with `Idempotent-Replayed: true`; the same key with a different body is refused. |
 
 ### Responses
 
@@ -146,4 +146,5 @@ curl -X POST "https://app.marro.si/api/v1/leads/capture" \
 | 409 | IDEMPOTENCY_IN_PROGRESS: A request with this Idempotency-Key is still being handled. Retry in a few seconds. Another request saved the same person at the same moment. Retry; it will find that lead. |
 | 422 | VALIDATION_FAILED: A value is missing or invalid, a key in `fields` is not one of the organization’s active fields (`details.validKeys` lists them), or a field the organization requires for a new lead is missing. This Idempotency-Key was used within 24 hours for a different body. `pipelineId` is not one of the organization’s pipelines. |
 | 429 | RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait. |
+| 500 | INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header. |
 | 503 | NOT_READY: The organization has no stage for new leads, or no active user to own them. Retry after it is set up. |
