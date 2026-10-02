@@ -4,9 +4,9 @@
   "name": "Marro",
   "description": "How to connect to and use Marro.",
   "colors": {
-    "primary": "#008450",
-    "light": "#3DBE8B",
-    "dark": "#006B41"
+    "primary": "#cc3d0a",
+    "light": "#ff7a3d",
+    "dark": "#b8360a"
   },
   "favicon": "/favicon.svg",
   "fonts": {
