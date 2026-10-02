@@ -93,5 +93,10 @@
         ]
       }
     ]
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://marro.si"
   }
 }
