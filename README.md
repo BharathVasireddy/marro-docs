@@ -28,7 +28,7 @@ npm run check   # mint validate && mint broken-links
 
 Facts about the API (scopes, error codes, limits, request and response fields, filter operators, code samples) come only from `openapi.json`. Never edit `snippets/generated/`, `api-reference/` or the "API reference" tab in `docs.json`; change the CRM's OpenAPI document (`lib/api/openapi.ts` in the CRM) and run `npm run update`.
 
-The pages at the root and in `guides/` are short glue: an intro, the website guide's steps, and links. Each includes its generated snippet.
+The API pages at the root and in `guides/` are short glue: an intro, the website guide's steps, and links. Each includes its generated snippet.
 
 | Page | File | Generated part |
 | --- | --- | --- |
@@ -41,6 +41,8 @@ The pages at the root and in `guides/` are short glue: an intro, the website gui
 | Errors | `errors.mdx` | `snippets/generated/errors.mdx` |
 | Rate limits | `rate-limits.mdx` | `snippets/generated/rate-limits.mdx` |
 | API reference | `api-reference/**` | all of it |
+
+The product guides in `guides/` (Inbox, Website chat, Business knowledge, Assistant, Agents, Automations, Appointments and booking, Payments, AI calling, Integrations, Mobile app) are written by hand with no generated part. Check each against the CRM's code before changing it, and use the labels the app shows.
 
 ### Extensions the generator reads when the CRM's document has them
 

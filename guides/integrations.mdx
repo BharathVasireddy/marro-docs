@@ -1,0 +1,68 @@
+---
+title: "Integrations"
+description: "Connect your own WhatsApp, Meta, Razorpay, SMS, calendar and automation accounts."
+---
+
+Each organization connects its own accounts. Open **Settings → Integrations** and pick a service; its page has a step-by-step setup guide. You need permission to manage your organization's settings.
+
+| Service | What you get | Guide |
+| --- | --- | --- |
+| WhatsApp Business (Meta) | Your WhatsApp number in the Inbox, for replies, templates, automations and broadcasts | [Inbox](/guides/inbox) |
+| Instagram messages, Facebook Messenger | DMs and Page messages in the Inbox | [Inbox](/guides/inbox#connect-instagram-and-messenger) |
+| Facebook & Instagram lead ads | Ad leads arrive within seconds, with campaign and answers | [Below](#facebook-and-instagram-lead-ads) |
+| Razorpay | Payment links from a lead, and payments recorded on it | [Payments](/guides/payments) |
+| MSG91 (SMS) | DLT-registered SMS to leads, and two-way SMS in the Inbox | [Below](#sms-msg91) |
+| Google Calendar, Outlook Calendar | Appointments in each person's own calendar, with Meet or Teams links | [Appointments](/guides/appointments) |
+| Zapier, Make, Pabbly Connect, n8n | Marro's events sent to your workflows | [Below](#zapier-make-pabbly-connect-and-n8n) |
+| API keys | Your own applications read and write leads | [Getting started](/getting-started) |
+
+<Note>
+  Instagram messages, Messenger and lead ads open to every organization once Meta finishes reviewing Marro's app.
+</Note>
+
+## Facebook & Instagram lead ads
+
+<Steps>
+  <Step title="Log in with Facebook">
+    In **Settings → Integrations → Facebook & Instagram lead ads**, press **Log in with Facebook** with the account that runs your Page, and allow what it asks.
+  </Step>
+  <Step title="Choose your Pages">
+    Pick the Pages your ads run from.
+  </Step>
+  <Step title="Check your forms">
+    Each form's questions are matched to your lead fields. Change a match if needed, then press **Done**.
+  </Step>
+</Steps>
+
+New leads arrive with the source "Facebook ads" or "Instagram ads", go through your assignment rules and start your automations. **Fetch recent leads** on a form brings in the last 90 days, for anything missed while disconnected.
+
+## SMS (MSG91)
+
+You need an MSG91 account with your sender ID and templates registered on the DLT portal.
+
+1. In **Settings → Integrations → MSG91 (SMS)**, enter your **Auth key**, **Sender ID** and **DLT entity ID**.
+2. On the same page, add your SMS templates with their MSG91 and DLT template IDs, and choose the lead detail that fills each blank.
+3. Send a test SMS to your own phone.
+4. Turn on delivery reports in MSG91 with the callback URL and header shown on the page.
+
+Your team can then send SMS from a lead's page and from automations. Leads who reply STOP get no more SMS.
+
+## Zapier, Make, Pabbly Connect and n8n
+
+Marro sends events to your workflow's webhook as they happen. To change Marro from a workflow, call the [API](/getting-started) with an API key.
+
+<Steps>
+  <Step title="Paste the workflow's webhook URL">
+    Create a webhook trigger in your workflow tool, copy its URL, and paste it into the service's page in **Settings → Integrations**.
+  </Step>
+  <Step title="Choose the events">
+    A lead is added, a lead's details change, a lead moves to another stage, a lead gets a new owner, a call is logged, a note is added, a follow-up is done, a web form is sent in, a payment is received, a session is booked.
+  </Step>
+  <Step title="Send test event">
+    **Send test event** posts a made-up lead with every field, so your workflow learns the field names.
+  </Step>
+</Steps>
+
+Each event is a `POST` with a JSON body of `id`, `event`, `occurredAt`, `test` (on test events only), `organization`, `lead` and `change`. Check the `X-CRM-Signature` header: `sha256=` followed by the hex HMAC-SHA256 of the raw body, keyed with the **Signing secret** shown on the page. `X-CRM-Event` names the event and `X-CRM-Delivery` identifies the delivery.
+
+An event that gets no answer, a `429` or a `5xx` is tried once more, then dropped.

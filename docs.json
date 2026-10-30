@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "willow",
   "name": "Marro",
-  "description": "How to connect to and use Marro.",
+  "description": "How to set up and use Marro, and connect to its API.",
   "colors": {
     "primary": "#cc3d0a",
     "light": "#ff7a3d",
@@ -43,15 +43,31 @@
           {
             "group": "Get started",
             "pages": [
-              "index",
-              "getting-started",
-              "authentication",
-              "keys-and-scopes"
+              "index"
             ]
           },
           {
-            "group": "Guides",
+            "group": "Use Marro",
             "pages": [
+              "guides/inbox",
+              "guides/website-chat",
+              "guides/business-knowledge",
+              "guides/assistant",
+              "guides/agents",
+              "guides/automations",
+              "guides/appointments",
+              "guides/payments",
+              "guides/ai-calling",
+              "guides/integrations",
+              "guides/mobile-app"
+            ]
+          },
+          {
+            "group": "API",
+            "pages": [
+              "getting-started",
+              "authentication",
+              "keys-and-scopes",
               "guides/connect-a-website",
               "guides/filtering"
             ]

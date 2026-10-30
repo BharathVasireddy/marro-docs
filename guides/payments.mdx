@@ -1,0 +1,40 @@
+---
+title: "Payments"
+description: "Send Razorpay payment links from a lead and record what they pay."
+---
+
+Marro sends payment links through your organization's own Razorpay account. A payment counts once Razorpay confirms it: it shows on the lead and its timeline, can move the lead to a stage, starts automations, and appears as revenue in Reports.
+
+## Connect Razorpay
+
+<Steps>
+  <Step title="Enter your keys">
+    Open **Settings → Integrations → Razorpay**. Enter your **Key ID** and **Key secret** from Razorpay's **Account & Settings → API Keys**.
+  </Step>
+  <Step title="Add the webhook in Razorpay">
+    In Razorpay, open **Account & Settings → Webhooks → Add New Webhook**. Paste the webhook URL and secret shown in Marro, tick `payment_link.paid`, `payment_link.expired` and `payment_link.cancelled`, and save. Use the same mode (Test or Live) as your key.
+  </Step>
+</Steps>
+
+## Set up what you sell
+
+- **Settings → Sales and payments → Products and prices**: each product or service with its price and, optionally, the parts it is paid in.
+- **Settings → Sales and payments → Payments**: under **When a lead pays**, choose **Move the lead to** a stage, or **Keep it where it is**. A lead only ever moves forwards.
+
+## Request a payment
+
+<Steps>
+  <Step title="Open the lead's Payments">
+    On the lead's page, find **Payments**. **Interested in** lists what the lead wants and its agreed amount; together they make the lead's **Value**, with **Paid** and **Still due** beside it.
+  </Step>
+  <Step title="Create the link">
+    Press **Request payment**. Choose a product, one part of its price, or **Something else**. Change the amount for a discount or a part payment, and optionally set a day to pay by. Then **Create payment link**.
+  </Step>
+  <Step title="Send it">
+    **Send on WhatsApp** sends it from your WhatsApp number within the 24-hour reply window, or copy the link to share it another way.
+  </Step>
+</Steps>
+
+Razorpay's own SMS and email are off, so the lead hears from your team.
+
+Use the trigger **A payment is received** in [Automations](/guides/automations) to act on each payment.

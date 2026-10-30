@@ -1,0 +1,51 @@
+---
+title: "Automations"
+description: "Run steps on their own when something happens to a lead."
+---
+
+An automation starts when something happens to a lead, then runs its steps. Steps can wait, so one automation can follow a lead over days.
+
+Open **Settings → Automations**, then **New automation**, or start from a ready-made journey or a WhatsApp recipe. Each opens the builder filled in, to change and save.
+
+## When it starts
+
+- A lead is created, is updated, or its stage changes
+- A lead is assigned or reassigned
+- A call is logged, or a note is added
+- A follow-up is created on a lead, or a follow-up on a lead is done
+- A lead sends a WhatsApp message
+- A web form is submitted
+- A payment is received
+- An appointment is booked, or is completed or a no-show
+- A lead becomes Hot, Warm or Cold
+- Another automation uses it
+
+Add conditions to narrow it down: stage, pipeline, tags, lead score, days since last contact, the message's text, whether it was sent outside working hours, and more.
+
+## What it does
+
+- **Update fields**, **Change stage**, **Move to another pipeline**, **Assign**
+- **Add a note**, **Create a follow-up**, **Tag the lead**, **Take tags off the lead**
+- **Send a WhatsApp template to the lead**, **Send a WhatsApp reply**, **Send an SMS to the lead**, **Send an email to the lead**
+- **Send a booking link**, **Send the portal link**
+- **Notify someone**
+- **Hand to the assistant** (with the AI add-on)
+- **Stop WhatsApp messages to the lead**, **Archive the lead**
+- **Send to a web address**: posts the lead to a public `https` address. Each request has an `X-CRM-Signature` header: `sha256=` and the HMAC-SHA256 of the body, keyed with the signing secret shown in the step.
+
+## Journeys
+
+Steps that pause make an automation a journey:
+
+- **Wait**: a length of time, or until a time of day, optionally on a working day.
+- **Wait for a reply or a change**: the lead replies on WhatsApp, changes stage, a follow-up is done, or a field changes. It has two ways on: if it happens, and if it doesn't happen in time.
+- **If… otherwise…** sends each lead down the first way whose condition it matches.
+- **Use another automation** runs a reusable automation for the same lead, then carries on.
+
+The list labels each automation **Instant**, **Journey** or **Reusable**.
+
+## Test it
+
+Press **Try on a lead** in the builder, choose a lead, then **Run on this lead**. The actions really happen to that lead, so pick a test lead. If you have unsaved changes, the saved version runs.
+
+The number of automations you can have depends on your plan. See **Settings → Subscription**.
