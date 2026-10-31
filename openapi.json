@@ -1981,7 +1981,7 @@
       "ApiKey": {
         "type": "http",
         "scheme": "bearer",
-        "description": "An organization API key, created in Settings → Connections → API keys. Keys start with `mk_live_`. Marro stores only a hash of a key, so it is shown once, when it is created: copy it then. Revoking a key ends its access at once. To replace a key without downtime, create the new one, switch your server to it, then revoke the old one. Changes made with a key appear on the lead’s timeline as made by the person who created the key, via the API. Scopes: `leads.read` (Read leads), `leads.write` (Create and update leads), `leads.capture` (Capture leads).",
+        "description": "An organization API key, created in Settings → Integrations → API keys. Keys start with `mk_live_`. Marro stores only a hash of a key, so it is shown once, when it is created: copy it then. Revoking a key ends its access at once. To replace a key without downtime, create the new one, switch your server to it, then revoke the old one. Changes made with a key appear on the lead’s timeline as made by the person who created the key, via the API. Scopes: `leads.read` (Read leads), `leads.write` (Create and update leads), `leads.capture` (Capture leads), `agent.tools` (AI agent tools (MCP)).",
         "x-scopes": {
           "leads.read": {
             "label": "Read leads",
@@ -1997,6 +1997,11 @@
             "label": "Capture leads",
             "description": "Capture leads from a website or form: add a lead or update the existing one with the same phone or email. Cannot read, list or change anything else.",
             "module": "crm"
+          },
+          "agent.tools": {
+            "label": "AI agent tools (MCP)",
+            "description": "Connect another AI agent over MCP: find and read leads, see what your agents may do, and ask Marro's agent to act on a lead within your agents' permissions.",
+            "module": "ai"
           }
         },
         "x-key-types": [
