@@ -28,6 +28,15 @@ When more calls are requested than can run at once, the rest wait for a slot. **
 
 Before placement, Marro checks the requester's current calling permission, organization membership and lead access, and checks the saved destination against the lead's current phone. If authorization or the target is no longer valid, the call is stopped before placement and needs a new request. Harmless status edits or assignment changes that preserve access and the destination do not cancel a call. Both valid queued requests remain eligible as capacity opens.
 
+## Incoming calls
+
+The voice agent can also answer calls to your business number. Ask support to switch it on; **Settings → AI → Calls** then shows **Incoming calls: answered by your AI voice agent**.
+
+- It greets the caller on behalf of your business, answers from your business knowledge and follows your Voice agent instructions.
+- A caller who is already a lead is matched by their number. A new number becomes a lead, assigned by your rules, with the source **Phone call**.
+- Each incoming call uses one of your simultaneous AI call slots. When all are busy, the caller hears that the lines are busy and can call again.
+- If the caller asks for a person, the agent passes on a callback request to your team.
+
 ## After the call
 
 The recording and transcript appear under the lead's **Voice calls**, and the call is noted in its activity.
