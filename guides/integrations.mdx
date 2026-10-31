@@ -49,6 +49,14 @@ You need an MSG91 account with your sender ID and templates registered on the DL
 
 Your team can then send SMS from a lead's page and from automations. Leads who reply STOP get no more SMS.
 
+## Phone calls (MCube)
+
+Connect MCube to log the calls your team takes on your MCube numbers. On the MCube integration page, copy the **Call events URL** and ask MCube to set it as the push URL for incoming call events (On Call and On Hangup) on your account.
+
+- Each call is written on the caller's lead, found by phone number, or a new lead (source **Phone call**) assigned by your rules.
+- An answered call is logged under the executive who took it, with the talk time and recording, and marks the lead contacted. Each executive's phone number in Marro must match the one MCube rings.
+- A missed call shows as **Missed incoming call**, and the lead's owner gets a **Call back: missed call** follow-up. Automations can start on missed calls only.
+
 ## Zapier, Make, Pabbly Connect and n8n
 
 Marro sends events to your workflow's webhook as they happen. To change Marro from a workflow, call the [API](/getting-started) with an API key.
