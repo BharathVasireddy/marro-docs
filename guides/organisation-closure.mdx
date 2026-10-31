@@ -30,3 +30,10 @@ Marro preserves its own accepted contracts, necessary accounting/wallet ledger a
 Activation still requires the production migration, a runtime database role without RLS bypass, independent locked deletion ledger and tested backup suppression. Scheduling and permanent purge are separate gates.
 
 Disabling new closure scheduling does not resume an existing closure or its queued activity. The secure workflow and deletion worker must reject database roles that bypass row-level security; missing runtime safeguards keep these operations unavailable.
+
+
+## Platform operator controls
+
+Platform Owners manage **Platform → Settings → Manage policy and cases**. **Allow closure requests** and **Allow permanent deletion** are separate, default-off controls. Both console policy and the deployment's emergency gates must permit an operation. The console checks actual application database safeguards and ledger availability; missing, expired or unverified lock/restore/scope/release evidence blocks enabling and execution. It cannot self-approve that evidence.
+
+Every change requires a live platform Owner session, current password, typed confirmation and reason, and is audited. Operators can inspect closure progress, record billing reconciliation without waiving debt or shortening retention, and add/release exact-record legal holds. Tenant administrators and the assistant/WhatsApp cannot access these platform controls or evidence. Existing recovery/export and activity pauses survive disabling new requests. Changing a console policy requires no deployment; changing infrastructure or emergency environment settings requires the reviewed release workflow.
