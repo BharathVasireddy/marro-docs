@@ -30,6 +30,7 @@ If your organization pays for AI calls from its wallet, **Settings → AI → Ca
 
 - **One lead**: on the lead's page, press **AI call** in the header. Press it again to end the call.
 - **Several leads**: on a computer, select up to ten leads in the leads list and choose **Queue AI calls to selected**.
+- **From an automation**: the **Call with AI** step calls each lead the automation reaches, in working hours if you choose, then goes on by whether they answered. See [Call with AI](/guides/automations#call-with-ai).
 
 You need permission to make calls. AI calls go to Indian numbers in +91 format.
 
@@ -49,4 +50,6 @@ The voice agent can also answer calls to your business number. Ask support to sw
 
 ## After the call
 
-The recording and transcript appear under the lead's **Voice calls**, and the call is noted in its activity.
+The recording and transcript appear under the lead's **Voice calls**, and the call is noted in its activity: answered and how long, not answered, or not placed and why. A call counts as answered when it lasted 10 seconds or more with words spoken.
+
+Two automation triggers follow each call: **An AI call ends**, straight away, and **An AI call is analysed**, once the [Call analyst](/guides/agents) has read the recording and given the call an outcome such as interested or wants a callback. See [Automations](/guides/automations).

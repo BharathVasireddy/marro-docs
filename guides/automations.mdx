@@ -18,9 +18,11 @@ Open **Settings → Automations**, then **New automation**, or start from a read
 - A payment is received
 - An appointment is booked, or is completed or a no-show
 - A lead becomes Hot, Warm or Cold
+- An AI call ends (every call, answered calls only, or calls they did not answer)
+- An AI call is analysed, a few minutes after an answered call (any outcome, or only some: interested, wants a callback, not interested…)
 - Another automation uses it
 
-Add conditions to narrow it down: stage, pipeline, tags, lead score, days since last contact, the message's text, whether it was sent outside working hours, and more.
+Add conditions to narrow it down: stage, pipeline, tags, lead score, days since last contact, the outcome of the lead's last AI call, the message's text, whether it was sent outside working hours, and more.
 
 ## What it does
 
@@ -29,7 +31,8 @@ Add conditions to narrow it down: stage, pipeline, tags, lead score, days since 
 - **Send a WhatsApp template to the lead**, **Send a WhatsApp reply**, **Send an SMS to the lead**, **Send an email to the lead**
 - **Send a booking link**, **Send the portal link**
 - **Notify someone**
-- **Hand to the assistant** (with the AI add-on)
+- **Call with AI** (with [AI calling](/guides/ai-calling)): see [Call with AI](#call-with-ai)
+- **Agent decides** (with the AI add-on): the agent reads the lead and takes the next step itself: notes, follow-ups and fields straight away, messages, stage changes and new owners for approval. Its ways on can split into **Acted** and **Did nothing**, for example to tell the owner when it did nothing. Automations that used **Hand to the assistant** now show this step and keep working.
 - **Stop WhatsApp messages to the lead**, **Archive the lead**
 - **Send to a web address**: posts the lead to a public `https` address. Each request has an `X-CRM-Signature` header: `sha256=` and the HMAC-SHA256 of the body, keyed with the signing secret shown in the step.
 
@@ -41,8 +44,22 @@ Steps that pause make an automation a journey:
 - **Wait for a reply or a change**: the lead replies on WhatsApp, changes stage, a follow-up is done, or a field changes. It has two ways on: if it happens, and if it doesn't happen in time.
 - **If… otherwise…** sends each lead down the first way whose condition it matches.
 - **Use another automation** runs a reusable automation for the same lead, then carries on.
+- **Call with AI** waits for its call to end. It has two ways on: **Answered** and **Not answered**.
 
 The list labels each automation **Instant**, **Journey** or **Reusable**.
+
+## Call with AI
+
+**Call with AI** has the AI voice agent call the lead's phone, then waits for the call to end and goes on one of two ways:
+
+- **Answered**: the lead picked up, and the call lasted 10 seconds or more with words spoken.
+- **Not answered**: the call rang out, was cut short, was not placed (for example, calling is off or the number is not an Indian +91 number), or had not ended after 2 hours.
+
+Finish the sentence **Call them with AI…** (for example, "to confirm the course they asked about"); the agent opens with it. A new card already says "to welcome them and find out what they are looking for", so it works as soon as you add it. Under **More options**, add **Anything else for this call**, or switch off **Only call in working hours**. With it on (the default), a lead who arrives outside the hours, days off and holidays set in **Settings → HR** is called at the start of the next working day.
+
+The call is paid like any other AI call and appears on the lead's timeline. Automations that start from an AI call can't make another AI call, so calls never follow calls.
+
+To go on by how the call went, add **If… otherwise…** after it with the condition **Last AI call outcome**, or start a separate automation from **An AI call is analysed**. The ready-made journey **New lead: AI call in 5 minutes, WhatsApp if no answer** sets this up: it calls each new lead after 5 minutes, lets **Agent decides** take the next step when they answer, and sends a WhatsApp template when they don't.
 
 ## Test it
 
