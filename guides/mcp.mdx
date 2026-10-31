@@ -1,0 +1,24 @@
+---
+title: "Connect an AI agent (MCP)"
+description: "Let your own AI agent use Marro's lead tools and hand leads to Marro's agent."
+---
+
+Marro offers its lead tools to other AI agents over **MCP** (Model Context Protocol), the common standard AI agents use to call tools. Connect an agent you already use, such as an AI desktop app, an automation platform or one your developers built, and it can find leads, read them, and ask Marro's agent to act on one.
+
+## Connect
+
+1. Create an API key with the **AI agent tools (MCP)** scope in **Settings → Integrations → API keys**. Your plan needs AI, and you need access to settings.
+2. In your agent, add an MCP server at `https://app.marro.si/api/mcp` with the header `Authorization: Bearer <your key>`.
+
+## Tools
+
+| Tool | What it does |
+| --- | --- |
+| `find_leads` | Finds leads by phone, email or part of the name (up to 10). |
+| `get_lead` | A lead's details, latest timeline, open follow-ups and what Marro's agents know about it. |
+| `agent_capabilities` | What Marro's agent may do in your organization: on its own, asking first, or off, and why something is unavailable. |
+| `ask_agent` | Hands a lead to Marro's agent with an instruction in plain words. Set `dryRun` to see what it would do without changing anything. |
+
+`ask_agent` never changes anything itself. Marro's agent acts only within your [agent permissions](/guides/agents): what it may do on its own is done; the rest waits for a person to approve. It works within your working hours and daily limits, and uses your [AI credits](/guides/ai-usage).
+
+Each key can make up to 600 tool calls an hour. Revoke the key to disconnect the agent at once.
