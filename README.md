@@ -89,4 +89,4 @@ After that every push to `main` publishes.
 
 ## Look
 
-Theme `willow`, primary colour `#cc3d0a` (Marro orange; `#ff7a3d` in dark mode), the orange-gradient Marro mark as favicon, font Plus Jakarta Sans (the app's font), the drawn "marro" wordmark (logo/light.svg, logo/dark.svg; orange gradient on both), no background decoration. Set in `docs.json`.
+Theme `willow`, primary colour `#047857` (Marro emerald, as in the app and marro.si; `#34d399` in dark mode), the green-gradient Marro mark as favicon, font Plus Jakarta Sans (the app's font), and the logo as the mark beside the drawn "marro" wordmark (logo/light.svg in the green gradient; logo/dark.svg with a white wordmark), no background decoration. Set in `docs.json`.

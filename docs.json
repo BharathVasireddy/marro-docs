@@ -4,9 +4,9 @@
   "name": "Marro",
   "description": "How to set up and use Marro, and connect to its API.",
   "colors": {
-    "primary": "#cc3d0a",
-    "light": "#ff7a3d",
-    "dark": "#b8360a"
+    "primary": "#047857",
+    "light": "#34d399",
+    "dark": "#047857"
   },
   "favicon": "/favicon.svg",
   "fonts": {
