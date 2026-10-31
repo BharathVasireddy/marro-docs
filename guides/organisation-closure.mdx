@@ -5,6 +5,10 @@ description: Owner recovery, exports and honest deletion status.
 
 The recorded organisation owner opens **Settings → Organisation closure**, or **Account → Organisation closure** on mobile. The mobile link opens the secure web workflow. This feature requires server activation; organisations without a recorded owner need a reviewed ownership assignment through support.
 
+Before confirming, enter your current password and choose **Review data and export**. The preview shows organisation-scoped counts of leads, contacts, accounts, opportunities, messages, activities, documents, memberships and related child rows. It contains counts, not record contents. File inventory is separate and may show **at least** a count or **unavailable**; it is never presented as zero when unknown. Expand the related-data list for every included table.
+
+Use **Export organisation now** on that preview before confirming, including before immediate erasure. This makes no lifecycle change. The export grant lasts ten minutes and requires the same live owner session. A confirmation preview expires after two minutes; refreshing clears confirmation, and a changed database count requires another review. Files and external copies can change independently, so these counts are not a frozen guarantee.
+
 Normal closure immediately suspends ordinary access and starts a **30-day recovery and export window**. The owner page shows the exact deadline. Each change requires the current account password and confirmation. Impersonation and ordinary administrator access cannot substitute for ownership. A password may first need to be set through the existing account recovery flow.
 
 Before the deadline, the owner can download an export or restore the organisation. Restore leaves external activity paused. A second authenticated action resumes new work; old queued work and pre-closure reminders do not replay. Existing follow-ups/bookings stay visible, but create a new record to arm a new reminder after restoration. Already-dispatched messages/calls cannot be recalled.
@@ -16,3 +20,20 @@ At the deadline, recovery/export stop even if a deletion job has not yet run. We
 Subscription cancellation is separate from closure. Verified erasure requests can bypass or shorten the recovery window; they do not have to wait 30 days. Contact [support](https://app.marro.si/legal/support) for authority verification, legal requests, missing owner access or export omissions.
 
 The assistant and staff WhatsApp can read an active owner's status and, with approval, prepare a secure-page handoff. They never ask for your password or perform destructive confirmation in chat. Once the organisation is closed, use web sign-in to reach the owner recovery page.
+
+## Marro billing and retained evidence
+
+The preview distinguishes customer CRM payments from money owed to Marro. Customer payment/receivable rows belong to your CRM and are included in deletion; they are not a Marro debt-clearance check. Closing stops new service activity but does not cancel a subscription agreement, settle outstanding charges, guarantee a refund or waive debt. Final usage, prepaid credit, pending message or AI-call holds, refunds and disputes remain subject to billing reconciliation. The prepaid wallet amount shown is not an amount payable.
+
+Marro preserves its own accepted contracts, necessary accounting/wallet ledger and platform audit separately from tenant deletion. A billing case survives the organisation and starts as **review required**, with no assumed zero final bill. Billable AI-call evidence keeps minimal identifiers, status, duration and price facts, not conversation content or recordings. Necessary financial evidence follows an eight-year accounting baseline, extended only for a later applicable tax deadline or a specific legal hold. This does not retain the whole CRM for debt collection. Shared logins and selected legal holds are also separate.
+
+Activation still requires the production migration, a runtime database role without RLS bypass, independent locked deletion ledger and tested backup suppression. Scheduling and permanent purge are separate gates.
+
+Disabling new closure scheduling does not resume an existing closure or its queued activity. The secure workflow and deletion worker must reject database roles that bypass row-level security; missing runtime safeguards keep these operations unavailable.
+
+
+## Platform operator controls
+
+Platform Owners manage **Platform → Settings → Manage policy and cases**. **Allow closure requests** and **Allow permanent deletion** are separate, default-off controls. Both console policy and the deployment's emergency gates must permit an operation. The console checks actual application database safeguards and ledger availability; missing, expired or unverified lock/restore/scope/release evidence blocks enabling and execution. It cannot self-approve that evidence.
+
+Every change requires a live platform Owner session, current password, typed confirmation and reason, and is audited. Operators can inspect closure progress, record billing reconciliation without waiving debt or shortening retention, and add/release exact-record legal holds. Tenant administrators and the assistant/WhatsApp cannot access these platform controls or evidence. Existing recovery/export and activity pauses survive disabling new requests. Changing a console policy requires no deployment; changing infrastructure or emergency environment settings requires the reviewed release workflow.
