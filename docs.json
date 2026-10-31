@@ -73,6 +73,7 @@
               "authentication",
               "keys-and-scopes",
               "guides/connect-a-website",
+              "guides/webhooks",
               "guides/filtering"
             ]
           },

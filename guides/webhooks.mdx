@@ -1,0 +1,29 @@
+---
+title: "Webhooks"
+description: "Bring in leads from any form tool that can send a webhook."
+---
+
+Many form tools can send each submission to a web address: Elementor and other WordPress form plugins, Typeform, JotForm, Google Ads lead forms, landing page builders and some property and education portals. Give each one its own Marro address and its submissions become leads, with no code.
+
+<Steps>
+  <Step title="Add a webhook">
+    Open **Settings → Leads → Webhooks → New webhook** and name it after the form or tool, for example "Website contact form".
+  </Step>
+  <Step title="Paste the address into your tool">
+    Copy the address and paste it where your form tool asks for a webhook URL. It accepts JSON, form posts and query strings.
+  </Step>
+  <Step title="Send one test">
+    Submit your form once. Marro shows what arrived and suggests where each field goes.
+  </Step>
+  <Step title="Match the fields">
+    Choose **Map fields** and pick, for each field your tool sends, the Marro field it fills: name (or first and last name), phone, email, a message for the timeline, or any of your lead fields (Settings → Leads → Lead fields). Name and phone are needed. Choose the lead source and pipeline, then save.
+  </Step>
+</Steps>
+
+From then on, every submission becomes a lead. Someone you already have, by phone or email, is updated instead of added twice: only empty fields are filled. New leads get an owner from your assignment rules, the submission shows on the lead's timeline, and your [automations](/guides/automations) run, so the first caller can ring them within minutes.
+
+Each webhook shows how many submissions and leads it has had, and the last problem if a submission couldn't become a lead. **Replace address** gives it a new one if the old one was shared by mistake; the old one stops working at once. Turn **Take submissions** off to pause it.
+
+<Tip>
+  Writing your own website code instead? Use the [lead capture API](/guides/connect-a-website), which takes the same fields from your server.
+</Tip>
