@@ -34,3 +34,15 @@ How this organization is set up: fields, stages, sources and people.
 | [List pipelines](/api-reference/reference/list-pipelines) | GET | `/api/v1/pipelines` |
 | [List sources](/api-reference/reference/list-sources) | GET | `/api/v1/lead-sources` |
 | [List people](/api-reference/reference/list-users) | GET | `/api/v1/users` |
+
+### Customers
+
+Contacts, companies and enabled opportunities with record-type custom fields. Dedicated crm.records scopes are required.
+
+| Endpoint | Method | Path |
+| --- | --- | --- |
+| [List customer or opportunity records](/api-reference/customers/list-records) | GET | `/api/v1/crm/{kind}` |
+| [Create a customer or opportunity](/api-reference/customers/create-record) | POST | `/api/v1/crm/{kind}` |
+| [Read a customer or opportunity](/api-reference/customers/read-record) | GET | `/api/v1/crm/{kind}/{recordId}` |
+| [Update a customer or opportunity](/api-reference/customers/update-record) | PATCH | `/api/v1/crm/{kind}/{recordId}` |
+| [List custom record fields](/api-reference/customers/list-record-fields) | GET | `/api/v1/crm/{kind}/fields` |

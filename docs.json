@@ -55,6 +55,7 @@
               "guides/business-knowledge",
               "guides/assistant",
               "guides/personal-agent",
+              "guides/case-workflows",
               "guides/agents",
               "guides/automations",
               "guides/appointments",
@@ -66,7 +67,8 @@
               "guides/mobile-app",
               "guides/access-and-data",
               "guides/organisation-closure",
-              "guides/delete-your-account"
+              "guides/delete-your-account",
+              "guides/custom-fields"
             ]
           },
           {
@@ -112,6 +114,16 @@
               "api-reference/reference/list-pipelines",
               "api-reference/reference/list-sources",
               "api-reference/reference/list-users"
+            ]
+          },
+          {
+            "group": "Customers",
+            "pages": [
+              "api-reference/customers/list-records",
+              "api-reference/customers/create-record",
+              "api-reference/customers/read-record",
+              "api-reference/customers/update-record",
+              "api-reference/customers/list-record-fields"
             ]
           }
         ]

@@ -6,12 +6,12 @@ description: "Let Marro's AI team plan next steps, analyse calls and keep conver
 Agents work on your leads in the background, without anyone asking. You choose what each one may do, and review what they suggest.
 
 <Note>
-  Agents are part of the AI add-on. Settings and activity need permission to manage settings.
+  Agents are part of the AI add-on. Changing their settings needs permission to manage settings.
 </Note>
 
 ## Your AI team
 
-Open **Settings → AI → Agents**. The **Team** tab shows your AI team as roles you switch on:
+Open **AI → Agents**. It shows your AI team as roles you switch on. Each card says what starts it, what it does on its own, what it asks you first and when it hands over:
 
 | Role | What it does |
 | --- | --- |
@@ -43,21 +43,18 @@ If another agent already does the same step on the same trigger, the form says s
 
 Each agent you create runs as an automation of its own, so its runs show in Automations too. Switch it off or delete it from its card.
 
-The **Advanced** tab has each agent's own switch:
+Press **Manage** on a role to change its instructions and what it may do. Some roles have more there:
 
-| Agent | What it does |
-| --- | --- |
-| **Lead worker** | Keeps the next step moving after calls and notes: **Plan next steps**, **Draft WhatsApp replies** and a **Daily briefing** for each person. |
-| **Call analyst** | Turns recorded calls into clear summaries and next steps. |
-| **Conversation agent** | Keeps the conversation going while your team is away, replying on your connected channels. **Replies per contact** caps its replies to one person in a rolling 24 hours. |
+- **Follow-up coordinator**: **Plan next steps**, **Draft WhatsApp replies** and a **Daily briefing** for each person.
+- **WhatsApp receptionist**: **Replies per contact** caps its replies to one person in a rolling 24 hours.
 
-**Monthly run limit** is shared by the agents, briefings and tests. A limit of 0 stops new runs.
+**Monthly run limit**, below the team, is shared by the agents, briefings and tests. A limit of 0 stops new runs.
 
 The agents take your company facts from [business knowledge](/guides/business-knowledge).
 
 ## Give them instructions
 
-Each agent has **Instructions**: how it should work for your business, such as its tone, what to ask and what to listen for. When your organization has AI calling, the **Voice agent** is listed too.
+Each agent has instructions, under **Manage**: how it should work for your business, such as its tone, what to ask and what to listen for. When your organization has AI calling, the **Voice agent** is listed too.
 
 - Leave them empty and the agent follows the **Best practices** listed below the field.
 - Press **Add** on any best practice to copy it into your own, or **Add all to edit** to start from all of them.
@@ -69,7 +66,7 @@ You can also ask the [assistant](/guides/assistant) to change an agent's instruc
 
 ## Choose what they may do
 
-On the **Permissions** tab, set each action to:
+In a role's **Manage**, set each action it uses to **Ask me first** or **On its own**. An action shared by several roles shows **Also applies to**, because the choice is kept per action. Actions no role uses are under **Other actions**, below the team, where each can be:
 
 - **Off**: the agent never takes it.
 - **Suggest**: the agent asks for approval first.
@@ -87,7 +84,7 @@ The conversation agent shares the Lead worker's first three settings.
 
 ## Review their work
 
-Open **View activity** (the **Agent activity** page) to approve or decline suggestions, see the work queue and run history, and stop a queued task. **Try an instruction** shows what the assistant would do with a lead before you put the instruction in an automation. Nothing is saved or sent.
+Suggestions wait on the lead they belong to. Open the lead to approve, edit or decline them. The mobile app shows them too.
 
 ## Pause them
 
