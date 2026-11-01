@@ -1,39 +1,48 @@
 ---
 title: Organisation closure
-description: Owner recovery, exports and honest deletion status.
+description: Close your organisation, download its data, restore it within 30 days, or hand it to another admin.
 ---
 
-The recorded organisation owner opens **Settings → Organisation closure**, or **Account → Organisation closure** on mobile. The mobile link opens the secure web workflow. This feature requires server activation; organisations without a recorded owner need a reviewed ownership assignment through support.
+Only the organisation's **owner** can close it. Open **Settings → Organisation closure**, or **Account → Organisation closure** in the app (it opens the same secure web page). Every step asks for your current password. If you sign in with Google or Microsoft, set a password from the sign-in page first.
 
-Before confirming, enter your current password and choose **Review data and export**. The preview shows organisation-scoped counts of leads, contacts, accounts, opportunities, messages, activities, documents, memberships and related child rows. It contains counts, not record contents. File inventory is separate and may show **at least** a count or **unavailable**; it is never presented as zero when unknown. Expand the related-data list for every included table.
+## Closing
 
-Use **Export organisation now** on that preview before confirming, including before immediate erasure. This makes no lifecycle change. The export grant lasts ten minutes and requires the same live owner session. A confirmation preview expires after two minutes; refreshing clears confirmation, and a changed database count requires another review. Files and external copies can change independently, so these counts are not a frozen guarantee.
+1. Enter your password and choose **Review data**. You see how many leads, contacts, messages, files and other records will be deleted, and you can **Download data** right there.
+2. Tick the confirmation and choose **Close organisation**.
 
-Normal closure immediately suspends ordinary access and starts a **30-day recovery and export window**. The owner page shows the exact deadline. Each change requires the current account password and confirmation. Impersonation and ordinary administrator access cannot substitute for ownership. A password may first need to be set through the existing account recovery flow.
+Closing signs everyone out at once and stops messages, calls and automations. Your subscription is not cancelled by this, and amounts owed to Marro are not waived.
 
-Before the deadline, the owner can download an export or restore the organisation. Restore leaves external activity paused. A second authenticated action resumes new work; old queued work and pre-closure reminders do not replay. Existing follow-ups/bookings stay visible, but create a new record to arm a new reminder after restoration. Already-dispatched messages/calls cannot be recalled.
+If records keep arriving while you review (new leads, messages), small changes are fine. If a lot changed, Marro asks you to review again.
 
-The export is NDJSON containing scoped table pages, a member directory and base64 file chunks. Decode each chunk separately and concatenate in order. Credentials, global/shared data and external copies are explicitly omitted. Files larger than 64 MiB, missing files and interruptions are reported. Check the final completion record and omissions; support can arrange a reviewed offline export when needed.
+## The 30 days
 
-At the deadline, recovery/export stop even if a deletion job has not yet run. We target active-system deletion within seven days, subject to shorter applicable legal deadlines. Batches retry failures and show separate database/file/provider/backup/device outcomes. **Tenant deletion does not prove every copy is gone.** Lawful holds retain only reviewed records/files. Shared login accounts, provider retention, offline devices and customer-controlled exports require separate handling.
+- The owner page shows the exact deadline and how many days are left.
+- We email the owner 15 days and 1 day before the deadline.
+- Until the deadline you can **Download data** or **Restore organisation**.
+- After the deadline, restoring is no longer possible. Until deletion actually starts, you can still download your data.
 
-Subscription cancellation is separate from closure. Verified erasure requests can bypass or shorten the recovery window; they do not have to wait 30 days. Contact [support](https://app.marro.si/legal/support) for authority verification, legal requests, missing owner access or export omissions.
+**Restoring** brings everyone back, but new messages, calls and automations stay paused until you choose **Resume activity**. Reminders set before the closure stay cancelled; add new ones where you need them.
 
-The assistant and staff WhatsApp can read an active owner's status and, with approval, prepare a secure-page handoff. They never ask for your password or perform destructive confirmation in chat. Once the organisation is closed, use web sign-in to reach the owner recovery page.
+**Delete now** skips the rest of the 30 days. It cannot be undone.
 
-## Marro billing and retained evidence
+## Downloading your data
 
-The preview distinguishes customer CRM payments from money owed to Marro. Customer payment/receivable rows belong to your CRM and are included in deletion; they are not a Marro debt-clearance check. Closing stops new service activity but does not cancel a subscription agreement, settle outstanding charges, guarantee a refund or waive debt. Final usage, prepaid credit, pending message or AI-call holds, refunds and disputes remain subject to billing reconciliation. The prepaid wallet amount shown is not an amount payable.
+The download is NDJSON: every record table, the member list and your files (each file in base64 chunks, to be joined in order). A large organisation downloads in several parts, one after another; keep them all. The last part ends with `"completed": true`. Passwords, tokens and data shared with other organisations are left out. Files over 64 MiB are listed as omitted; [support](https://app.marro.si/legal/support) can send those separately.
 
-Marro preserves its own accepted contracts, necessary accounting/wallet ledger and platform audit separately from tenant deletion. A billing case survives the organisation and starts as **review required**, with no assumed zero final bill. Billable AI-call evidence keeps minimal identifiers, status, duration and price facts, not conversation content or recordings. Necessary financial evidence follows an eight-year accounting baseline, extended only for a later applicable tax deadline or a specific legal hold. This does not retain the whole CRM for debt collection. Shared logins and selected legal holds are also separate.
+## Deletion
 
-Activation still requires the production migration, a runtime database role without RLS bypass, independent locked deletion ledger and tested backup suppression. Scheduling and permanent purge are separate gates.
+After the deadline, records and files are deleted in batches; we aim to finish within seven days. The owner page shows progress for records, files and connected services. Marro keeps its own billing records (contracts, wallet entries, billable AI calls) for eight years, as accounting law requires; they hold no CRM content. Copies outside Marro (phones, downloads you made, other services) and backups that expire on their own schedule are not deleted by Marro.
 
-Disabling new closure scheduling does not resume an existing closure or its queued activity. The secure workflow and deletion worker must reject database roles that bypass row-level security; missing runtime safeguards keep these operations unavailable.
+## Handing ownership to someone else
 
+On the same page, under **Owner**, choose another admin and enter your password. They become the owner: they can close the organisation and they get its closure emails. You stay an admin. Ownership cannot change while a closure is in progress.
 
-## Platform operator controls
+If the owner has left, or no owner is recorded, ask [support](https://app.marro.si/legal/support): a Marro platform Owner can record one of your admins as owner, and the change appears in your audit log.
 
-Platform Owners manage **Platform → Settings → Manage policy and cases**. **Allow closure requests** and **Allow permanent deletion** are separate, default-off controls. Both console policy and the deployment's emergency gates must permit an operation. The console checks actual application database safeguards and ledger availability; missing, expired or unverified lock/restore/scope/release evidence blocks enabling and execution. It cannot self-approve that evidence.
+## In the assistant and WhatsApp
 
-Every change requires a live platform Owner session, current password, typed confirmation and reason, and is audited. Operators can inspect closure progress, record billing reconciliation without waiving debt or shortening retention, and add/release exact-record legal holds. Tenant administrators and the assistant/WhatsApp cannot access these platform controls or evidence. Existing recovery/export and activity pauses survive disabling new requests. Changing a console policy requires no deployment; changing infrastructure or emergency environment settings requires the reviewed release workflow.
+The assistant can tell the owner where a closure stands and open the owner page for them. It never asks for your password and never closes, restores or deletes anything in chat.
+
+## For Marro platform Owners
+
+**Platform → Settings → Organisation closure** has two switches: **Owners can close their organisation** and **Delete data after the 30 days**. Each asks for a confirmation and is recorded in the platform audit log. Both also need their deployment settings (`ORGANIZATION_CLOSURE_ENABLED`, and for deletion `ORGANIZATION_PURGE_ENABLED` and `DELETION_RESTORE_GATE_REVIEWED`) and pass the safety checks shown on that page. Turning them off never reopens a closed organisation; owners keep their 30 days. An organisation's **Lifecycle** tab shows its owner and lets a platform Owner record or move it, with a reason.
