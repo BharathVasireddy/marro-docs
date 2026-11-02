@@ -36,13 +36,14 @@ On the web and in the app, you can send another message while Marro works. It ap
 The menu under the message box chooses how changes are made:
 
 - **Ask first** (the default): every change waits for your approval. You see what will happen, then approve or decline.
-- **Auto**: changes run straight away, as you, including messages to leads.
+- **Auto**: ordinary changes run straight away, as you, including messages to leads. Record deletions, ordinary archived-lead restores, custom-field changes and personal check-in decisions still need your explicit approval.
 
 ## On WhatsApp
 
 Message the assistant's WhatsApp number from the phone number on your Marro account. It recognises you by that number, tells you who you are signed in as, and works with the same permissions and approvals as on the web.
 
 - Changes still ask first, with **Approve** and **Cancel** buttons. Replying "yes" or "no" also works.
+- When it needs you to pick between two or three short answers, such as which of two leads you mean, the question comes with reply buttons. You can also just type your answer.
 - Send a voice note in English or an Indian language, and the reply comes back as a voice note.
 - Photos and PDFs you send are read for that reply.
 - If you belong to several organizations, it asks which one. Send `switch organization` to change.
@@ -88,8 +89,27 @@ One result line, such as **8 fields updated**, opens to show each item. A failed
 reason; unfinished or uncertain items are marked clearly. A retry keeps completed work and resumes
 only items that never started. Check failed or uncertain items before requesting them again.
 
-Messages, paid calls, payments, destructive changes and actions with their own confirmation keep
+Messages, paid calls, payments, unsupported destructive changes and actions with their own confirmation keep
 those workflows. Marro explains when a change cannot use this general bulk action. On WhatsApp,
 you get one approval and one summary. Longer approvals use a text reply of “yes” or “no”; if the
 full review cannot fit in one message, use a smaller batch or review it on the web. Very long
 results give exact counts, with the item details saved in the same chat's history.
+
+
+## Get help from Marro’s team
+
+Type `support` for a bounded support conversation that uses no AI credits. Marro offers relevant docs for ordinary how-to or broken-feature problems; billing, payment, data-loss, account/data security issues and requests for a person go straight to the team. You review and approve the exact summary or follow-up message, including in Auto mode. Do not include customer details, chat history, credentials or attachments. [Help and support](/guides/support) also has a form that works without the assistant, plus your requests and the team’s replies.
+
+
+## Delete records
+
+Ask Marro to delete a record by name. Deleting a lead removes the lead and its history.
+Archive is a separate choice that keeps the lead in **Leads → Archived**.
+
+Every deletion needs your explicit approval, including in Auto mode or when other changes are
+allowed for the chat. The review names what will go, lists related history, and ends with “This can't be undone.” Declining changes nothing.
+For 2–50 items, one review lists every name and the total related history.
+
+Your current permissions and the record's in-use rules still apply. Credentials, integration
+connections, users, invitations, money and organization/account deletion keep their separate workflows.
+Custom fields keep their own individual review and rules.

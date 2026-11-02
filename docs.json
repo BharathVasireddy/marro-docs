@@ -44,7 +44,8 @@
             "group": "Get started",
             "pages": [
               "index",
-              "guides/sign-up"
+              "guides/sign-up",
+              "guides/two-step-sign-in"
             ]
           },
           {
@@ -54,8 +55,11 @@
               "guides/website-chat",
               "guides/business-knowledge",
               "guides/assistant",
+              "guides/support",
               "guides/personal-agent",
               "guides/case-workflows",
+              "guides/advanced-filters",
+              "guides/favourites",
               "guides/agents",
               "guides/automations",
               "guides/appointments",
@@ -68,7 +72,8 @@
               "guides/access-and-data",
               "guides/organisation-closure",
               "guides/delete-your-account",
-              "guides/custom-fields"
+              "guides/custom-fields",
+              "guides/custom-objects"
             ]
           },
           {
@@ -95,6 +100,18 @@
         "tab": "API reference",
         "openapi": "openapi.json",
         "groups": [
+          {
+            "group": "Custom objects",
+            "pages": [
+              "api-reference/custom-objects/list-custom-objects",
+              "api-reference/custom-objects/get-custom-object",
+              "api-reference/custom-objects/list-object-records",
+              "api-reference/custom-objects/create-object-record",
+              "api-reference/custom-objects/get-object-record",
+              "api-reference/custom-objects/update-object-record",
+              "api-reference/custom-objects/delete-object-record"
+            ]
+          },
           {
             "group": "Leads",
             "pages": [

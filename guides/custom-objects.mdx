@@ -1,0 +1,123 @@
+---
+title: Custom objects
+description: Keep your own kinds of records, with fields and access set separately for each object.
+---
+
+Custom objects let an administrator add a record type such as Vehicles, Courses or Properties.
+Custom objects become available after the feature update is released. If Settings says they are
+not available yet, continue using the existing CRM record types.
+
+Open [Custom objects](https://app.marro.si/settings/objects) in Settings. Give the object a name,
+a permanent address such as `vehicles`, and an icon from the offered list. Changing its name does
+not change its address. Each object starts with a required short-text **Title** field.
+
+## Fields and titles
+
+Open the object's settings to add fields. This version supports short and long text, number, date,
+phone, email, URL, dropdown, multiple choice and yes/no. Keys and types stay fixed after creation.
+Choices use one `value | label` per line. Values are the stable identifiers saved with records.
+You can change labels, help text, visibility, required rules and conditional display.
+
+Choose another visible, unconditional short-text field as the title when every existing record,
+including archived records, has a value for it. Changing the title field updates titles and record
+versions. A title is always required. The current title field cannot be hidden or deleted.
+
+Hiding a field keeps its values. Before deletion the page shows the number of records with saved
+values, including archived records, and any blocking conditional fields or saved views. Clear those
+uses first. Type its exact label when asked. The field and its values are retained; it can be
+restored within 30 days. Reusing a deleted field's key starts with an empty, separate value slot.
+A restore preserves the old values and chooses an available key/label if the original is in use.
+There is no automatic permanent purge of retained field values in this version.
+
+Record-link fields and **Linked from** are not implemented for custom objects yet. The object field
+selector does not offer them. Existing record links among leads, contacts, companies, opportunities
+and users keep their existing behaviour.
+
+## Roles and ownership
+
+In Roles, follow the custom-object permission links, or open **Roles and permissions** in the
+object's settings. Each active role has its own **view**, **create**, **edit** and **delete** grants.
+Choose no access, own records, own and team records, or all records. Team means users in active
+teams that the viewer leads. The view scope also limits edits and deletion. Edit includes notes,
+archiving and restoration. New records belong to the creator unless another accessible active
+user is explicitly chosen through the API or assistant.
+
+Administrators have full access. Partners cannot access custom objects. Object grants do not grant
+access to leads or other CRM modules. To remove a role's object grants completely, choose No access
+and clear Create, Edit and Delete. A role with remaining object grants cannot be permanently deleted;
+clear the grants first. Deactivating a role disables its access without removing those grants.
+
+## Lists, records and CSV
+
+Accessible active objects appear in the sidebar and command search. Open an object to search by a
+title prefix, sort by title or dates, filter with AND/OR groups, save private/shared views or star
+records and views. An invalid or stale filter matches no records until it is edited or cleared.
+Every operation stays within your current object and ownership scope.
+
+A record page contains its fields, notes and activity history. Saving an old record version is
+refused so another person's edit is not overwritten. Archive keeps the record and its history;
+choose Archived on the list to find it. Permanent deletion needs the current title and removes its
+notes and activity. It has no restore.
+
+Select records on the current page for a bulk archive or delete, up to 50 at a time. Review the
+selection and type the requested confirmation. All selected records are checked first; later
+changes are rechecked individually. The result names each success or failure, so a partly completed
+batch is not presented as fully done.
+
+**Export CSV** downloads matching, accessible records and active fields, capped at 50,000 rows.
+The page says when the file is capped. CSV text is protected against spreadsheet formulas.
+**Import CSV** has upload, column mapping, a five-row preview and validation before creation.
+It accepts up to 1,000 rows in a file under 5 MB. Writes use small bounded requests and repeat the
+field and permission checks. Imports create new records only: there is no automatic matching,
+update or duplicate detection. Do not retry an uncertain request until you have checked which
+records were created.
+
+## Archive or delete an object
+
+Archive hides the object from navigation and prevents new records and edits; existing data is
+preserved. Administrators can restore the object in Settings.
+
+Whole-object deletion previews records, fields (including retained deleted fields) and incoming
+links. It refuses while a saved view, automation configuration or another link-field definition
+depends on the object. Clear these uses first, then review fresh counts and type the exact object
+name. Deletion removes the object, all records, notes, activity and fields. There is no restore.
+Organisation closure and erasure include the new tenant tables through lifecycle scope.
+
+## Ask Marro and staff WhatsApp
+
+The shared assistant can list objects, inspect definitions and settings, find/read records and
+activity, and ask for approval to create/update records, add notes or change object configuration.
+The same object permissions and versions are checked at execution. Names, notes and field values
+are data and cannot grant permission or authorize another action.
+
+Record/object deletion remains on the web because complete assistant recovery is not implemented.
+Field deletion also remains on its settings page until its individual lifecycle approval tool is
+available. CSV upload and downloads use the page. General assistant bulk actions cannot wrap
+custom-object changes. Background agents gain no automatic custom-object actions.
+
+## Public API
+
+An administrator can issue `objects.records.read`, `objects.records.write` and
+`objects.records.delete` scopes. Write and delete also require read. These scopes grant no lead
+permissions. Each request also checks that the key creator is still an active user and still has
+the relevant object grant and ownership scope. There is no subscription restriction selected yet.
+
+- `GET /api/v1/objects`: accessible active definitions.
+- `GET /api/v1/objects/{slug}`: definition and active fields, without internal value slots.
+- `GET /api/v1/objects/{slug}/records`: paged, scoped records, with prefix search and filters.
+- `GET /api/v1/objects/{slug}/records/{recordId}`: current values and version.
+- `POST /api/v1/objects/{slug}/records`: `values` keyed by public field keys; optional `ownerId`.
+- `PATCH /api/v1/objects/{slug}/records/{recordId}`: current `version` and the requested patch.
+- `DELETE /api/v1/objects/{slug}/records/{recordId}`: current `version` and exact `confirmationTitle`.
+
+Record creation is not idempotent. Reconcile an uncertain response before retrying.
+
+## Current limits and remaining work
+
+There are up to 20 objects per organisation, 100 current fields per object (including hidden
+fields) and 100,000 records per organisation (including archived records). Retained deleted fields
+are separate from the current-field limit. No subscription upgrade is required by this implementation.
+
+A board is not included yet. Custom-object record links, web forms, portal, reports, automation
+triggers/actions and WhatsApp inbox record links remain unfinished. The native app has no custom-object
+screens or navigation. Use the web app or the shared assistant after the server feature is released.

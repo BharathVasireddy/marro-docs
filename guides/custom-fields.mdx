@@ -1,11 +1,11 @@
 ---
 title: Custom fields
-description: Add the details your team needs on leads, contacts, companies and opportunities.
+description: Add the details your team needs on CRM records and custom objects.
 ---
 
 Open [Fields](https://app.marro.si/settings/leads/fields) in Settings and choose a **Record type**. A field belongs to one type: Lead, Opportunity, Contact or Company. Existing fields remain lead fields. Values are never copied between types automatically. Field keys belong to their record type.
 
-Choose **Add field**, give it a name and section, and select short or long text, number, date, phone, email, link, dropdown, multiple choice or yes/no. Dropdowns need choices. You can require a field when creating or editing a record, show it after another answer, and hide it later. Hidden fields leave saved values in place. The fixed identity, ownership, relationship, value and stage fields on customers and opportunities remain fixed.
+Choose **Add field**, give it a name and section, and select short or long text, number, date, phone, email, link, dropdown, multiple choice yes/no, or record link. Dropdowns need choices. You can require a field when creating or editing a record, show it after another answer, and hide it later. Hidden fields leave saved values in place. The fixed identity, ownership, relationship, value and stage fields on customers and opportunities remain fixed.
 
 Custom fields appear on create/edit forms, record details and lists, including stacked cards on phones. Saving checks the current record type's fields, required rules, formats and choices. Editing changes only submitted keys; send an empty value to clear a field. Values from a previous option list can remain unchanged when editing. Fields hidden by an answer are cleared when the record is saved.
 
@@ -15,7 +15,7 @@ In **Settings → Your business → Industry starter**, the same suggestions are
 
 To delete a custom field, use its **Delete** button in Fields. A field with no saved values or references needs a simple confirmation. If records have saved values, Marro shows the exact affected count, offers **Hide instead**, and requires you to type the field name before deleting. Zero and No count as saved answers. Archived records are included in the count. Built-in fields cannot be deleted. Fields used by another field, a form, call outcome, saved list or view, automation, assignment or scoring rule, agent or import/integration mapping cannot be deleted until those uses are removed. Marro names the uses that need attention.
 
-Deletion removes the field from forms, lists, filters, exports, the API and ordinary assistant reads. It retains the definition and saved values. Settings managers can use **Recently deleted → Restore** for **30 days** after deletion. Restoring brings back the original values; if its name or key has been reused, Marro adds “restored” to the name and chooses a different key. A new field can reuse a deleted field's name and public key immediately and starts empty. It never inherits the old field's values. Reapplying an industry starter skips deleted fields; use Restore explicitly to bring one back.
+Deletion removes the field from forms, lists, filters, exports, the API and ordinary assistant reads. It retains the definition and ordinary saved values. Record-link rows are removed; restoring a record-link field starts it empty. Settings managers can use **Recently deleted → Restore** for **30 days** after deletion. Restoring brings back ordinary original values; if its name or key has been reused, Marro adds “restored” to the name and chooses a different key. A new field can reuse a deleted field's name and public key immediately and starts empty. It never inherits the old field's values. Reapplying an industry starter skips deleted fields; use Restore explicitly to bring one back.
 
 The restore window ends after 30 days. Automatic permanent removal is not enabled yet: retained definitions and values remain stored after the window, with ordinary restoration unavailable. Deleting a field is therefore not a request for immediate permanent erasure.
 
@@ -34,3 +34,51 @@ For server integrations, create a key with **crm.records.read** or **crm.records
 - `PATCH /api/v1/crm/{kind}/{recordId}`: current `version`, changed fixed fields and a `customFields` patch.
 
 For example, send `{"version": 3, "customFields": {"starter_location": "Hyderabad", "starter_budget": 8000000}}` to patch an opportunity after reading its current version and field definitions. Use `null` to clear a custom value. Create/update returns the ID and version; read the record to get normalized values and `customFieldDisplay` labels. Opportunities must be enabled in Business profile. These endpoints do not send messages or create payments.
+
+Use [Filters](/guides/advanced-filters) to combine system and custom-field conditions with AND and OR on the web lists. Lead fields can also narrow follow-ups through their linked lead. Saved views retain the groups; a deleted or hidden field makes a stale group match no records until you edit or clear it.
+
+
+## Record links
+
+Choose **Record link** to point to a lead, contact, company, opportunity or user. Choose one target
+type and either one record or multiple records when creating the field. These choices stay fixed;
+add another field to use a different target type or cardinality. Each owner type can have up to
+**10 record-link fields**, including hidden fields. A multiple-record field holds up to **20 links**.
+The field is offered after its database update is applied; until then existing fields keep working.
+
+Type a name, email or phone in the picker and choose an exact result. Users require the same HR
+visibility as their record page. Names open the linked record. Each viewer sees only targets they
+can currently access. Archived leads, disabled opportunities, removed users and deleted or
+inaccessible records show no linked name or detail and count as absent. Deleting a target removes
+its links and never requires clearing incoming links first. Archiving or disabling hides preserved
+links; restoring access makes surviving links visible again.
+
+The target page has **Linked from**, grouped by field name and limited to source records the viewer
+can see. More than 50 links use Previous and Next. Filters offer **is**, **is not**,
+**is empty** and **is not empty**; saved views keep these conditions. Lists and CSV exports use the
+same current visibility. CSV import on Leads accepts an exact name, email or phone belonging to the
+chosen target kind. Separate multiple entries with `|`. An unmatched or ambiguous entry rejects the
+row with a reason; Marro never chooses between matching names. Opportunities match their own name.
+
+Ask Marro or the staff WhatsApp agent to read links, find targets, show incoming links or replace
+one field. Replacements name the source, field and selected records for approval and recheck
+current access and names before saving. Text in a linked record cannot authorize another action.
+
+For API writes, a record-link value is an array of numeric target IDs, even for a single-record
+field; `[]` or `null` clears it. Definitions include `recordLink.target` and
+`recordLink.multiple`. Reads return arrays of accessible `{id, kind, name, href}` objects.
+Lead destinations require `leads.read`; contact/company/opportunity destinations require
+`crm.records.read`. There is no public API scope for user destinations. Record links cannot be
+anonymous website-form questions or captured through a lead-capture key.
+
+The native app has no record-link editor or incoming-link screen. Its current lead-form contract
+omits this unsupported type so older apps do not render it as a text input. Customer/opportunity
+details show the safe, server-formatted names read-only. Use the web form or Ask Marro to edit links;
+creating a record with a required link needs the web form or assistant. Optional links do not block
+ordinary native forms. Native Ask Marro shares the server tools after the server release.
+
+Background agents and automation Set fields do not gain automatic record-link writes. Use the web form, the scoped API or an approved assistant replacement. Anonymous website forms do not offer record links.
+
+## Fields on custom objects
+
+[Custom objects](/guides/custom-objects) have separate fields under Settings → Custom objects → the object. They reuse the field types, validation, retained deletion and isolated key-reuse rules. Current object fields support the ordinary types listed in that guide; record-link fields for objects are not available yet. Their permissions and API scopes are separate from lead and customer access.

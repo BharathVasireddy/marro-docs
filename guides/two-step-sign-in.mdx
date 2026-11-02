@@ -1,0 +1,66 @@
+---
+title: "Two-step sign-in"
+description: "Use an authenticator, passkeys and backup codes to protect your Marro account."
+---
+
+Open **Sign-in security** in your account menu, or go to `/account/security`. These settings protect your personal Marro login across all your organizations. They are available after the sign-in security migration is installed.
+
+## Set up an authenticator
+
+1. Verify your password or an existing sign-in method. Verification lasts five minutes.
+2. Choose **Set up authenticator**. Scan the QR code in your authenticator app, or enter the text secret manually.
+3. Enter the six-digit code to finish. Two-step sign-in is enabled only after this code is checked.
+4. Generate backup codes and save them somewhere separate from your sign-in device.
+
+If you signed up with Google and have no password or existing factor, use **Forgot password** to set a password by email before enrolling.
+
+The setup secret is shown only during setup. Marro encrypts the stored secret. Never paste it, a sign-in code or a backup code into Ask Marro or WhatsApp.
+
+## Use a passkey
+
+Give each passkey a name, such as **My phone**. Your browser asks your device to verify you with its fingerprint, face or PIN. Marro keeps the public credential, not your fingerprint, face, PIN or private key.
+
+Choose **Sign in with a passkey** on the login page to sign in without a password. A verified passkey also completes the second step after a password or WhatsApp code. Passkeys must be configured for the address where you use them. A passkey registered on one address may not work on an organization's different custom domain; use an authenticator or backup code there.
+
+## Signing in
+
+If you have an authenticator or passkey, entering your password or WhatsApp code is the first step. Marro then asks for an authenticator code, a passkey or one unused backup code. Google sign-in follows the same second-step rule.
+
+After the second step, you can choose **Trust this device for 30 days** on a private browser. This skips the second step on later sign-ins from that browser; you still need your password, WhatsApp code or Google sign-in. Platform administrators must verify a second step on every new sign-in and cannot use this exception.
+
+The challenge expires after five minutes. Five unsuccessful checks end that sign-in attempt. Repeated attempts against one account are also limited. Start again if the challenge expires.
+
+## Backup codes and lost devices
+
+There are ten backup codes in each set. Marro shows them once and keeps only their hashes. Each code works once. Regenerating a set invalidates every previous code.
+
+If you lose access to all your methods, use a backup code. Otherwise, ask an organization administrator you know to reset your two-step sign-in from **Settings → Sign-in security**. They must verify their own sign-in method first. A reset removes your factors, signs out all your browsers and mobile devices, revokes trusted devices and sends you an email.
+
+A platform administrator with the dedicated recovery permission can reset a recorded organization owner's two-step sign-in from the owner's profile in the platform console. Organization administrators cannot reset a platform administrator's account. Platform administrators should keep backup codes away from their primary device.
+
+## Review and remove access
+
+Your security page lists passkeys with their last use and trusted browsers with their expiry. Verify before removing methods, regenerating codes or revoking devices.
+
+- **Revoke** asks that browser for a second step at its next sign-in. Its existing session continues.
+- **Sign out other devices** ends every other web session and every mobile session, and revokes all trusted devices. The browser making the change stays signed in.
+- Changing your password invalidates trusted devices and signs out existing sessions through the password-change process.
+- Removing the last authenticator or passkey turns two-step sign-in off and invalidates remaining backup codes and trusted devices.
+
+Enabling a factor does not sign out sessions that were already open. Use **Sign out other devices** if you want to end those sessions. Security changes are audited and factor changes, resets and backup-code regeneration generate an email notice.
+
+## Require it for an organization
+
+An organization administrator can enable **Require two-step sign-in** under **Settings → Sign-in security**. The page lists which users have it set up, without showing their methods or secrets.
+
+The grace period is seven days from enabling the organization requirement. Users without a factor are sent to setup on their next web sign-in. After the deadline, they cannot open the CRM until they enrol. Users joining after that deadline must enrol before opening the CRM. Disabling the requirement does not remove anyone's factors.
+
+Platform administrators have no grace period for console access. Their browser session must have completed a real second step; a remembered device or an older unverified CRM session does not grant console access. They can sign in again or verify an existing factor on their security page. A first administrator can sign in with their existing password and open their security page to enrol before entering the console.
+
+## What this protects
+
+An authenticator or passkey adds protection when someone obtains your password or a WhatsApp login code. A WhatsApp code alone proves control of the phone, so someone holding an unlocked phone may receive that first factor. Keep your authenticator, backup codes and trusted browsers secure too.
+
+This does not lock an already signed-in device, protect a compromised browser, add a challenge to every WhatsApp assistant message, or change API-key access. A phone's existing WhatsApp assistant access follows its own number-based checks. Ask Marro can point you to the security page; it cannot inspect or change factors, codes, passkeys, trusted devices or administrator recovery.
+
+The server supports the mobile second-step contract. Native sign-in screens and native passkey integration need a new mobile build. Older apps receive a clear sign-in failure when a second step is required and are never issued a session for that incomplete sign-in. Use the web if your app cannot continue. Manage enrolment on the web.

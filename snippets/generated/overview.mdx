@@ -12,7 +12,21 @@ https://app.marro.si/api/v1
 
 The full specification is an OpenAPI 3.1.0 document at [https://app.marro.si/api/v1/openapi.json](https://app.marro.si/api/v1/openapi.json). Import it into Postman or a client generator.
 
+### Custom objects
+
+| Endpoint | Method | Path |
+| --- | --- | --- |
+| [List custom objects](/api-reference/custom-objects/list-custom-objects) | GET | `/api/v1/objects` |
+| [Read a custom-object definition](/api-reference/custom-objects/get-custom-object) | GET | `/api/v1/objects/{slug}` |
+| [List custom-object records](/api-reference/custom-objects/list-object-records) | GET | `/api/v1/objects/{slug}/records` |
+| [Create a custom-object record](/api-reference/custom-objects/create-object-record) | POST | `/api/v1/objects/{slug}/records` |
+| [Read a custom-object record](/api-reference/custom-objects/get-object-record) | GET | `/api/v1/objects/{slug}/records/{recordId}` |
+| [Update a custom-object record](/api-reference/custom-objects/update-object-record) | PATCH | `/api/v1/objects/{slug}/records/{recordId}` |
+| [Delete a custom-object record](/api-reference/custom-objects/delete-object-record) | DELETE | `/api/v1/objects/{slug}/records/{recordId}` |
+
 ### Leads
+
+Record-link custom fields accept numeric target ID arrays (one or up to 20 according to recordLink.multiple). Reads resolve accessible targets to id/kind/name/href objects. Deleted, archived, disabled and inaccessible targets are omitted. Destinations require the corresponding leads.read or crm.records.read scope; user destinations have no public API scope.
 
 | Endpoint | Method | Path |
 | --- | --- | --- |
