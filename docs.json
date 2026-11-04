@@ -65,6 +65,7 @@
               "guides/automations",
               "guides/appointments",
               "guides/payments",
+      "guides/billing",
               "guides/ai-calling",
               "guides/ai-usage",
               "guides/mcp",
