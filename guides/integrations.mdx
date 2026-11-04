@@ -11,6 +11,7 @@ Each organization connects its own accounts. Open **Settings → Integrations** 
 | Instagram messages, Facebook Messenger | DMs and Page messages in the Inbox | [Inbox](/guides/inbox#connect-instagram-and-messenger) |
 | Facebook & Instagram lead ads | Ad leads arrive within seconds, with campaign and answers | [Below](#facebook-and-instagram-lead-ads) |
 | Google Ads lead forms | Leads from Search, YouTube, Demand Gen and Performance Max lead forms arrive within seconds, with the campaign and answers | [Below](#google-ads-lead-forms) |
+| Google Sheets | A lead list and a Google Sheet kept in step, both ways | [Below](#google-sheets) |
 | Razorpay | Payment links from a lead, and payments recorded on it | [Payments](/guides/payments) |
 | MSG91 (SMS) | DLT-registered SMS to leads, and two-way SMS in the Inbox | [Below](#sms-msg91) |
 | Google Calendar, Outlook Calendar | Appointments in each person's own calendar, with Meet or Teams links | [Appointments](/guides/appointments) |
@@ -68,6 +69,33 @@ New leads get the source "Google ads", go through your assignment rules and star
 Ask the assistant "how many Google Ads leads did we get this week?" or "what are the latest leads from Google Ads?"; it can read your connections, recent leads and leads per campaign. It never sees or shows the key.
 
 Disconnecting stops new leads at once (remove the webhook from the lead form in Google Ads too). Leads already in Marro stay.
+
+## Google Sheets
+
+Keep a Google Sheet and your leads in step: new rows become leads, and new leads and changes appear as rows. Marro sees only the sheet you choose, never the rest of your Google Drive.
+
+Each connection is one Google account and one sheet. Add another connection for another sheet, for example one per team or campaign.
+
+<Steps>
+  <Step title="Connect a sheet">
+    In **Settings → Integrations → Google Sheets**, press **Connect a sheet** and sign in with the Google account that owns the sheet.
+  </Step>
+  <Step title="Choose the sheet">
+    Pick an existing sheet with Google's file picker, or press **Create a new sheet** and Marro makes one with a header row. Marro adds a **Marro ID** column at the end; it links each row to its lead, so you can sort the sheet freely. Do not delete or edit that column.
+  </Step>
+  <Step title="Check the columns">
+    On the **Columns** tab each column is matched to a lead field by its name. Change a match, or set a column to **Not shared** and Marro never reads or changes it. Press **Save and start syncing**.
+  </Step>
+  <Step title="Choose the direction and the leads">
+    On the **Sync** tab choose **Both ways**, **Sheet to CRM only** or **CRM to sheet only**, and share all leads or just one saved lead list.
+  </Step>
+</Steps>
+
+It syncs every five minutes, and **Sync now** does it at once. A new row with a phone number becomes a lead, assigned by your usual rules; if the person is already in Marro they are updated, not duplicated, and only empty fields are filled. If a cell and the lead were both changed since the last sync, Marro keeps its own value and puts it back in the sheet, with a note on the lead. Deleting a row never deletes a lead, and a lead that leaves the shared list keeps its row. The **Activity** tab shows what each sync changed.
+
+Ask the assistant "is the Google Sheet syncing?" or "sync the Google Sheet now"; it can check each sheet and run a sync after you approve it.
+
+Disconnecting stops syncing and withdraws Marro's access to your Google account. The sheet and your leads are left as they are.
 
 ## SMS (MSG91)
 
