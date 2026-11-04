@@ -52,6 +52,7 @@
             "group": "Use Marro",
             "pages": [
               "guides/inbox",
+              "guides/email",
               "guides/website-chat",
               "guides/business-knowledge",
               "guides/assistant",
