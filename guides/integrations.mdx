@@ -10,6 +10,7 @@ Each organization connects its own accounts. Open **Settings → Integrations** 
 | WhatsApp Business (Meta) | Your WhatsApp number in the Inbox, for replies, templates, automations and broadcasts | [Inbox](/guides/inbox) |
 | Instagram messages, Facebook Messenger | DMs and Page messages in the Inbox | [Inbox](/guides/inbox#connect-instagram-and-messenger) |
 | Facebook & Instagram lead ads | Ad leads arrive within seconds, with campaign and answers | [Below](#facebook-and-instagram-lead-ads) |
+| Google Ads lead forms | Leads from Search, YouTube, Demand Gen and Performance Max lead forms arrive within seconds, with the campaign and answers | [Below](#google-ads-lead-forms) |
 | Razorpay | Payment links from a lead, and payments recorded on it | [Payments](/guides/payments) |
 | MSG91 (SMS) | DLT-registered SMS to leads, and two-way SMS in the Inbox | [Below](#sms-msg91) |
 | Google Calendar, Outlook Calendar | Appointments in each person's own calendar, with Meet or Teams links | [Appointments](/guides/appointments) |
@@ -37,6 +38,36 @@ When connecting Instagram, stay signed in to the same Marro account and organiza
 </Steps>
 
 New leads arrive with the source "Facebook ads" or "Instagram ads", go through your assignment rules and start your automations. **Fetch recent leads** on a form brings in the last 90 days, for anything missed while disconnected.
+
+## Google Ads lead forms
+
+Leads from your Google Ads lead forms (Search, YouTube, Demand Gen and Performance Max) arrive in Marro within seconds. There is no Google sign-in: Google sends each lead to a web address and key that Marro makes for you.
+
+You can add several connections, for example one per Google Ads account, brand or agency, each with its own address and key.
+
+<Steps>
+  <Step title="Add a connection">
+    In **Settings → Integrations → Google Ads lead forms**, press **Add connection** and give it a name you will recognise, such as "Admissions – Search".
+  </Step>
+  <Step title="Copy the address and key">
+    Open the connection. Its **Setup** tab shows a **Webhook URL** and a **Key**. Keep the key private: anyone who has it could send leads to this connection.
+  </Step>
+  <Step title="Paste them into Google Ads">
+    In Google Ads open **Assets**, edit your lead form, choose **Webhook** for lead delivery and paste the Webhook URL and Key.
+  </Step>
+  <Step title="Send test data">
+    Press **Send test data** in Google Ads. A test lead appears under the connection's **Leads** tab within seconds. A test with a phone number becomes a lead named "Google test lead"; delete it when you are done. Then save the form.
+  </Step>
+  <Step title="Check where answers go">
+    When a form's first lead arrives, open the connection's **Forms** tab. Each question is already matched to a lead field; anything that does not fit is kept in a note on the lead. Change a match if you like. Google sends only campaign numbers, so you can give each campaign a name there.
+  </Step>
+</Steps>
+
+New leads get the source "Google ads", go through your assignment rules and start your automations. A lead with the same phone number (or, failing that, email) is filled in rather than duplicated: only empty fields are filled and staff edits are never overwritten. A lead needs a phone number; a form without a phone question can only update people already in Marro by email. If a lead cannot be added, the **Leads** tab says why, and Marro tries again automatically.
+
+Ask the assistant "how many Google Ads leads did we get this week?" or "what are the latest leads from Google Ads?"; it can read your connections, recent leads and leads per campaign. It never sees or shows the key.
+
+Disconnecting stops new leads at once (remove the webhook from the lead form in Google Ads too). Leads already in Marro stay.
 
 ## SMS (MSG91)
 
