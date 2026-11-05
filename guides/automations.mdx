@@ -39,10 +39,23 @@ Add conditions to narrow it down: stage, pipeline, tags, lead score, days since 
 - **Send a WhatsApp template to the lead**, **Send a WhatsApp reply**, **Send an SMS to the lead**, **Send an email to the lead**
 - **Send a booking link**, **Send the portal link**
 - **Notify someone**
+- **Create record**, **Create opportunity** and **Link records**: see [Customers and records](#customers-and-records)
 - **Call with AI** (with [AI calling](/guides/ai-calling)): see [Call with AI](#call-with-ai)
 - **Agent decides** (with the AI add-on): the agent reads the lead and takes the next step itself: notes, follow-ups and fields straight away, messages, stage changes and new owners for approval. Its ways on can split into **Acted** and **Did nothing**, for example to tell the owner when it did nothing. Automations that used **Hand to the assistant** now show this step and keep working.
 - **Stop WhatsApp messages to the lead**, **Archive the lead**
 - **Send to a web address**: posts the lead to a public `https` address. Each request has an `X-CRM-Signature` header: `sha256=` and the HMAC-SHA256 of the body, keyed with the signing secret shown in the step.
+
+## Customers and records
+
+Two steps connect a lead to the rest of your records:
+
+- **Create record** makes a company, a contact or an opportunity. Run twice, it makes the record once. A later step can use the record an earlier **Create record** step made: for example, create a company, create a contact, create an opportunity for that contact, then link them.
+- **Create opportunity** makes the lead's customer and its opening opportunity, in the currency you choose, with a value of zero. It reuses a customer who already exists, and does it once per lead however often the automation runs. It does nothing when Opportunities are switched off, or when the lead has no phone number or email. The lead itself is not changed, and nothing is sent.
+- **Link records** points one record at another through a link field, for example putting the customer into a "Referred by" field on the lead. Choose what to link from (this lead, its customer, or its opening opportunity), the link field, what to link to, and whether to add it, replace what is there, or take it out. The field has to exist already, and it must allow that kind of record.
+
+A customer or opportunity has to exist before **Link records** can use it, so put **Create opportunity** earlier in the automation. Running a step twice never links the same record twice.
+
+You can ask Marro to build this for you: "When a lead reaches Qualified, create the opportunity in rupees and link it to the lead's company field."
 
 ## Journeys
 
