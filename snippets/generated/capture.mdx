@@ -144,7 +144,7 @@ curl -X POST "https://app.marro.si/api/v1/leads/capture" \
 | 401 | UNAUTHORIZED: The key is missing, wrong, revoked or expired. |
 | 403 | FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it. |
 | 409 | IDEMPOTENCY_IN_PROGRESS: A request with this Idempotency-Key is still being handled. Retry in a few seconds. Another request saved the same person at the same moment. Retry; it will find that lead. |
-| 422 | VALIDATION_FAILED: A value is missing or invalid, a key in `fields` is not one of the organization’s active fields (`details.validKeys` lists them), or a field the organization requires for a new lead is missing. This Idempotency-Key was used within 24 hours for a different body. `pipelineId` is not one of the organization’s pipelines. |
+| 422 | VALIDATION_FAILED: A value is missing or invalid, a key in `fields` is not one of the organization’s active fields (`details.validKeys` lists them), or a field the organization requires for a new lead is missing. This Idempotency-Key was used within 24 hours for a different body. `pipelineId` is not one of the organization’s pipelines. `pipelineId` (or the stage’s pipeline) is for opportunities only. |
 | 429 | RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait. |
 | 500 | INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header. |
 | 503 | NOT_READY: The organization has no stage for new leads, or no active user to own them. Retry after it is set up. |

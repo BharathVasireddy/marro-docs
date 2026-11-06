@@ -26,7 +26,7 @@ The full specification is an OpenAPI 3.1.0 document at [https://app.marro.si/api
 
 ### Leads
 
-Record-link custom fields accept numeric target ID arrays (one or up to 20 according to recordLink.multiple). Reads resolve accessible targets to id/kind/name/href objects. Deleted, archived, disabled and inaccessible targets are omitted. Destinations require the corresponding leads.read or crm.records.read scope; user destinations have no public API scope.
+Record-link custom fields accept numeric target ID arrays (one or up to 20 according to recordLink.multiple). Reads resolve accessible targets to id/kind/name/href objects. Deleted, archived, disabled and inaccessible targets are omitted. Destinations require the corresponding leads.read or crm.records.read scope; user destinations have no public API scope. Object destinations use object:&#60;id&#62;, require objects.records.read and the key creator current object grants.
 
 | Endpoint | Method | Path |
 | --- | --- | --- |

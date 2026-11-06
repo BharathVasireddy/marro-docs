@@ -28,6 +28,7 @@ The builder shows every automation two ways, on the canvas and as a list of step
 - A lead becomes Hot, Warm or Cold
 - An AI call ends (every call, answered calls only, or calls they did not answer)
 - An AI call is analysed, a few minutes after an answered call (any outcome, or only some: interested, wants a callback, not interested…)
+- An opportunity's stage changes (any stage, or only some), for the lead it came from
 - Another automation uses it
 
 Add conditions to narrow it down: stage, pipeline, tags, lead score, days since last contact, the outcome of the lead's last AI call, the message's text, whether it was sent outside working hours, and more.
@@ -39,7 +40,7 @@ Add conditions to narrow it down: stage, pipeline, tags, lead score, days since 
 - **Send a WhatsApp template to the lead**, **Send a WhatsApp reply**, **Send an SMS to the lead**, **Send an email to the lead**
 - **Send a booking link**, **Send the portal link**
 - **Notify someone**
-- **Create record**, **Create opportunity** and **Link records**: see [Customers and records](#customers-and-records)
+- **Create record**, **Create opportunity**, **Move the lead's opportunities**, **Set the lead's stage from the opportunity** and **Link records**: see [Customers and records](#customers-and-records)
 - **Call with AI** (with [AI calling](/guides/ai-calling)): see [Call with AI](#call-with-ai)
 - **Agent decides** (with the AI add-on): the agent reads the lead and takes the next step itself: notes, follow-ups and fields straight away, messages, stage changes and new owners for approval. Its ways on can split into **Acted** and **Did nothing**, for example to tell the owner when it did nothing. Automations that used **Hand to the assistant** now show this step and keep working.
 - **Stop WhatsApp messages to the lead**, **Archive the lead**
@@ -49,13 +50,24 @@ Add conditions to narrow it down: stage, pipeline, tags, lead score, days since 
 
 Two steps connect a lead to the rest of your records:
 
-- **Create record** makes a company, a contact or an opportunity. Run twice, it makes the record once. A later step can use the record an earlier **Create record** step made: for example, create a company, create a contact, create an opportunity for that contact, then link them.
-- **Create opportunity** makes the lead's customer and its opening opportunity, in the currency you choose, with a value of zero. It reuses a customer who already exists, and does it once per lead however often the automation runs. It does nothing when Opportunities are switched off, or when the lead has no phone number or email. The lead itself is not changed, and nothing is sent.
+- **Create record** makes a company, a contact or an opportunity. For an opportunity, choose its pipeline and stage, or leave it to start in the default pipeline for opportunities. Run twice, it makes the record once. A later step can use the record an earlier **Create record** step made: for example, create a company, create a contact, create an opportunity for that contact, then link them.
+- **Create opportunity** has two choices:
+  - **The lead's opening opportunity**: makes the lead's customer and its one opening opportunity, and reuses them if they already exist.
+  - **A new one each time**: makes another opportunity for the lead whenever the automation runs, for example for a second application. Its contact is the one matching the lead's email or phone, or a new one made from the lead. Turn on **Skip when one is already open** so a lead that comes back to the stage doesn't get a second one.
+
+  Choose the currency, and if you like, the pipeline and stage, a value and a name. Without a pipeline, it starts in the default pipeline for opportunities. An opening opportunity whose lead is in a pipeline that also takes opportunities starts at the lead's own stage. It does nothing when Opportunities are switched off, or when the lead has no phone number or email. The lead itself is not changed, and nothing is sent.
 - **Link records** points one record at another through a link field, for example putting the customer into a "Referred by" field on the lead. Choose what to link from (this lead, its customer, or its opening opportunity), the link field, what to link to, and whether to add it, replace what is there, or take it out. The field has to exist already, and it must allow that kind of record.
 
 A customer or opportunity has to exist before **Link records** can use it, so put **Create opportunity** earlier in the automation. Running a step twice never links the same record twice.
 
 You can ask Marro to build this for you: "When a lead reaches Qualified, create the opportunity in rupees and link it to the lead's company field."
+
+### Keep leads and opportunities in step
+
+- **Move the lead's opportunities** moves the lead's opportunities in a pipeline to one stage, or to the stage you match to the lead's current stage. For example: Interested goes to Applied, and Enrolled goes to Admitted. Choose all of the lead's opportunities in that pipeline, or only its opening one. Use it with **A lead's stage changes**.
+- **Set the lead's stage from the opportunity** moves the lead to the stage you match to its opportunity's stage. Use it with **An opportunity's stage changes**.
+
+A stage you don't match leaves things as they are. Moves made by automations never start other automations, so syncing both ways can't go round in circles. An opportunity reaches its lead's automations only when it came from that lead: its opening opportunity, one made by an automation, or one created from the lead.
 
 ## Journeys
 
@@ -85,6 +97,10 @@ To go on by how the call went, add **If… otherwise…** after it with the cond
 ## Test it
 
 Press **Try on a lead** in the builder, choose a lead, then **Run on this lead**. The actions really happen to that lead, so pick a test lead. If you have unsaved changes, the saved version runs.
+
+### Leads already in the stage
+
+An automation that starts when a lead's stage changes only runs for leads that move from now on. To run it for leads already in its stages, switch it on and press **Run for leads already here**. It runs for up to 500 leads at a time that it has never run for, oldest first. Press it again for the next ones. Its conditions and limits still apply, and its steps really happen. You can also ask Marro to do it.
 
 The number of automations you can have depends on your plan. See **Settings → Subscription**.
 

@@ -13,7 +13,7 @@
   "tags": [
     {
       "name": "Leads",
-      "description": "Record-link custom fields accept numeric target ID arrays (one or up to 20 according to recordLink.multiple). Reads resolve accessible targets to id/kind/name/href objects. Deleted, archived, disabled and inaccessible targets are omitted. Destinations require the corresponding leads.read or crm.records.read scope; user destinations have no public API scope."
+      "description": "Record-link custom fields accept numeric target ID arrays (one or up to 20 according to recordLink.multiple). Reads resolve accessible targets to id/kind/name/href objects. Deleted, archived, disabled and inaccessible targets are omitted. Destinations require the corresponding leads.read or crm.records.read scope; user destinations have no public API scope. Object destinations use object:<id>, require objects.records.read and the key creator current object grants."
     },
     {
       "name": "Customers",
@@ -649,7 +649,87 @@
                             "propertyNames": {
                               "type": "string"
                             },
-                            "additionalProperties": {}
+                            "additionalProperties": {
+                              "anyOf": [
+                                {
+                                  "anyOf": [
+                                    {
+                                      "type": "string"
+                                    },
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "boolean"
+                                    },
+                                    {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    {
+                                      "maxItems": 20,
+                                      "type": "array",
+                                      "items": {
+                                        "type": "integer",
+                                        "exclusiveMinimum": 0,
+                                        "maximum": 2147483647
+                                      }
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "maxItems": 20,
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "integer",
+                                        "exclusiveMinimum": 0,
+                                        "maximum": 2147483647
+                                      },
+                                      "kind": {
+                                        "anyOf": [
+                                          {
+                                            "type": "string",
+                                            "enum": [
+                                              "lead",
+                                              "contact",
+                                              "company",
+                                              "opportunity",
+                                              "user"
+                                            ]
+                                          },
+                                          {
+                                            "type": "string",
+                                            "pattern": "^object:[1-9][0-9]{0,9}$"
+                                          }
+                                        ]
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "href": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "id",
+                                      "kind",
+                                      "name",
+                                      "href"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                }
+                              ]
+                            },
+                            "description": "Public field keys. Record links contain only current-visible id/kind/name/href projections; object:<id> targets require objects.records.read and current per-object grants."
                           }
                         },
                         "required": [
@@ -835,7 +915,8 @@
                       "type": "string",
                       "maxLength": 48
                     },
-                    "additionalProperties": {}
+                    "additionalProperties": {},
+                    "description": "Public field keys. record_link values are numeric target ID arrays (one or up to 20 according to field configuration); names and read projections cannot be submitted."
                   },
                   "ownerId": {
                     "type": "integer",
@@ -904,7 +985,87 @@
                           "propertyNames": {
                             "type": "string"
                           },
-                          "additionalProperties": {}
+                          "additionalProperties": {
+                            "anyOf": [
+                              {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "maxItems": 20,
+                                    "type": "array",
+                                    "items": {
+                                      "type": "integer",
+                                      "exclusiveMinimum": 0,
+                                      "maximum": 2147483647
+                                    }
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              {
+                                "maxItems": 20,
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer",
+                                      "exclusiveMinimum": 0,
+                                      "maximum": 2147483647
+                                    },
+                                    "kind": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "lead",
+                                            "contact",
+                                            "company",
+                                            "opportunity",
+                                            "user"
+                                          ]
+                                        },
+                                        {
+                                          "type": "string",
+                                          "pattern": "^object:[1-9][0-9]{0,9}$"
+                                        }
+                                      ]
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "href": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "kind",
+                                    "name",
+                                    "href"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              }
+                            ]
+                          },
+                          "description": "Public field keys. Record links contain only current-visible id/kind/name/href projections; object:<id> targets require objects.records.read and current per-object grants."
                         }
                       },
                       "required": [
@@ -1102,7 +1263,87 @@
                           "propertyNames": {
                             "type": "string"
                           },
-                          "additionalProperties": {}
+                          "additionalProperties": {
+                            "anyOf": [
+                              {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "maxItems": 20,
+                                    "type": "array",
+                                    "items": {
+                                      "type": "integer",
+                                      "exclusiveMinimum": 0,
+                                      "maximum": 2147483647
+                                    }
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              {
+                                "maxItems": 20,
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer",
+                                      "exclusiveMinimum": 0,
+                                      "maximum": 2147483647
+                                    },
+                                    "kind": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "lead",
+                                            "contact",
+                                            "company",
+                                            "opportunity",
+                                            "user"
+                                          ]
+                                        },
+                                        {
+                                          "type": "string",
+                                          "pattern": "^object:[1-9][0-9]{0,9}$"
+                                        }
+                                      ]
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "href": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "kind",
+                                    "name",
+                                    "href"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              }
+                            ]
+                          },
+                          "description": "Public field keys. Record links contain only current-visible id/kind/name/href projections; object:<id> targets require objects.records.read and current per-object grants."
                         }
                       },
                       "required": [
@@ -1263,7 +1504,8 @@
                       "type": "string",
                       "maxLength": 48
                     },
-                    "additionalProperties": {}
+                    "additionalProperties": {},
+                    "description": "Public field keys. record_link values are numeric target ID arrays (one or up to 20 according to field configuration); names and read projections cannot be submitted."
                   },
                   "ownerId": {
                     "type": "integer",
@@ -1341,7 +1583,87 @@
                           "propertyNames": {
                             "type": "string"
                           },
-                          "additionalProperties": {}
+                          "additionalProperties": {
+                            "anyOf": [
+                              {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "maxItems": 20,
+                                    "type": "array",
+                                    "items": {
+                                      "type": "integer",
+                                      "exclusiveMinimum": 0,
+                                      "maximum": 2147483647
+                                    }
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              {
+                                "maxItems": 20,
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer",
+                                      "exclusiveMinimum": 0,
+                                      "maximum": 2147483647
+                                    },
+                                    "kind": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "lead",
+                                            "contact",
+                                            "company",
+                                            "opportunity",
+                                            "user"
+                                          ]
+                                        },
+                                        {
+                                          "type": "string",
+                                          "pattern": "^object:[1-9][0-9]{0,9}$"
+                                        }
+                                      ]
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "href": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "kind",
+                                    "name",
+                                    "href"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              }
+                            ]
+                          },
+                          "description": "Public field keys. Record links contain only current-visible id/kind/name/href projections; object:<id> targets require objects.records.read and current per-object grants."
                         }
                       },
                       "required": [
@@ -2557,7 +2879,7 @@
             }
           },
           "422": {
-            "description": "VALIDATION_FAILED: A value is missing or invalid, a key in `fields` is not one of the organization’s active fields (`details.validKeys` lists them), or a field the organization requires for a new lead is missing. This Idempotency-Key was used within 24 hours for a different body. `pipelineId` is not one of the organization’s pipelines.",
+            "description": "VALIDATION_FAILED: A value is missing or invalid, a key in `fields` is not one of the organization’s active fields (`details.validKeys` lists them), or a field the organization requires for a new lead is missing. This Idempotency-Key was used within 24 hours for a different body. `pipelineId` is not one of the organization’s pipelines. `pipelineId` (or the stage’s pipeline) is for opportunities only.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3350,7 +3672,7 @@
           "Reference"
         ],
         "summary": "List pipelines",
-        "description": "The organization’s pipelines in order: separate tracks for leads, each with its own stages. New leads go into the default one unless a `pipelineId` or a stage of another pipeline is given.\n\nScope: `leads.read`.",
+        "description": "The organization’s pipelines in order: separate tracks, each with its own stages, for leads, opportunities or both (`usedFor`). New leads go into the default one unless a `pipelineId` or a stage of another pipeline is given; new opportunities go into the one marked `isOpportunityDefault`.\n\nScope: `leads.read`.",
         "security": [
           {
             "ApiKey": [
@@ -3384,13 +3706,17 @@
                       "id": 2,
                       "name": "Main pipeline",
                       "order": 1,
-                      "isDefault": true
+                      "isDefault": true,
+                      "usedFor": "leads",
+                      "isOpportunityDefault": false
                     },
                     {
                       "id": 9,
-                      "name": "Visa services",
+                      "name": "Admissions",
                       "order": 2,
-                      "isDefault": false
+                      "isDefault": false,
+                      "usedFor": "opportunities",
+                      "isOpportunityDefault": true
                     }
                   ]
                 }
@@ -5228,13 +5554,21 @@
                         "maximum": 2147483647
                       },
                       "kind": {
-                        "type": "string",
-                        "enum": [
-                          "lead",
-                          "contact",
-                          "company",
-                          "opportunity",
-                          "user"
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "lead",
+                              "contact",
+                              "company",
+                              "opportunity",
+                              "user"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "pattern": "^object:[1-9][0-9]{0,9}$"
+                          }
                         ]
                       },
                       "name": {
@@ -5392,13 +5726,21 @@
             "type": "object",
             "properties": {
               "target": {
-                "type": "string",
-                "enum": [
-                  "lead",
-                  "contact",
-                  "company",
-                  "opportunity",
-                  "user"
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "lead",
+                      "contact",
+                      "company",
+                      "opportunity",
+                      "user"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^object:[1-9][0-9]{0,9}$"
+                  }
                 ]
               },
               "multiple": {
@@ -5575,13 +5917,28 @@
           "isDefault": {
             "type": "boolean",
             "description": "New leads go into this pipeline unless told otherwise."
+          },
+          "usedFor": {
+            "type": "string",
+            "enum": [
+              "both",
+              "leads",
+              "opportunities"
+            ],
+            "description": "Which records it holds. A lead is never put in an `opportunities` pipeline, nor an opportunity in a `leads` one."
+          },
+          "isOpportunityDefault": {
+            "type": "boolean",
+            "description": "New opportunities go into this pipeline unless told otherwise."
           }
         },
         "required": [
           "id",
           "name",
           "order",
-          "isDefault"
+          "isDefault",
+          "usedFor",
+          "isOpportunityDefault"
         ],
         "additionalProperties": false
       }
@@ -5629,10 +5986,16 @@
       "url",
       "select",
       "multiselect",
-      "checkbox"
+      "checkbox",
+      "record_link"
     ],
     "nativeScreens": false,
-    "recordLinks": false
+    "recordLinks": {
+      "target": "lead/contact/company/opportunity/user/object:<id>",
+      "writes": "numeric ID arrays, one or up to 20",
+      "reads": "current-visible id/kind/name/href projections; object targets require objects.records.read and current per-object grants",
+      "board": "private server action only"
+    }
   },
   "x-transport-errors": [
     {
