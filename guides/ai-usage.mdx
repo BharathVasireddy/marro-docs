@@ -1,23 +1,36 @@
 ---
 title: "AI usage and credits"
-description: "What your AI used this month, what it cost, and how it is paid."
+description: "Track monthly AI activity, tokens, credits and wallet charges."
 ---
 
 Your plan can include **AI credits** each month, in rupees. Your agents, the assistant, AI replies to leads, suggested replies and business knowledge improvements draw on them as they work. Once the month's credits are used, AI is paid from your **wallet**, the same one that pays for WhatsApp messages.
 
 ## See what you used
 
-Open your account menu at the foot of the sidebar and choose **Usage**, or go to **Settings → Subscription → Usage**. It shows:
+Open **Settings → Organization → AI usage**. The current balance is under **Credits now**:
 
-- **Used this month**: the cost in rupees, with the tokens it took (how many were read and how many written).
-- **Credits left**: what remains of this month's credits. Credits renew on the 1st.
-- **Paid from the wallet**: what went beyond your credits, and what the wallet still has.
-- **By feature**: agents on leads, AI replies to leads, the assistant (web and WhatsApp), suggested replies, daily briefings, call reviews and business knowledge, each with its tokens and cost.
-- **Earlier months**: the tokens and cost of each of the last six months.
+- **Used**: this month's cost and input/output tokens.
+- **Credits left**: this month's remaining credits. They renew on the 1st, in UTC.
+- **Paid from the wallet**: usage paid beyond the included credits, and the current wallet balance.
 
-If your plan doesn't charge separately for AI, the page says it's included.
+Organization administrators also see **Activity**. Choose the current UTC month or any of the previous eleven months to see:
 
-The assistant can tell you too: ask "How much AI have we used this month?"
+- Runs and tokens, with a daily activity chart.
+- Tokens reused from cache, saved to cache, and used for reasoning, when reported. These are already included in input/output totals. A detail labelled **Not reported** is unknown, rather than zero; older records may have no details.
+- Charges covered by credits, paid from the wallet, or left uncovered.
+- Usage by feature: agents, AI replies, the assistant (web and WhatsApp), suggested replies, briefings, call reviews and business knowledge.
+
+Selecting an earlier month changes **Activity** only. **Credits now** always shows the current month and current wallet balance. The earlier-month list links directly to each month's activity.
+
+If your plan doesn't charge separately for AI, the page says it's included. Reports cover recorded text-model activity; AI calling is reported separately. Search embeddings and voice transcription are not included in this report.
+
+The assistant shares the same admin permissions, on the web, mobile and staff WhatsApp. Ask “How much AI have we used this month?” or “Show our AI activity for October 2026.” It can read usage; it does not change prices or your allowance.
+
+## Platform console
+
+Platform administrators with subscription management access can open **Platform → AI usage** for all organizations, then open an organization's **AI** tab for its own report. The console includes breakdowns by feature, model and organization, plus estimated provider costs at the configured rates. Organization settings and assistant answers show only the organization's activity and charges, without models or provider costs.
+
+Provider costs are estimates, not reconciled invoices or measured cache savings. The organization and model tables show the 100 organizations and 50 models with the most tokens; totals include every recorded run in the selected month.
 
 ## When credits run out
 
