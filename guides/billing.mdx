@@ -34,11 +34,11 @@ Each period after that is charged automatically from the same UPI mandate or car
 
 ## Extra users
 
-A plan includes a number of users. You can add more; each extra user adds the plan's per-user price to the next period. Users are counted before each renewal, so a user added today is free until the next period, and a user removed stops counting from the next period. Nothing is blocked when you go over. Partners, customer-portal users and deactivated users never count.
+A plan includes a number of users. Partners, customer-portal users and deactivated users never count. When the active count differs from the billed count, **Update billed users** shows the current price difference. A same-period increase uses the remaining-time calculation below; reductions start at renewal. Existing subscriptions keep their agreed unit prices when users are recounted. A new payment authorization may be required; adding a person does not silently change a mandate.
 
 ## Change plan or period
 
-Choose **Change plan** and pick another plan or period. Moving to a higher plan on the same period starts straight away. Moving to a lower plan, or between monthly and quarterly, starts at your next renewal, so you keep what you paid for until then.
+Choose **Change plan** and pick another plan or period. A higher-priced choice on the same period starts after the prorated payment is captured. Moving to a lower plan, or between monthly and quarterly, starts at your next renewal, so you keep what you paid for until then.
 
 When a lower plan starts, modules it does not include switch off; their data is kept and comes back if you move up again. Automations above the new limit keep running, but you cannot switch on more until you are under it.
 
@@ -79,3 +79,18 @@ Save the payment method at least one day before the current term ends to schedul
 Indefinite grants, custom module sets and plans with individually added or removed modules remain managed by Marro. A failed old checkout does not change those rules. Payment authorization and changes are completed on the subscription page, including when the assistant directs you there.
 
 Online renewal depends on payment setup and the organization's recorded country. The current Razorpay subscription checkout supports India. If it is unavailable, contact Marro to arrange renewal. Other countries need an applicable international payment flow or administrator-managed renewal. The configured Indian GST quote should not be treated as an approved international tax invoice.
+
+
+## Prorated changes
+
+Where prorated changes are enabled, **Change plan**, add-on changes and **Update billed users** show a server-priced review before anything is charged. It lists the current period, the unused-time price difference, GST, today's total, when the change starts, and the next recurring amount and date.
+
+For an increase, Marro uses the actual seconds left in your paid cycle rather than assuming every month has 30 days. For example, a ₹1,000 increase excluding GST halfway through a paid month costs ₹500 plus ₹90 GST for that period. Differences below ₹1 including GST are waived.
+
+Razorpay needs a new mandate because existing UPI and some card mandates cannot change their recurring price. Authorize the replacement, then pay the adjustment through its hosted payment link. The adjustment is recalculated after authorization and can only decrease from the amount you approved. The link expires after 16 minutes. Return to Subscription or choose **Check status** to see confirmation; a browser success message alone does not switch on features.
+
+The replacement mandate authorizes the displayed price from the next renewal even if you close the adjustment payment. Until that adjustment is captured, your current paid features continue. If its deadline passes, the uncharged upgrade waits for the next renewal. **Cancel renewal** is available from an open change if you do not want that future charge; the current paid period is retained.
+
+Reductions and monthly/quarterly changes start at renewal. Nothing is charged or refunded for the current period because you keep the features already paid for. Requests in the last day before renewal may need to wait until renewal so Razorpay can schedule the replacement correctly.
+
+Interrupted confirmations stay visible. Do not create another mandate to get past a pending result; use **Check status**, or contact Marro when the page asks for a review. Online payments remain subject to country and supplier setup. This flow does not enable payments for an organisation where online checkout is closed.
