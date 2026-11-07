@@ -20,7 +20,7 @@ The setup secret is shown only during setup. Marro encrypts the stored secret. N
 
 Give each passkey a name, such as **My phone**. Your browser asks your device to verify you with its fingerprint, face or PIN. Marro keeps the public credential, not your fingerprint, face, PIN or private key.
 
-A passkey is a second step, not a way to sign in on its own: after your password, WhatsApp code, Google or Microsoft sign-in, Marro asks for it and your device verifies you. Passkeys must be configured for the address where you use them. A passkey registered on one address may not work on an organization's different custom domain; use an authenticator or backup code there.
+On the web a passkey is a second step, not a way to sign in on its own (the Marro app can also sign you in with just a passkey, see below): after your password, WhatsApp code, Google or Microsoft sign-in, Marro asks for it and your device verifies you. Passkeys must be configured for the address where you use them. A passkey registered on one address may not work on an organization's different custom domain; use an authenticator or backup code there.
 
 ## Signing in
 
@@ -63,4 +63,16 @@ An authenticator or passkey adds protection when someone obtains your password o
 
 This does not lock an already signed-in device, protect a compromised browser, add a challenge to every WhatsApp assistant message, or change API-key access. A phone's existing WhatsApp assistant access follows its own number-based checks. Ask Marro can point you to the security page; it cannot inspect or change factors, codes, passkeys, trusted devices or administrator recovery.
 
-The server supports the mobile second-step contract. Native sign-in screens and native passkey integration need a new mobile build. Older apps receive a clear sign-in failure when a second step is required and are never issued a session for that incomplete sign-in. Use the web if your app cannot continue. Manage enrolment on the web.
+## In the Marro app
+
+After your password or WhatsApp code, the app asks for the second step. If you work in several organizations, you choose the organization first.
+
+- **Authenticator code**: type the six digits. The app signs you in on the sixth digit.
+- **Backup code**: tap **Use a backup code** and enter one of your codes (`xxxxx-xxxxx-xxxxx-xxxxx`). Each code works once.
+- **Passkey**: tap **Use a passkey** and confirm on your phone. You can also tap **Sign in with a passkey** on the first screen to skip the password or WhatsApp code; if you work in several organizations the app then asks which one. If the passkey is cancelled or does not work, the code options stay on the screen.
+
+A wrong code shows how many tries are left. The sign-in lasts five minutes and allows five tries; after that, or when you wait too long, the app takes you back to the first step with a message. After too many attempts on one account, wait 15 minutes. Passkeys on the phone need the latest version of the app.
+
+If your organization requires two-step sign-in and you have not set it up, the app tells you so and opens your security page in the browser. Setting up and managing methods stays on the web; the app never shows setup secrets or backup codes.
+
+Older versions of the app cannot complete a second step. They show a clear message and stay signed out; update Marro, or use the web.
