@@ -76,6 +76,8 @@ These are optional. When present, the matching tables appear on the next `npm ru
 
 The generator also moves schemas the CRM nests in `$defs` (referenced as `#/$defs/Name`) into `components.schemas`, because OpenAPI tools, Mintlify included, resolve those references from the document root and fail otherwise.
 
+An operation with `security: []` is public (no key), such as the published billing catalogue. It gets its own reference page, but the overview's base URL and the error table's "Every endpoint" are worked out from the keyed operations only, since a public endpoint has its own path and cannot return key errors.
+
 ## Connecting Mintlify (one time)
 
 1. In the [Mintlify dashboard](https://dashboard.mintlify.com), connect the GitHub repository `marro-docs`, branch `main`, docs at the repository root (where `docs.json` is).

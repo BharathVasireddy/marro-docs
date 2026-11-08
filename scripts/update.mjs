@@ -154,7 +154,9 @@ function operations(spec) {
             if (!op) continue;
             const tag = op.tags?.[0] ?? 'Other';
             const id = op.operationId ?? slug(`${method} ${path}`);
-            list.push({ path, method, op, tag, id, page: `${REFERENCE_DIR}/${slug(tag)}/${id}` });
+            // `security: []` marks a public endpoint outside the keyed API (no key, no key errors, its own path).
+            const keyed = !(Array.isArray(op.security) && op.security.length === 0);
+            list.push({ path, method, op, tag, id, keyed, page: `${REFERENCE_DIR}/${slug(tag)}/${id}` });
         }
     }
     return list;
@@ -226,7 +228,8 @@ function link(item) {
 
 function overviewSnippet(spec, ops) {
     const server = spec.servers?.[0]?.url ?? '';
-    const prefix = commonPrefix(ops.map((item) => item.path));
+    // The base URL is the keyed API's; a public endpoint shows its full path in its own table.
+    const prefix = commonPrefix(ops.filter((item) => item.keyed).map((item) => item.path));
     const tags = [...new Set(ops.map((item) => item.tag))];
     const lines = [
         mdx(spec.info?.description ?? ''),
@@ -331,7 +334,9 @@ function errorsSnippet(spec, ops) {
         if (!codes.has(key)) codes.set(key, { status: String(error.status), code: error.code, whens: new Set([error.when]), ops: [] });
     }
     const all = [...codes.values()].sort((a, b) => Number(a.status) - Number(b.status) || a.code.localeCompare(b.code));
-    const everywhere = (entry) => entry.ops.length === ops.length;
+    // "Every endpoint" means every keyed endpoint: public ones take no key and cannot return key errors.
+    const keyedCount = ops.filter((item) => item.keyed).length;
+    const everywhere = (entry) => entry.ops.filter((item) => item.keyed).length === keyedCount && entry.ops.every((item) => item.keyed);
     lines.push('### Every code', '');
     lines.push(table(['Status', 'Code', 'When', 'Returned by'], all.map((entry) => [
         entry.status,

@@ -68,6 +68,7 @@
               "guides/appointments",
               "guides/payments",
               "guides/billing",
+              "guides/price-list",
               "guides/modules",
               "guides/ai-calling",
               "guides/ai-usage",
@@ -146,6 +147,12 @@
               "api-reference/customers/read-record",
               "api-reference/customers/update-record",
               "api-reference/customers/list-record-fields"
+            ]
+          },
+          {
+            "group": "Public billing catalogue",
+            "pages": [
+              "api-reference/public-billing-catalogue/get-published-billing-catalogue"
             ]
           }
         ]
