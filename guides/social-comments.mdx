@@ -11,6 +11,10 @@ Organization administrators can create a rule for a connected Instagram account 
 
 Preview tests one sample without saving or sending. Saving a rule does not activate sending. Turn off a rule to prevent its waiting intents from being sent. An administrator must separately activate each account. Support impersonation and partner accounts cannot manage or read this backend.
 
+Facebook sends remain blocked even when a connection lists Page permissions. Sending also needs a
+verified provider contract, current account-bound permission evidence and Meta app approval. Comment
+ingestion and preview do not establish that those requirements have been met.
+
 Instagram comment access is optional: the platform must first enable `SOCIAL_COMMENTS_CONNECT=on`, then the administrator reconnects Instagram and actually grants comment permission. The backend records the permissions returned by Meta, bound to the new token. Existing message-only connections cannot send comment replies. Grant evidence expires after 24 hours or a token change; reconnect and explicitly activate again. This conservative limit is temporary until a primary-documented current-grant check is implemented. Every send also reads the comment through Meta to check current access, original author/media and creation time. Live comments are not sent automatically. Facebook comment sending remains unavailable pending the remaining contract and eligibility checks.
 
 Comments retain the account, original post/comment IDs, author, received time, matched rule and send intents. A reference to an existing Marro conversation appears when one exists. A private reply does not create an inbound message or open the ordinary DM reply window. Further replies require the person to respond under Meta's messaging rules.

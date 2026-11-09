@@ -7,6 +7,11 @@ description: Prepare reviewed quotes and record a decision on an immutable revis
 These screens are being prepared and have not been released. Certified provider e-signing is not configured.
 </Note>
 
+Certified signing requires an explicitly selected provider, an implemented adapter and verified
+callback flow, and reviewed test-account, legal-entity and signer configuration. Readiness reports
+the missing provider selection and adapter separately. Accepting a quote records a digital decision
+on that quote; it does not create a certified signing request.
+
 Prepare a product or service quote for an existing customer. Optionally link its company, opportunity and an existing customer payment request. You need current CRM access and the normal customer record permissions. Opportunities that your organization has turned off cannot be used.
 
 Start with a draft or an accessible template. Enter the supplier name/address and tax identity from confirmed organization details. A missing tax identity stays unconfigured; Marro does not supply a GSTIN, tax treatment or legal terms. Add the customer's display label, currency and confirmed currency decimal places. Amount fields use integer minor units as strings. For INR, 100 minor units represents ₹1; no currency conversion occurs.
