@@ -1,9 +1,32 @@
 ---
 title: "Plans and billing"
-description: "Choose a plan, pay by UPI AutoPay or card, and see what renews when."
+description: "Choose a plan, review its currency and payment terms, and see what renews when."
 ---
 
 Your organisation's subscription lives in **Settings → Subscription**. Only people who can manage the organisation (administrators) see it.
+
+## Billing currency and Australian dollar checkout
+
+Your organisation has one subscription currency. Existing paid INR subscriptions keep INR and their
+accepted terms. Australian dollar subscription billing is being prepared and stays unavailable until
+Marro confirms its selling entity, payment account, final prices and tax treatment. A published AUD
+price does not mean checkout is open. AUD catalogue prices are shown before GST; the reviewed checkout
+shows any tax charged under the approved policy. There is no self-service currency switch after purchase.
+
+When AUD checkout is available, it opens a hosted Stripe page. Returning to Marro does not confirm
+payment: the subscription waits for verified payment confirmation. Renewals retain the accepted AUD
+prices. A same-period upgrade starts after its reviewed adjustment is paid; a lower price or different
+billing period starts at renewal. An uncertain provider result must be reconciled before another
+payment request; Marro does not automatically repeat it.
+
+Cancelling an AUD subscription stops renewal and keeps access through the paid end. An unpaid
+plan-change invoice must be cancelled, or a paid change reconciled, first. A scheduled Stripe
+cancellation can be resumed before the paid end if the subscription has not ended. INR subscriptions
+keep the Razorpay workflow described below.
+
+Receipts show the actual currency, paid amount and dates. AUD supplier and tax terms come from the
+agreement accepted for that charge. A provider invoice link does not itself establish compliance with
+all tax-invoice requirements. AUD wallet top-ups and AUD calling or messaging usage prices remain later work.
 
 ## The trial
 
@@ -40,7 +63,7 @@ Not in the plan price: Meta's WhatsApp message charges (billed by Meta to your M
 1. Open **Settings → Subscription** and choose **Choose a plan**.
 2. Pick a plan and a billing period: **monthly**, **quarterly** or **annual**.
 3. Review the price. Marro prices it on the server and shows exactly what you are agreeing to: the plan, the billing period, users included and each extra user's price, any add-ons, the modules, limits and AI use, and the total charged each period.
-4. Choose **Accept and continue**. Razorpay opens. Pay with **UPI AutoPay** (approve the mandate in your UPI app) or a **card**. Your bank may ask for a one-time approval.
+4. For an INR subscription, choose **Accept and continue**. Razorpay opens. Pay with **UPI AutoPay** (approve the mandate in your UPI app) or a **card**. Your bank may ask for a one-time approval. AUD checkout remains unavailable until the requirements above are met.
 
 The reviewed price is valid for 15 minutes. If it expires, or the price list changes before you accept, the page says **This price has expired. Refresh it to continue.** Choose **Refresh price** and review the new one; nothing is charged at a price you did not see.
 
@@ -72,11 +95,11 @@ When a lower plan starts, modules it does not include switch off; their data is 
 
 ## If a payment fails
 
-Razorpay retries a failed renewal on its own. While it does, the page shows **Payment overdue** and your plan keeps working for **7 days** after the period ended. Choose **Update payment method** to approve a new mandate or card. If it still has not been paid when the 7 days end, the plan's modules switch off. **Nothing is deleted**: your leads, chats and settings stay exactly as they are, and paying brings everything back.
+For INR subscriptions, Razorpay retries a failed renewal on its own. While it does, the page shows **Payment overdue** and your plan keeps working for **7 days** after the period ended. Choose **Update payment method** to approve a new mandate or card. If it still has not been paid when the 7 days end, the plan's modules switch off. **Nothing is deleted**: your leads, chats and settings stay exactly as they are, and paying brings everything back.
 
 ## Cancel
 
-Choose the red **Cancel subscription** button. Review the end date and no-refund policy, choose **Continue to confirmation**, then type **CANCEL** and select **Cancel subscription**. Nothing changes during the review steps. It stops renewing and the plan stays on until the end of the period you paid for; nothing is deleted. A cancellation cannot be undone from the page: write to hello@marro.si before the period ends and we keep it running, or choose a plan again once it has ended. Cancelling during a trial, before the first payment, stops the payment and the trial continues.
+Choose the red **Cancel subscription** button. Review the end date and no-refund policy, choose **Continue to confirmation**, then type **CANCEL** and select **Cancel subscription**. Nothing changes during the review steps. It stops renewing and the plan stays on until the end of the period you paid for; nothing is deleted. For INR subscriptions, cancellation cannot be undone from the page: write to hello@marro.si before the period ends and we keep it running, or choose a plan again once it has ended. Cancelling during a trial, before the first payment, stops the payment and the trial continues.
 
 ## Refunds
 
