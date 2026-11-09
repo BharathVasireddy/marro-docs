@@ -5273,7 +5273,7 @@
           "Public billing catalogue"
         ],
         "security": [],
-        "description": "Current published revisions only. Integer INR paise, monthly/quarterly/annual (annualPricePaise is for twelve months; annualExtraUserPricePaise is per extra user for twelve months, null meaning twelve times the monthly price). List prices exclude tax. newSaleGstRatePercent states the current GST rate for new sales (0 or 18); authenticated signed checkout previews bind the exact payable tax and total. Existing subscriptions retain their stored tax treatment. Null limits mean unlimited; null AI credit means unmetered, zero means no included metered credit. Existing agreements retain their accepted terms. Responses are never cached.",
+        "description": "Current published revisions only. Integer INR paise, monthly/quarterly/annual (annualPricePaise is for twelve months; annualExtraUserPricePaise is per extra user for twelve months, null meaning twelve times the monthly price). newSaleGstRatePercent is the tax rate, in percent, on a new sale; authenticated signed checkout previews bind the exact payable total. Null limits mean unlimited; null AI credit means unmetered, zero means no included metered credit. Existing agreements retain their accepted terms. Responses are never cached.",
         "responses": {
           "200": {
             "description": "Published catalogue, including its atomic publication generation",
