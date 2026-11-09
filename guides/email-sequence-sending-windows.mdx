@@ -1,0 +1,24 @@
+---
+title: Email sequence sending windows
+description: Review sending hours and preserve each enrollment’s original schedule.
+---
+
+<Note>These backend capabilities are integrated locally. Screens, independent review and release are pending.</Note>
+
+The backend is integrated locally. Screens, independent review and release remain pending.
+
+An organization administrator with CRM and settings access can review a named sending window for each email sequence. Review the organization, sequence name and version, window name and version, timezone, weekdays and times before confirming. Saving a window does not enroll a lead or send an email. Changes require a person's approval even when the assistant is set to Auto. Support view and partner accounts cannot configure windows. Browser settings use the administrator's own session. Ask Marro, mobile and staff WhatsApp use the same current administrator checks and require individual approval; automated agents cannot configure windows.
+
+Choose **Unrestricted** to allow due messages at any time. An unconfigured sequence is labelled **Unrestricted (unconfigured)**. Older enrollments without a schedule snapshot are explicitly unrestricted; adding a window does not change them.
+
+For a weekly window, choose at least one weekday and one same-day time interval. Opening times are included and closing times are excluded: 09:00–17:00 includes exactly 09:00 and excludes exactly 17:00. Choose distinct weekdays and separate periods in time order. Midnight can be used as the end of a day. Touching, overlapping and overnight intervals are rejected, never merged or adjusted. Combine touching periods yourself; split overnight periods into same-day intervals and review the eligible weekdays. The same interval list applies to every selected weekday; different intervals per weekday are not implemented.
+
+Times use the organization's saved time zone, which is fixed by the existing organization settings policy, never the recipient's guessed location or the worker machine's timezone. Enrollment preview shows the timezone and schedule that will be frozen. If configuration, timezone or displayed organization/sequence/window names change before enrollment is confirmed, review again. A lead's name and the exact sender/recipient must also match the parent's enrollment preview.
+
+Each enrollment keeps its immutable schedule and timezone snapshot. Later sending-window changes affect newly reviewed enrollments only. A future authorized time-zone migration must not retime existing snapshots. Pausing and resuming an existing enrollment does not retime it. Existing step delays still run from the previous email's acceptance; the window may postpone sending after that due time, but does not replace the delay.
+
+During a spring daylight-saving gap, nonexistent minutes never qualify. If the complete opening disappears, the next eligible day is used. During a fall repetition, both occurrences of an eligible local time qualify, while the one-intent-per-step rule still prevents a second send. If a valid opening cannot be found in the next fifteen days, the enrollment pauses for review. A preview is a read-only estimate at its displayed instant, not a reservation or a promise of delivery then.
+
+A worker checks the existing unsubscribe, reply, booking, recipient, mailbox-sync and lifecycle safeguards first. Outside a window, it moves the due time forward and releases the processing claim without changing the step or creating a send intent. It checks again after preparing the message and immediately before intent reservation. A provider request already begun may finish after closing; it cannot be recalled. An interrupted or unknown provider outcome never retries automatically. These checks do not promise a transaction spanning database and network.
+
+Enrollment lists expose the saved hours and timezone, and explicitly label older unrestricted enrollments. Missing snapshot data is unavailable, not assumed unrestricted. Deleting a lead removes its enrollment and snapshot descendants. Recovery restores stopped enrollment history and the original snapshot graph without generating a fresh schedule, creating another snapshot or restarting outreach. Tenant purge remains possible. There is no holiday calendar, recipient timezone, tracking handle, observation activation or autonomous opt-in in this feature.

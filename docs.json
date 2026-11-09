@@ -45,6 +45,7 @@
             "pages": [
               "index",
               "guides/sign-up",
+              "guides/settings",
               "guides/two-step-sign-in"
             ]
           },
@@ -153,6 +154,13 @@
             "group": "Public billing catalogue",
             "pages": [
               "api-reference/public-billing-catalogue/get-published-billing-catalogue"
+            ]
+          },
+          {
+            "group": "Customer quote access",
+            "pages": [
+              "api-reference/customer-quote-access/read-published-customer-quote",
+              "api-reference/customer-quote-access/decide-published-customer-quote"
             ]
           }
         ]

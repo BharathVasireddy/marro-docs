@@ -1,0 +1,20 @@
+---
+title: Optional email observations
+description: Understand optional image and link request observations without treating them as proof of reading.
+---
+
+<Note>
+The backend is being prepared and rollout is off. Settings/composer controls and independent review are still pending.
+</Note>
+
+An administrator can allow observations for individually reviewed sales email. The feature starts off and also needs platform configuration. It does not apply to system emails, sign-in messages, invitations, inbound mail, automatic sequences or messages written by an agent.
+
+Before sending, review the exact message, From mailbox, image option and selected links, then approve that one send. Approval expires after ten minutes and cannot be reused. Selected HTML links will go through Marro before redirecting to the exact reviewed original public HTTPS destination. An image observation adds a hidden transparent image. Plain text and unsubscribe headers stay unchanged. Opt-out, private, document, portal, payment and access links are never tracked. Only public marketing destinations that the administrator reviewed are eligible.
+
+An image observation means the image was requested. A link observation means its redirect was requested. Email providers can proxy or prefetch images, and security scanners can request links. These observations do not prove that a person read or clicked your email, who requested it, or that the email was delivered. Link figures count selected destinations observed at least once, not people or total clicks. A provider-accepted status only means the provider accepted the send.
+
+Reports follow current lead access and mailbox ownership. A personal mailbox's figures remain private to its owner, including when another person is an administrator. This first version allows the person assigned to the lead or an administrator to use observations; team and partner access do not broaden this permission. Reports are paged. No raw request information, recipient, message content, target URLs or confidential tokens are included in assistant reports.
+
+Changing observation settings revokes old approvals and links. Changing a mailbox sender identity or connection status permanently revokes that mailbox's approvals and links. Organization closure or suspension revokes them too; restore does not bring them back. Deleting the source lead, mailbox, membership or message removes its observations. If configuration, permission or consent is unavailable, the original email is used. Refused or uncertain sends remain unobservable and are not automatically retried. Image/link tokens expire after ninety days.
+
+Tracking configuration and send approvals belong in the signed-in settings/composer screens. Ask Marro and the staff WhatsApp assistant may summarize visible aggregate observations; they cannot enable observations or approve tracking for you. Never paste confidential approval handles or observation links into a conversation.

@@ -1,0 +1,20 @@
+---
+title: Instagram and Facebook comments
+description: Understand comment rules, private replies and sending status.
+---
+
+<Note>
+Comment reply screens are being prepared and have not been released. Facebook comment sending is unavailable.
+</Note>
+
+Organization administrators can create a rule for a connected Instagram account or Facebook Page. Choose at least one literal keyword, optional post IDs, reply text and a cooldown from one minute to seven days. Matching ignores letter case and searches for the keyword inside the comment. Lower priority numbers run first; the oldest rule wins a tie. Only one rule matches each comment. A cooldown applies to the same author on the same connected account across rules. Comment text is data; it never controls an agent's system instructions.
+
+Preview tests one sample without saving or sending. Saving a rule does not activate sending. Turn off a rule to prevent its waiting intents from being sent. An administrator must separately activate each account. Support impersonation and partner accounts cannot manage or read this backend.
+
+Instagram comment access is optional: the platform must first enable `SOCIAL_COMMENTS_CONNECT=on`, then the administrator reconnects Instagram and actually grants comment permission. The backend records the permissions returned by Meta, bound to the new token. Existing message-only connections cannot send comment replies. Grant evidence expires after 24 hours or a token change; reconnect and explicitly activate again. This conservative limit is temporary until a primary-documented current-grant check is implemented. Every send also reads the comment through Meta to check current access, original author/media and creation time. Live comments are not sent automatically. Facebook comment sending remains unavailable pending the remaining contract and eligibility checks.
+
+Comments retain the account, original post/comment IDs, author, received time, matched rule and send intents. A reference to an existing Marro conversation appears when one exists. A private reply does not create an inbound message or open the ordinary DM reply window. Further replies require the person to respond under Meta's messaging rules.
+
+`Pending` means waiting for the worker. `Sending` means reserved for one attempt. `Sent` means Meta returned a message/comment ID; it does not mean delivered or read. `Refused` means Meta explicitly rejected it. `Uncertain` means it may have gone, including a lost response or interrupted worker, and it will not be retried automatically. `Blocked` means verification or activation stopped the attempt. Comments arriving while sending is off are still recorded; intents created while off are durably blocked and are not replayed when sending is enabled. Rules do not retroactively send to old comments.
+
+Instagram allows one private reply per comment within seven days. The backend checks this window again before sending and applies the same conservative age limit to public automation. No follow-up sequence, promotion, marketplace, commerce feature or automatic lead creation is included.

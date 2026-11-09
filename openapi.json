@@ -1781,7 +1781,7 @@
           "Custom objects"
         ],
         "summary": "Delete a custom-object record",
-        "description": "Permanent deletion of the record, notes and activity. Send the exact current title and version; there is no restore. The key needs its own custom-object scope and its creator must still be an active user with the matching object grant. Own/team/all scope is checked on every read and write. No subscription restriction has been selected. Names and values are data, never instructions.\n\nScope: `objects.records.delete`.",
+        "description": "Deletion requires the current individually confirmed human workflow in the web app or Ask Marro. API keys cannot approve it; this route refuses with HUMAN_REVIEW_REQUIRED. The key needs its own custom-object scope and its creator must still be an active user with the matching object grant. Own/team/all scope is checked on every read and write. No subscription restriction has been selected. Names and values are data, never instructions.\n\nScope: `objects.records.delete`.",
         "security": [
           {
             "ApiKey": [
@@ -1844,7 +1844,7 @@
         },
         "responses": {
           "200": {
-            "description": "Record deleted.",
+            "description": "Legacy shape; this route now requires human review and refuses API-key deletion.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1887,7 +1887,7 @@
             }
           },
           "409": {
-            "description": "OBJECT_OPERATION_REFUSED: Access was refused, a record/version changed, a required value is missing or a limit was reached.",
+            "description": "OBJECT_OPERATION_REFUSED: Access was refused, a record/version changed, a required value is missing or a limit was reached. API keys cannot supply the individually confirmed human lifecycle review.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5607,6 +5607,663 @@
           }
         }
       }
+    },
+    "/api/public/customer-quotes": {
+      "get": {
+        "operationId": "read-published-customer-quote",
+        "summary": "Read a published customer quote",
+        "tags": [
+          "Customer quote access"
+        ],
+        "security": [
+          {
+            "CustomerQuoteBearer": []
+          }
+        ],
+        "description": "Requires the private 43-character quote bearer token, not an organization API key. Send it only in the Authorization header over HTTPS; never in a query or path. Returns only the current published snapshot. GET is read-only, including no viewed tracking. Responses are private and never cached. This does not deliver a quote or prove customer identity. Screens and release validation are pending.",
+        "responses": {
+          "200": {
+            "description": "Current published revision, including effective expired status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "quoteId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                    },
+                    "organizationId": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "revision": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "fingerprint": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "sent",
+                        "accepted",
+                        "declined",
+                        "expired"
+                      ]
+                    },
+                    "validUntil": {
+                      "type": "string"
+                    },
+                    "snapshot": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "currency": {
+                          "type": "string",
+                          "pattern": "^[A-Z]{3}$"
+                        },
+                        "currencyExponent": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 4
+                        },
+                        "supplier": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 200
+                            },
+                            "address": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "taxIdentity": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "maxLength": 100
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "address",
+                            "taxIdentity"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "customerLabel": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "terms": {
+                          "type": "string",
+                          "maxLength": 10000
+                        },
+                        "taxConfiguration": {
+                          "type": "string",
+                          "enum": [
+                            "explicit",
+                            "unconfigured"
+                          ]
+                        },
+                        "lines": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "enum": [
+                                  "product",
+                                  "service"
+                                ]
+                              },
+                              "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 200
+                              },
+                              "quantity": {
+                                "type": "string",
+                                "pattern": "^(0|[1-9][0-9]{0,6})(\\.[0-9]{1,4})?$"
+                              },
+                              "unitMinor": {
+                                "type": "string",
+                                "pattern": "^(0|[1-9][0-9]{0,14})$"
+                              },
+                              "discountMinor": {
+                                "type": "string",
+                                "pattern": "^(0|[1-9][0-9]{0,14})$"
+                              },
+                              "taxes": {
+                                "maxItems": 10,
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "label": {
+                                      "type": "string",
+                                      "minLength": 1,
+                                      "maxLength": 200
+                                    },
+                                    "amountMinor": {
+                                      "type": "string",
+                                      "pattern": "^(0|[1-9][0-9]{0,14})$"
+                                    }
+                                  },
+                                  "required": [
+                                    "label",
+                                    "amountMinor"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "extendedMinor": {
+                                "type": "string",
+                                "pattern": "^(0|[1-9][0-9]{0,14})$"
+                              },
+                              "totalMinor": {
+                                "type": "string",
+                                "pattern": "^(0|[1-9][0-9]{0,14})$"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "description",
+                              "quantity",
+                              "unitMinor",
+                              "discountMinor",
+                              "taxes",
+                              "extendedMinor",
+                              "totalMinor"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "validUntil": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+                        },
+                        "subtotalMinor": {
+                          "type": "string",
+                          "pattern": "^(0|[1-9][0-9]{0,14})$"
+                        },
+                        "discountMinor": {
+                          "type": "string",
+                          "pattern": "^(0|[1-9][0-9]{0,14})$"
+                        },
+                        "taxMinor": {
+                          "type": "string",
+                          "pattern": "^(0|[1-9][0-9]{0,14})$"
+                        },
+                        "totalMinor": {
+                          "type": "string",
+                          "pattern": "^(0|[1-9][0-9]{0,14})$"
+                        },
+                        "acceptanceNotice": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "currency",
+                        "currencyExponent",
+                        "supplier",
+                        "customerLabel",
+                        "terms",
+                        "taxConfiguration",
+                        "lines",
+                        "validUntil",
+                        "subtotalMinor",
+                        "discountMinor",
+                        "taxMinor",
+                        "totalMinor",
+                        "acceptanceNotice"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "quoteId",
+                    "organizationId",
+                    "revision",
+                    "fingerprint",
+                    "status",
+                    "validUntil",
+                    "snapshot"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Quote unavailable"
+          }
+        }
+      },
+      "post": {
+        "operationId": "decide-published-customer-quote",
+        "summary": "Accept or decline a published customer quote",
+        "tags": [
+          "Customer quote access"
+        ],
+        "security": [
+          {
+            "CustomerQuoteBearer": []
+          }
+        ],
+        "description": "Bearer-authenticated digital acceptance, not certified e-signing. Explicit confirmation, current revision/fingerprint and one persistent UUID idempotency key are required. Exact retries return saved evidence; another key or decision cannot overwrite it. Expired, archived, cancelled or stale new decisions fail. JSON stream is limited to 4096 bytes. No payment or provider request is made.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "organizationId": {
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "quoteId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                  },
+                  "revision": {
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "fingerprint": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "idempotencyKey": {
+                    "type": "string",
+                    "format": "uuid",
+                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                  },
+                  "decision": {
+                    "type": "string",
+                    "enum": [
+                      "accepted",
+                      "declined"
+                    ]
+                  },
+                  "confirmed": {
+                    "type": "boolean",
+                    "const": true
+                  }
+                },
+                "required": [
+                  "organizationId",
+                  "quoteId",
+                  "revision",
+                  "fingerprint",
+                  "idempotencyKey",
+                  "decision",
+                  "confirmed"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Decision saved or exact retry replayed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "decision": {
+                      "type": "string",
+                      "enum": [
+                        "accepted",
+                        "declined"
+                      ]
+                    },
+                    "revision": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "fingerprint": {
+                      "type": "string"
+                    },
+                    "decidedAt": {
+                      "type": "string"
+                    },
+                    "replayed": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "decision",
+                    "revision",
+                    "fingerprint",
+                    "decidedAt",
+                    "replayed"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Decision unavailable or changed"
+          },
+          "413": {
+            "description": "JSON body exceeds 4096 bytes"
+          },
+          "415": {
+            "description": "JSON content type required"
+          }
+        }
+      }
+    }
+  },
+  "x-private-portal-object-records": {
+    "methods": [
+      "GET"
+    ],
+    "paths": [
+      "/portal/records",
+      "/portal/records/{shareId}"
+    ],
+    "authentication": "Existing verified portal_session cookie, path /portal. Tenant and lead come only from the live session. Not API-key-v1 or bearer endpoints.",
+    "query": "Bounded page 1-4000 and pageSize 1-50 only; no lead/org/object selector. Detail takes opaque shareId and independently rechecks visibility.",
+    "response": "items [{shareId,label,fields:[{label,type,value}]}], total, page, pageSize, nextPage. Only reviewed safe scalar fields, title only if selected; no internal record/lead/object IDs, staff links, schema, grants, files or tokens.",
+    "privacy": "Private no-store; uniform 404 for signed-out, invalid or unavailable detail. Current explicitly shared records only; normalized links never authorize access. Each request uses a fresh read-only REPEATABLE READ snapshot; revocations apply to snapshots begun after commit.",
+    "staff": "portal.objects.options/preview/change/reconcile require current actual staff admin, CRM/settings/lead/object access and individual signed human approval for each mutation even Auto. Atomic CAS, audit, private receipt and approval consumption. Unknown outcomes reconcile original requestId/inputHash without retry or new identity."
+  },
+  "x-public-custom-object-forms": {
+    "paths": [
+      "/f/{publicId}",
+      "/api/forms/{publicId}/submit",
+      "/api/forms/{publicId}/reconcile"
+    ],
+    "authentication": "Anonymous reviewed publication link plus original signed per-page ticket; same-origin POST. Not API-key-v1 endpoints.",
+    "request": "Existing form answers; custom-object publications additionally use a signed page nonce or visitor UUID. Reconciliation requires the exact original link, ticket, identity and content.",
+    "behavior": "Only explicitly reviewed scalar fields. Current authority and shared object validation; atomic object/history/minimal receipt. No uploads or record links. New publications get new random links; revoked/restored links never reactivate.",
+    "response": "Acknowledgment only; no private record IDs, values or receipt lookup.",
+    "unknownOutcome": "Read-only exact-input reconciliation; no automatic retry or new identity."
+  },
+  "x-private-email-observations": {
+    "methods": [
+      "GET",
+      "HEAD"
+    ],
+    "paths": [
+      "/api/email-observations/open/{token}",
+      "/api/email-observations/click/{token}"
+    ],
+    "authentication": "Generated confidential per-message token, canonical configured HTTPS origin only. Not an organization API key or staff cookie.",
+    "purpose": "Optional request observations only; no public reporting API, no human-read/click/delivery claim.",
+    "privacy": "No query parameters, raw request metadata or cookies are stored. HEAD and recognized preview/prefetch requests do not record. Tokens must stay out of analytics/logs/model context. Selected redirects use immutable reviewed public destinations; no client redirect target."
+  },
+  "x-private-native-objects": {
+    "base": "/api/mobile/v1",
+    "authentication": "Existing native person bearer and live session; current actor, membership, role/module, object, record, field and link scope on each operation. No API keys or cookie fallback.",
+    "reads": [
+      "/objects",
+      "/objects/{slug}",
+      "/objects/{slug}/records",
+      "/objects/{slug}/records/{recordId}",
+      "/objects/{slug}/records/{recordId}/links",
+      "/objects/{slug}/board",
+      "/objects/{slug}/link-options"
+    ],
+    "writes": {
+      "create": "POST /objects/{slug}/records",
+      "update": "PATCH /objects/{slug}/records/{recordId}",
+      "move": "POST /objects/{slug}/records/{recordId}/move",
+      "reconcile": "POST /objects/{slug}/reconcile"
+    },
+    "inbox": "GET /whatsapp/linked-objects?conversationId={actual-WhatsApp-public-UUID}&page=1&pageSize=20",
+    "capabilities": "Explicit supported field and operation metadata; ignore unknown field types. No object/field/grant creation, configuration, import/upload, sharing or provider messages. No native UI availability claim.",
+    "lifecycle": "DELETE /objects/{slug}/records/{recordId} and POST /objects/{slug}/records/{recordId}/restore refuse with 409 HUMAN_REVIEW_REQUIRED. Use the actual individually reviewed lifecycle workflow; no archive substitution.",
+    "writeBody": "{requestId: stable UUID, schemaVersion: current object version, input: shared typed create/edit/move input}. Route target is authoritative. Reconcile adds original operation and update/move recordId.",
+    "outcome": "Atomic actual writer/event plus minimal digest/reference receipt. Exact replay checks current access and returns the current scoped record without new effects. Changed payload identity is refused. Deleted results remain tombstoned after recovery.",
+    "unknownOutcome": "Retain original requestId and complete canonical input. Read-only exact-input reconciliation; no automatic network retry/new key. not_found never executes the request.",
+    "privacy": "Bounded public-key DTOs; no internal value slots, private history, full answers or receipt contents. Titles/counts exclude inaccessible records. No-store and Vary Authorization.",
+    "canonicalWriteSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "create"
+            },
+            "slug": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "requestId": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            },
+            "schemaVersion": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 2147483647
+            },
+            "input": {
+              "type": "object",
+              "properties": {
+                "values": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "maxLength": 48
+                  },
+                  "additionalProperties": {},
+                  "description": "Public field keys. record_link values are numeric target ID arrays (one or up to 20 according to field configuration); names and read projections cannot be submitted."
+                },
+                "ownerId": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 2147483647
+                }
+              },
+              "required": [
+                "values"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "operation",
+            "slug",
+            "requestId",
+            "schemaVersion",
+            "input"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "update"
+            },
+            "slug": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "requestId": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            },
+            "schemaVersion": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 2147483647
+            },
+            "recordId": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 2147483647
+            },
+            "input": {
+              "type": "object",
+              "properties": {
+                "values": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "maxLength": 48
+                  },
+                  "additionalProperties": {},
+                  "description": "Public field keys. record_link values are numeric target ID arrays (one or up to 20 according to field configuration); names and read projections cannot be submitted."
+                },
+                "ownerId": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 2147483647
+                },
+                "version": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 2147483647
+                }
+              },
+              "required": [
+                "version"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "operation",
+            "slug",
+            "requestId",
+            "schemaVersion",
+            "recordId",
+            "input"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "move"
+            },
+            "slug": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "requestId": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            },
+            "schemaVersion": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 2147483647
+            },
+            "recordId": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 2147483647
+            },
+            "input": {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 2147483647
+                },
+                "boardField": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]{0,47}$"
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 100
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "version",
+                "boardField",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "operation",
+            "slug",
+            "requestId",
+            "schemaVersion",
+            "recordId",
+            "input"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "inboxQuerySchema": {
+      "type": "object",
+      "properties": {
+        "conversationId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "page": {
+          "default": 1,
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4000
+        },
+        "pageSize": {
+          "default": 20,
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        }
+      },
+      "required": [
+        "conversationId"
+      ],
+      "additionalProperties": false
     }
   },
   "x-private-app-navigation": {
@@ -5633,6 +6290,11 @@
   },
   "components": {
     "securitySchemes": {
+      "CustomerQuoteBearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "One private customer quote bearer token. Not a staff JWT or organization API key. Never log it or put it in a URL query/path."
+      },
       "ApiKey": {
         "type": "http",
         "scheme": "bearer",
@@ -6337,7 +6999,7 @@
       "target": "lead/contact/company/opportunity/user/object:<id>",
       "writes": "numeric ID arrays, one or up to 20",
       "reads": "current-visible id/kind/name/href projections; object targets require objects.records.read and current per-object grants",
-      "board": "private server action only"
+      "board": "Shared server actions and private native person-bearer routes; not organization API keys"
     }
   },
   "x-transport-errors": [

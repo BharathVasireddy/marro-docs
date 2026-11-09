@@ -1,0 +1,31 @@
+---
+title: Sales forecasts and targets
+description: Understand expected opportunity value and progress towards sales targets.
+---
+
+<Note>
+Forecasting and target screens are being prepared. They are not available in Reports yet.
+</Note>
+
+Forecasts use the opportunities you can currently see. Own, team and organization access work the same way as the opportunity list. Turning opportunities off also turns forecasting off. CRM Analytics and permission to view opportunities are required.
+
+## Read the forecast
+
+Choose the first date and an end date that is not included, up to 366 days apart. For November, choose 1 November to 1 December. Future periods are supported. An opportunity belongs to the period containing its expected close date.
+
+- **Open pipeline** is the full value of opportunities currently in open stages.
+- **Weighted pipeline** applies each open stage's probability. The default is 50%; an administrator can change it. These probabilities are planning assumptions.
+- **Won value** is the value of opportunities currently in won stages, grouped by expected close date. It does not show cash received or the date they originally became won.
+- **Forecast** is won value plus weighted open pipeline. Lost opportunities do not contribute to the amount.
+
+Each currency stays separate. Missing expected dates, missing or invalid values and opportunities outside the period are counted separately. A saved zero is a valid value. The forecast describes current records, rather than a historical snapshot.
+
+## Targets
+
+A target belongs to one staff member, one exact period and one currency, across all pipelines. Only an organization administrator with CRM Analytics and settings access can configure targets and open-stage probabilities. Won and lost probabilities stay fixed at 100% and 0%.
+
+The review names the person or stage and shows the complete proposed change. If someone else changes it before you save, refresh and review again.
+
+Attainment compares won value with that person's target in the same currency and exact period. It can exceed 100%. An unset or zero target has no percentage. Clear a pipeline filter before comparing attainment, because the target covers all pipelines. Marro does not invent an organization-wide percentage from an incomplete set of individual targets.
+
+The assistant and staff WhatsApp use the same scoped reads and approved changes. Report rows are paged; currency totals cover the complete selected scope.

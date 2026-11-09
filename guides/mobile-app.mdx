@@ -80,3 +80,8 @@ For an AI call, **Recording & transcript** opens its recording and the conversat
 When call transcription is available for your organisation, a call through MCube or another supported calling integration shows **Transcript**. Choose **Transcribe recording** to create it, or retry a failed attempt. This requires accessible audio and permission to use call transcription. A missing recording cannot be transcribed. The control stays hidden until the service is available. Nothing is added to the lead’s Details tab.
 
 Activities performed by an AI agent show the responsible agent’s name when recorded. Historical actions without a known agent identity may show **AI agent**. The staff member responsible for the record and any human approval remain in the audit history.
+
+
+## Custom-object backend preparation
+
+Private person-session endpoints for scoped custom-object records and Inbox linked records are implemented locally. They reuse the existing app session and current permissions; no new sign-in token is required. Supported manual record changes require current versions and stable request identities. Unknown outcomes reconcile the original request without an automatic retry. Unfamiliar field types must be ignored and cannot confer write access. Deletion and restoration remain individually reviewed human workflows. Native navigation and screens, independent review, runtime checks and release are still outstanding.

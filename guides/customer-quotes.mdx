@@ -1,0 +1,28 @@
+---
+title: Customer quotes and templates
+description: Prepare reviewed quotes and record a decision on an immutable revision.
+---
+
+<Note>
+These screens are being prepared and have not been released. Certified provider e-signing is not configured.
+</Note>
+
+Prepare a product or service quote for an existing customer. Optionally link its company, opportunity and an existing customer payment request. You need current CRM access and the normal customer record permissions. Opportunities that your organization has turned off cannot be used.
+
+Start with a draft or an accessible template. Enter the supplier name/address and tax identity from confirmed organization details. A missing tax identity stays unconfigured; Marro does not supply a GSTIN, tax treatment or legal terms. Add the customer's display label, currency and confirmed currency decimal places. Amount fields use integer minor units as strings. For INR, 100 minor units represents ₹1; no currency conversion occurs.
+
+Each product/service line has a description, quantity with up to four decimal places, unit amount, explicit fixed discount and named explicit tax amounts. Marro rounds each extended line half up to a minor unit before subtracting the discount and adding the supplied taxes. It does not calculate statutory tax or infer whether tax should apply. A discount cannot exceed its line amount. Use **Tax not configured** when tax treatment is unknown; this state cannot carry tax amounts. No supplier or legal detail is inferred from the industry.
+
+Review the entire quote, totals, validity date and terms in Preview. Publication requires the same draft version and preview fingerprint. Publishing creates an immutable revision and a new private access token. It does not email or message anyone and does not create a payment. An existing payment reference is internal context only; it is not a new charge or an automatic customer payment button.
+
+Editing a published quote immediately disables its previous customer access. Publish a newly reviewed revision to replace it. Accepted, declined and cancelled quotes cannot be edited or republished; create a new quote instead. Expired links cannot record a new decision. An exact retry of an already saved decision returns that decision without creating another event.
+
+Customers reviewing a private link can accept or decline the exact revision and its terms. The backend records the revision, complete snapshot, fingerprint, bearer authentication and server time. A bearer decision does not independently verify the identity of the person holding the link. **Digital acceptance is not certified provider e-signing.** No claim about legal enforceability is made.
+
+Cancel stops an open quote. Archive removes it from active lists and stops customer access, while retaining its history and existing acceptance evidence. Archiving an accepted quote does not undo the acceptance. There is no reactivation or delete action in this release.
+
+Deleting a linked contact/company/opportunity/payment archives the affected quote and revokes customer access. Restoring that relationship does not reopen the quote or trigger any message, e-sign request or payment. Detached customer histories are visible only through the original creator's current own/team/all scope. Existing lead/stage recovery rules still apply; this feature adds no direct lead/stage foreign key.
+
+Templates retain explicit reusable lines and terms. They are scoped to their owner with current own/team/all permissions. Applying a template supplies a draft only; choose the customer and a fresh validity date, then review all supplier/tax/legal details. Changing or archiving a template never changes an existing quote or sent revision.
+
+Provider e-signing is awaiting an explicitly configured test account, review of current primary documentation and verified callback/replay protection. Digio, Leegality and DocuSign have not been activated or called by this implementation. Future outreach must use the existing approved email/WhatsApp channels with a separate review.

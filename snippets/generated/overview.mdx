@@ -7,10 +7,10 @@ Every response carries `X-Request-Id`, to quote to support. Once the key is chec
 Base URL:
 
 ```text
-https://app.marro.si/api/v1
+https://app.marro.si/api
 ```
 
-The full specification is an OpenAPI 3.1.0 document at [https://app.marro.si/api/v1/openapi.json](https://app.marro.si/api/v1/openapi.json). Import it into Postman or a client generator.
+The full specification is an OpenAPI 3.1.0 document at [https://app.marro.si/api/openapi.json](https://app.marro.si/api/openapi.json). Import it into Postman or a client generator.
 
 ### Custom objects
 
@@ -66,3 +66,10 @@ Contacts, companies and enabled opportunities with record-type custom fields. De
 | Endpoint | Method | Path |
 | --- | --- | --- |
 | [Get published pricing](/api-reference/public-billing-catalogue/get-published-billing-catalogue) | GET | `/api/public/billing-catalogue` |
+
+### Customer quote access
+
+| Endpoint | Method | Path |
+| --- | --- | --- |
+| [Read a published customer quote](/api-reference/customer-quote-access/read-published-customer-quote) | GET | `/api/public/customer-quotes` |
+| [Accept or decline a published customer quote](/api-reference/customer-quote-access/decide-published-customer-quote) | POST | `/api/public/customer-quotes` |

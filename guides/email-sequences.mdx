@@ -1,0 +1,64 @@
+---
+title: Email sequences and sales templates
+description: Prepare reusable sales emails and a timed series of follow-ups.
+---
+
+<Note>
+Email sequences are being prepared and are not enabled for sending yet. The screens and release checks are still pending.
+</Note>
+
+A sales template is a named subject and message you can reuse. A sequence puts up to ten of these emails in order, with a delay before each one. These templates are separate from invitation, attendance, leave and other system email wording.
+
+## Templates and wording
+
+Personalisation can use the lead's name, first name or email address, the lead owner's name and the organization's name. The message uses the same personal email formatting as email on a lead: paragraphs, bold, italic, lists and links.
+
+Saving a sequence copies its templates' wording. Editing a template does not change a saved sequence. Resave and reactivate the sequence when you want it to use the updated wording. People already enrolled keep the version they started with.
+
+## Before starting
+
+An organization administrator chooses the sequence, one lead and a connected mailbox that can read replies. The review shows the lead name, recipient, sending address, personalised messages, delays and full sending-window hours and timezone. Saving a template or draft does not send email.
+
+The first email can be due immediately, but a [sending window](/guides/email-sequence-sending-windows) may postpone it. A sending-window preview estimates eligibility at the instant you choose, without promising a send time. Later emails wait at least a minute. Their delays start after the previous send is accepted, so a late job does not send several overdue follow-ups together.
+
+## When follow-ups stop
+
+Further emails stop when Marro receives an email reply from that address, a new appointment is booked, the lead closes or is archived, the recipient's email changes, or the recipient unsubscribes. Replies are checked when the mailbox syncs, rather than instantly at the mail provider.
+
+Unsubscribe stops every sequence for that address within the organization. Disconnecting a mailbox or deleting a lead does not make an old unsubscribe link lose its effect. Restoring a deleted lead does not restart its old sequences.
+
+A disconnected sender, a changed sending address or stale reply sync pauses the work. You can pause or stop an enrollment. An email already being sent may still finish.
+
+## Send results
+
+A recorded send means the mail provider accepted the request; it does not prove inbox delivery. If a request was interrupted and the result is uncertain, Marro keeps that uncertainty and does not resend automatically. Check the mailbox before deciding what to do next.
+
+[Optional email observations](/guides/email-tracking) apply only to individually reviewed human sends; automatic sequences cannot activate them. [Reviewed batch enrollment](/guides/email-sequence-batches) is integrated locally and awaits screens and release validation. Reviewed private-document attachments are integrated locally and await screens, independent review and release checks. Administrators can use the assistant for the same reads and approved changes once the feature is available. Starting or re-enabling scheduled emails always requires explicit human approval.
+
+
+## Reviewed private attachments
+
+An administrator can prepare existing private documents for a named sales template and sequence.
+The review names each source lead and file, its size and type, and the exact file fingerprint.
+No file upload or attachment selection happens autonomously. Every step must have an explicit file
+selection, including an empty list when that email has no files. Each step allows up to five files,
+5 MiB per file and 10 MiB in total.
+
+Saving a sequence keeps the exact reviewed template versions and files. Later template or document
+changes do not replace those selections in existing sequences or enrollments. Older versions without
+a reviewed file list are unavailable. An administrator must deliberately save a new reviewed template
+or sequence draft; the old version is not silently treated as file-free.
+
+Before starting, review the named lead, recipient, From address, personalised wording, delays, sending
+hours and timezone, plus every named source record and file. These configuration and enrollment changes
+need individual human approval in the assistant, including Auto. A batch uses one complete review and
+admits every selected lead or none. It cannot use the generic partial-success bulk action.
+
+If a response is lost, reconcile using the original request and complete review. Reconciliation reads
+the recorded outcome; it does not choose replacement files or start another enrollment. Do not retry
+with a replacement request ID. A recorded original enrollment can remain historical after deletion.
+
+Missing, removed, inaccessible, replaced, oversized or unsafe files pause work before a send intent.
+Resuming checks the original selection again and cannot repair it by choosing another file. A new
+reviewed enrollment is needed for a changed selection. A send with an uncertain result is never retried
+automatically. Restoring deleted history keeps it stopped and grants no new access to its old files.

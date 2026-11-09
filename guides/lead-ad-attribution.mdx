@@ -1,0 +1,28 @@
+---
+title: Lead ad attribution and feedback
+description: Understand observed lead sources and internal conversion feedback.
+---
+
+<Note>
+Attribution screens are being prepared. Advertising feedback provider sends are off; no dispatcher is implemented.
+</Note>
+
+Marro can retain evidence that Meta supplied with a messaging referral or lead-ad submission. The connection that received the message supplies the organisation and channel. WhatsApp does not prove that a lead came from a Facebook ad: a referral can describe an organic post, and missing fields stay unknown. Existing lead-ad submissions continue to supply campaign/ad-set/ad names; Marro does not make another advertising API request to enrich them.
+
+The first and latest source mean the earliest and latest **observed evidence**, ordered by the provider event time. They do not promise to identify the person's first marketing interaction. A referral delivered late can become the first observation. Repeated webhook delivery retains one record. When a person is not a lead yet, the bounded referral stays under a hashed connection/contact binding and can be linked when the same conversation is linked to a scoped lead. No matching by name or guessed identity takes place.
+
+Only selected referral IDs and source/type labels are retained. Message text, ad headlines, URLs, pictures, answers, patient details, documents and notes are not copied into attribution storage. Click tokens and custom reference tokens are not returned by the lead read action.
+
+An organisation admin outside support view can review internal feedback settings. Select actual active stages from this organisation: Qualified uses an open stage and Won uses a won stage. The two mappings must differ. The backend checks the IDs again against the lead's current stage and current stage meaning. A stale settings revision cannot overwrite another admin's review. Deleting/archiving a mapped stage stops new feedback for it; no replacement is guessed.
+
+Opt-in requires explicit reviewed organisation consent and an opaque consent-review reference. Each lead also needs a reviewed consent record before a stage event can create internal feedback. Withdrawing consent is supported and does not erase the audit trail. Consent must come from actual reviewed evidence, never from filling a form or contacting the business alone.
+
+Only agency, services, automotive and travel profiles are presently eligible for internal feedback capture. General/unknown profiles and all other profiles are blocked. This includes clinic/healthcare, beauty, fitness, finance, insurance, mortgage, legal and education profiles. Changing a profile is not a substitute for a sensitive-industry policy review. There is no override for those profiles in this backend.
+
+Reaching a mapped stage after review can create one internal feedback event per lead and milestone. Leaving/re-entering a stage, webhook retries, later configuration changes and repeated workers cannot create another identity. Old leads are not backfilled when settings change. The existing business conversion process continues separately.
+
+**Provider sends remain off.** There is no dispatcher, cron sender, advertiser activation action or API request builder in this change. Internal review descriptors contain only event identity, milestone and time. They contain no contact information, revenue or currency. Qualified and Won are internal milestones; they are not asserted to be supported Meta event names.
+
+Unsent means no provider send is recorded. Sent requires a recorded provider acknowledgement. An interrupted or unknown outcome is uncertain; it is never automatically put back to unsent or retried. Acknowledgement bookkeeping is an internal future adapter contract, not a tenant UI action and not proof of advertising attribution or campaign optimisation.
+
+Before any provider feedback can be activated, the advertiser must complete setup, the current supported API contract and permissions must be verified, an identifier-minimisation policy must be reviewed, and explicit consent must be obtained. Existing `ads_read` access or an `ads_management` app status does not establish that those steps are complete. No medical information or patient context may be sent.
