@@ -19,6 +19,11 @@ prices. A same-period upgrade starts after its reviewed adjustment is paid; a lo
 billing period starts at renewal. An uncertain provider result must be reconciled before another
 payment request; Marro does not automatically repeat it.
 
+Recovery checks the original payment and subscription before resolving an interrupted change. A
+confirmed unpaid draft can be discarded without stopping renewal. A late captured adjustment may
+need a human refund review; recovery never issues an automatic refund or grants access from an
+unconfirmed payment. Missing payment or schedule evidence still needs investigation.
+
 Cancelling an AUD subscription stops renewal and keeps access through the paid end. An unpaid
 plan-change invoice must be cancelled, or a paid change reconciled, first. A scheduled Stripe
 cancellation can be resumed before the paid end if the subscription has not ended. INR subscriptions
