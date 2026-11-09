@@ -28,6 +28,12 @@ Receipts show the actual currency, paid amount and dates. AUD supplier and tax t
 agreement accepted for that charge. A provider invoice link does not itself establish compliance with
 all tax-invoice requirements. AUD wallet top-ups and AUD calling or messaging usage prices remain later work.
 
+Collecting Australian GST remains unavailable until the Stripe invoice tax representation is
+implemented and verified. A zero-tax configuration still needs an approved tax policy; a missing
+policy is not treated as zero tax. Near the end of a trial, checkout may ask you to return after
+the trial ends so no remaining trial time is lost. An expired unpaid upgrade leaves the existing
+subscription renewing on its accepted terms.
+
 The currency-aware subscription screens are implemented and awaiting release validation. When AUD
 checkout is available, **Accept and pay with Stripe** opens its secure page. On return, Marro shows
 **Confirming** until the server verifies payment. If a request is uncertain, use **Check status**.
