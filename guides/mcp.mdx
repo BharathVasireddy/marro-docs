@@ -19,6 +19,6 @@ Marro offers its lead tools to other AI agents over **MCP** (Model Context Proto
 | `agent_capabilities` | What Marro's agent may do in your organization: on its own, asking first, or off, and why something is unavailable. |
 | `ask_agent` | Hands a lead to Marro's agent with an instruction in plain words. Set `dryRun` to see what it would do without changing anything. |
 
-`ask_agent` never changes anything itself. Marro's agent acts only within your [agent permissions](/guides/agents): what it may do on its own is done; the rest waits for a person to approve. It works within your working hours and daily limits, and uses your [AI credits](/guides/ai-usage).
+`ask_agent` never changes anything itself. Marro's agent acts only within your [agent permissions](/guides/agents): it does what you've allowed it to do on its own, and anything you've set to **Ask me first** waits as a suggestion on the lead. It works within your working hours and daily limits, and uses your [AI credits](/guides/ai-usage).
 
 Each key can make up to 600 tool calls an hour. Revoke the key to disconnect the agent at once.
