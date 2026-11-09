@@ -23,10 +23,10 @@ Reaching a mapped stage after review can create one internal feedback event per 
 
 **Provider sends remain off.** There is no dispatcher, cron sender, advertiser activation action or API request builder in this change. Internal review descriptors contain only event identity, milestone and time. They contain no contact information, revenue or currency. Qualified and Won are internal milestones; they are not asserted to be supported Meta event names.
 
-Settings and lead-attribution reads expose `providerReadiness` separately from storage availability.
-This lists the missing provider contract, dataset/account/token binding, eligibility and permission
-evidence, provider activation review, and atomic dispatch implementation. Saving internal consent
-settings does not satisfy these requirements. Existing unsent events will not be automatically backfilled.
+Saving attribution evidence or consent settings does not activate delivery. Delivery still needs
+a verified provider contract, an authorised advertising account and dataset, current permissions,
+a separate activation review and a sender that safely records each attempt. Existing unsent events
+will not be automatically backfilled.
 
 Unsent means no provider send is recorded. Sent requires a recorded provider acknowledgement. An interrupted or unknown outcome is uncertain; it is never automatically put back to unsent or retried. Acknowledgement bookkeeping is an internal future adapter contract, not a tenant UI action and not proof of advertising attribution or campaign optimisation.
 
