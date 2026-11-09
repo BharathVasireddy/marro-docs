@@ -62,3 +62,10 @@ Missing, removed, inaccessible, replaced, oversized or unsafe files pause work b
 Resuming checks the original selection again and cannot repair it by choosing another file. A new
 reviewed enrollment is needed for a changed selection. A send with an uncertain result is never retried
 automatically. Restoring deleted history keeps it stopped and grants no new access to its old files.
+
+Before resuming, review the paused enrollment's saved sequence version, recipient, sender and full
+attachment list with current source names. This review uses the enrollment's frozen version even
+when the current draft has changed. Missing files, changed file details or lost access make resume
+unavailable; Marro does not replace them with an empty list or start another enrollment. Resuming
+allows further scheduled emails after current sending and consent checks. In the assistant or staff
+WhatsApp, ask to review the paused enrollment before approving resume.
