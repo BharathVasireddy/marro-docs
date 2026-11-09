@@ -1,0 +1,73 @@
+---
+title: 'Workflows for custom-object records'
+description: 'Review internal record creation and updates using existing objects and named fields.'
+---
+
+<Note>
+This guide accompanies a backend implementation awaiting independent review, screens and release
+validation. It makes no claim that
+these controls are available in the current product.
+</Note>
+
+Custom-object workflows can create a business record when another record is created or updated.
+They can also update the source, a record you select, or a record created earlier in the same workflow.
+For example, a new application can create a service job, or an application marked Ready can move its
+own status to Processing. These are internal record changes. They do not contact a customer.
+
+## Choose the records and fields
+
+An organization administrator first chooses an existing source object and whether the workflow
+starts on creation or update. Optional conditions compare named current fields with exact values.
+Select existing target objects and fields for each step. A value can be supplied explicitly or
+copied from a selected source field of the same type and choices. Source copies use the source
+version that admitted the run; later steps do not reinterpret earlier record text as instructions.
+
+Choose the source record, an explicitly selected record with its displayed version, or the exact
+result of an earlier creation step as an update target. Selected record versions are fixed: after
+the first successful update, another event using that old version fails safely until reviewed again.
+The source and earlier-created targets carry their current version within the run.
+
+The workflow does not create objects or fields. It does not guess record IDs, people, recipients,
+field meanings or values. Record-link assignments are not supported in this workflow. Existing
+normalized links are preserved when supported ordinary fields are updated.
+
+## Review the persistent authority
+
+The named review shows the chosen objects, current revisions, field names/types/versions, exact
+values or source copies, target references, conditions, activation and consequences. Review the
+whole configuration before approving. Each configuration requires an individual signed human
+approval, including when Ask Marro is set to Auto. Approval authorizes future matching internal
+writes as the person who configured the workflow; it is not approval to send messages or payments.
+
+Ask Marro and staff WhatsApp use the same review and current permissions. A review too long for a
+single WhatsApp approval must be completed in Ask Marro on the web. A group or background agent
+cannot bypass the individual review. Names and values are business data, never instructions.
+
+## Understand execution and failures
+
+Only new matching events are considered. Saving or enabling a workflow does not process old
+records. A source that changes before processing fails safely instead of applying stale values.
+Every write checks current membership, object access, fields, CRM entitlement, lifecycle and record
+versions again. Schema, access, membership, role, module or lifecycle changes can revoke the saved
+approval. Restoring old data does not restore that authority; review the configuration again.
+
+A run has at most ten internal steps. Up to twenty active reviewed workflows can listen to one
+object. Changes made by automation do not start more object workflows, preventing a cascade.
+A run commits all its record changes and receipts together. If a later step fails, earlier changes
+in that run roll back too. Conditions that do not match are reported as filtered; access or version
+refusals are reported as failed, with no silently skipped step.
+
+After an uncertain response, read the saved configuration or run history before making another
+change. Completed run history retains the exact action references and versions originally written;
+these are historical receipts, not a claim that a record still exists or is still at that version.
+The same event and workflow revision cannot create a duplicate result. Deleted source events cannot
+resume old work or replay after restoration. Closed organizations remain frozen; restoration does
+not reactivate old workflow authority.
+
+## Ask Marro
+
+Use the object workflow options to discover existing objects and scoped record choices, preview the
+complete proposed workflow, then approve its exact named configuration. You can also ask to read
+saved object workflows and their recent run outcomes. Existing lead workflows retain their own
+steps and permissions. Object workflows do not infer a lead, resolve a recipient, send outreach,
+request payment, archive/delete records, or add schema.
