@@ -14,6 +14,10 @@ on that quote; it does not create a certified signing request.
 
 Prepare a product or service quote for an existing customer. Optionally link its company, opportunity and an existing customer payment request. You need current CRM access and the normal customer record permissions. Opportunities that your organization has turned off cannot be used.
 
+Start from **New quote** on the customer's page or from **Leads → Quotes**. The dialog offers only
+that customer's own company and payment requests you can access. Linking an existing payment is
+context; it does not create a charge or send a payment request.
+
 Start with a draft or an accessible template. Enter the supplier name/address and tax identity from confirmed organization details. A missing tax identity stays unconfigured; Marro does not supply a GSTIN, tax treatment or legal terms. Add the customer's display label, currency and confirmed currency decimal places. Amount fields use integer minor units as strings. For INR, 100 minor units represents ₹1; no currency conversion occurs.
 
 Each product/service line has a description, quantity with up to four decimal places, unit amount, explicit fixed discount and named explicit tax amounts. Marro rounds each extended line half up to a minor unit before subtracting the discount and adding the supplied taxes. It does not calculate statutory tax or infer whether tax should apply. A discount cannot exceed its line amount. Use **Tax not configured** when tax treatment is unknown; this state cannot carry tax amounts. No supplier or legal detail is inferred from the industry.
