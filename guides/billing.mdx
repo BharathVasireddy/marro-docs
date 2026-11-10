@@ -23,6 +23,8 @@ Recovery checks the original payment and subscription before resolving an interr
 confirmed unpaid draft can be discarded without stopping renewal. A late captured adjustment may
 need a human refund review; recovery never issues an automatic refund or grants access from an
 unconfirmed payment. Missing payment or schedule evidence still needs investigation.
+After a schedule-creation timeout, an empty status read is not proof that the request cannot finish
+later. Marro keeps the change blocked until the original request is resolved.
 
 Cancelling an AUD subscription stops renewal and keeps access through the paid end. An unpaid
 plan-change invoice must be cancelled, or a paid change reconciled, first. A scheduled Stripe
