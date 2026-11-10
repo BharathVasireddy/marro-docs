@@ -10,8 +10,8 @@ Your organisation's subscription lives in **Settings → Subscription**. Only pe
 Your organisation has one subscription currency. Existing paid INR subscriptions keep INR and their
 accepted terms. Australian dollar subscription billing is being prepared and stays unavailable until
 Marro confirms its selling entity, payment account, final prices and tax treatment. A published AUD
-price does not mean checkout is open. AUD catalogue prices are shown before GST; the reviewed checkout
-shows any tax charged under the approved policy. There is no self-service currency switch after purchase.
+price does not mean checkout is open. The reviewed checkout shows the exact price to accept before
+any payment. There is no self-service currency switch after purchase.
 
 When AUD checkout is available, it opens a hosted Stripe page. Returning to Marro does not confirm
 payment: the subscription waits for verified payment confirmation. Renewals retain the accepted AUD
@@ -40,9 +40,7 @@ They are not converted into a dollar allowance. Published annual extra-user pric
 apply for the year; otherwise annual billing uses twelve monthly extra-user prices. Online checkout
 requires a configured monthly extra-user price before offering extra users on any billing period.
 
-Collecting Australian GST remains unavailable until the Stripe invoice tax representation is
-implemented and verified. A zero-tax configuration still needs an approved tax policy; a missing
-policy is not treated as zero tax. Near the end of a trial, checkout may ask you to return after
+Near the end of a trial, checkout may ask you to return after
 the trial ends so no remaining trial time is lost. An expired unpaid upgrade leaves the existing
 subscription renewing on its accepted terms.
 
