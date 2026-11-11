@@ -27,6 +27,7 @@ The builder shows every automation two ways, on the canvas and as a list of step
 - An appointment is booked, or is completed or a no-show
 - A lead becomes Hot, Warm or Cold
 - An AI call ends (every call, answered calls only, or calls they did not answer)
+- A call is analysed, a few minutes after a recorded call ends: AI calls, Cloud calls and Bridge calls, incoming, outgoing or both, any outcome or only some (interested, wants a callback, not interested…). See [After a call](#after-a-call)
 - An AI call is analysed, a few minutes after an answered call (any outcome, or only some: interested, wants a callback, not interested…)
 - An opportunity's stage changes (any stage, or only some), for the lead it came from
 - Another automation uses it
@@ -42,6 +43,7 @@ Add conditions to narrow it down: stage, pipeline, tags, lead score, days since 
 - **Notify someone**
 - **Create record**, **Create opportunity**, **Move the lead's opportunities**, **Set the lead's stage from the opportunity** and **Link records**: see [Customers and records](#customers-and-records)
 - **Call with AI** (with [AI calling](/guides/ai-calling)): see [Call with AI](#call-with-ai)
+- **Set the stage from the call** and **Book what was agreed on the call** (with the AI add-on): see [After a call](#after-a-call)
 - **Agent decides** (with the AI add-on): the agent reads the lead and takes the next step itself: notes, follow-ups and fields straight away; messages, stage changes and new owners follow its [agent permissions](/guides/agents#choose-what-they-may-do). Its ways on can split into **Acted** and **Did nothing**, for example to tell the owner when it did nothing. Automations that used **Hand to the assistant** now show this step and keep working.
 - **Stop WhatsApp messages to the lead**, **Archive the lead**
 - **Send to a web address**: posts the lead to a public `https` address. Each request has an `X-CRM-Signature` header: `sha256=` and the HMAC-SHA256 of the body, keyed with the signing secret shown in the step.
@@ -95,6 +97,26 @@ Finish the sentence **Call them with AI…** (for example, "to confirm the cours
 The call is paid like any other AI call and appears on the lead's timeline. Automations that start from an AI call can't make another AI call, so calls never follow calls.
 
 To go on by how the call went, add **If… otherwise…** after it with the condition **Last AI call outcome**, or start a separate automation from **An AI call is analysed**. The ready-made journey **New lead: AI call in 5 minutes, WhatsApp if no answer** sets this up: it calls each new lead after 5 minutes, lets **Agent decides** take the next step when they answer, and sends a WhatsApp template when they don't.
+
+## After a call
+
+Each recorded call is read by itself a few minutes after it ends, while **Call reviewer** is on in [AI → Agents](/guides/agents). That covers AI calls, [Cloud calls](/guides/cloud-calls) and Bridge calls through a calling service you connected. Its transcript appears on the call like a transcript you asked for. The reading counts as AI use, paid from your plan's AI credit, then your wallet.
+
+Start an automation from **A call is analysed** to act on it. Choose which calls (**AI call**, **Cloud call**, **Bridge call**, or every call), incoming, outgoing or both, and which outcomes. Two steps work only in these automations:
+
+- **Set the stage from the call**: choose the stages the AI may move the lead to. It moves the lead only when what was said clearly fits one of them. The reason and the words from the call are noted on the lead, with a **Put back** button that returns the lead to its earlier stage. When the call is not clear, the lead stays where it is and its owner gets a follow-up to check the call.
+- **Book what was agreed on the call**: when both sides agreed a day and time, it books the appointment with the lead owner, in your organization's time zone, up to 90 days ahead. When no time was clearly agreed, the owner gets a follow-up to fix one.
+
+Each step goes on one of two ways: **Moved** or **Booked**, and **Not clear**. Switch off the follow-up in the step if you don't want it.
+
+Ready-made automations to start from:
+
+- **Move the lead after every call**: choose the stages, and every call moves the lead on.
+- **Book the appointment agreed on a call**: books the time agreed on calls where the lead is interested or wants a callback.
+- **Missed call: send a WhatsApp**: sends a template when nobody answers a lead's call. The owner already gets a follow-up to call back.
+- **Close leads that say they are not interested**: moves them to the stage you choose, with a note.
+
+A call with no recording can't be read. Automations that start from a call can't make an AI call.
 
 ## Test it
 
