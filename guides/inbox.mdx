@@ -69,14 +69,72 @@ Meta bills your WhatsApp messages directly to your Meta business account, and Ma
 
 Without a payment method, Meta stops delivering anything it would charge for. See [Meta's pricing](https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing) for current rates.
 
-## Templates, broadcasts and automated replies
+## Templates, broadcasts and replies
 
 The Inbox's other tabs:
 
 - **Templates**: write the WhatsApp templates Meta approves, for messages after the 24-hour window.
 - **Broadcasts**: send an approved template to everyone in a lead list, and see who got it, read it and wrote back.
-- **Automated replies**: away messages, welcomes, keyword answers and opt-outs that go out on their own.
-- **Settings**: your number and its standing with Meta, **Wallet**, **Chat assignment** (who gets each new chat), **Profile** and **Website chat**.
+- **Settings**: your number and its standing with Meta, **Wallet**, **Chat assignment** (who gets each new chat), **Replies**, **Profile** and **Website chat**.
+
+## Templates
+
+**Inbox → Templates** shows your templates as cards. Each card is a WhatsApp-style preview with its status, category, quality and language, and a line such as "Last 30 days: 120 sent · 96% delivered · 61% read · 8% clicked". Switch to the table with the toggle for a sortable list, search by name or text, and filter by status, category and language. Open a template to see its detail, including how many people tapped each button.
+
+The figures come from Meta. They cover the last 30 days, and Meta keeps reads and button taps for about 7 days, so those can be lower than you expect. Meta gives no figures for some regions' accounts. Where Meta has none, Marro shows them as unavailable.
+
+### Write a template
+
+Choose **New template**. The header can be:
+
+- **No header**
+- **A line of text**
+- **A picture**, **A video** or **A PDF**: upload a sample (up to 4 MB) so Meta can review the template. You choose the real file when you send it.
+
+Buttons can be quick replies, call buttons, website buttons (the link may end in `{{1}}`, filled in when you send) and copy-code buttons. Copy-code buttons are for marketing templates only.
+
+**Edit** changes a template's wording and buttons; its name, language and category stay fixed. Meta reviews it again after an edit. **Delete** removes that language version at Meta. Meta won't let you reuse the name for 30 days.
+
+Authentication, carousel, limited-time offer, Flow, catalog and location-header templates are made in WhatsApp Manager. They show here, but you can't send them from Marro.
+
+## Broadcasts
+
+**Inbox → Broadcasts** lists your broadcasts as cards, or as a table with a status filter. Each card shows the template preview, the audience, the schedule, the funnel (sent, delivered, read, replied) with percentages, the cost, and how many failed or were skipped.
+
+When you set one up, the composer asks for what the template needs:
+
+- A template with a picture, video or PDF header: choose the file (**Upload**) or give a link to it.
+- A website button that ends in a variable: enter the link ending.
+- A copy-code button: enter the code.
+
+Open a broadcast for its report:
+
+- **Sent, Delivered, Read, Replied, Failed** and **Opted out** tiles. Opt-outs are people who replied STOP within 7 days.
+- **Funnel** and **Over time**.
+- **Why messages failed**: each reason in plain words, with advice on what to do.
+- **Buttons**: how many people tapped each quick-reply button. Website-button clicks are shown for each template only, not for each broadcast.
+- **Cost**: **Estimated**, **Charged**, **Given back** and **Still held**, in your own price.
+- **After the broadcast**: leads that moved stage or were converted afterwards.
+
+## Replies
+
+**Inbox → Settings → Replies** is what goes out on its own when someone messages you. Each message gets one answer. Who answers, in order:
+
+1. **A person in the chat.** Nothing goes out on its own.
+2. **A keyword reply**, when the message has its keyword.
+3. **The AI receptionist**, when it is on.
+4. **Your welcome or away message.**
+
+The cards:
+
+- **AI receptionist**: shows **On** or **Off** with **Manage**. If you haven't made one, it says **No AI receptionist yet** with **Set up**. Without the AI add-on, the replies below work without AI.
+- **Welcome message**: sent the first time someone messages you. Use the **Send a welcome message** switch and write the message. `{{first_name}}` becomes their first name.
+- **Away message**: sent outside your working hours, once each time you are closed. Your working hours come from **Settings → HR** work week; choose **Change** to edit them.
+- **Keyword replies**: choose **Add**, enter keywords separated by commas, and choose a message or an approved template to send. Keywords match whole words in any case: "price" matches "Price?", not "pricing". Templates with a picture, video or PDF header can't be chosen here.
+
+The welcome and away messages pause while the AI receptionist is on, and while a person handles the chat. A text keyword reply goes out at most once per chat every 10 minutes; a template keyword reply has no repeat limit.
+
+These replies are ordinary [automations](/guides/automations) underneath, so they also appear there. Build more complex flows in Automations. You can also ask the [assistant](/guides/assistant) to switch the welcome or away message on or off, change their text, or add and edit keyword replies.
 
 ## Your WhatsApp profile
 
