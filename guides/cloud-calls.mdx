@@ -1,0 +1,55 @@
+---
+title: "Cloud calls"
+description: "Connect your team’s phones to customers and keep private recordings on each lead."
+---
+
+<Note>
+Cloud calling is being prepared for verified organizations. Saving settings does not activate calling. The Marro team must confirm number assignment and calling readiness before calls are enabled.
+</Note>
+
+Cloud calls connect your team’s existing phones with leads. Incoming calls can reach your team or an [AI voice agent](/guides/ai-calling), according to your organization’s answering rules.
+
+## Keep your marketing number
+
+Your organization receives an assigned business calling number. Ask your existing phone provider to forward your advertised number to it. Customers continue to dial the advertised number. Outgoing calls normally display the assigned business number; forwarding does not authorize a different outgoing caller ID.
+
+## Choose who answers
+
+An organization administrator opens **Settings → Cloud calls** and chooses:
+
+- **Lead owner and team:** with sequential ringing, try the matched lead’s owner, then the selected fallback staff.
+- **Round robin:** distribute calls among the selected team members, skipping people already on a Cloud call.
+- **One person:** ring the designated member of staff.
+
+Team members need active organization access and a registered phone number. Select a ring timeout and keep a clear recording announcement. Busy, away and unavailable staff are skipped.
+
+Choose **Sequential** to ring eligible staff one at a time, or **Simultaneous** to ring the eligible team together. The first person to answer takes the call and the other ringing phones stop. With simultaneous lead-owner routing, the eligible owner and fallback team ring together.
+
+## Set answering hours and waiting audio
+
+Choose an incoming answering mode: keep the current setup, always AI, always staff, or staff during working hours and AI outside them. Working hours use the organization’s timezone, configured work week and holidays. AI answering requires a configured, available voice agent.
+
+Set a waiting message and optionally upload an MP3 or WAV file up to 5 MB. The caller hears the initial message once, then waiting audio while staff ring. Audio stops when the call connects. Each assigned number can inherit the organization’s settings or use its own overrides.
+
+The answering mode is chosen before the call starts. Automatic transfer of an ongoing AI conversation to staff, or AI takeover after staff do not answer, is not included in these rules.
+
+Calls from new phone numbers can create a lead with source **Phone call**. When nobody answers, the lead’s call history shows a missed incoming call and a callback follow-up is created. Unknown caller identities cannot be treated as a verified person.
+
+## Call a lead
+
+Open the lead and choose **Cloud call**. Your registered phone rings first. Answer it, and the lead’s phone rings next. The lead sees your organization’s assigned business number.
+
+If a request cannot be confirmed, check its saved status. Do not start another request simply because the first response was delayed: the first call may already be ringing.
+
+## Listen to a recording
+
+An announcement plays at the start of the call before the conversation is connected. The lead’s Cloud call history shows when a recording is being saved, ready to play, or unavailable. Recordings are private: a person can play one only while they have access to that organization and lead. If saving is delayed, Marro retries automatically. The conversation can be complete while its recording is still being saved.
+
+Choose **Recording** or **Transcript** on a call activity to open the same dialog. Recording and transcript appear side by side on wider screens and stack on phones. The player shows elapsed time and the recording’s total duration, with play, pause and seeking controls. Calls that never connected do not show conversation recording controls.
+
+When AI access is enabled, an authorized user can request transcription of a saved recording. Opening the dialog does not start transcription. Speaker labels distinguish voices detected in the recording; they do not identify staff or leads by name. Older transcripts without speaker information stay as plain text. Audio that is still being saved cannot be transcribed. If the transcription service is unavailable, the private recording remains available and transcription can be retried later.
+
+
+## Review call analysis
+
+After a transcript is ready, choose **Analyse call** in the dialog. This is a separate, explicit request. The saved draft shows a summary, key points, objections, commitments and any agreed follow-up, with supporting transcript quotes. Review it before acting: analysis does not create notes or tasks, send messages or place calls. An analysis failure keeps the recording and transcript available for retry.
