@@ -54,16 +54,16 @@ usual approval. Connecting, reconnecting and disconnecting a mailbox are done in
 web app only.
 
 
-## Emails sent in your name
+## Emails Marro sends
 
-Invitations, follow-up reminders, assignments, mentions, HR updates and alerts go out in your company's name, with your logo (or your name, in your brand colour) from **Settings → Branding**. Dates and times are shown on your organization's clock, with the time zone, for example "Wed, 11 Nov, 2026, 7:30 pm IST".
+Invitations, password resets, follow-up reminders, assignments, mentions, HR updates, portal links, appointment reminders and alerts come from Marro (notifications@marro.si), with Marro's name and logo. Dates and times are shown on your organization's clock, with the time zone, for example "Wed, 11 Nov, 2026, 7:30 pm IST".
 
-Change their wording in **Settings → Email templates**. Besides **bold**, links, lists, quotes and a heading, the editor has two blocks:
+Emails go out with your own name and branding only when you send them through a mailbox you connected (see [Connect your mailboxes](#connect-your-mailboxes)): emails to leads, and an automation's emails to leads. Without a connected mailbox, an email to a lead is sent by Marro and replies still reach you.
 
-- **Details panel**: `[[details:Title]]`, then one `Label: value` line per fact, up to a blank line. A line whose value is empty is left out, so a follow-up with no type shows no "Type" row.
+Change the wording of Marro's emails in **Settings → Email templates**. Besides **bold**, links, lists, quotes and a heading, the editor has two blocks:
+
+- **Details panel**: `[[details:Title]]`, then one `Label: value` line per fact, up to a blank line. A line whose value is empty is left out.
 - **Button**: `[[button:Label|{{link}}]]`, the one thing the email asks the reader to do.
-
-Every email keeps the same frame, which reads well on phones and in dark mode.
 
 ## Email sequences
 
