@@ -92,9 +92,11 @@ Each connection is one Google account and one sheet. Add another connection for 
   </Step>
 </Steps>
 
-It syncs every five minutes, and **Sync now** does it at once. A new row with a phone number becomes a lead, assigned by your usual rules; if the person is already in Marro they are updated, not duplicated, and only empty fields are filled. If a cell and the lead were both changed since the last sync, Marro keeps its own value and puts it back in the sheet, with a note on the lead. Deleting a row never deletes a lead, and a lead that leaves the shared list keeps its row. The **Recent activity** section shows what each sync changed.
+Changes you make in the sheet, including new rows, reach Marro straight away: a new row with a phone number becomes a lead within moments, assigned by your usual rules. Leads and changes made in Marro reach the sheet within five minutes, or at once with **Sync now**. If instant updates are not available for your sheet, everything syncs every five minutes. When a new row's person is already in Marro they are updated, not duplicated, and only empty fields are filled. If a cell and the lead were both changed since the last sync, Marro keeps its own value and puts it back in the sheet, with a note on the lead. Deleting a row never deletes a lead, and a lead that leaves the shared list keeps its row. The **Recent activity** section shows what each sync changed.
 
 Ask the assistant "is the Google Sheet syncing?" or "sync the Google Sheet now"; it can check each sheet and run a sync after you approve it.
+
+A lead list that a Google Sheet adds leads to cannot be deleted until the sheet is disconnected. The message names the sheet: This list is linked to the Google Sheet "<name>". Disconnect the sheet first, then delete the list.
 
 Disconnecting stops syncing and withdraws Marro's access to your Google account. The sheet and your leads are left as they are.
 
@@ -115,6 +117,7 @@ Connect MCube to log the calls your team takes on your MCube numbers. On the MCu
 
 - Each call is written on the caller's lead, found by phone number, or a new lead (source **Phone call**) assigned by your rules.
 - An answered call is logged under the executive who took it, with the talk time and recording, and marks the lead contacted. Each executive's phone number in Marro must match the one MCube rings.
+- Every call also appears in **Work → Calls**, for the leads each person can open, shown as **Bridge call · MCube**. Calls from other connected calling services such as Exotel or Tata Smartflo appear there the same way.
 - A missed call shows as **Missed incoming call**, and the lead's owner gets a **Call back: missed call** follow-up. Automations can start on missed calls only.
 
 ## Zapier, Make, Pabbly Connect and n8n

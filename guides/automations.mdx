@@ -45,6 +45,8 @@ Add conditions to narrow it down: stage, pipeline, tags, lead score, days since 
 - **Call with AI** (with [AI calling](/guides/ai-calling)): see [Call with AI](#call-with-ai)
 - **Set the stage from the call** and **Book what was agreed on the call** (with the AI add-on): see [After a call](#after-a-call)
 - **Agent decides** (with the AI add-on): the agent reads the lead and takes the next step itself: notes, follow-ups and fields straight away; messages, stage changes and new owners follow its [agent permissions](/guides/agents#choose-what-they-may-do). Its ways on can split into **Acted** and **Did nothing**, for example to tell the owner when it did nothing. Automations that used **Hand to the assistant** now show this step and keep working.
+- **Add a row to a Google Sheet** (once a [Google Sheet](/guides/integrations#google-sheets) is connected): pick the sheet and a tab, then choose which lead field goes in each column (name, phone, email, stage, owner, source, created date, custom fields). With **Update the lead's row if it is already there**, the lead's row is found by its Marro ID, or else by phone or email, and updated instead of adding another.
+- **Add the lead to a list** and **Take the lead off a list**: fixed lists only. If the list is synced with a Google Sheet, the lead's row appears there straight away, or is marked as no longer in the list.
 - **Stop WhatsApp messages to the lead**, **Archive the lead**
 - **Send to a web address**: posts the lead to a public `https` address. Each request has an `X-CRM-Signature` header: `sha256=` and the HMAC-SHA256 of the body, keyed with the signing secret shown in the step.
 
@@ -94,7 +96,7 @@ Each automation is labelled **Instant**, **Journey** or **Reusable**.
 
 Finish the sentence **Call them with AI…** (for example, "to confirm the course they asked about"); the agent opens with it. A new card already says "to welcome them and find out what they are looking for", so it works as soon as you add it. Under **More options**, add **Anything else for this call**, or switch off **Only call in working hours**. With it on (the default), a lead who arrives outside the hours, days off and holidays set in **Settings → HR** is called at the start of the next working day.
 
-The call is paid like any other AI call and appears on the lead's timeline. Automations that start from an AI call can't make another AI call, so calls never follow calls.
+The call is paid like any other AI call and appears on the lead's timeline and in **Work → Calls**, where its details say "Started by an automation: <name>". Automations that start from an AI call can't make another AI call, so calls never follow calls.
 
 To go on by how the call went, add **If… otherwise…** after it with the condition **Last AI call outcome**, or start a separate automation from **An AI call is analysed**. The ready-made journey **New lead: AI call in 5 minutes, WhatsApp if no answer** sets this up: it calls each new lead after 5 minutes, lets **Agent decides** take the next step when they answer, and sends a WhatsApp template when they don't.
 
