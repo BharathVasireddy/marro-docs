@@ -35,7 +35,7 @@ Custom reports shared with everyone in the organization, and their figures. Buil
 
 ### Money
 
-Products, quotes, GST invoices and payments. Amounts are integers in the smallest currency unit (paise). Inside the organization's state an invoice carries CGST and SGST, outside it IGST, and without a supplier GSTIN no GST.
+Products, quotes, invoices and payments. Amounts are integers in the smallest currency unit (paise, cents); a new document is in the organization's own currency. Tax follows the organization's regional settings: under India GST an invoice carries CGST and SGST inside the organization's state, IGST outside it, and no GST without a supplier GSTIN; under a single-rate tax (Australia GST 10%, UK VAT) each taxed line carries that tax (singleTaxMinor), and none without the supplier's registration number. Each document keeps the tax it was issued under (tax.model).
 
 | Endpoint | Method | Path |
 | --- | --- | --- |
