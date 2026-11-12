@@ -1,0 +1,42 @@
+---
+title: "Company sign-in"
+description: "Let your team sign in with your company's identity provider, keep accounts in step with it, and set the rules for how everyone signs in."
+---
+
+An organization administrator manages this in **Settings → Sign-in security**. Every change asks you to confirm it is you (your password, or a code from your authenticator app) and is recorded in the activity log.
+
+## Connect your identity provider
+
+Company sign-in works with any provider that supports OpenID Connect: Microsoft Entra ID, Google Workspace, Okta, OneLogin, JumpCloud, Keycloak and others.
+
+1. Choose **Add connection** and your **Identity provider**. Marro shows the exact steps for it and the redirect address to copy into your provider.
+2. Enter the **Issuer**, **Client ID** and **Client secret** from your provider. The secret is stored encrypted and never shown again.
+3. Choose **Test connection** and sign in with your provider. Check the details it received, then **Turn on**.
+
+Not the person who manages your provider? **Send link** gives an IT colleague a setup link that can add and test connections and domains, and nothing else. You can **Cancel link** at any time.
+
+## Prove your email domain
+
+**Add a domain** (such as *yourclinic.in*), add the DNS record Marro shows to your domain, then **Check record**. Only verified domains can be used for company sign-in, and public email domains (gmail.com and the like) cannot be claimed. For each domain, choose what happens to **New company sign-ins** from people not yet in Marro: they join, they ask to join (you **Let in** or **Decline** them), or they are not let in.
+
+## Rules for your team
+
+- **Who must sign in through your identity provider:** everyone, or **For chosen roles**.
+- **What people who don't have to use company sign-in may use:** password with a code or passkey, and a code by WhatsApp or email in the app.
+- **Break-glass owners:** at least one owner with a passkey who can always sign in, so a provider outage never locks you out.
+- **Admins use a passkey or authenticator app** for two-step sign-in.
+- How long a session lasts, and when an idle one ends.
+- Allowed IP ranges (leave empty to allow sign-in from anywhere). **Add my address** adds the one you are using now.
+- **Sign everyone out** ends every session on the web and in the app at once.
+
+## Roles, teams and branches from your groups
+
+Group rules give people a role, teams and a branch from the groups your provider sends (**Groups claim**). **Add rule** for each group, in **Priority** order; people with no matching rule get the default role.
+
+## Keep accounts in step (SCIM)
+
+In **Provisioning**, **Create token** gives your provider the SCIM address and a token. Your provider then adds, updates and deactivates people in Marro, and deactivating someone there signs them out of Marro everywhere. **Revoke** a token to stop it.
+
+## In the app
+
+On the sign-in screen, **Sign in with your company** opens your provider in the browser and brings you back signed in.
