@@ -43,6 +43,18 @@ A ring group is a named list of staff, such as *Telugu team* or *Shop A*, that y
 
 To use a group, choose **A ring group** under **Ring** and pick it. The group's own ring style and ring time then apply. A group that the settings or a number still rings cannot be deleted: choose another way to ring first.
 
+## Call flows
+
+A call flow decides, step by step, what happens to a call on one of your numbers, or on all of them. Open **Settings → Cloud calls**, choose a number (or the organization default) and open its flow. It starts with **When a call comes in**; add steps with **+**:
+
+- **Check something:** working hours (**Open**, **Closed**, **Holiday**), the number the customer dialled (from **Numbers that forward to this line**), **New caller**, **Known caller** or **Has an owner**, or the lead's stage, source or a field. Each answer leads to its own next step, with **Otherwise** for the rest.
+- **Answer the call:** ring a ring group or the lead's owner, hand the call to your AI agent, or play a message (typed and turned into audio, or uploaded). **If nobody answers in** a set time, the call moves on to the next step.
+- **End the flow:** a missed call, with your missed-call alerts and follow-up.
+
+Ringing is limited to five minutes in all. **Save draft** keeps your changes without affecting calls; **Publish** puts them live, and each call keeps the version it started with. **Before you can publish** lists anything to fix: a step that leads nowhere, a loop, or a ring group that no longer exists. **Stop using it** goes back to the number's ordinary settings. A ring group used by a published flow cannot be deleted.
+
+Every call keeps its path in plain words, such as *Dialled Shop A · rang Telugu team · answered by Priya*, on the call in **Calls** and in the lead's activity. Automations started by **A call is logged** can be limited to calls where the customer dialled a certain number (**Only when they dialled**), a certain group rang (**Only when this group rang**) or a certain person answered (**Only when answered by**).
+
 ## Set answering hours and waiting audio
 
 Choose an incoming answering mode: keep the current setup, always AI, always staff, or staff during working hours and AI outside them. Working hours use the organization’s timezone, configured work week and holidays. AI answering requires a configured, available voice agent.
