@@ -120,16 +120,16 @@ Connect MCube to log the calls your team takes on your MCube numbers. On the MCu
 - Every call also appears in **Work → Calls**, for the leads each person can open, shown as **Bridge call · MCube**. Calls from other connected calling services such as Exotel or Tata Smartflo appear there the same way.
 - A missed call shows as **Missed call**, and the lead's owner gets a missed-call alert by email, WhatsApp and the app. Automations can start on missed calls only, for example to add a follow-up.
 
-## Zapier, Make, Pabbly Connect and n8n
+## Zapier, Make, Pabbly Connect, n8n and your own webhook
 
-Marro sends events to your workflow's webhook as they happen. To change Marro from a workflow, call the [API](/getting-started) with an API key.
+Marro sends events to your workflow's webhook as they happen. For any other system, choose **Custom webhook** and enter your own `https` address. To change Marro from a workflow, call the [API](/getting-started) with an API key.
 
 <Steps>
   <Step title="Paste the workflow's webhook URL">
     Create a webhook trigger in your workflow tool, copy its URL, and paste it into the service's page in **Settings → Integrations**.
   </Step>
   <Step title="Choose the events">
-    A lead is added, a lead's details change, a lead moves to another stage, a lead gets a new owner, a call is logged, a note is added, a follow-up is done, a web form is sent in, a payment is received, a session is booked.
+    Anything that can start an automation: a lead added, changed, moved or given a new owner; calls, notes and follow-ups; messages on every channel; web forms; quotes sent, opened, accepted, declined or expired; invoices sent, paid or overdue; payments; appointments; opportunities won or lost. Search the list to find one.
   </Step>
   <Step title="Send test event">
     **Send test event** posts a made-up lead with every field, so your workflow learns the field names.
@@ -138,7 +138,7 @@ Marro sends events to your workflow's webhook as they happen. To change Marro fr
 
 Each event is a `POST` with a JSON body of `id`, `event`, `occurredAt`, `test` (on test events only), `organization`, `lead` and `change`. Check the `X-CRM-Signature` header: `sha256=` followed by the hex HMAC-SHA256 of the raw body, keyed with the **Signing secret** shown on the page. `X-CRM-Event` names the event and `X-CRM-Delivery` identifies the delivery.
 
-An event that gets no answer, a `429` or a `5xx` is tried once more, then dropped.
+An event that gets no answer, a `429` or a `5xx` is tried again after 1 minute, 5 minutes, 30 minutes, 2 hours and 8 hours, then dropped. Every try has the same `X-CRM-Delivery`, so your workflow can ignore one it has already had.
 
 
 ## Features being prepared

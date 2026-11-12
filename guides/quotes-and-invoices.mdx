@@ -38,6 +38,7 @@ A lead's **Money** tab shows what was quoted, invoiced, paid and due, with its q
 
 ## Automations, permissions and the assistant
 
-- Automations can start when **An invoice is sent**, **An invoice is paid** or **An invoice is overdue**; outbound webhooks can send **An invoice is paid**.
+- Automations can start when **A quote is sent**, **opened**, **accepted**, **declined** or **expires**, when **An invoice is sent**, **paid**, **overdue** or **due soon**, and can **Create and send a quote**, **Create and send an invoice** (from the accepted quote, a saved quote or your price list) and **Send a payment link**. See [Automations](/guides/automations). Outbound webhooks can send any of these events.
+- A quote counts as opened the first time the customer opens its link; link previews in chat apps don't count.
 - The permission **Quotes and invoices** (Settings → Roles) lets people create, send and record payments.
 - The assistant and the WhatsApp agent can draft quotes and invoices, record payments and send reminders, each with your approval; voiding stays on the page.
