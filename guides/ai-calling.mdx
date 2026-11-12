@@ -22,13 +22,13 @@ Before Marro's team switches AI calling on, your business has to be verified. Th
 
 Indian businesses are usually checked automatically against government records within a few minutes; the page shows **Checking your registration** meanwhile and updates by itself. You can leave the page: we email you the result. Otherwise Marro's team reviews it. The page then shows **Verified**, or **Changes needed** with the reason, and you can send it again after changes.
 
-Until calling is on, **Voice** shows where your setup stands (being checked, add money for your number, number on its way, or your number) and updates by itself. If you asked for a business number, it is set up as soon as you are verified: the first month is paid from your wallet, the page and the email show the number, and your team can call leads from it straight away ([Cloud calls](/guides/cloud-calls)). If your wallet does not have enough for the first month, the page asks you to add money, and the number is set up the moment you do. AI calls stay off until your business knowledge is added; Marro's team then sets up the voice and the language with you. When the lead has a saved preferred language, the AI call starts in that language. Otherwise it starts in the default for your business. When Tamil and English switching is enabled for your business, callers can speak in either language or ask the AI to switch during the call. The English voice uses Indian English.
+Until calling is on, **Calls → AI calls** shows where your setup stands (being checked, add money for your number, number on its way, or your number) and updates by itself. If you asked for a business number, it is set up as soon as you are verified: the first month is paid from your wallet, the page and the email show the number, and your team can call leads from it straight away ([Cloud calls](/guides/cloud-calls)). If your wallet does not have enough for the first month, the page asks you to add money, and the number is set up the moment you do. AI calls stay off until your business knowledge is added; Marro's team then sets up the voice and the language with you. When the lead has a saved preferred language, the AI call starts in that language. Otherwise it starts in the default for your business. When Tamil and English switching is enabled for your business, callers can speak in either language or ask the AI to switch during the call. The English voice uses Indian English.
 
 To shape how the voice agent talks on calls, write its instructions under **Voice agent** in [your AI team](/guides/agents#give-them-instructions). It answers only from your business knowledge; when a detail is missing, it says so and offers a follow-up from your team.
 
 On managed AI calls, the agent gives the caller time to answer. After about 15 seconds of silence following a question, it checks in once. If there is still no response after another 12 seconds, it says goodbye and ends the call. It also ends after a clear goodbye. If the caller speaks again or a request is still being handled, it keeps the line open.
 
-**Voice → Voice agent** shows whether it is active, your outgoing number, the longest a call can last, and how many AI calls can run at once (up to 100).
+**Calls → AI calls → Voice agent** shows whether it is active, your outgoing number, the longest a call can last, and how many AI calls can run at once (up to 100).
 
 ### Ask for more lines
 
@@ -52,7 +52,7 @@ AI calls to Indian numbers are placed only between 9 am and 9 pm in your organiz
 
 ## Paying for calls
 
-If your organization pays for AI calls from its wallet, **Voice → Wallet** shows your balance, the price per minute and about how many minutes are left, with your latest call charges.
+If your organization pays for AI calls from its wallet, **Calls → AI calls → Wallet** shows your balance, the price per minute and about how many minutes are left, with your latest call charges.
 
 - Before a call starts, made or answered, the minutes your balance covers are set aside. The call ends when they run out.
 - When it ends, you pay only for the minutes used. Each started minute counts as a whole one, and the rest goes back to your balance.
@@ -68,11 +68,11 @@ If your organization pays for AI calls from its wallet, **Voice → Wallet** sho
 
 You need permission to make calls. AI calls go to Indian numbers in +91 format.
 
-When more calls are requested than can run at once, the rest wait for a slot. **Voice → Queue** (Voice's tabs are Queue, Voice agent, Wallet and Calling verification) shows active and waiting calls to people who can see every lead: lines in use, calls waiting and calls needing review at the top, then one table you can search, filter by status and lead owner, and sort by any column. Cancel a waiting call there before it starts.
+When more calls are requested than can run at once, the rest wait for a slot. **Calls → AI calls → Queue** (its tabs are Queue, Voice agent, Wallet and Calling verification) shows active and waiting calls to people who can see every lead: lines in use, calls waiting and calls needing review at the top, then one table you can search, filter by status and lead owner, and sort by any column. Cancel a waiting call there before it starts.
 
 ## See your calls
 
-**Work → Calls** is your call log, a tab after Follow-ups and Appointments. It is there for every business with any calling: AI calls, Cloud calls or a connected calling service such as MCube, Exotel or Tata Smartflo. You do not need the AI add-on. Each person sees the calls of the leads they can open; people who see every lead see every call.
+**Calls** in the sidebar is your call log. It is there for every business with any calling: AI calls, Cloud calls or a connected calling service such as MCube, Exotel or Tata Smartflo. You do not need the AI add-on. Each person sees the calls of the leads they can open; people who see every lead see every call.
 
 - **Call type**: **AI call** (your AI voice agent), **Cloud call** (your team through your business number) or **Bridge call** (your team through a calling service you connected, shown with its name, for example **Bridge call · MCube**).
 - **Made by**: the AI agent, or the person who made or answered the call.
@@ -83,7 +83,7 @@ When more calls are requested than can run at once, the rest wait for a slot. **
 
 ## Incoming calls
 
-The voice agent can also answer calls to your business number. Ask support to switch it on; **Voice → Voice agent** then shows **Incoming calls: answered by your AI voice agent**.
+The voice agent can also answer calls to your business number. Ask support to switch it on; **Calls → AI calls → Voice agent** then shows **Incoming calls: answered by your AI voice agent**.
 
 - It greets the caller on behalf of your business, answers from your business knowledge and follows your Voice agent instructions.
 - A caller who is already a lead is matched by their number. A new number becomes a lead, assigned by your rules, with the source **Phone call**.
@@ -93,7 +93,7 @@ The voice agent can also answer calls to your business number. Ask support to sw
 
 ## After the call
 
-The recording and transcript appear under the lead's calls, and in **Work → Calls**, and the call is noted in its activity: answered and how long, not answered, or not placed and why. A call counts as answered when it lasted 10 seconds or more with words spoken.
+The recording and transcript appear under the lead's calls, and in **Calls**, and the call is noted in its activity: answered and how long, not answered, or not placed and why. A call counts as answered when it lasted 10 seconds or more with words spoken.
 
 Two automation triggers follow each call: **An AI call ends**, straight away, and **An AI call is analysed**, once the [Call analyst](/guides/agents) has read the recording and given the call an outcome such as interested or wants a callback. See [Automations](/guides/automations).
 
