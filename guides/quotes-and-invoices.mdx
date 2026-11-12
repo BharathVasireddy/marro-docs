@@ -11,7 +11,7 @@ An administrator opens **Settings → Quotes and invoices** and fills in the bus
 
 ## Make a quote or an invoice
 
-Open **Money** (Invoices, Quotes, Revenue), or a lead's **Money** tab, and choose **Quote** or **Invoice**.
+Open **Money → Quotes** and choose **New quote**, or **Money → Invoices and payments** (Invoices, Revenue) and choose **New invoice**. From a lead, its **Money** tab has **Quote** and **Invoice**; a customer's page has **New quote**, for the lead the customer came from. A quote for a lead needs nothing else first: the lead is the customer.
 
 - Add lines from your products or type them; set quantity, price, a discount (*10%* or an amount), GST rate, HSN/SAC and unit. Totals update as you type, with the page shown beside the editor exactly as it will print.
 - Under India GST, tax is split into CGST and SGST inside your state, or IGST for another state, from the place of supply. Under one tax rate (Australia's GST, for example), each line is taxed or tax-free and the total shows the tax by its name.
@@ -19,6 +19,10 @@ Open **Money** (Invoices, Quotes, Revenue), or a lead's **Money** tab, and choos
 - **Save draft**, or **Save and send** (Ctrl or ⌘ + S to save, Ctrl or ⌘ + Enter to send).
 
 Numbers are given when a document is sent: quotes as *QT-0001*, invoices as *INV/2026-27/0001*, with a new invoice series each April.
+
+## Every quote in one list
+
+**Money → Quotes** lists every quote, newest first. Search by number or customer, and filter by status: **All**, **Drafts**, **Accepted** or **Void**. Quotes made before quotes moved to Money show **Customer quote** beside their title and open on their own page (see [Customer quotes and templates](/guides/customer-quotes)); where you have them, the filter also offers **Archived**, and **Templates** opens their templates.
 
 ## After it is sent
 
@@ -41,4 +45,4 @@ A lead's **Money** tab shows what was quoted, invoiced, paid and due, with its q
 - Automations can start when **A quote is sent**, **opened**, **accepted**, **declined** or **expires**, when **An invoice is sent**, **paid**, **overdue** or **due soon**, and can **Create and send a quote**, **Create and send an invoice** (from the accepted quote, a saved quote or your price list) and **Send a payment link**. See [Automations](/guides/automations). Outbound webhooks can send any of these events.
 - A quote counts as opened the first time the customer opens its link; link previews in chat apps don't count.
 - The permission **Quotes and invoices** (Settings → Roles) lets people create, send and record payments.
-- The assistant and the WhatsApp agent can draft quotes and invoices, record payments and send reminders, each with your approval; voiding stays on the page.
+- The assistant and the WhatsApp agent can draft quotes and invoices, record payments and send reminders, each with your approval; voiding stays on the page. Ask it to quote a lead and it makes the draft in one step, with the lead as the customer and your business details and tax from your settings, then offers to send it on WhatsApp or by email; sending gives a draft its number first.
