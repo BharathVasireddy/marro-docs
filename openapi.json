@@ -93,7 +93,54 @@
                               "BookOpen",
                               "Package",
                               "Wrench",
-                              "Folder"
+                              "Folder",
+                              "Buildings",
+                              "GraduationCap",
+                              "Student",
+                              "Briefcase",
+                              "CalendarBlank",
+                              "ClipboardText",
+                              "FileText",
+                              "Handshake",
+                              "Heart",
+                              "FirstAid",
+                              "Pill",
+                              "Tooth",
+                              "Stethoscope",
+                              "Truck",
+                              "Motorcycle",
+                              "Airplane",
+                              "MapPin",
+                              "Storefront",
+                              "ShoppingBag",
+                              "Tag",
+                              "Ticket",
+                              "Trophy",
+                              "Star",
+                              "Lightbulb",
+                              "Toolbox",
+                              "Hammer",
+                              "Barbell",
+                              "ForkKnife",
+                              "Bed",
+                              "Key",
+                              "Certificate",
+                              "Bank",
+                              "Coins",
+                              "Receipt",
+                              "UsersThree",
+                              "Globe",
+                              "Camera",
+                              "PawPrint",
+                              "Plant",
+                              "Flask",
+                              "Laptop",
+                              "Chalkboard",
+                              "Books",
+                              "Palette",
+                              "Calculator",
+                              "Scales",
+                              "Shield"
                             ]
                           },
                           "titleFieldId": {
@@ -295,7 +342,54 @@
                             "BookOpen",
                             "Package",
                             "Wrench",
-                            "Folder"
+                            "Folder",
+                            "Buildings",
+                            "GraduationCap",
+                            "Student",
+                            "Briefcase",
+                            "CalendarBlank",
+                            "ClipboardText",
+                            "FileText",
+                            "Handshake",
+                            "Heart",
+                            "FirstAid",
+                            "Pill",
+                            "Tooth",
+                            "Stethoscope",
+                            "Truck",
+                            "Motorcycle",
+                            "Airplane",
+                            "MapPin",
+                            "Storefront",
+                            "ShoppingBag",
+                            "Tag",
+                            "Ticket",
+                            "Trophy",
+                            "Star",
+                            "Lightbulb",
+                            "Toolbox",
+                            "Hammer",
+                            "Barbell",
+                            "ForkKnife",
+                            "Bed",
+                            "Key",
+                            "Certificate",
+                            "Bank",
+                            "Coins",
+                            "Receipt",
+                            "UsersThree",
+                            "Globe",
+                            "Camera",
+                            "PawPrint",
+                            "Plant",
+                            "Flask",
+                            "Laptop",
+                            "Chalkboard",
+                            "Books",
+                            "Palette",
+                            "Calculator",
+                            "Scales",
+                            "Shield"
                           ]
                         },
                         "titleFieldId": {
@@ -579,7 +673,54 @@
                             "BookOpen",
                             "Package",
                             "Wrench",
-                            "Folder"
+                            "Folder",
+                            "Buildings",
+                            "GraduationCap",
+                            "Student",
+                            "Briefcase",
+                            "CalendarBlank",
+                            "ClipboardText",
+                            "FileText",
+                            "Handshake",
+                            "Heart",
+                            "FirstAid",
+                            "Pill",
+                            "Tooth",
+                            "Stethoscope",
+                            "Truck",
+                            "Motorcycle",
+                            "Airplane",
+                            "MapPin",
+                            "Storefront",
+                            "ShoppingBag",
+                            "Tag",
+                            "Ticket",
+                            "Trophy",
+                            "Star",
+                            "Lightbulb",
+                            "Toolbox",
+                            "Hammer",
+                            "Barbell",
+                            "ForkKnife",
+                            "Bed",
+                            "Key",
+                            "Certificate",
+                            "Bank",
+                            "Coins",
+                            "Receipt",
+                            "UsersThree",
+                            "Globe",
+                            "Camera",
+                            "PawPrint",
+                            "Plant",
+                            "Flask",
+                            "Laptop",
+                            "Chalkboard",
+                            "Books",
+                            "Palette",
+                            "Calculator",
+                            "Scales",
+                            "Shield"
                           ]
                         },
                         "titleFieldId": {
@@ -7911,7 +8052,8 @@
                         "type": "string",
                         "enum": [
                           "INR",
-                          "AUD"
+                          "AUD",
+                          "GBP"
                         ]
                       }
                     },
@@ -8136,6 +8278,78 @@
                                   "aiCredits"
                                 ],
                                 "additionalProperties": false
+                              },
+                              "GBP": {
+                                "type": "object",
+                                "properties": {
+                                  "monthly": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "quarterly": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "annual": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "extraUser": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "annualExtraUser": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "aiCredits": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "monthly",
+                                  "quarterly",
+                                  "annual",
+                                  "extraUser",
+                                  "annualExtraUser",
+                                  "aiCredits"
+                                ],
+                                "additionalProperties": false
                               }
                             },
                             "additionalProperties": false
@@ -8264,6 +8478,78 @@
                             "type": "object",
                             "properties": {
                               "AUD": {
+                                "type": "object",
+                                "properties": {
+                                  "monthly": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "quarterly": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "annual": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "extraUser": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "annualExtraUser": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "aiCredits": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "monthly",
+                                  "quarterly",
+                                  "annual",
+                                  "extraUser",
+                                  "annualExtraUser",
+                                  "aiCredits"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "GBP": {
                                 "type": "object",
                                 "properties": {
                                   "monthly": {
