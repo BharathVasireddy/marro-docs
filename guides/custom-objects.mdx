@@ -1,228 +1,145 @@
 ---
 title: Custom objects
-description: Keep your own kinds of records, with fields and access set separately for each object.
+description: Keep track of anything your business works with, such as vehicles, courses or properties, the same way you work with leads.
 ---
 
-Custom objects let an administrator add an object such as Vehicles, Courses or Properties.
-Custom objects become available after the feature update is released. If Settings says they are
-not available yet, continue using the existing CRM record types.
+A custom object is a kind of record your business needs that Marro does not have built in: Vehicles for a
+car dealer, Courses and Applications for an education consultancy, Properties for an estate agent. Each object
+gets its own place in the menu, a list that works like Leads, a board, a calendar and a page for every record.
 
-Open [Custom objects](https://app.marro.si/settings/objects) in Settings. Give the object a name,
-a permanent address such as `vehicles`, and an icon from the offered list. Changing its name does
-not change its address. Each object starts with a required short-text **Title** field.
+The object is the kind of thing (Vehicles). Each entry in it is a record (one vehicle).
 
-## Fields and titles
+## Add an object
 
-Open the object's settings to add fields. This version supports short and long text, number, date,
-phone, email, URL, dropdown, multiple choice, yes/no and links to records. Keys and types stay fixed after creation.
-Choices use one `value | label` per line. Values are the stable identifiers saved with records.
-You can change labels, help text, visibility, required rules and conditional display.
+Administrators add objects in [Settings → Custom objects](https://app.marro.si/settings/objects).
 
-Choose another visible, unconditional short-text field as the title when every existing record,
-including archived records, has a value for it. Changing the title field updates titles and record
-versions. A title is always required. The current title field cannot be hidden or deleted.
+1. Press **New object**.
+2. Give it a name in the plural, such as **Vehicles**. **One record is called** fills in the singular
+   (**Vehicle**); change it if the guess is wrong.
+3. Choose an icon and a colour. They show in the menu, like the built-in places.
+4. Add a short description if you like. The web address is made from the name.
 
-Hiding a field keeps its values. Before deletion the page shows the number of records with saved
-values, including archived records, and any blocking conditional fields or saved views. Clear those
-uses first. Type its exact label when asked. The field and its values are retained; it can be
-restored within 30 days. Reusing a deleted field's key starts with an empty, separate value slot.
-A restore preserves the old values and chooses an available key/label if the original is in use.
-There is no automatic permanent purge of retained field values in this version.
+Every object starts with one field for the record's name. Add the rest on the object's page.
 
-A **Link to records** field chooses one target type, including another custom object, and whether it accepts one or several records. Target type and cardinality stay fixed after creation. Choose actual accessible records through the scoped picker. **Linked from** shows accessible records that point to this one. Hidden or inaccessible destinations are not exposed.
+## Fields
 
-The API and approved assistant use numeric target-ID arrays, with one target or up to 20 according to the field configuration; names and read projections cannot be submitted as IDs. Current object and destination permissions apply independently.
+On the object's page, **Fields** lists them in the order the form shows them. Press **Add field** and choose:
 
-## Roles and ownership
+- **Short text**, **Long text**, **Number**, **Date**, **Phone number**, **Email address**, **Link**
+- **Dropdown** (one choice) or **Multiple choice**: type each choice on its own row
+- **Yes / no**
+- **Link to another record**: a lead, contact, company, opportunity, person in your team, or a record of
+  another object. Choose whether it holds one record or several.
 
-In Roles, follow the custom-object permission links, or open **Roles and permissions** in the
-object's settings. Each active role has its own **view**, **create**, **edit** and **delete** grants.
-Choose no access, own records, own and team records, or all records. Team means users in active
-teams that the viewer leads. The view scope also limits edits and deletion. Edit includes notes,
-archiving and restoration. New records belong to the creator unless another accessible active
-user is explicitly chosen through the API or assistant.
+For each field you can add help text, make it required when adding or when editing, hide it, or show it only
+when another field has a certain answer (for example, show **Other reason** only when **Reason** is **Other**).
+A field's type cannot change after it is added; add a new field instead.
 
-Administrators have full access. Partners cannot access custom objects. Object grants do not grant
-access to leads or other CRM modules. To remove a role's object grants completely, choose No access
-and clear Create, Edit and Delete. A role with remaining object grants cannot be permanently deleted;
-clear the grants first. Deactivating a role disables its access without removing those grants.
+Use the **⋯** menu on a field to move it up or down. The preview beside the fields shows the form exactly as
+people will see it when they add a record.
 
-## Lists, records and CSV
+Deleting a field keeps its values for 30 days. Before it goes, Marro says how many records have a value and
+what still uses it (a saved view, or a field shown only when this one has an answer). Type the field's name
+to confirm. Restore it from **Recently deleted** within 30 days.
 
-Accessible active objects appear in the sidebar and command search. Open an object to search by a
-title prefix, sort by title or dates, filter with AND/OR groups, save private/shared views or star
-records and views. An invalid or stale filter matches no records until it is edited or cleared.
-Every operation stays within your current object and ownership scope.
+## How records show
 
-A record page contains its fields, notes and activity history. Saving an old record version is
-refused so another person's edit is not overwritten. Archive keeps the record and its history;
-choose Archived on the list to find it. Permanent deletion needs the current title and removes its
-notes and activity. The pending lifecycle backend adds exact reviewed assistant deletion and explicitly requested recovery in the same live chat; it does not add automatic undo or a browser recovery list.
+**How records show** sets, for everyone:
 
-Select records on the current page for a bulk archive or delete, up to 50 at a time. Review the
-selection and type the requested confirmation. All selected records are checked first; later
-changes are rechecked individually. The result names each success or failure, so a partly completed
-batch is not presented as fully done.
+- **In the list**: which fields are columns when someone opens the list (each person can still change their own).
+- **On cards**: up to three fields shown on board cards under the name.
+- **Calendar date**: which date field the calendar uses first.
 
-**Export CSV** downloads matching, accessible records and active fields, capped at 50,000 rows.
-The page says when the file is capped. CSV text is protected against spreadsheet formulas.
-**Import CSV** has upload, column mapping, a five-row preview and validation before creation.
-It accepts up to 1,000 rows in a file under 5 MB. Writes use small bounded requests and repeat the
-field and permission checks. Imports create new records only: there is no automatic matching,
-update or duplicate detection. Do not retry an uncertain request until you have checked which
-records were created.
+## Menu order
 
-## Archive or delete an object
+On [Settings → Custom objects](https://app.marro.si/settings/objects), use **⋯ → Move up** or **Move down** to set
+the order objects appear in the menu. They are listed after Leads. With more than six, the rest are under **More**.
 
-Archive hides the object from navigation and prevents new records and edits; existing data is
-preserved. Administrators can restore the object in Settings.
+## Who can see it
 
-Whole-object deletion previews records, fields (including retained deleted fields) and incoming
-links. It refuses while a saved view, automation configuration or another link-field definition
-depends on the object. Clear these uses first, then review fresh counts and type the exact object
-name. Deletion removes the object, all records, notes, activity and fields. The pending backend can restore an exact assistant deletion only when the same person explicitly asks in the same still-live chat. Sharing, grants, public-form and workflow authority never return.
-Organisation closure and erasure include the new tenant tables through lifecycle scope.
+Under **Who can see it**, each role has:
+
+- **Sees**: nothing, their own records, their own and their team's, or all records. "Team" means the teams the
+  person leads.
+- **Add**, **Edit** and **Delete**.
+
+Administrators always see and change everything. Partners cannot open custom objects. Access to an object does
+not give access to leads. The [Roles](https://app.marro.si/settings/organization/roles) page links to each object's
+settings.
+
+## The list
+
+Open an object from the menu. The list works like Leads:
+
+- **Search** finds records by their name, anywhere in the name.
+- **Filter** narrows the list by any field, the owner or when records were added or changed. Filters in use show
+  as chips; open the full filter to combine several with "and" or "or".
+- **Views** saves the search, filters, sort and columns, for yourself or for everyone.
+- The **columns** button chooses which fields are columns, up to 12.
+- Click a column heading to sort by it.
+- Click a value in the list to change it there and then.
+- Tick records to change a field on all of them, give them to someone, archive or delete them, up to 50 at a time.
+
+**⋯** at the top has **Show archived**, **Import**, **Download** and, for administrators, the object's settings.
+Large lists stay quick: when more than 10,000 records match, the count shows as **10,000+**.
+
+On a phone the list shows each record's name with two of its fields and its owner.
+
+## Board and calendar
+
+**Board** shows records in columns by a dropdown field, such as Status. Drag a card to another column to change
+it. With several dropdowns, choose which one makes the columns. Cards show the fields chosen under
+**How records show**. The search and filters apply to the board too.
+
+**Calendar** shows records on the month by one of their date fields. Use the arrows to move between months. On a
+phone it lists only the days that have records.
+
+## Add and edit records
+
+Press **Add** (for example **Add vehicle**) at the top of the list. The form opens at the side; fill it in and
+press **Add**. You can choose the owner; leave it as **Me** to own the record yourself.
+
+Open a record to see its details, what it links to, what links to it, and its activity: who added and changed
+it, and notes. **Edit** opens the same form. The owner can be changed at the top of the page. **⋯** has
+**Archive** (it leaves the list and keeps its history; restore it from **Show archived**) and
+**Delete permanently**, which asks you to type the record's name.
+
+If someone else changed the record while you were editing, saving is refused so their change is not lost.
+Reopen the record and make your change again.
+
+## Import and download
+
+**⋯ → Download** saves the records as filtered and sorted on screen, up to 50,000, as a spreadsheet (CSV).
+
+**⋯ → Import** reads a CSV file of up to 1,000 rows. Match each column to a field (or leave it out), check the
+first rows, then add them. Rows with a problem are listed so you can fix the file. Import adds new records only;
+it does not update records you already have.
+
+## Reports
+
+**Reports → Custom object reports** counts the records you can see, grouped by a dropdown, yes/no, number or date
+field, or by when they were added or changed, and can add up a number field. Open a group to see its records.
 
 ## Ask Marro and staff WhatsApp
 
-The shared assistant can list objects, inspect definitions and settings, find/read records and
-activity, and ask for approval to create/update records, add notes or change object configuration.
-The same object permissions and versions are checked at execution. Names, notes and field values
-are data and cannot grant permission or authorize another action.
+The assistant can list objects and their fields, find and read records (including by board, calendar date or
+owner), and, after you approve, add and change records, add notes, change an object's settings, fields and
+menu order, and set who can see it. The same access rules apply as on the screens.
 
-The pending lifecycle backend provides `objects.lifecycle.preview/change/find/reconcile` for actual object, record and field deletion and explicitly requested recovery. Every target needs its complete named/count/revision review and individual signed human approval, including Auto and allowed chats. Only the person can request it; record text cannot. Private copies expire under the current same-person/chat policy (24 hours, or 30 minutes idle), and starting/removing a chat forgets them. Fields retain their immutable values and existing 30-day definition policy; assistant restoration also requires the original still-live chat copy. No recovery offer appears after deletion. Conflicts, stale schema or changed/inaccessible links refuse safely. Unknown outcomes use the original exact requestId and inputHash for read-only reconciliation, never automatic retry or a new identity. Screens, independent review, migration and runtime/release checks are pending; this is not released availability. CSV upload and downloads use the page. General assistant bulk actions cannot wrap
-custom-object changes. Background agents gain no automatic custom-object actions.
+## Website forms, the customer portal and the Inbox
 
-## Public API
+- A [website form](/guides/connect-a-website) can add a record to an object instead of a lead.
+- An administrator can share chosen fields of one record with a linked lead in their customer portal, from
+  the record page.
+- In the Inbox, the lead panel lists records linked to that lead.
 
-An administrator can issue `objects.records.read`, `objects.records.write` and
-`objects.records.delete` scopes. Write and delete also require read. These scopes grant no lead
-permissions. Each request also checks that the key creator is still an active user and still has
-the relevant object grant and ownership scope. There is no subscription restriction selected yet.
+## API
 
-- `GET /api/v1/objects`: accessible active definitions.
-- `GET /api/v1/objects/{slug}`: definition and active fields, without internal value slots.
-- `GET /api/v1/objects/{slug}/records`: paged, scoped records, with prefix search and filters.
-- `GET /api/v1/objects/{slug}/records/{recordId}`: current values and version.
-- `POST /api/v1/objects/{slug}/records`: `values` keyed by public field keys; optional `ownerId`.
-- `PATCH /api/v1/objects/{slug}/records/{recordId}`: current `version` and the requested patch.
-- `DELETE /api/v1/objects/{slug}/records/{recordId}`: refuses API-key deletion with `HUMAN_REVIEW_REQUIRED`; use the secure human lifecycle review.
+Keys with the custom object scopes can list objects and read, add and change records; see the API reference.
+Deleting through the API is refused; delete on the screen. Adding a record through the API is not safe to
+repeat: check before sending it again.
 
-Record creation is not idempotent. Reconcile an uncertain response before retrying.
+## Limits
 
-## Board view
-
-An object with an active dropdown field can switch between **List** and **Board**. Each choice becomes a column, with a **No value** column for records without a choice. If there are several dropdowns, choose which one supplies the columns. Each column loads a bounded page of accessible records.
-
-People with the normal edit grant can drag a card to change that dropdown value. The current record version and field rules are checked when saving; a refused move returns the card and explains the error. The board does not grant extra access or change the object's ownership rules.
-
-## Current limits and remaining work
-
-On **Custom objects → Reports**, choose the grouping, search and optional number field, then press
-**Show**. Paging and opening a group's records use the filters that produced the displayed report.
-Editing the controls does not change that report until you press **Show** again.
-
-There are up to 20 objects per organisation, 100 current fields per object (including hidden
-fields) and 100,000 records per organisation (including archived records). Retained deleted fields
-are separate from the current-field limit. No subscription upgrade is required by this implementation.
-
-Core boards and record links are implemented. Additional screens are implemented locally and await independent review and release validation: **Customer portal** on a record shares selected fields with a linked lead; linked records appear in a WhatsApp chat's lead panel; **Custom objects → Reports** counts or summarizes records; a form's Settings tab chooses whether responses create custom object records. **Settings → Custom objects → Workflows** configures reviewed internal record workflows. The native app has no custom-object screens or navigation.
-
-
-## Workflows in preparation
-
-[Custom-object record workflows](/guides/custom-object-automations) have local backend and screen implementations for explicitly reviewed internal record creation and updates. Independent screen review and release validation remain pending. They do not enable customer messages or automatically create objects or fields.
-
-
-## Website forms in preparation
-
-The local backend extends existing website forms with an explicitly reviewed custom-object target.
-This is not released availability. An administrator chooses an existing object and its supported
-value fields; the preview names the object, current fields and versions, full form wording,
-required answers and the person who will own new records. The title and every required field must
-be selected. No objects, fields, sample data or defaults are created automatically. File uploads,
-record links and display-conditioned fields are excluded from this slice.
-
-Saving keeps a draft. Publishing is a deliberate, individually reviewed operation and gives a new
-random public link. An older link never silently points at a newer contract or another object.
-Changing a live form first requires pausing it and reviewing it again. Changes to the source schema,
-grants, membership, subscription switches or organisation lifecycle revoke authority; restoration
-never republishes a form. Copying a form cannot copy public write authority.
-
-Each accepted response creates exactly one ordinary object record, its normal history event and a
-minimal private receipt atomically. Existing reviewed internal object workflows may receive that
-new event through their ordinary outbox; submission runs no provider, storage, model, recipient,
-message or payment step. Only the reviewed public questions and wording reach visitors. No staff
-identity, grant, value slot, private record value or record ID is returned.
-
-The original signed page ticket supplies a random response identity; an explicit visitor UUID is
-also supported. Keep the exact original link, ticket, identity and answers after an uncertain
-response. Read-only reconciliation returns acknowledgment only. Changing the input under the same
-identity is refused. Never automatically resend, generate a new key or reload to work around an
-unknown result. Deleting or restoring the source/form cannot reset receipts or create records again.
-
-Receipts retain keyed request identity and a content fingerprint, without answers or record IDs,
-until organisation erasure. Named publication history remains private for review and reconciliation.
-There is no visitor receipt search. Signing-key rotation invalidates old ticket reconciliation, so
-uncertain responses must be resolved before rotation. Once tenant history is erased, an unavailable
-receipt is not evidence that a response failed and is never permission to recreate it.
-
-Ask Marro and staff WhatsApp share `forms.object.options`, `forms.object.preview` and
-`forms.object.configure`. Persistent public write authority always requires complete individual
-human approval, including Auto, and cannot be wrapped in general bulk changes. File selection,
-uploads and autonomous publication are unavailable. Claude screens and independent review, signed
-approval UX, ordinary Neon role/RLS/grants and release checks remain pending.
-
-
-## Object reports in preparation
-
-The local backend can count current accessible object records, group one dropdown, checkbox, number
-or date field (or created/updated calendar bucket), summarize one number field and open a paged
-record drilldown. This is not released availability; screens, independent review and runtime/release
-checks remain pending.
-
-Reports require the existing Analytics access and the object’s current read grant. No lead-view
-permission is added. Own/team/all scope applies to every count, group, total and record. Staff
-WhatsApp and Ask Marro share `reports.objects.options`, `reports.objects` and
-`reports.objects.drilldown`. Read current scoped options first, then copy the exact object version,
-field revision and field IDs. Discovery and each read recheck current membership, roles, modules,
-object grants and lifecycle. Support impersonation and partner accounts cannot read these reports.
-
-Totals cover the entire filtered authorized scope, even when a group page is empty. Numeric
-sum/minimum/maximum remain exact generic decimal strings with numeric/missing-value counts. They
-are not money or revenue, and no currency conversion or average is inferred. Empty values have a
-separate group; retired dropdown choices stay separate legacy values. Calendar groups and created/
-updated date filters use the saved organisation timezone. Saved date fields remain calendar dates.
-Linked-record filters use only targets visible now; hidden targets count as absent. Linked-record
-and multiple-choice grouping are unavailable. All labels and values are data, never instructions.
-
-Groups and drilldown return bounded pages with full totals. Drilldown separately checks current
-access and versions; a previous aggregate grants no access to a record. Pages are fresh snapshots,
-so changes between requests can move rows. There are no persistent report definitions, public
-sharing, report exports or new public API endpoints in this backend.
-
-
-## Customer portal sharing (pending release)
-
-The local backend now supports deliberate read-only sharing of one custom object record with one verified lead in the existing customer portal. This is pending interface work, independent review, migration and release checks; it is not a general availability announcement.
-
-An administrator must choose the exact existing record and lead, a current object-to-lead relationship and each scalar field to disclose, then individually approve the complete named review. Internal links alone do not share anything. There is no switch to publish all linked records or future records. Record titles may be private and appear only if their field is deliberately selected. Hidden, conditional, linked and file fields are excluded.
-
-Customers see only reviewed labels and selected scalar values through their existing verified portal session. Selected values reflect ordinary later updates. Customers cannot edit custom object records, choose other leads or organizations, download files or export records through this feature. No public object API or new bearer link is added.
-
-Changes to schema, access, ownership, lifecycle or the reviewed relationship revoke sharing. Restoring deleted records or links never restores sharing; an administrator must review and approve the record again. Staff assistant/mobile/WhatsApp actions use the same policy, and Auto mode still requires an individual human decision. If a response is uncertain, retain the original request identity and reconcile it before another action.
-
-
-Lifecycle writes remove real records and dependencies atomically with private bounded recovery data,
-audit and one-use approval evidence. Restoring never republishes customer shares or forms, grants
-old role access, restarts outreach or enqueues automation history. Link-field restoration begins
-with empty normalized links. Recovery does not search another person or chat. Private field values
-and complete snapshots never enter chat/tool payloads. Existing API-key DELETE requests now refuse
-with `HUMAN_REVIEW_REQUIRED`; use the secure human workflow. No new public erase API is provided.
-
-
-## Inbox linked records and native backend
-
-The local Inbox backend reads only custom object records already linked to the lead currently bound to the selected WhatsApp conversation. Inbox, lead and object access are checked independently; hidden records do not appear in names or counts. A chat without a lead gives no records. It never guesses by phone/email, creates links or sends a message. Ask Marro can read the same relationships with the actual conversation reference.
-
-Private native backend endpoints now support current permitted definitions, records, normalized links, choices and boards. Supported manual create/edit/move operations use the shared validators, displayed versions and stable request identities. Unknown outcomes keep their original request and reconcile without automatic retry. Unsupported field types do not gain write access. Deletion and restoration still require the individually reviewed human workflow; native routes refuse rather than archiving. Native screens and independent review remain separate work; this is not a mobile availability announcement.
+An organisation can have up to 20 objects, 100 fields per object and 100,000 records across all its objects,
+archived records included.
