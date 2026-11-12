@@ -28,12 +28,22 @@ On the object's page, **Fields** lists them in the order the form shows them. Pr
 - **Short text**, **Long text**, **Number**, **Date**, **Phone number**, **Email address**, **Link**
 - **Dropdown** (one choice) or **Multiple choice**: type each choice on its own row
 - **Yes / no**
+- **Money** (in a currency you choose when adding the field; it starts as your organisation's), **Percent**,
+  **Date and time**
+- **Person in your team**
 - **Link to another record**: a lead, contact, company, opportunity, person in your team, or a record of
   another object. Choose whether it holds one record or several.
+
+Give a dropdown's choices a colour with the dot beside each one; the colour shows in the list and on the board.
 
 For each field you can add help text, make it required when adding or when editing, hide it, or show it only
 when another field has a certain answer (for example, show **Other reason** only when **Reason** is **Other**).
 A field's type cannot change after it is added; add a new field instead.
+
+**Filled in to start with** sets a default: new records start with that value, and people can change it.
+**No two records the same** (for text, phone, email, link, number and money fields) stops two records having the
+same value, such as a registration number, ignoring capitals and spaces. If some records already share a value,
+Marro asks you to make them different first.
 
 Use the **⋯** menu on a field to move it up or down. The preview beside the fields shows the form exactly as
 people will see it when they add a record.
@@ -41,6 +51,18 @@ people will see it when they add a record.
 Deleting a field keeps its values for 30 days. Before it goes, Marro says how many records have a value and
 what still uses it (a saved view, or a field shown only when this one has an answer). Type the field's name
 to confirm. Restore it from **Recently deleted** within 30 days.
+
+## Stages
+
+An object can have one stage list, such as Draft, Submitted, Accepted, Enrolled. Add a dropdown field with the
+stages as its choices, then choose it under **Details → Stages**. Each stage can have a colour, and says whether a
+record there is still going, won or lost.
+
+With stages, the board starts by stage, the record page shows the stage at the top (change it there) and since when
+the record has been in it, and every change of stage is in the record's activity.
+
+A link that needs details of its own, such as a student applying to a course with an intake and a status, is best
+kept as an object of its own in the middle (Applications), linking to both.
 
 ## How records show
 
@@ -97,10 +119,11 @@ phone it lists only the days that have records.
 ## Add and edit records
 
 Press **Add** (for example **Add vehicle**) at the top of the list. The form opens at the side; fill it in and
-press **Add**. You can choose the owner; leave it as **Me** to own the record yourself.
+press **Add**. You can choose the owner; leave it as **Me** to own the record yourself, or choose a team: the record
+goes to whichever member's turn it is (the one who was given one longest ago).
 
-Open a record to see its details, what it links to, what links to it, and its activity: who added and changed
-it, and notes. **Edit** opens the same form. The owner can be changed at the top of the page. **⋯** has
+Open a record to see its details, what it links to, what links to it, and its activity: who added it, who changed
+what (for example "Status: Draft → Submitted"), and notes. **Edit** opens the same form. The owner can be changed at the top of the page. **⋯** has
 **Archive** (it leaves the list and keeps its history; restore it from **Show archived**) and
 **Delete permanently**, which asks you to type the record's name.
 
