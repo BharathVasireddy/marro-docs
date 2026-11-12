@@ -13,6 +13,12 @@ Cloud calls connect your team’s existing phones with leads. Incoming calls can
 
 Your organization receives an assigned business calling number. Ask your existing phone provider to forward your advertised number to it. Customers continue to dial the advertised number. Outgoing calls normally display the assigned business number; forwarding does not authorize a different outgoing caller ID.
 
+Several advertised numbers can forward to the same business number. When your phone provider passes on the number the customer dialled, the call shows **Dialled +91 …** in **Calls** and on the lead's activity, so you can tell which number they called. Not every provider passes it on: make a test call to check yours.
+
+### Numbers that forward to this line
+
+In **Settings → Cloud calls → Numbers that forward to this line**, add each of your numbers that forwards to Marro, with an optional label such as *Marketing number*. People whose phone is listed here are never rung, so a forwarded call cannot come straight back. A phone set to always forward can never ring itself: to answer on the same handset, use a second SIM as your registered phone number.
+
 ## Choose who answers
 
 An organization administrator opens **Settings → Cloud calls** and chooses:
@@ -24,6 +30,18 @@ An organization administrator opens **Settings → Cloud calls** and chooses:
 Team members need active organization access and a registered phone number. Select a ring timeout. Busy, away and unavailable staff are skipped.
 
 Choose **Sequential** to ring eligible staff one at a time, or **Simultaneous** to ring the eligible team together. The first person to answer takes the call and the other ringing phones stop. With simultaneous lead-owner routing, the eligible owner and fallback team ring together.
+
+### Ring groups
+
+A ring group is a named list of staff, such as *Telugu team* or *Shop A*, that you can choose under **Ring** for the whole organization or for one number. In **Settings → Cloud calls → Ring groups**, choose **Add ring group**, give it a **Name**, pick the **People** (they take turns in the order you pick them; staff without a usable phone number are not listed), choose how it rings and how long to **Ring for**. Each group keeps its own turns:
+
+- **In turns:** one at a time, in the order you pick the people. The next call starts with the next person.
+- **All together:** everyone rings at once (up to 10), and the first to answer takes the call.
+- **In turns, among those checked in:** only people checked in right now take a turn. When nobody is, everyone does.
+- **Fewest calls today:** whoever has answered the fewest calls today rings first. Ties take turns.
+- **The lead's owner first:** the caller's lead owner rings first when they are in the group, then the rest in turns.
+
+To use a group, choose **A ring group** under **Ring** and pick it. The group's own ring style and ring time then apply. A group that the settings or a number still rings cannot be deleted: choose another way to ring first.
 
 ## Set answering hours and waiting audio
 
