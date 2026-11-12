@@ -1,11 +1,11 @@
 ---
 title: "Quotes and invoices"
-description: "Quote, invoice with GST, get paid and see what each lead is worth, without leaving Marro."
+description: "Quote, invoice with your tax, get paid and see what each lead is worth, without leaving Marro."
 ---
 
 ## Set it up
 
-An administrator opens **Settings → Quotes and invoices** and fills in the business name, GSTIN, state, address, email and phone, how customers pay, the number prefixes, how long quotes stay valid and when invoices fall due, your terms, whether a paid invoice marks the lead converted, and reminders. Without a GSTIN, documents carry no GST.
+An administrator opens **Settings → Quotes and invoices** and fills in the business name, GSTIN, state, address, email and phone, how customers pay, the number prefixes, how long quotes stay valid and when invoices fall due, your terms, whether a paid invoice marks the lead converted, and reminders. Without a GSTIN, documents carry no GST. Outside India the tax follows your [regional settings](/guides/regional-settings): you enter your registration number (an ABN, a VAT number) instead of a GSTIN, and there is no state.
 
 **Products and prices** holds what you sell: name, SKU or code, unit, price, GST rate (0, 5, 12, 18 or 28%) and HSN or SAC code. **Import CSV** adds many at once (name and price columns; sku, unit, gst, hsn and description optional; names that already exist are skipped).
 
@@ -14,7 +14,8 @@ An administrator opens **Settings → Quotes and invoices** and fills in the bus
 Open **Money** (Invoices, Quotes, Revenue), or a lead's **Money** tab, and choose **Quote** or **Invoice**.
 
 - Add lines from your products or type them; set quantity, price, a discount (*10%* or an amount), GST rate, HSN/SAC and unit. Totals update as you type, with the page shown beside the editor exactly as it will print.
-- GST is split into CGST and SGST inside your state, or IGST for another state, from the place of supply.
+- Under India GST, tax is split into CGST and SGST inside your state, or IGST for another state, from the place of supply. Under one tax rate (Australia's GST, for example), each line is taxed or tax-free and the total shows the tax by its name.
+- New documents are in your organisation's currency.
 - **Save draft**, or **Save and send** (Ctrl or ⌘ + S to save, Ctrl or ⌘ + Enter to send).
 
 Numbers are given when a document is sent: quotes as *QT-0001*, invoices as *INV/2026-27/0001*, with a new invoice series each April.

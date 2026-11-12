@@ -1,0 +1,49 @@
+---
+title: "Region: currency, formats and tax"
+description: "Your country sets your currency, date and number format, dialling code and tax. An administrator can change any of them."
+---
+
+## Where it comes from
+
+The country chosen at sign-up gives your organisation its regional settings:
+
+| Country | Currency | Dates and numbers | Dialling code | Week starts | Tax |
+| --- | --- | --- | --- | --- | --- |
+| India | Indian rupee | 13/11/2026, 1,25,000 | +91 | Monday | India GST (CGST, SGST, IGST) with GSTIN |
+| Australia | Australian dollar | 13/11/2026, 125,000 | +61 | Monday | GST 10% with ABN |
+| United Kingdom | British pound | 13/11/2026, 125,000 | +44 | Monday | VAT 20% with VAT number |
+| United Arab Emirates | UAE dirham | 13/11/2026, 125,000 | +971 | Monday | VAT 5% with TRN |
+| Singapore | Singapore dollar | 13/11/2026, 125,000 | +65 | Monday | GST 9% with GST registration number |
+| Canada | Canadian dollar | 2026-11-13, 125,000 | +1 | Sunday | GST/HST 5% with business number |
+| United States | US dollar | 11/13/2026, 125,000 | +1 | Sunday | No tax |
+| Vietnam | US dollar | 13/11/2026, 125,000 | +84 | Monday | VAT 10% with tax code |
+
+Your country and time zone stay as they were set at sign-up. The rest can be changed.
+
+## Change it
+
+An administrator opens **Settings → Business** and finds **Region**:
+
+- **Currency**: new quotes, invoices, products and payments start in it.
+- **Dates and numbers**: how dates and amounts are written everywhere in Marro, on your documents and in the mobile app.
+- **Dialling code**: added to phone numbers typed without one, on the lead form, in imports, from web forms, the API and the assistant. A number typed with its country code (+44…) is kept as it is.
+- **Week starts on**: Monday or Sunday.
+- **Tax**: *India GST*, *One tax rate* (its name, rate, what the registration number is called, and whether your prices include it) or *No tax*.
+
+**Save** keeps only what you changed; **Use country defaults** goes back to your country's settings.
+
+## Tax on quotes and invoices
+
+With one tax rate, put your registration number (your ABN, for example) in **Settings → Quotes and invoices**. Each line of a quote or invoice is taxed or tax-free, the totals show the tax by its name (*GST*, *VAT*), and the document prints your number and your customer's when you enter it. Without a registration number, documents carry no tax and an invoice is not a tax invoice.
+
+Rupee totals are rounded to the whole rupee as before; other currencies keep their cents.
+
+Changing the tax affects new documents only. Every quote and invoice keeps the tax it was issued under.
+
+## Getting paid
+
+A pay link is offered when your connected payment account takes the invoice's currency. When it does not, the invoice says so, and you record payments by hand.
+
+## The assistant
+
+Ask the assistant (in Marro or on WhatsApp) what your regional settings are, or to change them: "Switch our currency to Australian dollars" or "Our prices include GST". It shows the exact change and asks before saving. Only an administrator can change them.
