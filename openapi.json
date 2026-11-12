@@ -25,7 +25,7 @@
     },
     {
       "name": "Money",
-      "description": "Products, quotes, GST invoices and payments. Amounts are integers in the smallest currency unit (paise). Inside the organization's state an invoice carries CGST and SGST, outside it IGST, and without a supplier GSTIN no GST."
+      "description": "Products, quotes, invoices and payments. Amounts are integers in the smallest currency unit (paise, cents); a new document is in the organization's own currency. Tax follows the organization's regional settings: under India GST an invoice carries CGST and SGST inside the organization's state, IGST outside it, and no GST without a supplier GSTIN; under a single-rate tax (Australia GST 10%, UK VAT) each taxed line carries that tax (singleTaxMinor), and none without the supplier's registration number. Each document keeps the tax it was issued under (tax.model)."
     },
     {
       "name": "Reports",
@@ -2810,6 +2810,13 @@
                       },
                       "placeOfSupply": "36",
                       "taxMode": "intra",
+                      "tax": {
+                        "model": "in_gst",
+                        "label": null,
+                        "registrationLabel": null,
+                        "inclusive": false
+                      },
+                      "singleTaxMinor": 0,
                       "subtotalMinor": 1500000,
                       "discountMinor": 150000,
                       "taxableMinor": 1350000,
@@ -2972,6 +2979,17 @@
                           }
                         ]
                       },
+                      "taxNumber": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 40
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "stateCode": {
                         "anyOf": [
                           {
@@ -3046,14 +3064,15 @@
                         "unitPrice": {
                           "type": "number",
                           "minimum": 0,
-                          "description": "In the main unit (rupees), before GST."
+                          "description": "In the main unit of the organization's currency (rupees, dollars), before tax unless its prices include tax."
                         },
                         "discount": {
-                          "description": "\"10%\" or an amount in rupees.",
+                          "description": "\"10%\" or an amount in the main unit.",
                           "type": "string",
                           "maxLength": 20
                         },
                         "gstRate": {
+                          "description": "India GST only: GST in percent. Defaults to 0.",
                           "anyOf": [
                             {
                               "type": "number",
@@ -3075,15 +3094,19 @@
                               "type": "number",
                               "const": 28
                             }
-                          ],
-                          "description": "GST in percent."
+                          ]
+                        },
+                        "taxRateBasisPoints": {
+                          "description": "Single-rate tax only: 0 for a tax-free line; left out, the organization's rate.",
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 10000
                         }
                       },
                       "required": [
                         "name",
                         "quantity",
-                        "unitPrice",
-                        "gstRate"
+                        "unitPrice"
                       ]
                     }
                   },
@@ -3170,6 +3193,13 @@
                     },
                     "placeOfSupply": "36",
                     "taxMode": "intra",
+                    "tax": {
+                      "model": "in_gst",
+                      "label": null,
+                      "registrationLabel": null,
+                      "inclusive": false
+                    },
+                    "singleTaxMinor": 0,
                     "subtotalMinor": 1500000,
                     "discountMinor": 150000,
                     "taxableMinor": 1350000,
@@ -3333,6 +3363,13 @@
                     },
                     "placeOfSupply": "36",
                     "taxMode": "intra",
+                    "tax": {
+                      "model": "in_gst",
+                      "label": null,
+                      "registrationLabel": null,
+                      "inclusive": false
+                    },
+                    "singleTaxMinor": 0,
                     "subtotalMinor": 1500000,
                     "discountMinor": 150000,
                     "taxableMinor": 1350000,
@@ -3542,6 +3579,13 @@
                       },
                       "placeOfSupply": "36",
                       "taxMode": "intra",
+                      "tax": {
+                        "model": "in_gst",
+                        "label": null,
+                        "registrationLabel": null,
+                        "inclusive": false
+                      },
+                      "singleTaxMinor": 0,
                       "subtotalMinor": 1500000,
                       "discountMinor": 150000,
                       "taxableMinor": 1350000,
@@ -3704,6 +3748,17 @@
                           }
                         ]
                       },
+                      "taxNumber": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 40
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "stateCode": {
                         "anyOf": [
                           {
@@ -3778,14 +3833,15 @@
                         "unitPrice": {
                           "type": "number",
                           "minimum": 0,
-                          "description": "In the main unit (rupees), before GST."
+                          "description": "In the main unit of the organization's currency (rupees, dollars), before tax unless its prices include tax."
                         },
                         "discount": {
-                          "description": "\"10%\" or an amount in rupees.",
+                          "description": "\"10%\" or an amount in the main unit.",
                           "type": "string",
                           "maxLength": 20
                         },
                         "gstRate": {
+                          "description": "India GST only: GST in percent. Defaults to 0.",
                           "anyOf": [
                             {
                               "type": "number",
@@ -3807,15 +3863,19 @@
                               "type": "number",
                               "const": 28
                             }
-                          ],
-                          "description": "GST in percent."
+                          ]
+                        },
+                        "taxRateBasisPoints": {
+                          "description": "Single-rate tax only: 0 for a tax-free line; left out, the organization's rate.",
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 10000
                         }
                       },
                       "required": [
                         "name",
                         "quantity",
-                        "unitPrice",
-                        "gstRate"
+                        "unitPrice"
                       ]
                     }
                   },
@@ -3902,6 +3962,13 @@
                     },
                     "placeOfSupply": "36",
                     "taxMode": "intra",
+                    "tax": {
+                      "model": "in_gst",
+                      "label": null,
+                      "registrationLabel": null,
+                      "inclusive": false
+                    },
+                    "singleTaxMinor": 0,
                     "subtotalMinor": 1500000,
                     "discountMinor": 150000,
                     "taxableMinor": 1350000,
@@ -4065,6 +4132,13 @@
                     },
                     "placeOfSupply": "36",
                     "taxMode": "intra",
+                    "tax": {
+                      "model": "in_gst",
+                      "label": null,
+                      "registrationLabel": null,
+                      "inclusive": false
+                    },
+                    "singleTaxMinor": 0,
                     "subtotalMinor": 1500000,
                     "discountMinor": 150000,
                     "taxableMinor": 1350000,
@@ -4283,6 +4357,13 @@
                     },
                     "placeOfSupply": "36",
                     "taxMode": "intra",
+                    "tax": {
+                      "model": "in_gst",
+                      "label": null,
+                      "registrationLabel": null,
+                      "inclusive": false
+                    },
+                    "singleTaxMinor": 0,
                     "subtotalMinor": 1500000,
                     "discountMinor": 150000,
                     "taxableMinor": 1350000,
@@ -9491,7 +9572,7 @@
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "currency": {
             "type": "string"
@@ -9649,67 +9730,112 @@
               "inter",
               "none"
             ],
-            "description": "intra: CGST and SGST; inter: IGST; none: no GST (no supplier GSTIN)."
+            "description": "India GST only. intra: CGST and SGST; inter: IGST; none: no GST (no supplier GSTIN, or another tax model)."
+          },
+          "tax": {
+            "type": "object",
+            "properties": {
+              "model": {
+                "type": "string",
+                "enum": [
+                  "in_gst",
+                  "single",
+                  "none"
+                ],
+                "description": "The tax the document was issued under: India GST, one named tax (Australia GST, UK VAT), or none. It never changes after issue."
+              },
+              "label": {
+                "description": "The single tax's name, like \"GST\" or \"VAT\".",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "registrationLabel": {
+                "description": "What the registration number is called, like \"ABN\".",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "inclusive": {
+                "type": "boolean",
+                "description": "Whether the prices include the single tax."
+              }
+            },
+            "required": [
+              "model",
+              "label",
+              "registrationLabel",
+              "inclusive"
+            ],
+            "additionalProperties": false
+          },
+          "singleTaxMinor": {
+            "description": "The single-rate tax charged; 0 under India GST.",
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "subtotalMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "discountMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "taxableMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "cgstMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "sgstMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "igstMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "roundOffMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "totalMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "paidMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "dueMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "lines": {
             "description": "Only when reading one document.",
@@ -9784,6 +9910,13 @@
               "string",
               "null"
             ]
+          },
+          "taxNumber": {
+            "description": "Under a single-rate tax: the registration number, like an Australian ABN.",
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [
@@ -9819,13 +9952,13 @@
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "discountMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "gstRate": {
             "anyOf": [
@@ -9852,23 +9985,36 @@
             ],
             "description": "GST in percent."
           },
+          "taxRateBasisPoints": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000,
+                "description": "Single-rate tax only: the line's rate in basis points (1000 = 10%; 0 = tax-free)."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "taxableMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "taxMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "totalMinor": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           }
         },
         "required": [
@@ -9922,7 +10068,7 @@
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "In the smallest unit of the currency (paise for rupees)."
+            "description": "In the smallest unit of the currency (paise for rupees, cents for dollars)."
           },
           "currency": {
             "type": "string"
