@@ -126,6 +126,27 @@
             ]
           },
           {
+            "group": "Reports",
+            "pages": [
+              "api-reference/reports/list-reports",
+              "api-reference/reports/get-report-results"
+            ]
+          },
+          {
+            "group": "Money",
+            "pages": [
+              "api-reference/money/list-products",
+              "api-reference/money/list-quotes",
+              "api-reference/money/create-quote",
+              "api-reference/money/get-quote",
+              "api-reference/money/list-invoices",
+              "api-reference/money/create-invoice",
+              "api-reference/money/get-invoice",
+              "api-reference/money/record-invoice-payment",
+              "api-reference/money/list-payments"
+            ]
+          },
+          {
             "group": "Leads",
             "pages": [
               "api-reference/leads/list-leads",
@@ -142,6 +163,7 @@
               "api-reference/reference/list-fields",
               "api-reference/reference/list-stages",
               "api-reference/reference/list-pipelines",
+              "api-reference/reference/list-branches",
               "api-reference/reference/list-sources",
               "api-reference/reference/list-users"
             ]

@@ -22,6 +22,14 @@
     {
       "name": "Reference",
       "description": "How this organization is set up: fields, stages, sources and people."
+    },
+    {
+      "name": "Money",
+      "description": "Products, quotes, GST invoices and payments. Amounts are integers in the smallest currency unit (paise). Inside the organization's state an invoice carries CGST and SGST, outside it IGST, and without a supplier GSTIN no GST."
+    },
+    {
+      "name": "Reports",
+      "description": "Custom reports shared with everyone in the organization, and their figures. Built in the app under Reports → Custom reports; a key reads them over every lead."
     }
   ],
   "paths": {
@@ -1939,6 +1947,2441 @@
         }
       }
     },
+    "/api/v1/reports": {
+      "get": {
+        "operationId": "list-reports",
+        "tags": [
+          "Reports"
+        ],
+        "summary": "List reports",
+        "description": "The custom reports shared with everyone in the organization, by name. Reports kept private or shared with chosen roles are not listed.\n\nScope: `reports.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "reports.read"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The reports.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "type": "string",
+                            "description": "leads, calls, follow_ups, appointments or chats"
+                          },
+                          "chart": {
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "description",
+                          "source",
+                          "chart",
+                          "updatedAt"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 12,
+                      "name": "Leads by source",
+                      "description": "Where new leads came from.",
+                      "source": "leads",
+                      "chart": "bar",
+                      "updatedAt": "2026-11-12T05:30:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reports/{reportId}/results": {
+      "get": {
+        "operationId": "get-report-results",
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Run a report",
+        "description": "A report’s figures, over every lead of the organization: the total and each group (and series, when split). The saved period applies unless `period` overrides it. Figures can be up to a minute old.\n\nScope: `reports.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "reports.read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "reportId",
+            "in": "path",
+            "required": true,
+            "description": "The report’s ID, from List reports.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "description": "Overrides the saved period. \"custom\" needs from and to.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "today",
+                "7d",
+                "30d",
+                "90d",
+                "this_month",
+                "custom"
+              ]
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "description": "First day, YYYY-MM-DD on the organization calendar (with period=custom).",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "description": "Last day, YYYY-MM-DD (with period=custom).",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The figures.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "report": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "measure": {
+                      "type": "string"
+                    },
+                    "unit": {
+                      "type": "string",
+                      "enum": [
+                        "count",
+                        "percent",
+                        "minutes",
+                        "seconds",
+                        "days",
+                        "number"
+                      ]
+                    },
+                    "groupBy": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "splitBy": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "period": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "label": {
+                              "type": "string"
+                            },
+                            "fromDay": {
+                              "type": "string"
+                            },
+                            "toDay": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "label",
+                            "fromDay",
+                            "toDay"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "total": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "previousTotal": {
+                      "description": "The period before, for a number report of up to 92 days.",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "records": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "series": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "label": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "label"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "groups": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "description": "The group’s value: an ID, a fixed value or a day (YYYY-MM-DD); null for \"not set\".",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "records": {
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
+                          },
+                          "values": {
+                            "description": "With a split: the value of each series, by series key.",
+                            "type": "object",
+                            "propertyNames": {
+                              "type": "string"
+                            },
+                            "additionalProperties": {
+                              "type": [
+                                "number",
+                                "null"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "label",
+                          "value",
+                          "records"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "hiddenGroups": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "truncated": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "report",
+                    "measure",
+                    "unit",
+                    "groupBy",
+                    "splitBy",
+                    "period",
+                    "total",
+                    "previousTotal",
+                    "records",
+                    "series",
+                    "groups",
+                    "hiddenGroups",
+                    "truncated"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "report": {
+                    "id": 12,
+                    "name": "Leads by source"
+                  },
+                  "measure": "Leads",
+                  "unit": "count",
+                  "groupBy": "Lead source",
+                  "splitBy": null,
+                  "period": {
+                    "label": "Last 30 days",
+                    "fromDay": "2026-10-14",
+                    "toDay": "2026-11-12"
+                  },
+                  "total": 248,
+                  "previousTotal": null,
+                  "records": 248,
+                  "series": [],
+                  "groups": [
+                    {
+                      "key": "3",
+                      "label": "Website",
+                      "value": 131,
+                      "records": 131
+                    },
+                    {
+                      "key": "5",
+                      "label": "Facebook",
+                      "value": 87,
+                      "records": 87
+                    },
+                    {
+                      "key": null,
+                      "label": "No source",
+                      "value": 30,
+                      "records": 30
+                    }
+                  ],
+                  "hiddenGroups": 0,
+                  "truncated": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND: No report with this ID, or it is not shared with everyone in the organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "REPORT_INVALID: The report names something that no longer exists (a removed field or stage). Fix it in the app.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "REPORT_UNAVAILABLE: The report took too long or could not run just now. Try a shorter period.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/products": {
+      "get": {
+        "operationId": "list-products",
+        "tags": [
+          "Money"
+        ],
+        "summary": "List products and services",
+        "description": "The catalogue (Settings → Products and prices), hidden ones included, with price, GST rate, HSN/SAC and unit.\n\nScope: `money.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "money.read"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Every product and service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 7,
+                      "name": "Teeth whitening",
+                      "sku": "TW-1",
+                      "description": "",
+                      "unitPriceMinor": 1500000,
+                      "currency": "INR",
+                      "gstRate": 18,
+                      "hsnSac": "999312",
+                      "unit": "",
+                      "active": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/quotes": {
+      "get": {
+        "operationId": "list-quotes",
+        "tags": [
+          "Money"
+        ],
+        "summary": "List quotes",
+        "description": "Quotes, newest first, a page at a time. Filter by status (`unpaid` and `overdue` for invoices waiting for money) or lead.\n\nScope: `money.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "money.read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "sent",
+                "accepted",
+                "declined",
+                "partly_paid",
+                "paid",
+                "void",
+                "unpaid",
+                "overdue"
+              ]
+            }
+          },
+          {
+            "name": "lead_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 2147483647
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of quotes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SalesDocument"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "total"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 311,
+                      "kind": "quote",
+                      "number": "QT-0298",
+                      "status": "sent",
+                      "overdue": false,
+                      "leadId": 1842,
+                      "quoteId": null,
+                      "currency": "INR",
+                      "issueDate": "2026-11-12",
+                      "dueDate": "2026-11-19",
+                      "customer": {
+                        "name": "Priya Sharma",
+                        "gstin": null,
+                        "address": "Banjara Hills, Hyderabad",
+                        "stateCode": "36",
+                        "phone": "+919812345678",
+                        "email": "priya@example.com"
+                      },
+                      "supplier": {
+                        "name": "Bright Smiles Dental",
+                        "gstin": "36ABCDE1234F1Z5",
+                        "address": "Jubilee Hills, Hyderabad",
+                        "stateCode": "36",
+                        "phone": null,
+                        "email": "accounts@example.com"
+                      },
+                      "placeOfSupply": "36",
+                      "taxMode": "intra",
+                      "subtotalMinor": 1500000,
+                      "discountMinor": 150000,
+                      "taxableMinor": 1350000,
+                      "cgstMinor": 121500,
+                      "sgstMinor": 121500,
+                      "igstMinor": 0,
+                      "roundOffMinor": 0,
+                      "totalMinor": 1593000,
+                      "paidMinor": 0,
+                      "dueMinor": 0,
+                      "createdAt": "2026-11-12T05:30:00Z"
+                    }
+                  ],
+                  "total": 1
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_QUERY: A parameter is out of range.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "create-quote",
+        "tags": [
+          "Money"
+        ],
+        "summary": "Create a quote",
+        "description": "A quote for a lead (its customer details are taken from the lead unless given) or for a customer with no lead. Prices are before GST; GST is worked out from the organization's and the customer's states. A draft unless `issue` is true, which gives it its number and marks it sent. Not idempotent: reconcile an uncertain request before retrying.\n\nScope: `money.write`.",
+        "security": [
+          {
+            "ApiKey": [
+              "money.write"
+            ]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "leadId": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "maximum": 2147483647
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "issueDate": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                    "description": "YYYY-MM-DD."
+                  },
+                  "dueDate": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                        "description": "YYYY-MM-DD."
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "customer": {
+                    "description": "Left out: taken from the lead.",
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200
+                      },
+                      "phone": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 20
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "email": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 200
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "gstin": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 15
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "stateCode": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^\\d{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "address": {
+                        "type": "string",
+                        "maxLength": 500
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ]
+                  },
+                  "placeOfSupply": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^\\d{2}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "lines": {
+                    "minItems": 1,
+                    "maxItems": 100,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "productId": {
+                          "anyOf": [
+                            {
+                              "type": "integer",
+                              "exclusiveMinimum": 0,
+                              "maximum": 2147483647
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "description": {
+                          "type": "string",
+                          "maxLength": 1000
+                        },
+                        "hsnSac": {
+                          "type": "string",
+                          "maxLength": 8
+                        },
+                        "unit": {
+                          "type": "string",
+                          "maxLength": 20
+                        },
+                        "quantity": {
+                          "type": "number",
+                          "exclusiveMinimum": 0
+                        },
+                        "unitPrice": {
+                          "type": "number",
+                          "minimum": 0,
+                          "description": "In the main unit (rupees), before GST."
+                        },
+                        "discount": {
+                          "description": "\"10%\" or an amount in rupees.",
+                          "type": "string",
+                          "maxLength": 20
+                        },
+                        "gstRate": {
+                          "anyOf": [
+                            {
+                              "type": "number",
+                              "const": 0
+                            },
+                            {
+                              "type": "number",
+                              "const": 5
+                            },
+                            {
+                              "type": "number",
+                              "const": 12
+                            },
+                            {
+                              "type": "number",
+                              "const": 18
+                            },
+                            {
+                              "type": "number",
+                              "const": 28
+                            }
+                          ],
+                          "description": "GST in percent."
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "quantity",
+                        "unitPrice",
+                        "gstRate"
+                      ]
+                    }
+                  },
+                  "notes": {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  "terms": {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  "issue": {
+                    "description": "true: give it its number and mark it sent at once. Otherwise it stays a draft.",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "issueDate",
+                  "lines"
+                ]
+              },
+              "example": {
+                "leadId": 1842,
+                "issueDate": "2026-11-12",
+                "issue": true,
+                "lines": [
+                  {
+                    "productId": 7,
+                    "name": "Teeth whitening",
+                    "quantity": 1,
+                    "unitPrice": 15000,
+                    "discount": "10%",
+                    "gstRate": 18
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The quote as saved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "quote": {
+                      "$ref": "#/components/schemas/SalesDocument"
+                    }
+                  },
+                  "required": [
+                    "quote"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "quote": {
+                    "id": 311,
+                    "kind": "quote",
+                    "number": "QT-0298",
+                    "status": "sent",
+                    "overdue": false,
+                    "leadId": 1842,
+                    "quoteId": null,
+                    "currency": "INR",
+                    "issueDate": "2026-11-12",
+                    "dueDate": "2026-11-19",
+                    "customer": {
+                      "name": "Priya Sharma",
+                      "gstin": null,
+                      "address": "Banjara Hills, Hyderabad",
+                      "stateCode": "36",
+                      "phone": "+919812345678",
+                      "email": "priya@example.com"
+                    },
+                    "supplier": {
+                      "name": "Bright Smiles Dental",
+                      "gstin": "36ABCDE1234F1Z5",
+                      "address": "Jubilee Hills, Hyderabad",
+                      "stateCode": "36",
+                      "phone": null,
+                      "email": "accounts@example.com"
+                    },
+                    "placeOfSupply": "36",
+                    "taxMode": "intra",
+                    "subtotalMinor": 1500000,
+                    "discountMinor": 150000,
+                    "taxableMinor": 1350000,
+                    "cgstMinor": 121500,
+                    "sgstMinor": 121500,
+                    "igstMinor": 0,
+                    "roundOffMinor": 0,
+                    "totalMinor": 1593000,
+                    "paidMinor": 0,
+                    "dueMinor": 0,
+                    "createdAt": "2026-11-12T05:30:00Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "VALIDATION_FAILED: A line, date, GSTIN or state is not valid; the message says which.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND: leadId names no lead in this organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "SETUP_REQUIRED: issue is true for an invoice before the business details are set in Settings → Quotes and invoices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/quotes/{quoteId}": {
+      "get": {
+        "operationId": "get-quote",
+        "tags": [
+          "Money"
+        ],
+        "summary": "Read a quote",
+        "description": "One quote with its lines.\n\nScope: `money.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "money.read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "required": true,
+            "description": "Quote ID.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The quote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "quote": {
+                      "$ref": "#/components/schemas/SalesDocument"
+                    }
+                  },
+                  "required": [
+                    "quote"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "quote": {
+                    "id": 311,
+                    "kind": "quote",
+                    "number": "QT-0298",
+                    "status": "sent",
+                    "overdue": false,
+                    "leadId": 1842,
+                    "quoteId": null,
+                    "currency": "INR",
+                    "issueDate": "2026-11-12",
+                    "dueDate": "2026-11-19",
+                    "customer": {
+                      "name": "Priya Sharma",
+                      "gstin": null,
+                      "address": "Banjara Hills, Hyderabad",
+                      "stateCode": "36",
+                      "phone": "+919812345678",
+                      "email": "priya@example.com"
+                    },
+                    "supplier": {
+                      "name": "Bright Smiles Dental",
+                      "gstin": "36ABCDE1234F1Z5",
+                      "address": "Jubilee Hills, Hyderabad",
+                      "stateCode": "36",
+                      "phone": null,
+                      "email": "accounts@example.com"
+                    },
+                    "placeOfSupply": "36",
+                    "taxMode": "intra",
+                    "subtotalMinor": 1500000,
+                    "discountMinor": 150000,
+                    "taxableMinor": 1350000,
+                    "cgstMinor": 121500,
+                    "sgstMinor": 121500,
+                    "igstMinor": 0,
+                    "roundOffMinor": 0,
+                    "totalMinor": 1593000,
+                    "paidMinor": 0,
+                    "dueMinor": 0,
+                    "createdAt": "2026-11-12T05:30:00Z",
+                    "lines": [
+                      {
+                        "name": "Teeth whitening",
+                        "description": "",
+                        "hsnSac": "999312",
+                        "unit": "",
+                        "quantity": 1,
+                        "unitPriceMinor": 1500000,
+                        "discountMinor": 150000,
+                        "gstRate": 18,
+                        "taxableMinor": 1350000,
+                        "taxMinor": 243000,
+                        "totalMinor": 1593000
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND: No such quote in this organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/invoices": {
+      "get": {
+        "operationId": "list-invoices",
+        "tags": [
+          "Money"
+        ],
+        "summary": "List invoices",
+        "description": "Invoices, newest first, a page at a time. Filter by status (`unpaid` and `overdue` for invoices waiting for money) or lead.\n\nScope: `money.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "money.read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "sent",
+                "accepted",
+                "declined",
+                "partly_paid",
+                "paid",
+                "void",
+                "unpaid",
+                "overdue"
+              ]
+            }
+          },
+          {
+            "name": "lead_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 2147483647
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of invoices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SalesDocument"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "total"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 311,
+                      "kind": "invoice",
+                      "number": "INV/2026-27/0042",
+                      "status": "sent",
+                      "overdue": false,
+                      "leadId": 1842,
+                      "quoteId": 298,
+                      "currency": "INR",
+                      "issueDate": "2026-11-12",
+                      "dueDate": "2026-11-19",
+                      "customer": {
+                        "name": "Priya Sharma",
+                        "gstin": null,
+                        "address": "Banjara Hills, Hyderabad",
+                        "stateCode": "36",
+                        "phone": "+919812345678",
+                        "email": "priya@example.com"
+                      },
+                      "supplier": {
+                        "name": "Bright Smiles Dental",
+                        "gstin": "36ABCDE1234F1Z5",
+                        "address": "Jubilee Hills, Hyderabad",
+                        "stateCode": "36",
+                        "phone": null,
+                        "email": "accounts@example.com"
+                      },
+                      "placeOfSupply": "36",
+                      "taxMode": "intra",
+                      "subtotalMinor": 1500000,
+                      "discountMinor": 150000,
+                      "taxableMinor": 1350000,
+                      "cgstMinor": 121500,
+                      "sgstMinor": 121500,
+                      "igstMinor": 0,
+                      "roundOffMinor": 0,
+                      "totalMinor": 1593000,
+                      "paidMinor": 0,
+                      "dueMinor": 1593000,
+                      "createdAt": "2026-11-12T05:30:00Z"
+                    }
+                  ],
+                  "total": 1
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_QUERY: A parameter is out of range.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "create-invoice",
+        "tags": [
+          "Money"
+        ],
+        "summary": "Create a invoice",
+        "description": "A invoice for a lead (its customer details are taken from the lead unless given) or for a customer with no lead. Prices are before GST; GST is worked out from the organization's and the customer's states. A draft unless `issue` is true, which gives it its number and marks it sent. Issuing fires \"An invoice is sent\" automations. Not idempotent: reconcile an uncertain request before retrying.\n\nScope: `money.write`.",
+        "security": [
+          {
+            "ApiKey": [
+              "money.write"
+            ]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "leadId": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "maximum": 2147483647
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "issueDate": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                    "description": "YYYY-MM-DD."
+                  },
+                  "dueDate": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                        "description": "YYYY-MM-DD."
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "customer": {
+                    "description": "Left out: taken from the lead.",
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200
+                      },
+                      "phone": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 20
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "email": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 200
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "gstin": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 15
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "stateCode": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^\\d{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "address": {
+                        "type": "string",
+                        "maxLength": 500
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ]
+                  },
+                  "placeOfSupply": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^\\d{2}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "lines": {
+                    "minItems": 1,
+                    "maxItems": 100,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "productId": {
+                          "anyOf": [
+                            {
+                              "type": "integer",
+                              "exclusiveMinimum": 0,
+                              "maximum": 2147483647
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "description": {
+                          "type": "string",
+                          "maxLength": 1000
+                        },
+                        "hsnSac": {
+                          "type": "string",
+                          "maxLength": 8
+                        },
+                        "unit": {
+                          "type": "string",
+                          "maxLength": 20
+                        },
+                        "quantity": {
+                          "type": "number",
+                          "exclusiveMinimum": 0
+                        },
+                        "unitPrice": {
+                          "type": "number",
+                          "minimum": 0,
+                          "description": "In the main unit (rupees), before GST."
+                        },
+                        "discount": {
+                          "description": "\"10%\" or an amount in rupees.",
+                          "type": "string",
+                          "maxLength": 20
+                        },
+                        "gstRate": {
+                          "anyOf": [
+                            {
+                              "type": "number",
+                              "const": 0
+                            },
+                            {
+                              "type": "number",
+                              "const": 5
+                            },
+                            {
+                              "type": "number",
+                              "const": 12
+                            },
+                            {
+                              "type": "number",
+                              "const": 18
+                            },
+                            {
+                              "type": "number",
+                              "const": 28
+                            }
+                          ],
+                          "description": "GST in percent."
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "quantity",
+                        "unitPrice",
+                        "gstRate"
+                      ]
+                    }
+                  },
+                  "notes": {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  "terms": {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  "issue": {
+                    "description": "true: give it its number and mark it sent at once. Otherwise it stays a draft.",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "issueDate",
+                  "lines"
+                ]
+              },
+              "example": {
+                "leadId": 1842,
+                "issueDate": "2026-11-12",
+                "issue": true,
+                "lines": [
+                  {
+                    "productId": 7,
+                    "name": "Teeth whitening",
+                    "quantity": 1,
+                    "unitPrice": 15000,
+                    "discount": "10%",
+                    "gstRate": 18
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The invoice as saved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "invoice": {
+                      "$ref": "#/components/schemas/SalesDocument"
+                    }
+                  },
+                  "required": [
+                    "invoice"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "invoice": {
+                    "id": 311,
+                    "kind": "invoice",
+                    "number": "INV/2026-27/0042",
+                    "status": "sent",
+                    "overdue": false,
+                    "leadId": 1842,
+                    "quoteId": 298,
+                    "currency": "INR",
+                    "issueDate": "2026-11-12",
+                    "dueDate": "2026-11-19",
+                    "customer": {
+                      "name": "Priya Sharma",
+                      "gstin": null,
+                      "address": "Banjara Hills, Hyderabad",
+                      "stateCode": "36",
+                      "phone": "+919812345678",
+                      "email": "priya@example.com"
+                    },
+                    "supplier": {
+                      "name": "Bright Smiles Dental",
+                      "gstin": "36ABCDE1234F1Z5",
+                      "address": "Jubilee Hills, Hyderabad",
+                      "stateCode": "36",
+                      "phone": null,
+                      "email": "accounts@example.com"
+                    },
+                    "placeOfSupply": "36",
+                    "taxMode": "intra",
+                    "subtotalMinor": 1500000,
+                    "discountMinor": 150000,
+                    "taxableMinor": 1350000,
+                    "cgstMinor": 121500,
+                    "sgstMinor": 121500,
+                    "igstMinor": 0,
+                    "roundOffMinor": 0,
+                    "totalMinor": 1593000,
+                    "paidMinor": 0,
+                    "dueMinor": 1593000,
+                    "createdAt": "2026-11-12T05:30:00Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "VALIDATION_FAILED: A line, date, GSTIN or state is not valid; the message says which.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND: leadId names no lead in this organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "SETUP_REQUIRED: issue is true for an invoice before the business details are set in Settings → Quotes and invoices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/invoices/{invoiceId}": {
+      "get": {
+        "operationId": "get-invoice",
+        "tags": [
+          "Money"
+        ],
+        "summary": "Read a invoice",
+        "description": "One invoice with its lines.\n\nScope: `money.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "money.read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "description": "Invoice ID.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The invoice.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "invoice": {
+                      "$ref": "#/components/schemas/SalesDocument"
+                    }
+                  },
+                  "required": [
+                    "invoice"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "invoice": {
+                    "id": 311,
+                    "kind": "invoice",
+                    "number": "INV/2026-27/0042",
+                    "status": "sent",
+                    "overdue": false,
+                    "leadId": 1842,
+                    "quoteId": 298,
+                    "currency": "INR",
+                    "issueDate": "2026-11-12",
+                    "dueDate": "2026-11-19",
+                    "customer": {
+                      "name": "Priya Sharma",
+                      "gstin": null,
+                      "address": "Banjara Hills, Hyderabad",
+                      "stateCode": "36",
+                      "phone": "+919812345678",
+                      "email": "priya@example.com"
+                    },
+                    "supplier": {
+                      "name": "Bright Smiles Dental",
+                      "gstin": "36ABCDE1234F1Z5",
+                      "address": "Jubilee Hills, Hyderabad",
+                      "stateCode": "36",
+                      "phone": null,
+                      "email": "accounts@example.com"
+                    },
+                    "placeOfSupply": "36",
+                    "taxMode": "intra",
+                    "subtotalMinor": 1500000,
+                    "discountMinor": 150000,
+                    "taxableMinor": 1350000,
+                    "cgstMinor": 121500,
+                    "sgstMinor": 121500,
+                    "igstMinor": 0,
+                    "roundOffMinor": 0,
+                    "totalMinor": 1593000,
+                    "paidMinor": 0,
+                    "dueMinor": 1593000,
+                    "createdAt": "2026-11-12T05:30:00Z",
+                    "lines": [
+                      {
+                        "name": "Teeth whitening",
+                        "description": "",
+                        "hsnSac": "999312",
+                        "unit": "",
+                        "quantity": 1,
+                        "unitPriceMinor": 1500000,
+                        "discountMinor": 150000,
+                        "gstRate": 18,
+                        "taxableMinor": 1350000,
+                        "taxMinor": 243000,
+                        "totalMinor": 1593000
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND: No such invoice in this organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/invoices/{invoiceId}/payments": {
+      "post": {
+        "operationId": "record-invoice-payment",
+        "tags": [
+          "Money"
+        ],
+        "summary": "Record a payment",
+        "description": "Money received for a sent invoice outside its pay link (cash, UPI, bank transfer, card, cheque), at most what is still due. Paid in full, the invoice's lead is converted (when the organization chose so) and \"An invoice is paid\" automations start.\n\nScope: `money.write`.",
+        "security": [
+          {
+            "ApiKey": [
+              "money.write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "description": "Invoice ID.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "description": "In the main unit (rupees), at most what is still due."
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "cash",
+                      "upi",
+                      "bank",
+                      "card",
+                      "cheque",
+                      "other"
+                    ]
+                  },
+                  "paidOn": {
+                    "description": "Defaults to today. Not in the future.",
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                  },
+                  "reference": {
+                    "type": "string",
+                    "maxLength": 80
+                  }
+                },
+                "required": [
+                  "amount",
+                  "method"
+                ]
+              },
+              "example": {
+                "amount": 15930,
+                "method": "upi",
+                "reference": "UTR 4521"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The payment, and the invoice after it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "paymentId": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "invoice": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/SalesDocument"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "paymentId",
+                    "invoice"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "paymentId": 912,
+                  "invoice": {
+                    "id": 311,
+                    "kind": "invoice",
+                    "number": "INV/2026-27/0042",
+                    "status": "paid",
+                    "overdue": false,
+                    "leadId": 1842,
+                    "quoteId": 298,
+                    "currency": "INR",
+                    "issueDate": "2026-11-12",
+                    "dueDate": "2026-11-19",
+                    "customer": {
+                      "name": "Priya Sharma",
+                      "gstin": null,
+                      "address": "Banjara Hills, Hyderabad",
+                      "stateCode": "36",
+                      "phone": "+919812345678",
+                      "email": "priya@example.com"
+                    },
+                    "supplier": {
+                      "name": "Bright Smiles Dental",
+                      "gstin": "36ABCDE1234F1Z5",
+                      "address": "Jubilee Hills, Hyderabad",
+                      "stateCode": "36",
+                      "phone": null,
+                      "email": "accounts@example.com"
+                    },
+                    "placeOfSupply": "36",
+                    "taxMode": "intra",
+                    "subtotalMinor": 1500000,
+                    "discountMinor": 150000,
+                    "taxableMinor": 1350000,
+                    "cgstMinor": 121500,
+                    "sgstMinor": 121500,
+                    "igstMinor": 0,
+                    "roundOffMinor": 0,
+                    "totalMinor": 1593000,
+                    "paidMinor": 1593000,
+                    "dueMinor": 0,
+                    "createdAt": "2026-11-12T05:30:00Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "VALIDATION_FAILED: The amount is more than is due, or the day is in the future.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND: No such invoice in this organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "CONFLICT: The invoice is a draft, void or already paid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/payments": {
+      "get": {
+        "operationId": "list-payments",
+        "tags": [
+          "Money"
+        ],
+        "summary": "List payments",
+        "description": "Payment links and payments recorded by hand, newest first. `paid_since` keeps only money received on or after a day, for syncing to accounts.\n\nScope: `money.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "money.read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            }
+          },
+          {
+            "name": "paid_since",
+            "in": "query",
+            "required": false,
+            "description": "Only payments received on or after this day.",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          },
+          {
+            "name": "invoice_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 2147483647
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of payments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Payment"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 912,
+                      "invoiceId": 311,
+                      "leadId": 1842,
+                      "amountMinor": 1593000,
+                      "currency": "INR",
+                      "method": "upi",
+                      "status": "paid",
+                      "reference": "UTR 4521",
+                      "paidAt": "2026-11-12T06:30:00Z",
+                      "createdAt": "2026-11-12T06:31:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_QUERY: A parameter is out of range.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/leads": {
       "get": {
         "operationId": "list-leads",
@@ -1946,7 +4389,7 @@
           "Leads"
         ],
         "summary": "List leads",
-        "description": "Leads in the organization, newest first, a page at a time. Filter by stage, source, owner, time of last change, or any field. Archived leads are left out.\n\nScope: `leads.read`.",
+        "description": "Leads in the organization, newest first, a page at a time. Filter by stage, source, owner, branch, time of last change, or any field. Archived leads are left out.\n\nScope: `leads.read`.",
         "security": [
           {
             "ApiKey": [
@@ -2031,6 +4474,25 @@
               "type": "integer",
               "exclusiveMinimum": 0,
               "maximum": 2147483647
+            }
+          },
+          {
+            "name": "branch_id",
+            "in": "query",
+            "required": false,
+            "description": "Only leads of this branch (IDs from GET /api/v1/branches), or `none` for leads with no branch.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "none"
+                },
+                {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 2147483647
+                }
+              ]
             }
           },
           {
@@ -2285,7 +4747,6 @@
                       "name": "Priya Sharma",
                       "phone": "+919812345678",
                       "email": "priya@example.com",
-                      "leadType": "student",
                       "stageId": 7,
                       "pipelineId": 2,
                       "sourceId": 3,
@@ -2306,6 +4767,12 @@
                       "owner": {
                         "id": 21,
                         "name": "Ravi Kumar"
+                      },
+                      "branchId": 4,
+                      "branch": {
+                        "id": 4,
+                        "name": "Hyderabad",
+                        "code": "HYD"
                       },
                       "fields": {
                         "city": "Hyderabad",
@@ -2443,6 +4910,12 @@
                     "type": "integer",
                     "exclusiveMinimum": 0,
                     "maximum": 2147483647
+                  },
+                  "branchId": {
+                    "description": "The lead’s branch (IDs from GET /api/v1/branches). Without one the lead takes its owner’s branch, if they belong to one.",
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 2147483647
                   }
                 },
                 "required": [
@@ -2485,7 +4958,6 @@
                     "name": "Priya Sharma",
                     "phone": "+919812345678",
                     "email": "priya@example.com",
-                    "leadType": "student",
                     "stageId": 7,
                     "pipelineId": 2,
                     "sourceId": 3,
@@ -2506,6 +4978,12 @@
                     "owner": {
                       "id": 21,
                       "name": "Ravi Kumar"
+                    },
+                    "branchId": 4,
+                    "branch": {
+                      "id": 4,
+                      "name": "Hyderabad",
+                      "code": "HYD"
                     },
                     "fields": {
                       "city": "Hyderabad",
@@ -2550,7 +5028,7 @@
             }
           },
           "422": {
-            "description": "VALIDATION_FAILED: A field is missing or invalid; `details.fields` says which. A refused stage, pipeline, owner or source gives `details.reason` (for example `STAGE_NOT_IN_PIPELINE`) and `details.field`.",
+            "description": "VALIDATION_FAILED: A field is missing or invalid; `details.fields` says which. A refused stage, pipeline, owner, source or branch gives `details.reason` (for example `STAGE_NOT_IN_PIPELINE` or `BRANCH_NOT_FOUND`) and `details.field`.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2988,7 +5466,6 @@
                     "name": "Priya Sharma",
                     "phone": "+919812345678",
                     "email": "priya@example.com",
-                    "leadType": "student",
                     "stageId": 7,
                     "pipelineId": 2,
                     "sourceId": 3,
@@ -3009,6 +5486,12 @@
                     "owner": {
                       "id": 21,
                       "name": "Ravi Kumar"
+                    },
+                    "branchId": 4,
+                    "branch": {
+                      "id": 4,
+                      "name": "Hyderabad",
+                      "code": "HYD"
                     },
                     "fields": {
                       "city": "Hyderabad",
@@ -3080,7 +5563,7 @@
           "Leads"
         ],
         "summary": "Update a lead",
-        "description": "Changes only the fields you send, checked with the organization’s field rules, and optionally the stage or the pipeline (`pipelineId`, with `stageId` for where in it). Every change is recorded on the lead’s timeline as made via the API.\n\nScope: `leads.write`.",
+        "description": "Changes only the fields you send, checked with the organization’s field rules, and optionally the stage, the pipeline (`pipelineId`, with `stageId` for where in it) or the branch (`branchId`). Every change is recorded on the lead’s timeline as made via the API.\n\nScope: `leads.write`.",
         "security": [
           {
             "ApiKey": [
@@ -3156,6 +5639,19 @@
                     "type": "integer",
                     "exclusiveMinimum": 0,
                     "maximum": 2147483647
+                  },
+                  "branchId": {
+                    "description": "Moves the lead to this branch (IDs from GET /api/v1/branches), or null for no branch. Needs a key that can assign leads. A new owner (`assigned_to`) in another branch takes the lead to their branch unless a branchId is sent.",
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "maximum": 2147483647
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   }
                 },
                 "additionalProperties": false
@@ -3193,7 +5689,6 @@
                     "name": "Priya Sharma",
                     "phone": "+919812345678",
                     "email": "priya@example.com",
-                    "leadType": "student",
                     "stageId": 9,
                     "pipelineId": 2,
                     "sourceId": 3,
@@ -3214,6 +5709,12 @@
                     "owner": {
                       "id": 21,
                       "name": "Ravi Kumar"
+                    },
+                    "branchId": 4,
+                    "branch": {
+                      "id": 4,
+                      "name": "Hyderabad",
+                      "code": "HYD"
                     },
                     "fields": {
                       "city": "Hyderabad",
@@ -3268,7 +5769,7 @@
             }
           },
           "422": {
-            "description": "VALIDATION_FAILED: A field is invalid, or a required field would be emptied; `details.fields` says which. A refused stage, pipeline, owner or source gives `details.reason` (for example `STAGE_NOT_IN_PIPELINE`) and `details.field`. Nothing is changed when a request is refused this way.",
+            "description": "VALIDATION_FAILED: A field is invalid, or a required field would be emptied; `details.fields` says which. A refused stage, pipeline, owner, source or branch gives `details.reason` (for example `STAGE_NOT_IN_PIPELINE` or `BRANCH_NOT_FOUND`) and `details.field`. Nothing is changed when a request is refused this way.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3717,6 +6218,107 @@
                       "isDefault": false,
                       "usedFor": "opportunities",
                       "isOpportunityDefault": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED: The key is missing, wrong, revoked or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN: The key lacks the scope, or the organization’s plan does not include it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED: More than 600 requests in an hour with this key, or 3000 with all of the organization’s keys together. `Retry-After` says how many seconds to wait.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL: Something failed on our side. Retry; if it persists, contact support quoting the `X-Request-Id` response header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/branches": {
+      "get": {
+        "operationId": "list-branches",
+        "tags": [
+          "Reference"
+        ],
+        "summary": "List branches",
+        "description": "The organization’s branches in order, archived ones last. Send an ID as `branchId` when creating or updating a lead, or as `branch_id` to list one branch’s leads. Empty when the organization has no branches.\n\nScope: `leads.read`.",
+        "security": [
+          {
+            "ApiKey": [
+              "leads.read"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Branches in order.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Branch"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 4,
+                      "name": "Hyderabad",
+                      "city": "Hyderabad",
+                      "code": "HYD",
+                      "colour": "emerald",
+                      "isActive": true
+                    },
+                    {
+                      "id": 6,
+                      "name": "Banjara Hills",
+                      "city": "Hyderabad",
+                      "code": "BH",
+                      "colour": "sky",
+                      "isActive": true
                     }
                   ]
                 }
@@ -5273,7 +7875,7 @@
           "Public billing catalogue"
         ],
         "security": [],
-        "description": "Current published revisions only. Integer INR paise, monthly/quarterly/annual (annualPricePaise is for twelve months; annualExtraUserPricePaise is per extra user for twelve months, null meaning twelve times the monthly price). newSaleGstRatePercent is the tax rate, in percent, on a new sale; authenticated signed checkout previews bind the exact payable total. Null limits mean unlimited; null AI credit means unmetered, zero means no included metered credit. Existing agreements retain their accepted terms. Responses are never cached.",
+        "description": "Current published revisions only. Integer INR paise, monthly/quarterly/annual (annualPricePaise is for twelve months; annualExtraUserPricePaise is per extra user for twelve months, null meaning twelve times the monthly price). newSaleGstRatePercent is the tax rate, in percent, on a new sale; authenticated signed checkout previews bind the exact payable total. Null limits mean unlimited; null AI credit means unmetered, zero means no included metered credit. Existing agreements retain their accepted terms. currencies lists the currencies the whole list is priced in (INR first; AUD only when every plan has an AUD price block, ex GST). currencyPrices.AUD holds integer AUD cents on a plan or add-on, with aiCredits meaning the same as aiCreditsPaise. Responses are never cached.",
         "responses": {
           "200": {
             "description": "Published catalogue, including its atomic publication generation",
@@ -5302,6 +7904,16 @@
                     "currency": {
                       "type": "string",
                       "const": "INR"
+                    },
+                    "currencies": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "INR",
+                          "AUD"
+                        ]
+                      }
                     },
                     "periods": {
                       "type": "array",
@@ -5449,6 +8061,84 @@
                                 "type": "null"
                               }
                             ]
+                          },
+                          "currencyPrices": {
+                            "type": "object",
+                            "properties": {
+                              "AUD": {
+                                "type": "object",
+                                "properties": {
+                                  "monthly": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "quarterly": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "annual": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "extraUser": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "annualExtraUser": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "aiCredits": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "monthly",
+                                  "quarterly",
+                                  "annual",
+                                  "extraUser",
+                                  "annualExtraUser",
+                                  "aiCredits"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "additionalProperties": false
                           }
                         },
                         "required": [
@@ -5569,6 +8259,84 @@
                           },
                           "isActive": {
                             "type": "boolean"
+                          },
+                          "currencyPrices": {
+                            "type": "object",
+                            "properties": {
+                              "AUD": {
+                                "type": "object",
+                                "properties": {
+                                  "monthly": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "quarterly": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "annual": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "extraUser": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "annualExtraUser": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "aiCredits": {
+                                    "anyOf": [
+                                      {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "monthly",
+                                  "quarterly",
+                                  "annual",
+                                  "extraUser",
+                                  "annualExtraUser",
+                                  "aiCredits"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "additionalProperties": false
                           }
                         },
                         "required": [
@@ -5593,6 +8361,7 @@
                     "newSaleGstRatePercent",
                     "generation",
                     "currency",
+                    "currencies",
                     "periods",
                     "plans",
                     "addOns"
@@ -6298,7 +9067,7 @@
       "ApiKey": {
         "type": "http",
         "scheme": "bearer",
-        "description": "An organization API key, created in Settings → Integrations → API keys. Keys start with `mk_live_`. Marro stores only a hash of a key, so it is shown once, when it is created: copy it then. Revoking a key ends its access at once. To replace a key without downtime, create the new one, switch your server to it, then revoke the old one. Changes made with a key appear on the lead’s timeline as made by the person who created the key, via the API. Scopes: `objects.records.read` (Read custom objects), `objects.records.write` (Create and update custom-object records), `objects.records.delete` (Delete custom-object records), `leads.read` (Read leads), `leads.write` (Create and update leads), `leads.capture` (Capture leads), `crm.records.read` (Read customers and opportunities), `crm.records.write` (Create and update customers and opportunities), `agent.tools` (AI agent tools (MCP)).",
+        "description": "An organization API key, created in Settings → Integrations → API keys. Keys start with `mk_live_`. Marro stores only a hash of a key, so it is shown once, when it is created: copy it then. Revoking a key ends its access at once. To replace a key without downtime, create the new one, switch your server to it, then revoke the old one. Changes made with a key appear on the lead’s timeline as made by the person who created the key, via the API. Scopes: `objects.records.read` (Read custom objects), `objects.records.write` (Create and update custom-object records), `objects.records.delete` (Delete custom-object records), `leads.read` (Read leads), `leads.write` (Create and update leads), `leads.capture` (Capture leads), `crm.records.read` (Read customers and opportunities), `crm.records.write` (Create and update customers and opportunities), `reports.read` (Read reports), `money.read` (Read products, quotes, invoices and payments), `money.write` (Create quotes and invoices and record payments), `agent.tools` (AI agent tools (MCP)).",
         "x-scopes": {
           "objects.records.read": {
             "label": "Read custom objects",
@@ -6338,6 +9107,21 @@
           "crm.records.write": {
             "label": "Create and update customers and opportunities",
             "description": "Create and update contacts, companies and enabled opportunities with validated custom fields. Needs crm.records.read.",
+            "module": "crm"
+          },
+          "reports.read": {
+            "label": "Read reports",
+            "description": "List the custom reports shared with everyone in the organization and read their figures for any period.",
+            "module": "crm.analytics"
+          },
+          "money.read": {
+            "label": "Read products, quotes, invoices and payments",
+            "description": "Read the product catalogue, quotes and GST invoices with their lines and totals, and payments received.",
+            "module": "crm"
+          },
+          "money.write": {
+            "label": "Create quotes and invoices and record payments",
+            "description": "Create quotes and invoices (as drafts, or issued with their number) and record payments against invoices. Needs money.read.",
             "module": "crm"
           },
           "agent.tools": {
@@ -6399,6 +9183,516 @@
         ],
         "additionalProperties": false
       },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 2147483647
+          },
+          "name": {
+            "type": "string"
+          },
+          "sku": {
+            "type": "string",
+            "description": "SKU or item code; empty when not set."
+          },
+          "description": {
+            "type": "string"
+          },
+          "unitPriceMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "currency": {
+            "type": "string"
+          },
+          "gstRate": {
+            "anyOf": [
+              {
+                "type": "number",
+                "const": 0
+              },
+              {
+                "type": "number",
+                "const": 5
+              },
+              {
+                "type": "number",
+                "const": 12
+              },
+              {
+                "type": "number",
+                "const": 18
+              },
+              {
+                "type": "number",
+                "const": 28
+              }
+            ],
+            "description": "GST in percent."
+          },
+          "hsnSac": {
+            "type": "string",
+            "description": "HSN (goods) or SAC (services) code; empty when not set."
+          },
+          "unit": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "sku",
+          "description",
+          "unitPriceMinor",
+          "currency",
+          "gstRate",
+          "hsnSac",
+          "unit",
+          "active"
+        ],
+        "additionalProperties": false
+      },
+      "SalesDocument": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 2147483647
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "quote",
+              "invoice"
+            ]
+          },
+          "number": {
+            "description": "Null while a draft. Invoices: PREFIX/2026-27/0001, a new series each April.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "sent",
+              "accepted",
+              "declined",
+              "partly_paid",
+              "paid",
+              "void"
+            ]
+          },
+          "overdue": {
+            "type": "boolean",
+            "description": "A sent, unpaid invoice past its due date."
+          },
+          "leadId": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "quoteId": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "For an invoice made from a quote."
+          },
+          "currency": {
+            "type": "string"
+          },
+          "issueDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "description": "YYYY-MM-DD."
+          },
+          "dueDate": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "YYYY-MM-DD."
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "A quote's valid-until day, an invoice's due day."
+          },
+          "customer": {
+            "$ref": "#/components/schemas/DocumentParty"
+          },
+          "supplier": {
+            "$ref": "#/components/schemas/DocumentParty"
+          },
+          "placeOfSupply": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "taxMode": {
+            "type": "string",
+            "enum": [
+              "intra",
+              "inter",
+              "none"
+            ],
+            "description": "intra: CGST and SGST; inter: IGST; none: no GST (no supplier GSTIN)."
+          },
+          "subtotalMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "discountMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "taxableMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "cgstMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "sgstMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "igstMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "roundOffMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "totalMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "paidMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "dueMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "lines": {
+            "description": "Only when reading one document.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentLine"
+            }
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "number",
+          "status",
+          "overdue",
+          "leadId",
+          "quoteId",
+          "currency",
+          "issueDate",
+          "dueDate",
+          "customer",
+          "supplier",
+          "placeOfSupply",
+          "taxMode",
+          "subtotalMinor",
+          "discountMinor",
+          "taxableMinor",
+          "cgstMinor",
+          "sgstMinor",
+          "igstMinor",
+          "roundOffMinor",
+          "totalMinor",
+          "paidMinor",
+          "dueMinor",
+          "createdAt"
+        ],
+        "additionalProperties": false
+      },
+      "DocumentParty": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "gstin": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "address": {
+            "type": "string"
+          },
+          "stateCode": {
+            "description": "GST state code, like \"29\" for Karnataka.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "phone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "email": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "gstin",
+          "address",
+          "stateCode",
+          "phone",
+          "email"
+        ],
+        "additionalProperties": false
+      },
+      "DocumentLine": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "hsnSac": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Up to three decimals."
+          },
+          "unitPriceMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "discountMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "gstRate": {
+            "anyOf": [
+              {
+                "type": "number",
+                "const": 0
+              },
+              {
+                "type": "number",
+                "const": 5
+              },
+              {
+                "type": "number",
+                "const": 12
+              },
+              {
+                "type": "number",
+                "const": 18
+              },
+              {
+                "type": "number",
+                "const": 28
+              }
+            ],
+            "description": "GST in percent."
+          },
+          "taxableMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "taxMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "totalMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "hsnSac",
+          "unit",
+          "quantity",
+          "unitPriceMinor",
+          "discountMinor",
+          "gstRate",
+          "taxableMinor",
+          "taxMinor",
+          "totalMinor"
+        ],
+        "additionalProperties": false
+      },
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 2147483647
+          },
+          "invoiceId": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "leadId": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "amountMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "In the smallest unit of the currency (paise for rupees)."
+          },
+          "currency": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "link",
+              "cash",
+              "upi",
+              "bank",
+              "card",
+              "cheque",
+              "other"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "created",
+              "paid",
+              "expired",
+              "cancelled",
+              "failed"
+            ]
+          },
+          "reference": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "paidAt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "invoiceId",
+          "leadId",
+          "amountMinor",
+          "currency",
+          "method",
+          "status",
+          "reference",
+          "paidAt",
+          "createdAt"
+        ],
+        "additionalProperties": false
+      },
       "Lead": {
         "type": "object",
         "properties": {
@@ -6417,13 +9711,6 @@
             "type": [
               "string",
               "null"
-            ]
-          },
-          "leadType": {
-            "type": "string",
-            "enum": [
-              "student",
-              "consultant"
             ]
           },
           "stageId": {
@@ -6503,6 +9790,29 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/NamedRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "branchId": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The lead’s branch (see GET /api/v1/branches); null for none."
+          },
+          "branch": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BranchRef"
               },
               {
                 "type": "null"
@@ -6612,7 +9922,6 @@
           "name",
           "phone",
           "email",
-          "leadType",
           "stageId",
           "pipelineId",
           "sourceId",
@@ -6621,6 +9930,8 @@
           "pipeline",
           "source",
           "owner",
+          "branchId",
+          "branch",
           "fields",
           "createdAt",
           "updatedAt"
@@ -6670,6 +9981,29 @@
         "required": [
           "id",
           "name"
+        ],
+        "additionalProperties": false
+      },
+      "BranchRef": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 2147483647
+          },
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string",
+            "description": "The branch’s short code, 1–6 uppercase letters or digits, e.g. \"HYD\"."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "code"
         ],
         "additionalProperties": false
       },
@@ -6944,6 +10278,46 @@
           "isDefault",
           "usedFor",
           "isOpportunityDefault"
+        ],
+        "additionalProperties": false
+      },
+      "Branch": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 2147483647
+          },
+          "name": {
+            "type": "string"
+          },
+          "city": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "code": {
+            "type": "string",
+            "description": "1–6 uppercase letters or digits, unique in the organization."
+          },
+          "colour": {
+            "type": "string",
+            "description": "The branch’s colour in the CRM: emerald, sky, violet, amber, rose, teal, indigo or slate."
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "False for an archived branch. Leads keep an archived branch."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "city",
+          "code",
+          "colour",
+          "isActive"
         ],
         "additionalProperties": false
       }

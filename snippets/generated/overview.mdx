@@ -24,6 +24,31 @@ The full specification is an OpenAPI 3.1.0 document at [https://app.marro.si/api
 | [Update a custom-object record](/api-reference/custom-objects/update-object-record) | PATCH | `/api/v1/objects/{slug}/records/{recordId}` |
 | [Delete a custom-object record](/api-reference/custom-objects/delete-object-record) | DELETE | `/api/v1/objects/{slug}/records/{recordId}` |
 
+### Reports
+
+Custom reports shared with everyone in the organization, and their figures. Built in the app under Reports → Custom reports; a key reads them over every lead.
+
+| Endpoint | Method | Path |
+| --- | --- | --- |
+| [List reports](/api-reference/reports/list-reports) | GET | `/api/v1/reports` |
+| [Run a report](/api-reference/reports/get-report-results) | GET | `/api/v1/reports/{reportId}/results` |
+
+### Money
+
+Products, quotes, GST invoices and payments. Amounts are integers in the smallest currency unit (paise). Inside the organization's state an invoice carries CGST and SGST, outside it IGST, and without a supplier GSTIN no GST.
+
+| Endpoint | Method | Path |
+| --- | --- | --- |
+| [List products and services](/api-reference/money/list-products) | GET | `/api/v1/products` |
+| [List quotes](/api-reference/money/list-quotes) | GET | `/api/v1/quotes` |
+| [Create a quote](/api-reference/money/create-quote) | POST | `/api/v1/quotes` |
+| [Read a quote](/api-reference/money/get-quote) | GET | `/api/v1/quotes/{quoteId}` |
+| [List invoices](/api-reference/money/list-invoices) | GET | `/api/v1/invoices` |
+| [Create a invoice](/api-reference/money/create-invoice) | POST | `/api/v1/invoices` |
+| [Read a invoice](/api-reference/money/get-invoice) | GET | `/api/v1/invoices/{invoiceId}` |
+| [Record a payment](/api-reference/money/record-invoice-payment) | POST | `/api/v1/invoices/{invoiceId}/payments` |
+| [List payments](/api-reference/money/list-payments) | GET | `/api/v1/payments` |
+
 ### Leads
 
 Record-link custom fields accept numeric target ID arrays (one or up to 20 according to recordLink.multiple). Reads resolve accessible targets to id/kind/name/href objects. Deleted, archived, disabled and inaccessible targets are omitted. Destinations require the corresponding leads.read or crm.records.read scope; user destinations have no public API scope. Object destinations use object:&#60;id&#62;, require objects.records.read and the key creator current object grants.
@@ -46,6 +71,7 @@ How this organization is set up: fields, stages, sources and people.
 | [List lead fields](/api-reference/reference/list-fields) | GET | `/api/v1/lead-fields` |
 | [List stages](/api-reference/reference/list-stages) | GET | `/api/v1/lead-stages` |
 | [List pipelines](/api-reference/reference/list-pipelines) | GET | `/api/v1/pipelines` |
+| [List branches](/api-reference/reference/list-branches) | GET | `/api/v1/branches` |
 | [List sources](/api-reference/reference/list-sources) | GET | `/api/v1/lead-sources` |
 | [List people](/api-reference/reference/list-users) | GET | `/api/v1/users` |
 
