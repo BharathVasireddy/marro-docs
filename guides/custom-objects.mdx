@@ -3,11 +3,11 @@ title: Custom objects
 description: Keep your own kinds of records, with fields and access set separately for each object.
 ---
 
-Custom objects let an administrator add a record type such as Vehicles, Courses or Properties.
+Custom objects let an administrator add an object such as Vehicles, Courses or Properties.
 Custom objects become available after the feature update is released. If Settings says they are
 not available yet, continue using the existing CRM record types.
 
-Open [Custom records](https://app.marro.si/settings/objects) in Settings. Give the object a name,
+Open [Custom objects](https://app.marro.si/settings/objects) in Settings. Give the object a name,
 a permanent address such as `vehicles`, and an icon from the offered list. Changing its name does
 not change its address. Each object starts with a required short-text **Title** field.
 
@@ -126,7 +126,7 @@ There are up to 20 objects per organisation, 100 current fields per object (incl
 fields) and 100,000 records per organisation (including archived records). Retained deleted fields
 are separate from the current-field limit. No subscription upgrade is required by this implementation.
 
-Core boards and record links are implemented. Additional screens are implemented locally and await independent review and release validation: **Customer portal** on a record shares selected fields with a linked lead; linked records appear in a WhatsApp chat's lead panel; **Custom objects → Reports** counts or summarizes records; a form's Settings tab chooses whether responses create custom records. **Settings → Custom records → Workflows** configures reviewed internal record workflows. The native app has no custom-object screens or navigation.
+Core boards and record links are implemented. Additional screens are implemented locally and await independent review and release validation: **Customer portal** on a record shares selected fields with a linked lead; linked records appear in a WhatsApp chat's lead panel; **Custom objects → Reports** counts or summarizes records; a form's Settings tab chooses whether responses create custom object records. **Settings → Custom objects → Workflows** configures reviewed internal record workflows. The native app has no custom-object screens or navigation.
 
 
 ## Workflows in preparation
@@ -204,11 +204,11 @@ sharing, report exports or new public API endpoints in this backend.
 
 ## Customer portal sharing (pending release)
 
-The local backend now supports deliberate read-only sharing of one custom record with one verified lead in the existing customer portal. This is pending interface work, independent review, migration and release checks; it is not a general availability announcement.
+The local backend now supports deliberate read-only sharing of one custom object record with one verified lead in the existing customer portal. This is pending interface work, independent review, migration and release checks; it is not a general availability announcement.
 
 An administrator must choose the exact existing record and lead, a current object-to-lead relationship and each scalar field to disclose, then individually approve the complete named review. Internal links alone do not share anything. There is no switch to publish all linked records or future records. Record titles may be private and appear only if their field is deliberately selected. Hidden, conditional, linked and file fields are excluded.
 
-Customers see only reviewed labels and selected scalar values through their existing verified portal session. Selected values reflect ordinary later updates. Customers cannot edit custom records, choose other leads or organizations, download files or export records through this feature. No public object API or new bearer link is added.
+Customers see only reviewed labels and selected scalar values through their existing verified portal session. Selected values reflect ordinary later updates. Customers cannot edit custom object records, choose other leads or organizations, download files or export records through this feature. No public object API or new bearer link is added.
 
 Changes to schema, access, ownership, lifecycle or the reviewed relationship revoke sharing. Restoring deleted records or links never restores sharing; an administrator must review and approve the record again. Staff assistant/mobile/WhatsApp actions use the same policy, and Auto mode still requires an individual human decision. If a response is uncertain, retain the original request identity and reconcile it before another action.
 
@@ -223,6 +223,6 @@ with `HUMAN_REVIEW_REQUIRED`; use the secure human workflow. No new public erase
 
 ## Inbox linked records and native backend
 
-The local Inbox backend reads only custom records already linked to the lead currently bound to the selected WhatsApp conversation. Inbox, lead and object access are checked independently; hidden records do not appear in names or counts. A chat without a lead gives no records. It never guesses by phone/email, creates links or sends a message. Ask Marro can read the same relationships with the actual conversation reference.
+The local Inbox backend reads only custom object records already linked to the lead currently bound to the selected WhatsApp conversation. Inbox, lead and object access are checked independently; hidden records do not appear in names or counts. A chat without a lead gives no records. It never guesses by phone/email, creates links or sends a message. Ask Marro can read the same relationships with the actual conversation reference.
 
 Private native backend endpoints now support current permitted definitions, records, normalized links, choices and boards. Supported manual create/edit/move operations use the shared validators, displayed versions and stable request identities. Unknown outcomes keep their original request and reconcile without automatic retry. Unsupported field types do not gain write access. Deletion and restoration still require the individually reviewed human workflow; native routes refuse rather than archiving. Native screens and independent review remain separate work; this is not a mobile availability announcement.
