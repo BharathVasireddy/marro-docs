@@ -174,8 +174,32 @@ may see in the list).
 
 ## Reports
 
-**Reports → Custom object reports** counts the records you can see, grouped by a dropdown, yes/no, number or date
-field, or by when they were added or changed, and can add up a number field. Open a group to see its records.
+Each object is a source in [custom reports](/guides/custom-reports): choose it under **Report on**. Count its
+records, or add up, average or find the highest of a number, money or percent field. Group or split by its
+dropdowns, yes/no fields, people fields and **Owner**, by the date it was added, last changed, moved to its stage or
+a date field of its own, and by the linked lead's stage, source, owner, team or fields (a record linked to several
+leads counts under the first; one with none under **No linked lead**). **Filter** narrows it on the object's own
+fields. Save it, put it on a [dashboard](/guides/custom-reports#dashboards) or have it emailed. Each person sees the
+figures for the records they may see; a dashboard's lead filter does not apply to object reports.
+
+**Reports → Custom object reports** stays for a quick count, with the records behind each group; **Make a chart**
+opens the same object in a new report.
+
+## Automations
+
+[Automations](/guides/automations) can start when **A custom object record is added**, **A custom object record
+changes** (any field, or only the ones you choose) or **A custom object record's stage changes** (into any stage, or
+only some). They run for each lead the record links to, such as the student on an application; a record that links
+to no lead starts nothing. Changes made by automations start nothing, so automations cannot loop.
+
+Two steps work on records for the lead:
+
+- **Add a custom object record** adds one, linked to the lead, with the values you set (text can use
+  `{{lead.name}}` and the like). Run twice, it adds it once.
+- **Change the lead's custom object records** sets the fields you choose on every record of that object linked to
+  the lead (up to 20).
+
+Steps act as the person who set up the automation, so that person's access to the object applies.
 
 ## Ask Marro and staff WhatsApp
 
