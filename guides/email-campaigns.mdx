@@ -27,14 +27,17 @@ the ready-made Social Media Manager role. Roles made before it was added get it 
   the same address as another lead, unsubscribed from marketing email, or bounced before.
 - **Email**: the subject, optional preview text (shown beside the subject in the inbox), and the email itself as blocks:
   **Text**, **Heading**, **Image**, **Button** and **Divider**. Move a block up or down, or remove it.
-  - In text, **B** makes words bold and the link button adds a link. A blank line starts a new paragraph.
+  - In text, **B** makes words bold and the link button adds a link; an `https://` address written out becomes a link
+    too. A blank line starts a new paragraph.
   - **Field** puts in the person's first name, full name, their lead owner's first name or your organisation's name,
     with words to use when it is missing: `{{first_name|there}}` reads "Hi there" for someone with no name.
   - For an image, **Upload** a PNG, JPEG or WebP up to 2MB, or give its `https://` address. Give each one a description
     for people who can't see it.
 - **From**: the sending address, its daily limit and your postal address. **Count opens** and **Count clicks** are on by
   default.
-- **When**: **Send now** or **Schedule** a time in the next 90 days.
+- **When**: **Send now** or **Schedule** a time in the next 90 days, in your organisation's time zone. Sending asks you to
+  confirm the number of people, the list and the sending address first. Anything still missing is listed beside the
+  button (on a phone, tap the line above **Send**).
 
 Beside it is the email exactly as the first person on the list gets it, on a computer or a phone. **Send a test** sends
 it, marked [Test], to up to five people on your team.
@@ -61,7 +64,9 @@ Open a campaign for its report, which updates by itself while it sends:
 - **Pause**, **Carry on** and **Stop** (people not sent to yet are skipped). A scheduled campaign that has not started can
   go back to a draft with **Edit**. **Duplicate** copies any campaign into a new draft.
 
-A bounce is an address that refused the email. When an address does not exist, no campaign goes to it again.
+A bounce is an address that refused the email. When an address does not exist, no campaign goes to it again. When
+every email would fail the same way (the sending address needs connecting again, or your mail server can't be reached),
+the campaign pauses with the reason instead, and nobody is lost: fix it and press **Carry on**.
 
 ## What every campaign email carries
 
