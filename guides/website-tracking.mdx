@@ -1,0 +1,73 @@
+---
+title: "Website tracking"
+description: "See which pages your leads visit on your website, score them for it and start automations from it."
+---
+
+Website tracking records the pages people visit on your own website. Once a visitor becomes a lead, through one of your forms, the website chat or a link you sent them, their visits show on the lead, before and after they got in touch.
+
+<Note>
+  Website tracking is part of the Leads module. You need permission to manage your organization's settings to set it up.
+</Note>
+
+## Set it up
+
+<Steps>
+  <Step title="Open Website tracking">
+    Open **Settings → Integrations → Website tracking**.
+  </Step>
+  <Step title="Add your websites">
+    Under **Your websites**, write each website, one per line, like `example.com`. Subdomains are included. Pages on any other website are ignored.
+  </Step>
+  <Step title="Turn it on and save">
+    Turn on **Record visits** and press **Set up website tracking**. The code to paste appears.
+  </Step>
+  <Step title="Add the code to your website">
+    Under **Add it to your website**, press **Copy code**. Paste it just before `</body>` on every page, or in your site builder's custom code.
+  </Step>
+  <Step title="Update your privacy policy">
+    Under **Your privacy policy**, press **Copy text** and add it to your website's privacy policy, in your own words if you prefer.
+  </Step>
+</Steps>
+
+The code never changes, so you can change any setting later without touching your website. The page shows how many visits were recorded in the last 30 days, so you can see it working.
+
+## How visitors become leads
+
+Visits are anonymous until the visitor is known. Then their earlier visits, and every visit after, belong to the lead:
+
+- **Forms**: a Marro form embedded on a tracked page links the visitor when they send it.
+- **Website chat**: a [website chat](/guides/website-chat) on a tracked page links the visitor when they write with their phone number.
+- **Links you send**: with **Recognise leads from your links** on, links to your tracked websites in emails and WhatsApp messages sent from Marro say which lead opened them.
+
+A visitor recognised later as a different lead keeps their earlier visits with the first lead.
+
+## On the lead
+
+- **Website visits**, beside the lead's details: how many visits and pages, where the first visit came from, the pages viewed most, and the latest visits with their pages. The mobile app shows the same on the lead's screen.
+- **The timeline** has one entry per visit ("Visited your website: 4 pages, from Google"), not one per page, and one entry for the visits from before the lead was known.
+- **Lead scoring** has two rules: *Visited your website in the last 7 days* and *Came back to your website 3 or more times in 30 days*. Change their points in **Settings → Leads → Lead scoring**.
+
+## Automations
+
+Choose the trigger **A lead visits a page on your website** in an [automation](/guides/automations):
+
+- **Address contains** a text, like `pricing`, or **Address is** a page, like `/pricing`. Empty means any page.
+- **Once per page per visit**: on by default, so opening the same page again in one visit starts nothing.
+
+Only leads already known start it. For example: when a lead visits the pricing page, create a follow-up for their owner.
+
+## Reports
+
+In [custom reports](/guides/custom-reports), choose the source **Website visits** to count visits by date, where they came from, campaign, landing page, device and whether the visitor is a known lead, and to see pages viewed and time on the website. People who see only some leads see only those leads' visits.
+
+## Privacy
+
+- **Ask before recording**: visitors from the EU, the UK and Switzerland are always asked first and nothing is recorded until they agree. Choose **Everyone** to ask every visitor.
+- **Show the cookie notice**: Marro shows a small notice with **Accept** and **Decline**. If your website has its own consent tool, turn this off and have the tool call `marro("consent", true)` when the visitor agrees.
+- Browsers set to **Do Not Track** or **Global Privacy Control** are never recorded, nor are search engines and other bots.
+- Network addresses are shortened before they are stored, and personal details in page addresses (an email, a token) are removed.
+- **Keep visits for**: 13 months unless you choose otherwise (1 to 24 months). Older visits are removed every day.
+
+## Ask the assistant
+
+The assistant, on the web and on WhatsApp, can tell you what a lead viewed ("What did Priya look at on our website?") and change these settings with your approval.
