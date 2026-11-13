@@ -42,7 +42,8 @@ A field's type cannot change after it is added; add a new field instead.
 
 **Filled in to start with** sets a default: new records start with that value, and people can change it.
 **No two records the same** (for text, phone, email, link, number and money fields) stops two records having the
-same value, such as a registration number, ignoring capitals and spaces. If some records already share a value,
+same value, such as a registration number, ignoring capitals and spaces. It holds across every record of the
+object, including ones some people cannot see, so adding a value that is already taken is refused. If some records already share a value,
 Marro asks you to make them different first.
 
 Use the **⋯** menu on a field to move it up or down. The preview beside the fields shows the form exactly as
@@ -149,7 +150,8 @@ first rows, then import. You can choose who owns the new records, a person or a 
 To update records you already have, mark a field **No two records the same** (a registration number, an email) and
 choose **Update the one with the same …**: a row whose value is already on a record changes that record, and the
 others are added. Rows that could not be saved can be downloaded as a file with the reason for each, to fix and import
-again. Download needs the role's **Download** permission.
+again. Downloading a file needs the role's **Download** permission (it does not stop people seeing the records they
+may see in the list).
 
 ## Reports
 
