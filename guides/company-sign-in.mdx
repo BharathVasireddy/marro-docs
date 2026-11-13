@@ -3,14 +3,14 @@ title: "Company sign-in"
 description: "Let your team sign in with your company's identity provider, keep accounts in step with it, and set the rules for how everyone signs in."
 ---
 
-An organization administrator manages this in **Settings → Sign-in security**. Every change asks you to confirm it is you (your password, a code from your authenticator app, or your company sign-in) and is recorded in the activity log. With the Activity log in your plan, **Sign-in activity** on the same page shows every sign-in, failure and change, with a CSV export.
+An organization administrator manages this in **Settings → Team → Sign-in security**. If company sign-in isn't in your plan, the page shows which plan includes it. Every change asks you to confirm it is you (your password, a code from your authenticator app, or your company sign-in) and is recorded in the activity log. With the Activity log in your plan, **Sign-in activity** on the same page shows every sign-in, failure and change, with a CSV export.
 
 ## Connect your identity provider
 
 Company sign-in works with any provider that supports OpenID Connect: Microsoft Entra ID, Google Workspace, Okta, OneLogin, JumpCloud, Keycloak and others.
 
 1. Choose **Add connection** and your **Identity provider**. Marro shows the exact steps for it and the redirect address to copy into your provider.
-2. Enter the **Issuer**, **Client ID** and **Client secret** from your provider. The secret is stored encrypted and never shown again.
+2. Enter the **Issuer**, **Client ID** and **Client secret** from your provider. The secret is stored encrypted and never shown again. If the issuer is wrong, Marro says so under the field before saving anything.
 3. Choose **Test connection** and sign in with your provider. Check the details it received, then **Turn on**. The test also says whether your provider reported two-step for that sign-in (see [Two-step sign-in after company sign-in](#two-step-sign-in-after-company-sign-in)).
 
 Turning a connection off or deleting it, removing a domain, revoking a provisioning token and **Sign everyone out** each ask you to confirm first, because they stop people signing in.
