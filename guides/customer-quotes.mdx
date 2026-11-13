@@ -4,7 +4,7 @@ description: Prepare reviewed quotes and record a decision on an immutable revis
 ---
 
 <Note>
-Quote screens are implemented and awaiting release validation. Open **Money → Quotes**. Publishing gives you a private link to share yourself; Marro does not send it. Certified provider e-signing is not configured.
+Customer quotes are the quotes made before quotes moved to Money. They are listed in **Money → Quotes** with every other quote, marked **Customer quote**, and open on their own page. New quotes are made with **New quote** there, or on a lead or customer: see [Quotes and invoices](/guides/quotes-and-invoices). Publishing a customer quote gives you a private link to share yourself; Marro does not send it. Certified provider e-signing is not configured.
 </Note>
 
 Certified signing requires an explicitly selected provider, an implemented adapter and verified
@@ -14,9 +14,10 @@ on that quote; it does not create a certified signing request.
 
 Prepare a product or service quote for an existing customer. Optionally link its company, opportunity and an existing customer payment request. You need current CRM access and the normal customer record permissions. Opportunities that your organization has turned off cannot be used.
 
-Start from **New quote** on the customer's page or from **Money → Quotes**. The dialog offers only
-that customer's own company and payment requests you can access. Linking an existing payment is
-context; it does not create a charge or send a payment request.
+**New quote**, on a customer's page and in **Money → Quotes**, now opens the quote builder described in
+[Quotes and invoices](/guides/quotes-and-invoices). Existing customer quotes stay as they are: open them from
+**Money → Quotes** (archived ones under the **Archived** filter) and their templates from **Templates** there.
+A linked payment is context; it does not create a charge or send a payment request.
 
 Start with a draft or an accessible template. Enter the supplier name/address and tax identity from confirmed organization details. A missing tax identity stays unconfigured; Marro does not supply a GSTIN, tax treatment or legal terms. Add the customer's display label, currency and confirmed currency decimal places. Amount fields use integer minor units as strings. For INR, 100 minor units represents ₹1; no currency conversion occurs.
 

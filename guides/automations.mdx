@@ -77,6 +77,10 @@ Each runs once for each lead each time it comes round, from when you switch it o
 - **Send to a web address**: posts the lead and what started the automation (the quote, the call, the form…) to a public `https` address. Each request has an `X-CRM-Signature` header: `sha256=` and the HMAC-SHA256 of the body, keyed with the signing secret shown in the step.
 - **Call an API**: sends a request to a public `https` address and keeps its answer, so later steps can use it as `{{response.<name>.<field>}}`.
 
+**Create a follow-up** is due after a length of time, or **At a time of day**: so many days from today at a time in your organization's time zone, for example 10:00 on the next working day with **Only on a working day** on.
+
+An email (**Send an email to the lead** or **Send an email template**) can name the automation's invoice or quote: `{{invoice.number}}`, `{{invoice.total}}`, `{{invoice.paid}}`, `{{invoice.due}}`, `{{invoice.link}}`, `{{quote.number}}`, `{{quote.total}}` and `{{quote.link}}`. It is the invoice or quote an earlier step made, the one paid or accepted while the automation waited for it, the one that started it, or else the lead's latest. The link opens the invoice or quote as it is now, so **Wait for a reply or a change** (an invoice is paid) followed by an email with `{{invoice.paid}}` and `{{invoice.link}}` is a receipt. An email that names an invoice the lead does not have is not sent. Files cannot be attached to automation emails yet.
+
 ## Customers and records
 
 Two steps connect a lead to the rest of your records:
@@ -104,8 +108,8 @@ A stage you don't match leaves things as they are. Moves made by automations nev
 
 Steps that pause make an automation a journey:
 
-- **Wait**: a length of time, or until a time of day, optionally on a working day.
-- **Wait for a reply or a change**: the lead replies on WhatsApp, changes stage, a follow-up is done, or a field changes. It has two ways on: if it happens, and if it doesn't happen in time.
+- **Wait**: a length of time, or until a time of day, optionally on a working day. In an automation that starts from an appointment (**An appointment is booked** or **An appointment is coming up**), also **Until before the appointment**, so a reminder a day before and another an hour before live in one automation. If that time has already come it carries on at once; if the appointment is moved, the wait follows it; if it is cancelled, the automation stops for that lead.
+- **Wait for a reply or a change**: the lead replies on WhatsApp, by email or on any channel, changes stage, a follow-up is done, a field changes, or a call with the lead is logged (answered calls unless you choose otherwise, optionally with a call outcome). It has two ways on: if it happens, and if it doesn't happen in time.
 - **If… otherwise…** sends each lead down the first way whose condition it matches.
 - **Use another automation** runs a reusable automation for the same lead, then carries on.
 - **Call with AI** waits for its call to end. It has two ways on: **Answered** and **Not answered**.
@@ -113,6 +117,12 @@ Steps that pause make an automation a journey:
 The **Automations** page shows how many are on, how many leads are waiting inside a journey, and how many runs failed, then every automation in a table. Pick dates to count runs and failures for that period (the last 7 days unless you choose), search by name, filter by type or status, and sort by any column. Switch an automation on or off in its row.
 
 Each automation is labelled **Instant**, **Journey** or **Reusable**.
+
+### Stop when the lead replies
+
+Under **Starts**, a journey can **Stop when the lead replies**: a lead waiting in it leaves as soon as they reply on WhatsApp, by email, by SMS or on another inbox channel. A **Wait for a reply or a change** that waits for that reply still goes its **If they reply** way.
+
+For example, a missed call: **When a call is logged** (missed calls only), send a WhatsApp, create a callback follow-up, then **Wait for a reply or a change** (a call with the lead is logged, answered calls only) for a day. When they are called back and the call connects, the journey ends.
 
 ## Call with AI
 
@@ -136,6 +146,8 @@ Start an automation from **A call is analysed** to act on it. Choose which calls
 - **Set the stage from the call**: choose the stages the AI may move the lead to. It moves the lead only when what was said clearly fits one of them. The reason and the words from the call are noted on the lead, with a **Put back** button that returns the lead to its earlier stage. When the call is not clear, the lead stays where it is and its owner gets a follow-up to check the call.
 - **Book what was agreed on the call**: when both sides agreed a day and time, it books the appointment with the lead owner, in your organization's time zone, up to 90 days ahead. When no time was clearly agreed, the owner gets a follow-up to fix one.
 
+To update only new enquiries, add a **Stage** condition for **New enquiry** and use only **Set the stage from the call**. An existing confirmed appointment can justify the **Appointment booked** stage. A requested time or a promise to call back is still **Follow-up needed**. If there is no clear next step, the stage stays as it is. The stage step does not create an appointment.
+
 Each step goes on one of two ways: **Moved** or **Booked**, and **Not clear**. Switch off the follow-up in the step if you don't want it.
 
 Ready-made automations to start from:
@@ -149,7 +161,7 @@ A call with no recording can't be read. Automations that start from a call can't
 
 ## If a step fails
 
-Any step that does something can have an **If it fails** way on, and **Try again up to** 3 times first. A step that fails with an **If it fails** way carries on along it (for example, tell the owner) instead of stopping the whole automation. The run history says which step failed and why. **Run again** on a finished run runs the automation again, as it is now, for the same lead.
+Any step that does something can have an **If it fails** way on, and **Try again up to** 3 times first. **Call an API** and **Send to a web address** try again after 1 minute, then 10 minutes, then an hour, as the other system may be down for a while; the lead waits at that step meanwhile. Other steps try again a few seconds apart. A step that fails with an **If it fails** way carries on along it (for example, tell the owner) instead of stopping the whole automation. The run history says which step failed and why. **Run again** on a finished run runs the automation again, as it is now, for the same lead.
 
 ## Test it
 
@@ -158,6 +170,8 @@ Press **Try on a lead** in the builder and choose a lead. **Test on this lead** 
 ### Leads already here
 
 An automation only runs for what happens from now on. For one that starts from the lead as it is (a stage, an owner, a score band, no contact, a schedule, a new lead), switch it on and press **Run for leads already here** to run it for leads already in that state. It runs for up to 500 leads at a time that it has never run for, oldest first. Press it again for the next ones. Its conditions and limits still apply, and its steps really happen. You can also ask Marro to do it.
+
+To run one for particular leads, select them on the **Leads** page and choose **Bulk actions → Run an automation** (for people who manage settings, up to 500 at a time). The same rules apply: leads it already ran for, leads not in the state that starts it (its stage, owner or band) and leads outside its conditions are left out, and you see how many it started for.
 
 The number of automations you can have depends on your plan. See **Settings → Subscription**.
 
