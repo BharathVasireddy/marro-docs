@@ -5,7 +5,7 @@ description: Write one email and send it to a whole lead list from your organisa
 
 An email campaign is one email sent to everyone on a lead list: a newsletter, an offer, an announcement. It goes from
 your organisation's sending address, at a pace your address can take, and its report shows who got it, opened it,
-clicked and unsubscribed. Campaigns sit beside WhatsApp broadcasts in **Inbox → Broadcasts → Email**, and come with
+clicked and unsubscribed. Campaigns are in **Email → Campaigns** in the menu, and come with
 **Email sequences** in your plan. People whose role has **Send email campaigns** can write and send them: Admin always, and
 the ready-made Social Media Manager role. Roles made before it was added get it only when an admin ticks it on
 **Settings → Roles**.
@@ -21,26 +21,68 @@ the ready-made Social Media Manager role. Roles made before it was added get it 
 
 ## Write it
 
-**New campaign** opens the composer. The draft saves itself as you write.
+**New campaign** opens a checklist: **To**, **From**, **Subject**, **Content** and **Send settings**. Each is a card with a
+one-line summary and a green tick when it is done, or "Add …" when it isn't. Click a card to change it in place, then
+**Save**. The campaign's name is at the top; click it to rename. The draft saves itself, and the header says so.
+**Review and send** stays disabled and reads "N things left" until nothing is missing; click it to see the list, and
+each line takes you to the card that fixes it.
 
-- **Who**: choose a list. You see how many will get it, and who is left out and why: no email address, your own team,
+- **To**: choose a list. You see how many will get it, and who is left out and why: no email address, your own team,
   the same address as another lead, unsubscribed from marketing email, or bounced before.
-- **Email**: the subject, optional preview text (shown beside the subject in the inbox), and the email itself as blocks:
-  **Text**, **Heading**, **Image**, **Button** and **Divider**. Move a block up or down, or remove it.
-  - In text, **B** makes words bold and the link button adds a link; an `https://` address written out becomes a link
-    too. A blank line starts a new paragraph.
-  - **Field** puts in the person's first name, full name, their lead owner's first name or your organisation's name,
-    with words to use when it is missing: `{{first_name|there}}` reads "Hi there" for someone with no name.
-  - For an image, **Upload** a PNG, JPEG or WebP up to 2MB, or give its `https://` address. Give each one a description
-    for people who can't see it.
-- **From**: the sending address, its daily limit and your postal address. **Count opens** and **Count clicks** are on by
-  default.
-- **When**: **Send now** or **Schedule** a time in the next 90 days, in your organisation's time zone. Sending asks you to
-  confirm the number of people, the list and the sending address first. Anything still missing is listed beside the
-  button (on a phone, tap the line above **Send**).
+- **From**: the organisation's sending address (change it in **Settings → Email sending**), its daily limit and your
+  postal address.
+- **Subject**: the subject and optional preview text, each with a character count against what an inbox shows, and a
+  preview of the inbox line (sender · subject · preview). Left empty, the preview text is the email's first words, skipping a
+  bare greeting like "Hi Priya,". **Field** adds the person's first name and the like.
+- **Send settings**: **Send now** or **Schedule** a time in your organisation's time zone, and whether to count opens
+  and clicks.
 
-Beside it is the email exactly as the first person on the list gets it, on a computer or a phone. **Send a test** sends
-it, marked [Test], to up to five people on your team.
+### Design the email
+
+**Design email** on the **Content** card opens the gallery: start blank, from one of six designs (newsletter,
+announcement, offer, event invite, simple letter, two-column update), or from **Your recent emails**. Each picture is
+the real email, drawn with your logo and colour.
+
+The editor fills the screen. **Content** on the left has the blocks: heading, text, image, button, columns, divider,
+spacer, social links and footer. Click one to add it after the selected block, or drag it onto the email. The email
+itself is in the middle, drawn the way it is sent.
+
+- Click a block to select it. Click words to type on the email itself: select words for **bold**, *italic* or a link,
+  and **Field** puts in the person's first name, full name, their lead owner's first name or your organisation's name,
+  with words to use when it is missing (they show as chips). Alignment is in the same toolbar.
+- Hover a block to move it up or down, drag it by its handle, duplicate it or delete it. A **+** between blocks inserts
+  one there.
+- The right side holds the selected block's settings: an image's upload or address, description, link, width and
+  alignment; a button's words, link, colour and shape; spacing. With nothing selected it holds the email's own style:
+  background, width, font, text, heading, link and button colours, and where the logo sits.
+- **Undo** and **Redo** step through your changes. The top bar shows **Saved** as you work; **Send test** and the
+  computer and phone preview are there too. **Save and close** returns to the checklist.
+- Anything that stops the email being sent, such as an image without a picture or a button without a link, is outlined
+  in red on the email and listed in the settings.
+
+On a phone the editor is one column: tap a block to change it in a sheet, **Add block** and **Email style** open
+sheets too, and **Preview** shows the email as it arrives.
+
+### Test and review
+
+**Send test** (on the checklist and in the editor) sends the email to up to five addresses you type, with your team
+suggested beside the field. It is marked [Test], fields are filled with sample values, nothing is tracked and nothing is
+recorded on leads. If a typed address belongs to a lead, you get a warning and have to choose **Send anyway**: tests
+aren't a way to email leads. The window then says who got it and when, a message confirms it, and the checklist keeps
+"Test sent to … at …". If it can't be sent you are told why in the same window. Tests are limited to 30 an hour for the
+organisation.
+
+If a test (or a campaign) reaches Gmail but not Microsoft 365 or other company inboxes, look at **From** on the checklist:
+
+- A **free address** (gmail.com, outlook.com, yahoo and similar) as the sending address often lands in spam at
+  companies. Connect an address on your own domain in **Settings → Email sending**.
+- **Domain authentication → Check** looks up your sending domain's public records and shows SPF, DKIM and DMARC as
+  pass, warning or fail, with what to change. It reads DNS only and changes nothing. Changes to DNS can take a few
+  hours to show.
+
+**Review and send** shows the email on a computer or a phone, who gets it and who is skipped, the sending address and
+how long the campaign will take, tracking, and when. Send or schedule asks you to confirm the number of people, the
+list and the sending address first.
 
 In Australia, Canada, the United Kingdom, the United Arab Emirates and Vietnam you confirm, on each campaign, that the
 people on the list agreed to get marketing email from you (or bought from you recently and were given a way to say no).
@@ -48,10 +90,10 @@ people on the list agreed to get marketing email from you (or bought from you re
 ## How fast it goes
 
 Each sending address has a daily limit, spread through the day: Gmail 500, Outlook 1,000 and your own mail server
-10,000 by default; **Change** beside the limit under **From** sets your own. A campaign bigger than today's room carries
+10,000 by default; **Edit** on the **From** card sets your own. A campaign bigger than today's room carries
 on by itself the next day. Anyone who unsubscribes, bounces or whose lead is deleted or archived before their turn is
 skipped, not emailed. Every campaign shares the
-room. The composer says when it will finish.
+room. The review says when it will finish.
 
 ## The report
 
