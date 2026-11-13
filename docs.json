@@ -54,6 +54,8 @@
             "pages": [
               "guides/inbox",
               "guides/email",
+              "guides/email-campaigns",
+              "guides/contact-preferences",
               "guides/website-chat",
               "guides/website-tracking",
               "guides/business-knowledge",
