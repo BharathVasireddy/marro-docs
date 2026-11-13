@@ -3,7 +3,7 @@ title: "Company sign-in"
 description: "Let your team sign in with your company's identity provider, keep accounts in step with it, and set the rules for how everyone signs in."
 ---
 
-An organization administrator manages this in **Settings → Sign-in security**. Every change asks you to confirm it is you (your password, or a code from your authenticator app) and is recorded in the activity log.
+An organization administrator manages this in **Settings → Sign-in security**. Every change asks you to confirm it is you (your password, a code from your authenticator app, or your company sign-in) and is recorded in the activity log.
 
 ## Connect your identity provider
 
@@ -46,3 +46,15 @@ For a sign-in code, choose **Sign in with a mobile number** below the email form
 ## In the app
 
 On the sign-in screen, **Sign in with your company** opens your provider in the browser and brings you back signed in.
+
+## Two-step sign-in after company sign-in
+
+If your identity provider already asked for a second factor (an authenticator, a security key, a code by text or a fingerprint), Marro does not ask for its own authenticator code on top, on the web or in the app. Marro knows this from what your provider reports about the sign-in. Providers that don't report it, such as Google Workspace, sign in as before: after your company sign-in, Marro asks for your authenticator code if you have set one up.
+
+Platform administrators always give Marro's own code.
+
+## Confirm it's you with your company
+
+Some changes, such as sign-in settings, ask you to confirm it is you first. If you sign in through your company, choose **Continue with** and your connection's name. Marro sends you to your provider to sign in again, then brings you back to the same page. You then have five minutes to make the change.
+
+If you have no password, authenticator or passkey in Marro, this is the only way to confirm. Your provider must sign you in afresh: if it reuses an earlier sign-in, Marro asks you to try again. Only the company account linked to you can confirm.

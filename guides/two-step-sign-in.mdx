@@ -12,7 +12,7 @@ Open **Sign-in security** in your account menu, or go to `/account/security`. Th
 3. Enter the six-digit code to finish. Two-step sign-in is enabled only after this code is checked.
 4. Generate backup codes and save them somewhere separate from your sign-in device.
 
-If you signed up with Google or Microsoft and have no password or existing factor, use **Forgot password** to set a password by email before enrolling.
+If you signed up with Google or Microsoft and have no password or existing factor, use **Forgot password** to set a password by email before enrolling. If you sign in through your company, choose **Continue with** and your company's connection to verify instead (see [Company sign-in](/guides/company-sign-in#confirm-its-you-with-your-company)).
 
 The setup secret is shown only during setup. Marro encrypts the stored secret. Never paste it, a sign-in code or a backup code into Ask Marro or WhatsApp.
 
@@ -24,7 +24,7 @@ On the web a passkey is a second step, not a way to sign in on its own (the Marr
 
 ## Signing in
 
-If you have an authenticator or passkey, entering your password or WhatsApp code is the first step. On the web, enter your **Authenticator code**, or open **Try other methods** to switch to a passkey (if available) or backup code. Choose **Sign out** to leave verification. Google and Microsoft sign-in follow the same second-step rule.
+If you have an authenticator or passkey, entering your password or WhatsApp code is the first step. On the web, enter your **Authenticator code**, or open **Try other methods** to switch to a passkey (if available) or backup code. Choose **Sign out** to leave verification. Google and Microsoft sign-in follow the same second-step rule. After company sign-in, Marro skips its own code when your company's identity provider reports it already asked for a second factor (see [Company sign-in](/guides/company-sign-in#two-step-sign-in-after-company-sign-in)).
 
 After the second step, you can choose **Trust this device for 30 days** on a private browser. This skips the second step on later sign-ins from that browser; you still need your password, WhatsApp code, Google or Microsoft sign-in. Platform administrators must verify a second step on every new sign-in and cannot use this exception.
 
