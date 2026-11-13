@@ -32,7 +32,8 @@ each line takes you to the card that fixes it.
 - **From**: the organisation's sending address (change it in **Settings → Email sending**), its daily limit and your
   postal address.
 - **Subject**: the subject and optional preview text, each with a character count against what an inbox shows, and a
-  preview of the inbox line. **Field** adds the person's first name and the like.
+  preview of the inbox line (sender · subject · preview). Left empty, the preview text is the email's first words, skipping a
+  bare greeting like "Hi Priya,". **Field** adds the person's first name and the like.
 - **Send settings**: **Send now** or **Schedule** a time in your organisation's time zone, and whether to count opens
   and clicks.
 
@@ -64,9 +65,20 @@ sheets too, and **Preview** shows the email as it arrives.
 
 ### Test and review
 
-**Send test** (on the checklist and in the editor) sends the email, marked [Test], to up to five people on your team. A
-message says who it went to, and the checklist keeps "Last test sent to … at …". If it can't be sent you are told why
-in the same window.
+**Send test** (on the checklist and in the editor) sends the email to up to five addresses you type, with your team
+suggested beside the field. It is marked [Test], fields are filled with sample values, nothing is tracked and nothing is
+recorded on leads. If a typed address belongs to a lead, you get a warning and have to choose **Send anyway**: tests
+aren't a way to email leads. The window then says who got it and when, a message confirms it, and the checklist keeps
+"Test sent to … at …". If it can't be sent you are told why in the same window. Tests are limited to 30 an hour for the
+organisation.
+
+If a test (or a campaign) reaches Gmail but not Microsoft 365 or other company inboxes, look at **From** on the checklist:
+
+- A **free address** (gmail.com, outlook.com, yahoo and similar) as the sending address often lands in spam at
+  companies. Connect an address on your own domain in **Settings → Email sending**.
+- **Domain authentication → Check** looks up your sending domain's public records and shows SPF, DKIM and DMARC as
+  pass, warning or fail, with what to change. It reads DNS only and changes nothing. Changes to DNS can take a few
+  hours to show.
 
 **Review and send** shows the email on a computer or a phone, who gets it and who is skipped, the sending address and
 how long the campaign will take, tracking, and when. Send or schedule asks you to confirm the number of people, the
