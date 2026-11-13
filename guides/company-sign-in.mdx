@@ -3,17 +3,19 @@ title: "Company sign-in"
 description: "Let your team sign in with your company's identity provider, keep accounts in step with it, and set the rules for how everyone signs in."
 ---
 
-An organization administrator manages this in **Settings → Sign-in security**. Every change asks you to confirm it is you (your password, or a code from your authenticator app) and is recorded in the activity log.
+An organization administrator manages this in **Settings → Team → Sign-in security**. If company sign-in isn't in your plan, the page shows which plan includes it. Every change asks you to confirm it is you (your password, a code from your authenticator app, or your company sign-in) and is recorded in the activity log. With the Activity log in your plan, **Sign-in activity** on the same page shows every sign-in, failure and change, with a CSV export.
 
 ## Connect your identity provider
 
 Company sign-in works with any provider that supports OpenID Connect: Microsoft Entra ID, Google Workspace, Okta, OneLogin, JumpCloud, Keycloak and others.
 
 1. Choose **Add connection** and your **Identity provider**. Marro shows the exact steps for it and the redirect address to copy into your provider.
-2. Enter the **Issuer**, **Client ID** and **Client secret** from your provider. The secret is stored encrypted and never shown again.
-3. Choose **Test connection** and sign in with your provider. Check the details it received, then **Turn on**.
+2. Enter the **Issuer**, **Client ID** and **Client secret** from your provider. The secret is stored encrypted and never shown again. If the issuer is wrong, Marro says so under the field before saving anything.
+3. Choose **Test connection** and sign in with your provider. Check the details it received, then **Turn on**. The test also says whether your provider reported two-step for that sign-in (see [Two-step sign-in after company sign-in](#two-step-sign-in-after-company-sign-in)).
 
-Not the person who manages your provider? **Send link** gives an IT colleague a setup link that can add and test connections and domains, and nothing else. You can **Cancel link** at any time.
+Turning a connection off or deleting it, removing a domain, revoking a provisioning token and **Sign everyone out** each ask you to confirm first, because they stop people signing in.
+
+Not the person who manages your provider? **Send link** gives an IT colleague a setup link that can add and test connections and domains, and nothing else. It lasts seven days and you can **Cancel link** at any time; an expired or cancelled link tells your colleague to ask you for a new one.
 
 ## Prove your email domain
 
@@ -45,4 +47,16 @@ For a sign-in code, choose **Sign in with a mobile number** below the email form
 
 ## In the app
 
-On the sign-in screen, **Sign in with your company** opens your provider in the browser and brings you back signed in.
+On the sign-in screen, **Continue with company SSO** asks for your work email, opens your provider in the browser and brings you back signed in, the same way as on the web. If your provider already asked for a second factor, the app doesn't ask for Marro's code either. If your company asks an admin to let new people in, the app says your request was sent.
+
+## Two-step sign-in after company sign-in
+
+If your identity provider already asked for a second factor (an authenticator, a security key, a code by text or a fingerprint), Marro does not ask for its own authenticator code on top, on the web or in the app. Marro knows this from what your provider reports about the sign-in. Providers that don't report it, such as Google Workspace, sign in as before: after your company sign-in, Marro asks for your authenticator code if you have set one up.
+
+Platform administrators always give Marro's own code.
+
+## Confirm it's you with your company
+
+Some changes, such as sign-in settings, ask you to confirm it is you first. If you sign in through your company, choose **Continue with** and your connection's name. Marro sends you to your provider to sign in again, then brings you back to the same page. You then have five minutes to make the change.
+
+If you have no password, authenticator or passkey in Marro, this is the only way to confirm. Your provider must sign you in afresh: if it reuses an earlier sign-in, Marro asks you to try again. Only the company account linked to you can confirm.
