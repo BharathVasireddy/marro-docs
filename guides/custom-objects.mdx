@@ -81,9 +81,9 @@ the order objects appear in the menu. They are listed after Leads. With more tha
 
 Under **Who can see it**, each role has:
 
-- **Sees**: nothing, their own records, their own and their team's, or all records. "Team" means the teams the
-  person leads.
-- **Add**, **Edit** and **Delete**.
+- **Sees**: nothing, their own records, their team's, their branch's, or all records. "Team" means the teams the
+  person leads; "branch" means the people in the branches they manage, as for leads.
+- **Add**, **Edit**, **Delete** and **Download**.
 
 Administrators always see and change everything. Partners cannot open custom objects. Access to an object does
 not give access to leads. The [Roles](https://app.marro.si/settings/organization/roles) page links to each object's
@@ -124,8 +124,7 @@ goes to whichever member's turn it is (the one who was given one longest ago).
 
 Open a record to see its details, what it links to, what links to it, and its activity: who added it, who changed
 what (for example "Status: Draft → Submitted"), and notes. **Edit** opens the same form. The owner can be changed at the top of the page. **⋯** has
-**Archive** (it leaves the list and keeps its history; restore it from **Show archived**) and
-**Delete permanently**, which asks you to type the record's name.
+**Archive** (it leaves the list and keeps its history; restore it from **Show archived**) and **Delete**.
 
 When a record links to a lead (a student on an application, a buyer on a site visit), its page also shows that
 person: Call and WhatsApp buttons, **+** to add a follow-up for them, their open follow-ups and documents, and their
@@ -134,13 +133,23 @@ latest calls, chats and emails.
 If someone else changed the record while you were editing, saving is refused so their change is not lost.
 Reopen the record and make your change again.
 
+## Recycle bin
+
+**Delete** moves a record to its object's recycle bin (**⋯ → Recycle bin** on the list). From there,
+**Bring back** returns it with its notes and activity, for 30 days; after that it goes for good. To remove one for
+good straight away, use the bin's delete button and type the record's name.
+
 ## Import and download
 
 **⋯ → Download** saves the records as filtered and sorted on screen, up to 50,000, as a spreadsheet (CSV).
 
 **⋯ → Import** reads a CSV file of up to 1,000 rows. Match each column to a field (or leave it out), check the
-first rows, then add them. Rows with a problem are listed so you can fix the file. Import adds new records only;
-it does not update records you already have.
+first rows, then import. You can choose who owns the new records, a person or a team taking turns.
+
+To update records you already have, mark a field **No two records the same** (a registration number, an email) and
+choose **Update the one with the same …**: a row whose value is already on a record changes that record, and the
+others are added. Rows that could not be saved can be downloaded as a file with the reason for each, to fix and import
+again. Download needs the role's **Download** permission.
 
 ## Reports
 
@@ -153,6 +162,12 @@ The assistant can list objects and their fields, find and read records (includin
 owner), and, after you approve, add and change records, add notes, change an object's settings, fields and
 menu order, and set who can see it. The same access rules apply as on the screens.
 
+## Webhooks and integrations
+
+Zapier, Make, n8n and custom webhooks (**Settings → Integrations**) can be sent **A custom object record is added**,
+**changes**, **moves to another stage** and **is deleted**. Each call carries the object, the record with its fields
+and a link to open it.
+
 ## Website forms, the customer portal and the Inbox
 
 - A [website form](/guides/connect-a-website) can add a record to an object instead of a lead.
@@ -162,9 +177,10 @@ menu order, and set who can see it. The same access rules apply as on the screen
 
 ## API
 
-Keys with the custom object scopes can list objects and read, add and change records; see the API reference.
-Deleting through the API is refused; delete on the screen. Adding a record through the API is not safe to
-repeat: check before sending it again.
+Keys with the custom object scopes can list objects, read, add, change and delete records, and list the records
+linked to a record; see the API reference. Large lists page by position (`cursor`), and `updated_since` returns only
+records changed since a time. Send an `Idempotency-Key` header when adding a record so a retry never adds it twice.
+Deleting moves the record to the recycle bin.
 
 ## Limits
 
