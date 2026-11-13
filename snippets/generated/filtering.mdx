@@ -22,7 +22,7 @@ Up to 10 conditions; all must match.
 |   | `equals` | is | `value` |
 |   | `is_empty` | is empty | No value |
 |   | `is_not_empty` | is not empty | No value |
-| number | `equals` | is | `value` |
+| number, currency, percent | `equals` | is | `value` |
 |   | `gt` | is more than | `value` |
 |   | `lt` | is less than | `value` |
 |   | `between` | is between | `values` with two items |
@@ -42,6 +42,11 @@ Up to 10 conditions; all must match.
 |   | `is_not_empty` | is not empty | No value |
 | checkbox | `is_true` | is yes | No value |
 |   | `is_false` | is no | No value |
+| datetime | `before` | is before | `value` |
+|   | `after` | is after | `value` |
+|   | `between` | is between | `values` with two items |
+|   | `is_empty` | is empty | No value |
+|   | `is_not_empty` | is not empty | No value |
 
 Other query parameters on this endpoint:
 

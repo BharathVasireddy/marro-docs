@@ -123,7 +123,8 @@
               "api-reference/custom-objects/create-object-record",
               "api-reference/custom-objects/get-object-record",
               "api-reference/custom-objects/update-object-record",
-              "api-reference/custom-objects/delete-object-record"
+              "api-reference/custom-objects/delete-object-record",
+              "api-reference/custom-objects/object-record-linked-from"
             ]
           },
           {
