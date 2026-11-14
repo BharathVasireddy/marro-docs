@@ -84,6 +84,8 @@ Each runs once for each lead each time it comes round, from when you switch it o
 
 An email (**Send an email to the lead** or **Send an email template**) can name the automation's invoice or quote: `{{invoice.number}}`, `{{invoice.total}}`, `{{invoice.paid}}`, `{{invoice.due}}`, `{{invoice.link}}`, `{{quote.number}}`, `{{quote.total}}` and `{{quote.link}}`. It is the invoice or quote an earlier step made, the one paid or accepted while the automation waited for it, the one that started it, or else the lead's latest. The link opens the invoice or quote as it is now, so **Wait for a reply or a change** (an invoice is paid) followed by an email with `{{invoice.paid}}` and `{{invoice.link}}` is a receipt. An email that names an invoice the lead does not have is not sent. Files cannot be attached to automation emails yet.
 
+An automation that starts when a lead sends in a form can name that form in any step's words, with `{{form.name}}` (the form's name in Marro) and `{{form.title}}` (the title people see). Choose them from **Insert field** in the builder.
+
 ## Customers and records
 
 Two steps connect a lead to the rest of your records:
@@ -164,7 +166,7 @@ A call with no recording can't be read. Automations that start from a call can't
 
 ## If a step fails
 
-Any step that does something can have an **If it fails** way on, and **Try again up to** 3 times first. **Call an API** and **Send to a web address** try again after 1 minute, then 10 minutes, then an hour, as the other system may be down for a while; the lead waits at that step meanwhile. Other steps try again a few seconds apart. A step that fails with an **If it fails** way carries on along it (for example, tell the owner) instead of stopping the whole automation. The run history says which step failed and why. **Run again** on a finished run runs the automation again, as it is now, for the same lead.
+Any step that does something can have an **If it fails** way on, and **Try again up to** 3 times first. **Call an API** and **Send to a web address** try again after 1 minute, then 10 minutes, then an hour, as the other system may be down for a while; the lead waits at that step meanwhile. Other steps try again a few seconds apart. A step that fails with an **If it fails** way carries on along it (for example, tell the owner) instead of stopping the whole automation. The run history says which step failed and why. Each run shows how it really went: **Done**, **Done with a failed step**, **Skipped a step** (with the step and the reason, such as no phone number or the lead opted out), **Failed** or **Waiting**. A step that had nothing to change, such as moving a lead to the stage it is already in, reads **No change needed** and is not counted as skipped. The **Failed** count on the Automations page includes runs that finished with a failed step, and an email tells the person who made the automation when one fails (see [Notifications](/guides/notifications)). **Run again** on a finished run runs the automation again, as it is now, for the same lead.
 
 ## Test it
 
