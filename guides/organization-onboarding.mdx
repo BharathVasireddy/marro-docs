@@ -1,0 +1,79 @@
+---
+title: "Set up your organization"
+description: "Go from a new workspace to your first enquiry, then connect the modules your team needs."
+---
+
+This guide is for the person setting up Marro for a business. Start with one enquiry source and one person responsible for it. Your first milestone is simple: an enquiry comes in, someone owns it, and they know what to do next. Once that works, connect the rest of your workflow.
+
+## 1. Create your workspace
+
+1. [Create your workspace](/guides/sign-up) and confirm your email if you signed up with a password. Choose the country and time zone for the business. They affect things such as currency, dates and reporting.
+2. Choose the closest industry for your starting lead stages, or **Something else** for general stages. Answer the setup questions about your team, lead sources and goals. You can skip questions and revisit setup later. If you see **Add suggested fields for your business**, choose it only if those fields are useful.
+3. On **Welcome**, follow the setup suggestions for your business. In **Settings**, use search to find **Business profile** and describe what you sell, who you serve and what happens after a sale. The industry starter lets you review suggested fields, stages, booking types and workflows before applying them. Review each item; starter booking types and workflows need to be enabled separately.
+4. Check [Modules](/guides/modules) to see what your workspace can use. A missing menu item can mean the module is off, your plan does not include it, or your role cannot see it. A module being on does not connect a channel or turn on a workflow.
+
+## 2. Decide how your team works enquiries
+
+- **Pipeline:** Use [Lead stages](/guides/pipelines) to reflect what actually happened: for example, New → Contacted → Appointment booked → Converted. Decide what counts as converted and what should be marked lost. Keep one pipeline until teams have meaningfully different processes.
+- **Fields:** Add [custom fields](/guides/custom-fields) that change a decision, such as preferred branch or intake. Start with the fields you need for the first reply; collect the rest when it becomes relevant.
+- **Ownership:** In **Settings**, search **Users** and invite the people who will work enquiries. Use [roles and access](/guides/access-and-data) to decide who sees and changes records, and **Settings → Teams** if people share a queue. Search **Lead assignment** to configure how leads get an owner. Set up [branches](/guides/branches) if staff, enquiries or reporting need to be split by location. If you work alone, start by assigning enquiries to yourself.
+- **Security:** Set up [two-step sign-in](/guides/two-step-sign-in). If your organization uses an identity provider and has the module, see [Company sign-in](/guides/company-sign-in).
+
+## 3. Put one enquiry through the whole process
+
+<Steps>
+  <Step title="Choose one way in">
+    In **Settings**, search **Forms**. Choose a starting template, review the questions, select **Publish**, then open the public link from **Share**. If you already have a website form, [connect it to Marro](/guides/connect-a-website) instead. You can also start with [lead ads or Google Sheets](/guides/integrations), or add a lead by hand. If you are importing an existing list, try a small batch first and check field mapping and duplicates before importing the rest.
+  </Step>
+  <Step title="Send a test enquiry as a customer">
+    Use contact details you control. In **Leads**, open the resulting record and check its source, pipeline, stage and owner. Submit again with the same contact details and check what happens before sending real traffic. Repeat for each channel you add: matching and routing can differ by source.
+  </Step>
+  <Step title="Give it a next step">
+    Open the lead and use **More → Add follow-up** to schedule the next action. If the customer has agreed on a time, use **More → Book appointment** and choose the person and time. Move the lead to the stage that matches what actually happened. Check the **Follow-ups** tab for what is due and what has been booked.
+  </Step>
+  <Step title="Try it as the person who will do the work">
+    Have an advisor sign in and find the enquiry, open the task or appointment, record the outcome and confirm they see only what their role should see. Use **Reports** to check whether the enquiry landed under the expected source and stage.
+  </Step>
+</Steps>
+
+## 4. Connect modules around your workflow
+
+Add a module when it solves a problem for the team. Work down the rows that apply to your business.
+
+| When you need to… | Connect these pieces | Check before launch |
+| --- | --- | --- |
+| See and answer customer messages in one place | [Inbox](/guides/inbox) + [website chat](/guides/website-chat) or a connected WhatsApp, Instagram or Messenger account; use [Email](/guides/email) for email conversations | Send a message from a test account, see who gets it, reply, and confirm the customer receives it. |
+| Answer calls or handle missed calls | [Cloud calls](/guides/cloud-calls) + ring groups or call flows where available + follow-up tasks | Test direct calls and forwarded calls if you use both. Test what happens when nobody answers, and check the voicemail, recording and callback task where configured. |
+| Let customers book | [Appointments and booking](/guides/appointments) + staff availability + a booking link | Set working hours and appointment types, then book from the public link. Check the time zone, who gets the appointment and how rescheduling works. Mark an enquiry as booked only when a booking exists. |
+| Make follow-up consistent | [Automations](/guides/automations) + lead stages + tasks | Start with an internal action, such as creating one task for an assigned enquiry. Test a record that should qualify and one that should be skipped. Review who acts, working hours and stop conditions before adding messages or calls. |
+| Give AI the facts and decide what it may do | [Business knowledge](/guides/business-knowledge) + [Ask Marro](/guides/assistant), [Agents](/guides/agents) or [AI calls](/guides/ai-calling), depending on the job | Add approved branch details, services, hours, prices and policies. Check answers where the facts are missing or unclear. Review suggestions, permissions and follow-up actions before enabling automatic replies or calls. |
+| Send a quote and track money owed | **Products and prices** + [Quotes and invoices](/guides/quotes-and-invoices) + [Payments](/guides/payments); add the **Customer portal** if customers need shared progress or documents | Check regional and business settings, then make a test quote and invoice. Verify the amount due and payment status. Confirm the lead moves automatically only if you configured it to. Open any portal link as the intended customer to confirm what they can see. |
+| Run campaigns and see where business comes from | Inbox and broadcasts, [email campaigns](/guides/email-campaigns) or [email sequences](/guides/email-sequences), plus [contact preferences](/guides/contact-preferences) and [campaign reports](/guides/campaigns) | Verify the sending account, audience, opt-outs and test delivery. Tag links consistently, then check the right source and campaign appear in reporting. |
+| Track repeat business or specialist work | [Customers and opportunities](/guides/pipelines) + [case workflows](/guides/case-workflows) or [custom objects](/guides/custom-objects). Use the [API and webhooks](/guides/webhooks) if another system needs the same records. | Keep one contact for the person and separate opportunities for separate deals. Use a custom object when you need a record in its own right, such as a property or project. Verify visibility and which event drives each workflow. |
+| Manage people and review performance | **HR and tasks** for the enabled attendance, leave, timesheet, expense, payroll or performance features; [Custom reports and dashboards](/guides/custom-reports) or [Forecast](/guides/sales-forecasting) as needed | Set working hours, policies and approvals first. Try one request as staff and approve it as a manager. In reports, check the totals and what different roles can see. |
+
+## 5. Adapt the same approach to your industry
+
+| Business | A practical first workflow | Add when it helps |
+| --- | --- | --- |
+| Education consultancy | Capture a course enquiry → assign an advisor → book counselling → track the application | Add intake fields, a document checklist and follow-up reminders. |
+| Clinic or salon | Capture the appointment enquiry → route to the right branch or person → check availability → book and confirm | Add missed-call follow-up and branch details in Business knowledge. Collect only the contact and booking details you need. |
+| Real estate | Capture a viewing request → record the area or property → book a site visit → move to negotiation | Use a property record if you need to link many enquiries to one listing. Add a pipeline report by source and branch. |
+| Agency or professional services | Capture a brief → assign an owner → schedule discovery → send a quote → issue an invoice | Create a separate opportunity for each engagement and add delivery follow-ups after the sale. |
+| Home services | Capture a service request → check location → schedule an assessment → quote the work | Add branch or team assignment, follow-up tasks and payment tracking. |
+
+## Build a routine after launch
+
+- **Each morning:** Check unassigned enquiries, overdue follow-ups, missed calls and today's appointments. Give each open enquiry an owner and a next step.
+- **Each week:** Review enquiries by source and stage with the team. If enquiries are piling up at one stage, check a few real records before changing an assignment rule or adding a reminder.
+- **When something changes:** Update the source of truth first. For example, change a service price in **Products and prices**, appointment hours in **Appointments**, and the customer-facing policy in **Business knowledge**. Then review any templates or workflows that use those details.
+
+## Before you send real enquiries into Marro
+
+- Each source you plan to use creates or matches the correct record and assigns the right owner.
+- Advisors can find their own work, and managers can see what needs attention.
+- A test follow-up and booking show up on the lead. Enabled automations run only for the records you intended.
+- Connected channels can receive and send the test messages or calls you expect. Check usage and charges in [Plans and billing](/guides/billing) before increasing volume.
+- You have one report the team can use to check new enquiries, overdue follow-ups and conversions.
+
+Run this checklist again whenever you connect a new channel or change assignment rules. If you get stuck, open [Ask Marro](/guides/assistant) and describe the workflow and outcome you want. Review any proposed action before putting it into use, or contact [Help and support](/guides/support).
