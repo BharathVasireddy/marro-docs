@@ -3,33 +3,58 @@ title: "Cloud calls"
 description: "Connect your team’s phones to customers and keep private recordings on each lead."
 ---
 
-<Note>
-Cloud calling is being prepared for verified organizations. Saving settings does not activate calling. The Marro team must confirm number assignment and calling readiness before calls are enabled.
-</Note>
-
 Cloud calls connect your team’s existing phones with leads. Incoming calls can reach your team or an [AI voice agent](/guides/ai-calling), according to your organization’s answering rules.
+
+## Set up your calls
+
+An organization administrator opens **Calls → Settings**. It shows **Call setup**: five steps, each saying whether it is done, being handled by Marro, or yours to do, with one button, and a line at the top saying what to do next.
+
+1. **Verify your business.** Calls need your business registration. We email you when it is checked.
+2. **Your business number.** Marro sets up your number once your business is verified, and emails you when it is ready. You do not need to do anything.
+3. **Who answers.** Choose who gets your calls: a team, or specific people. See [Choose who answers](#choose-who-answers).
+4. **Send your advertised numbers here.** Optional. See [Keep your marketing number](#keep-your-marketing-number).
+5. **Switch on.** When the steps above are done, choose **Switch calls on**, then call your business number from another phone to try it. **Switch calls off** stops calls reaching your team and keeps everything you set up.
+
+**More options** has **Greeting and waiting music**, **Call flows**, **Ring groups** and **Rules for one number**. You do not need them to get started.
+
+### Rent another number
+
+In **Calls → Settings → Numbers**, choose **Rent another number**. You see the price first: the monthly rent is charged to your wallet, the first month now. Confirm, and the number is bought and set up straight away. It is chosen for you, and you get an email.
+
+The rent is then deducted from your wallet every month. If it cannot be, calls on that number stop, and a number left unpaid is released within 7 days and cannot be used again. Keep enough in your wallet to cover it. Then choose it in **Who answers**, and forward a number you advertise to it.
+
+If you have reached the most numbers you can rent, the button reads **Ask for another number** instead: the Marro team looks at your request and emails you.
 
 ## Keep your marketing number
 
-Your organization receives an assigned business calling number. Ask your existing phone provider to forward your advertised number to it. Customers continue to dial the advertised number. Outgoing calls normally display the assigned business number; forwarding does not authorize a different outgoing caller ID.
+Your organization receives an assigned business calling number. Turn on call forwarding on the SIM that has your advertised number (on the phone: **Settings → Calls → Call forwarding**; the name differs a little by phone), so its calls go to your business number. Customers continue to dial the advertised number. Outgoing calls normally display the assigned business number; forwarding does not authorize a different outgoing caller ID.
 
-Several advertised numbers can forward to the same business number. When your phone provider passes on the number the customer dialled, the call shows **Dialled +91 …** in **Calls** and on the lead's activity, so you can tell which number they called. Not every provider passes it on: make a test call to check yours.
+Several advertised numbers can forward to the same business number. When the mobile network passes on the number the customer dialled, the call shows **Dialled +91 …** in **Calls** and on the lead's activity, so you can tell which number they called. Not every network passes it on: make a test call to check yours.
 
 ### Numbers that forward to this line
 
-In **Settings → Cloud calls → Numbers that forward to this line**, add each of your numbers that forwards to Marro, with an optional label such as *Marketing number*. Marro skips these numbers and the current caller’s number when it picks whom to ring, so the call cannot come straight back. A phone set to always forward can never ring itself: to answer on the same handset, use a second SIM as your registered phone number.
+In **Calls → Settings → Numbers → Your advertised numbers**, add each of your numbers that forwards to Marro, with an optional label such as *Marketing number*. Marro skips these numbers and the current caller’s number when it picks whom to ring, so the call cannot come straight back. A phone set to always forward can never ring itself: to answer on the same handset, use a second SIM as your registered phone number.
 
 ## Choose who answers
 
-An organization administrator opens **Settings → Cloud calls** and chooses:
+An organization administrator opens **Calls → Settings → Who answers**. It is one list of rules, and the one place that decides who answers. The first rule that matches the number called is used, and the last rule is for every other call.
 
-- **Lead owner and team:** with sequential ringing, try the matched lead’s owner, then the selected fallback staff.
-- **Round robin:** distribute calls among the selected team members, skipping people already on a Cloud call.
-- **One person:** ring the designated member of staff.
+- **If the call is to:** choose any of your numbers for a rule: the numbers that forward to your line (your marketing numbers) and your Marro numbers. A number can have its own rule, so calls to one number ring one team and calls to another ring a different team.
+- **The call goes to:** staff who ring, the AI agent (if it answers your incoming calls), or nobody, which is a missed call.
+- **Ring:** choose a team, a ring group, the lead’s owner or chosen people, and how long to **Give up after**. A team rings the people who are in it now, and when someone joins or leaves the team the next call follows. Choose **Ring someone else first** to try one more step, such as a second team, only if nobody answered the first. If nobody answers, the call is a missed call, with your missed-call alerts.
+- **Different outside working hours and on holidays:** switch it on to give the same rule another handling, such as the AI agent or a missed call. Working hours come from your HR working week, time zone and holidays.
 
-Team members need active organization access and a registered phone number. Select a ring timeout. Busy, away and unavailable staff are skipped.
+**Save and use these rules** makes them live; calls already ringing finish as they started. Before you save, anything to fix is shown at the bottom: a rule with no numbers, a team nobody is in, or ringing that adds up to more than five minutes.
 
-Choose **Sequential** to ring eligible staff one at a time, or **Simultaneous** to ring the eligible team together. The first person to answer takes the call and the other ringing phones stop. With simultaneous lead-owner routing, the eligible owner and fallback team ring together.
+Team members need active organization access and a registered phone number. Busy, away and unavailable staff are skipped, and so is anyone whose phone is one of your forwarding numbers.
+
+If a number has its own rules or its own call flow (**Calls → Settings → Rules for one number**), calls to it do not follow this list, and Who answers says which numbers those are.
+
+If you did not use these rules before, Who answers opens showing your current settings as rules. Nothing changes for callers until you save.
+
+### Simpler settings
+
+On plans without call flows, **Calls → Settings → Who answers** has the simple answering settings: the lead owner and team, one person or a ring group, in turns or all together, and a ring time. 
 
 ### Voicemail and callback tasks
 
@@ -39,7 +64,7 @@ For a recognized caller, Marro creates one **Call back missed caller** task. Ope
 
 ### Ring groups
 
-A ring group is a named list of staff, such as *Telugu team* or *Shop A*, that you can choose under **Ring** for the whole organization or for one number. In **Settings → Cloud calls → Ring groups**, choose **Add ring group**, give it a **Name**, pick the **People** (they take turns in the order you pick them; staff without a usable phone number are not listed), choose how it rings and how long to **Ring for**. Each group keeps its own turns:
+A ring group is a named list of staff, such as *Telugu team* or *Shop A*, that you can choose in **Who answers** or under **Ring** for one number. For a team you already have, choose the team in **Who answers** instead: its people stay in step with the team. To make a group by hand, open **Calls → Settings → More options → Ring groups**, choose **Add ring group**, give it a **Name**, pick the **People** (they take turns in the order you pick them; staff without a usable phone number are not listed), choose how it rings and how long to **Ring for**. Each group keeps its own turns:
 
 - **In turns:** one at a time, in the order you pick the people. The next call starts with the next person.
 - **All together:** everyone rings at once (up to 10), and the first to answer takes the call.
@@ -47,13 +72,13 @@ A ring group is a named list of staff, such as *Telugu team* or *Shop A*, that y
 - **Fewest calls today:** whoever has answered the fewest calls today rings first. Ties take turns.
 - **The lead's owner first:** the caller's lead owner rings first when they are in the group, then the rest in turns.
 
-To use a group, choose **A ring group** under **Ring** and pick it. The group's own ring style and ring time then apply. A group that the settings or a number still rings cannot be deleted: choose another way to ring first.
+To use a group, choose **A ring group** in **Who answers** and pick it. The group's own ring style and ring time then apply. A group that the settings or a number still rings cannot be deleted: choose another way to ring first.
 
 ## Call flows
 
-A call flow decides, step by step, what happens to a call on one of your numbers, or on all of them. Open **Settings → Cloud calls**, choose a number (or the organization default) and open its flow. It starts with **When a call comes in**; add steps with **+**:
+A call flow decides, step by step, what happens to a call on one of your numbers, or on all of them. Most businesses only need **Who answers**. For menus or checks on new and known callers, open **Calls → Settings → More options → Call flows**, choose a number (or the organization default) and open its flow. Saving **Who answers** publishes the organization’s default flow, which you can also open here as a diagram. It starts with **When a call comes in**; add steps with **+**:
 
-- **Check something:** working hours (**Open**, **Closed**, **Holiday**), the number the customer dialled (from **Numbers that forward to this line**), **New caller**, **Known caller** or **Has an owner**, or the lead's stage, source or a field. Each answer leads to its own next step, with **Otherwise** for the rest.
+- **Check something:** working hours (**Open**, **Closed**, **Holiday**), the number the customer dialled (from **Your advertised numbers**), **New caller**, **Known caller** or **Has an owner**, or the lead's stage, source or a field. Each answer leads to its own next step, with **Otherwise** for the rest.
 - **Answer the call:** ring a ring group or the lead's owner, hand the call to your AI agent, or play a message (typed and turned into audio, or uploaded). **If nobody answers in** a set time, the call moves on to the next step.
 - **End the flow:** a missed call, with your missed-call alerts and follow-up.
 
