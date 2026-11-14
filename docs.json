@@ -45,6 +45,7 @@
             "pages": [
               "index",
               "guides/sign-up",
+              "guides/marro-advertising-measurement",
               "guides/settings",
               "guides/two-step-sign-in"
             ]
