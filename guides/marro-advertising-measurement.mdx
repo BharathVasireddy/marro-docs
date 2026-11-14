@@ -16,3 +16,9 @@ See the [Privacy policy](https://www.marro.si/privacy) for what is collected and
 If you allow analytics, Marro can also retain campaign labels from the tagged marketing page for up to 30 days so they survive the move to signup. Google session context is used for a signup completed shortly after the visit. A payment days later is not treated as part of that original browsing session.
 
 Marro's platform team uses **Platform console → Acquisition** to see verified workspace signups, first real leads, recorded subscription attempts, first payments, later paid terms, and lapsed paid coverage by campaign. Where Marro has no campaign label it shows **Unknown**. The report also shows delivery counts to Meta and Google Analytics; a delivered event is not proof that the provider credited an ad. No customer content is shared with either service.
+
+## Campaign spend
+
+In **Platform console → Acquisition**, the spend table reports imported dates, spend in each ad account's currency, and first paying workspaces matched by campaign ID and visit date. Cost per paying workspace is spend divided by those workspaces. It stays blank when nobody has paid. An empty import and an account that has never synced are shown separately.
+
+For paid links, use the ad platform's numeric campaign ID as `utm_id`, `meta` or `google` as `utm_source`, and `paid_social` or `cpc` as `utm_medium`. Keep `utm_campaign` for the readable name. Links without the campaign ID still count as signups but do not enter cost calculations.
