@@ -100,6 +100,7 @@
               "getting-started",
               "authentication",
               "keys-and-scopes",
+              "guides/forms",
               "guides/connect-a-website",
               "guides/webhooks",
               "guides/filtering"
