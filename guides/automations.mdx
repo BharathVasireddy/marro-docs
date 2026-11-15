@@ -64,7 +64,7 @@ Each runs once for each lead each time it comes round, from when you switch it o
 - **Add a note**, **Create a follow-up**, **Tag the lead**, **Take tags off the lead**
 - **Send a WhatsApp template to the lead**, **Send a WhatsApp reply**, **Send an SMS to the lead**, **Send an email to the lead**
 - **Send a booking link**, **Send the portal link**
-- **Notify someone**
+- **Notify someone**: choose the lead owner, named people, **Teams**, **Roles** (everyone active with that role) and the lead's branch (its managers, or everyone in it). Anyone chosen hears once, however many ways they match.
 - **Create record**, **Create opportunity**, **Move the lead's opportunities**, **Set the lead's stage from the opportunity** and **Link records**: see [Customers and records](#customers-and-records)
 - **Add a custom object record** and **Change the lead's custom object records**: see [Custom objects](/guides/custom-objects#automations)
 - **Call with AI** (with [AI calling](/guides/ai-calling)): see [Call with AI](#call-with-ai)
@@ -76,7 +76,7 @@ Each runs once for each lead each time it comes round, from when you switch it o
 - **Create and send a quote**, **Create and send an invoice**, **Send a payment link**: a quote or invoice from a saved quote or your price list (prices always come from there), sent on WhatsApp or by email; the payment link needs a payment account in **Settings**. See [Quotes and invoices](/guides/quotes-and-invoices).
 - **Reply on the same channel** (Instagram, Messenger, the website chat), **Send an email template**, **Take the lead out of an email sequence**
 - **Book an appointment** with the lead owner or someone you choose, **Move to a branch**
-- **Notify someone** by email, WhatsApp or a mobile app notice, to the lead owner, people or a team; **Create a follow-up** can go to the next person in a team
+- **Notify someone** by email, WhatsApp or a mobile app notice, to the lead owner, people, teams, roles or the lead's branch; **Create a follow-up** can go to the next person in a team
 - **Send to a web address**: posts the lead and what started the automation (the quote, the call, the form…) to a public `https` address. Each request has an `X-CRM-Signature` header: `sha256=` and the HMAC-SHA256 of the body, keyed with the signing secret shown in the step.
 - **Call an API**: sends a request to a public `https` address and keeps its answer, so later steps can use it as `{{response.<name>.<field>}}`.
 
@@ -166,7 +166,7 @@ A call with no recording can't be read. Automations that start from a call can't
 
 ## Send WhatsApp alerts to staff
 
-1. In the automation, add **Notify someone**. Choose **Chosen users** and select the admin, or choose the lead owner or a team. Each recipient needs their own WhatsApp number in their staff profile.
+1. In the automation, add **Notify someone**. Choose **Chosen people** and select the admin, or choose the lead owner, a team or a role. Each recipient needs their own WhatsApp number in their staff profile.
 2. Under **How**, choose **WhatsApp**. Under **WhatsApp sender**, choose **Marro** or **Your WhatsApp number**. Marro alerts are only for staff, even if your business has no number connected. A template sent to a lead or customer always uses the business's own number and separate messaging step.
 3. With **Marro**, choose **Missed call** or **Lead stage changed**. The alert includes fixed fields from the event. You don't need to write a template or connect a number. Each Marro template must be approved before it can send.
 4. With **Your WhatsApp number**, enable **Send staff alerts from this number** on your default number under **Inbox → Settings**. Create an approved utility template in **Inbox → Templates**, then choose its language and fill its values with **Insert field**, such as **Stage name**. Use only the lead details the staff member needs.
