@@ -76,7 +76,7 @@ Each runs once for each lead each time it comes round, from when you switch it o
 - **Create and send a quote**, **Create and send an invoice**, **Send a payment link**: a quote or invoice from a saved quote or your price list (prices always come from there), sent on WhatsApp or by email; the payment link needs a payment account in **Settings**. See [Quotes and invoices](/guides/quotes-and-invoices).
 - **Reply on the same channel** (Instagram, Messenger, the website chat), **Send an email template**, **Take the lead out of an email sequence**
 - **Book an appointment** with the lead owner or someone you choose, **Move to a branch**
-- **Notify someone** by email or a mobile app notice, to the lead owner, people or a team; **Create a follow-up** can go to the next person in a team
+- **Notify someone** by email, WhatsApp or a mobile app notice, to the lead owner, people or a team; **Create a follow-up** can go to the next person in a team
 - **Send to a web address**: posts the lead and what started the automation (the quote, the call, the form…) to a public `https` address. Each request has an `X-CRM-Signature` header: `sha256=` and the HMAC-SHA256 of the body, keyed with the signing secret shown in the step.
 - **Call an API**: sends a request to a public `https` address and keeps its answer, so later steps can use it as `{{response.<name>.<field>}}`.
 
@@ -151,7 +151,7 @@ Start an automation from **A call is analysed** to act on it. Choose which calls
 - **Set the stage from the call**: choose the stages the AI may move the lead to. It moves the lead only when what was said clearly fits one of them. The reason and the words from the call are noted on the lead, with a **Put back** button that returns the lead to its earlier stage. When the call is not clear, the lead stays where it is and its owner gets a follow-up to check the call.
 - **Book what was agreed on the call**: when both sides agreed a day and time, it books the appointment with the lead owner, in your organization's time zone, up to 90 days ahead. When no time was clearly agreed, the owner gets a follow-up to fix one.
 
-To update only new enquiries, add a **Stage** condition for **New enquiry** and use only **Set the stage from the call**. An existing confirmed appointment can justify the **Appointment booked** stage. A requested time or a promise to call back is still **Follow-up needed**. If there is no clear next step, the stage stays as it is. The stage step does not create an appointment.
+To update only new enquiries, add a **Stage** condition for **New enquiry** and use only **Set the stage from the call**. An existing booking or a slot both sides accepted can justify **Appointment booked**. Sending a confirmation message later does not make an agreed slot pending. A proposed time, a slot still being checked, or a promise to call back is **Follow-up needed**. Add **Decision guidance** to explain how your team uses these stages. If there is no clear next step, the stage stays as it is. The stage step does not create an appointment.
 
 Each step goes on one of two ways: **Moved** or **Booked**, and **Not clear**. Switch off the follow-up in the step if you don't want it.
 
@@ -163,6 +163,17 @@ Ready-made automations to start from:
 - **Close leads that say they are not interested**: moves them to the stage you choose, with a note.
 
 A call with no recording can't be read. Automations that start from a call can't make an AI call.
+
+## Send WhatsApp alerts to staff
+
+1. In **Inbox → Settings**, open the default WhatsApp number and turn on **Send staff alerts from this number**. In **Inbox → Templates**, create utility templates for the alerts you want and wait for approval. For example: `Call reviewed. Lead {{1}} moved to {{2}}.` and `Missed call on lead {{1}}. Open Marro to review.`
+2. In the automation, add **Notify someone**. Choose **Chosen users** and select the admin, or choose the lead owner or a team. Each recipient needs their own WhatsApp number in their staff profile.
+3. Under **How**, choose **WhatsApp** and pick the approved template and language. Fill its values with **Insert field**, for example **Lead name** or **Stage name**. Use only the lead details the recipient needs. The alert goes to the selected staff; **Send a WhatsApp template to the lead** is a different step.
+4. For a stage set by the call automation, add the alert on the **Moved** path. For different templates, add **If… otherwise…** there, check the resulting **Stage**, and add a **Notify someone** step for each result. For staff moves outside the call workflow, use **The lead moves to another stage** and select the destination stage.
+5. For missed calls, use a separate automation starting with **A call is logged**, filtered to **Missed calls only**, then **Notify someone**. A new caller starts in the pipeline's entry stage. Leave out **Change stage** to keep the stage of existing leads. **Settings → Notifications** also has a separate built-in missed-call alert for the lead owner; leave it off for that channel if it would duplicate your alert.
+
+Check the automation's **Runs** and **Settings → Logs → Messages sent** for the send result. If the connection does not confirm acceptance, check the result before sending again.
+
 
 ## If a step fails
 
