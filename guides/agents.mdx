@@ -11,7 +11,7 @@ Agents work on your leads in the background, without anyone asking: they reply, 
 
 ## Your AI team
 
-No agent is on by default. Your AI team is the agents your business adds. Open **AI → Agents** (its tabs are **Agents**, **Knowledge** and **Settings**) to see only your own agents, with an **Add an agent** card.
+No agent is on by default. Your AI team is the agents your business adds. Open **AI → Agents** (its tabs are **Agents**, **Knowledge** and **Settings**) to see your own agents, one card each: its colour, whether it is **Working** or **Off**, what it does, its **runs this month** and when it **last ran**, with **Activity** and **Edit**. **Add an agent** is at the right of the tab row. With more than three agents, a search box and a status filter appear.
 
 Choose **Add an agent**, then a template or **Start from scratch**:
 
@@ -29,18 +29,20 @@ When your organization first got agents, the switches you already had became age
 
 ## Create an agent
 
-Whether you start from a template or from scratch, the form has these steps:
+Whether you start from a template or from scratch, the form has these sections:
 
 1. **Its job:** brief it in plain words, as you would a new team member. **Ask Marro to write it** helps.
 2. **When it works** (the trigger): a new lead, a lead messages in a chat, after a call, chat or note, a call has a recording, a stage, a document upload, a booking or a payment, at once or after a wait.
-3. **What it may do:** tick its actions and choose **Ask me first** or **On its own** for each. These permissions are the agent's own; other agents don't get them. You can leave them all off for a **Call reviewer** and still save its instructions. It reads recordings and saves analysis; use the automation to move the lead or alert staff.
-4. **Try it** on one of your leads, then **Switch on**.
+3. **What it may do:** choose what the agent is allowed to do. A line at the top says in words what it can do. Abilities are in groups (the lead and the team, messages to the lead, calls and documents, appointments, quotes and payments, email sequences, reports) with a search box; each has a one-line description and says how far it reaches: **Looks things up**, **Changes your records**, **Reaches your customers** or **Involves money**. Tick an ability, then choose **Ask me first** or **On its own**. Anything that **Involves money** always asks you first. These permissions are the agent's own; other agents don't get them. Past eight abilities the form suggests splitting the agent in two, because focused agents work best. You can leave them all off for a **Call reviewer** and still save its instructions.
+4. **Most actions a day** (optional): the most the agent may do in a day. Leave it empty for the usual limit (50, of which 20 may reach customers). When it reaches the limit it stops for the day and its **Activity** says so.
+
+An agent never does more than the person who owns it could: it works with that person's permissions and your plan, and an ability they can't use isn't offered. The owner is the person who created the agent; saving an agent whose owner has left makes you its owner.
 
 Your business can have one agent for each of these three: a lead messages in a chat, after a call, chat or note, and a call has a recording. If another agent already does the same step on the same trigger, the form says so. Agents never repeat each other: when one agent has already done the same kind of thing to a lead in the last 12 hours (a WhatsApp, an email, a call), the next one's attempt waits for a person.
 
 Each agent runs as an automation of its own, so its runs show in Automations too. Each agent has its own colour. Press the coloured dot on its card to choose another from twelve; administrators only. The agents take your company facts from [business knowledge](/guides/business-knowledge).
 
-Choose **Manage** on an agent to change its instructions, trigger, permissions and extras, and to switch it on or off or delete it. Some agents have extras there:
+Choose **Edit** on an agent to change its instructions, trigger, permissions and extras; the switch on its card turns it on or off, and its menu has **Delete**. Some agents have extras there:
 
 - **Follow-up coordinator**: **Plan next steps**, **Draft WhatsApp replies** and a **Daily briefing** for each person.
 - **Chat receptionist**: **Replies per contact** caps its replies to one person in a rolling 24 hours.
@@ -60,23 +62,25 @@ You can also ask the [assistant](/guides/assistant) to change an agent's instruc
 
 ## Choose what they may do
 
-In an agent's **Manage**, set each action it uses to **Ask me first** or **On its own**. An action shared by several agents shows **Also applies to**, because the choice is kept per action. Each action can be:
+In an agent's **Edit**, tick the abilities it may use and set each to **Ask me first** or **On its own**. Each ability can be:
 
-- **Off**: the agent never takes it.
-- **Ask me first**: the agent prepares the action for a person to check first.
+- **Off** (not ticked): the agent never does it.
+- **Ask me first**: the agent prepares it for a person to check first.
 - **On its own**: the agent acts straight away.
 
-The actions come in two groups.
+How far an ability reaches decides what you may choose:
 
-**Inside the CRM**: notes, follow-ups (for the owner or another team member), lead details, tags, and telling a team member by email. These only change what your team sees, and they act on their own unless you choose **Ask me first**.
+- **Looks things up** and **Changes your records** (notes, follow-ups, lead details, tags, reading a quote, a report or an appointment's availability) may be **On its own**.
+- **Reaches your customers** (a message, a call, a stage or owner change, booking or rescheduling an appointment) may be **On its own** once you choose it. Until then it waits for a person.
+- **Involves money** (a quote, an invoice, a payment link or reminder) always **asks you first**.
 
-**Reaching the lead**: the stage, the owner, WhatsApp templates, WhatsApp replies, email, SMS, replies on your other inbox chats, AI calls, the portal link and document requests. Until you set them to **On its own**, they wait as suggestions for a person to check. Even then, an agent only reaches a lead on its own within your working hours (Settings → HR) and a few times a day per lead; outside that, the action waits for you as a suggestion. Free-form replies, replies on other chats and a new owner always wait for you.
-
-An action that can't be used yet is listed under **Needs setup**, below the others, with **Not in your plan** when your subscription doesn't include it, or what to set up first (connect WhatsApp, switch on AI calls, turn on the client portal). Agents can also put the lead's booking link in a message once you have a booking type.
+An ability that can't be used yet is hidden, or says what to set up first (connect WhatsApp, switch on AI calls, turn on the client portal); one outside your plan isn't offered. Agents can also be asked about in the [assistant](/guides/assistant).
 
 ## See their work
 
-Everything an agent does is recorded on the lead. Every suggestion waiting for review is listed under **Waiting for review** at the top of **AI → Agents** (suggestion, lead, why, when), newest first: **Approve** (the button says what it does, such as Send or Move) or **Dismiss** right there, or open the lead to edit the words first. You see the ones you may review on the lead, and an admin sees all of them. The mobile app shows them too, and you can ask the [assistant](/guides/assistant) what is waiting.
+Choose **Activity** on an agent for its log: newest first, grouped by day, each entry saying in plain words what it did, for which lead, what changed and how it went (**Done**, **Waiting for you**, **Skipped** or **Did not finish**). Filter by **All**, **Waiting for you** or **Did not finish**; **How it works** shows what starts it, what it may do and when it hands over. Everything an agent does is also recorded on the lead.
+
+Every suggestion waiting for review is listed under **Waiting for review** at the top of **AI → Agents** (suggestion, lead, why, when), newest first: **Approve** (the button says what it does, such as Send) or **Dismiss**. An approval carries out exactly what was suggested, once.
 
 ## Settings for all agents
 
