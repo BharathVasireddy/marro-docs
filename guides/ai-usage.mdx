@@ -3,7 +3,7 @@ title: "AI usage and credits"
 description: "Track monthly AI activity, tokens, credits and wallet charges."
 ---
 
-Your plan can include **AI credits** each month, in rupees. Your agents, the assistant, AI replies to leads, suggested replies and business knowledge improvements draw on them as they work. Once the credits for the period are used, AI is paid from your **wallet**, the same one that pays for WhatsApp messages.
+AI usage is metered by default for all organizations. Your plan can include **AI credits** each month, in rupees. If your plan has no included credits, usage is paid from the wallet from the start. Your agents, the assistant, AI replies to leads, suggested replies and business knowledge improvements draw on them as they work. Once the credits for the period are used, AI is paid from your **wallet**, the same one that pays for WhatsApp messages.
 
 ## See what you used
 
@@ -22,7 +22,7 @@ Organization administrators also see **Activity**. Choose the current UTC month 
 
 Selecting an earlier month changes **Activity** only. **Credits now** always shows the current month and current wallet balance. The earlier-month list links directly to each month's activity.
 
-If your plan doesn't charge separately for AI, the page says it's included. Reports cover recorded text-model activity; AI calling is reported separately. Search embeddings and voice transcription are not included in this report.
+Reports cover recorded text-model activity; AI calling is reported separately. Search embeddings and voice transcription are not included in this report.
 
 The assistant shares the same admin permissions, on the web, mobile and staff WhatsApp. Ask “How much AI have we used this month?” or “Show our AI activity for October 2026.” It can read usage; it does not change prices or your allowance.
 
@@ -55,8 +55,6 @@ AI calls are paid by the minute from the wallet (see [AI calling](/guides/ai-cal
 
 Each piece of AI work is priced by how much it read and wrote (tokens), at your plan's AI rate, and rounded up to the paisa. Longer conversations and bigger knowledge lookups cost a little more; short tasks cost very little.
 
-Where configured, eligible reused input can use a separate rate. When the required rates or usage details are unavailable, ordinary-input pricing remains in use. Existing rates are not changed automatically, and not every request can reuse previous input.
+Eligible reused input can use a separate rate. If we cannot verify the rate or usage details needed to price a request, it is recorded without a deduction.
 
-Where live AI credit pricing is enabled, included credits cover usage first. If a run crosses the credit limit, only the remaining portion is billed at the wallet rate.
-
-During a billing preview, Marro can check how a usage charge would be split between your remaining credits and your wallet. A preview does not deduct either balance.
+Included credits cover usage first. If a run crosses the credit limit, only the remaining portion is billed at the wallet rate. Wallet payments for AI usage are currently available in INR. If your wallet uses another currency, AI pauses when your included credits run out.
