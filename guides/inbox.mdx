@@ -170,6 +170,42 @@ Open a broadcast for its report:
 - **Cost**: **Estimated**, **Charged**, **Given back** and **Still held**, in your own price.
 - **After the broadcast**: leads that moved stage or were converted afterwards.
 
+### Choosing when a broadcast goes
+
+In the composer, **When** has three choices:
+
+- **Now**, or **At a time**: everyone is sent to at that moment (up to 30 days ahead).
+- **At each person's local time**: choose a date, a time and a fallback time zone. Each person gets the broadcast at that time in their own zone, worked out from the country code of their number: 10:00 reaches India at 10:00 India time and Dubai at 10:00 Dubai time. Numbers whose country has several zones (the United States and Canada, Australia, Brazil, Russia, Mexico) are sent at the fallback zone, and the composer counts them. If the time has already passed where someone is, they are sent it the next day at that time, never at once. Before you send, a small table shows each zone, how many people are in it and when they are sent to.
+- **Repeat**: with a time set, choose **Every day**, **Every week** or **Every month**, and optionally an end date or a number of runs (up to 366). Each run is made as an ordinary broadcast the day before it goes, to the list as it is then, so people added since are included and people who opted out are not. Repeating broadcasts are listed under **Repeating** on the Broadcasts page, where you can pause, resume or end them. If a run cannot be made (the list was deleted, nobody can be reached, the wallet is short) the series pauses and says why. Runs that fall due while a series is paused, or during an outage, are skipped rather than sent late.
+
+A broadcast that has not started can be moved: **Reschedule** on its card, with a new date and time. Once it has started sending, pause or stop it instead. **Pause** holds the people not yet sent to, and **Resume** carries on.
+
+**Calendar** (top of the Broadcasts page) shows a month of what is scheduled, running, paused and finished, and the next runs of repeating broadcasts in a lighter style. Open a broadcast from it for its report.
+
+### Who is left out: the opted-out list
+
+**Broadcasts → Opted out** lists everyone who asked not to get WhatsApp messages: people who replied STOP, people an automation stopped, and people your team added. Broadcasts, templates and automated messages skip them, and each broadcast shows how many it left out (**Opted out** in its report and on its card).
+
+- **Add a number** (anyone who can run broadcasts): enter the number and a short note saying why, for example "asked on a call". The note and who added it are kept, and the change is in the audit log.
+- **Opt back in** (needs the WhatsApp settings permission): only for someone who has agreed to messages again. Write how they agreed. The newest word wins: if they reply STOP afterwards, they are opted out again.
+- The same applies when a customer replies START: they are back in.
+
+Opting someone back in allows templates and broadcasts to them. A customer who replied STOP can still only be answered with free text after they message you again.
+
+### Recipient report and sending again
+
+Under a broadcast's report, **People** lists everyone with when it was sent, delivered, read and replied (a dash where WhatsApp has not told us, or for broadcasts older than this report), their time zone for local-time broadcasts, and why a message failed. Filter by **Delivered**, **Read**, **Did not read**, **Replied**, **Failed**, **Opted out**, **Skipped**, **Waiting** or **Unsure**, search by name or number, and **Download CSV** for the filtered list.
+
+When a broadcast has finished, **Send again to…** makes a new broadcast from it, with the same template, to:
+
+- **Did not read it**: delivered or sent, never read, and no reply.
+- **Did not reply**: delivered or read, and no reply since.
+- **Failed**: WhatsApp could not deliver it.
+
+You see how many are in the group, how many were already sent it again (nobody is sent the same retarget twice), and how many are left out because they opted out since or are your own team, before anything goes. People whose send is unsure are never included, so nobody gets it twice. A repeat goes now, at a time, or at each person's local time, and uses your message wallet like any broadcast.
+
+The assistant can list what is scheduled, schedule, move, pause, resume and stop broadcasts, set up repeating ones, send a broadcast again, and read or change the opted-out list. Each change is shown for your approval first.
+
 ## Replies
 
 **Inbox → Settings → Replies** is what goes out on its own when someone messages you. Each message gets one answer. Who answers, in order:
