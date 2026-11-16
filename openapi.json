@@ -2347,7 +2347,7 @@
                           },
                           "source": {
                             "type": "string",
-                            "description": "leads, calls, follow_ups, appointments or chats"
+                            "description": "leads, calls, follow_ups, appointments, chats or website_visits"
                           },
                           "chart": {
                             "type": "string"
@@ -8346,7 +8346,7 @@
           "Public billing catalogue"
         ],
         "security": [],
-        "description": "Current published revisions only. Integer INR paise, monthly/quarterly/annual (annualPricePaise is for twelve months; annualExtraUserPricePaise is per extra user for twelve months, null meaning twelve times the monthly price). newSaleGstRatePercent is the tax rate, in percent, on a new sale; authenticated signed checkout previews bind the exact payable total. Null limits mean unlimited; null AI credit means unmetered, zero means no included metered credit. Existing agreements retain their accepted terms. currencies lists the currencies the whole list is priced in (INR first; AUD only when every plan has an AUD price block, ex GST). currencyPrices.AUD holds integer AUD cents on a plan or add-on, with aiCredits meaning the same as aiCreditsPaise. Responses are never cached.",
+        "description": "Current published revisions only. Integer INR paise, monthly/quarterly/annual (annualPricePaise is for twelve months; annualExtraUserPricePaise is per extra user for twelve months, null meaning twelve times the monthly price). newSaleGstRatePercent is the tax rate, in percent, on a new sale; authenticated signed checkout previews bind the exact payable total. Null limits mean unlimited; null or zero AI credit means no included credit. Existing agreements retain their accepted terms. currencies lists the currencies the whole list is priced in (INR first; AUD only when every plan has an AUD price block, ex GST). currencyPrices.AUD holds integer AUD cents on a plan or add-on, with aiCredits meaning the same as aiCreditsPaise. Responses are never cached.",
         "responses": {
           "200": {
             "description": "Published catalogue, including its atomic publication generation",

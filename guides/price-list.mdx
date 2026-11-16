@@ -28,7 +28,7 @@ The pricing page and [marro.si/pricing.md](https://www.marro.si/pricing.md) reus
 
 ## Reading the price list from code
 
-The published price list is public and needs no API key: `GET https://app.marro.si/api/public/billing-catalogue` (see the [API reference](/api-reference/public-billing-catalogue/get-published-billing-catalogue)). It returns only versions on sale now, with amounts as whole paise, a `generation` number that goes up with each publication. A limit of `null` means unlimited; `aiCreditsPaise: null` means AI use is not metered, and `0` means none is included. It is never cached, and answers `503` when it cannot be read. A running subscription keeps the tax it was sold with; the checkout review decides the tax and total for yours.
+The published price list is public and needs no API key: `GET https://app.marro.si/api/public/billing-catalogue` (see the [API reference](/api-reference/public-billing-catalogue/get-published-billing-catalogue)). It returns only versions on sale now, with amounts as whole paise, a `generation` number that goes up with each publication. A limit of `null` means unlimited; `aiCreditsPaise: null` and `0` both mean the plan includes no AI credit. It is never cached, and answers `503` when it cannot be read. A running subscription keeps the tax it was sold with; the checkout review decides the tax and total for yours.
 
 ## For Marro platform administrators
 
