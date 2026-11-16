@@ -1,0 +1,52 @@
+---
+title: "WhatsApp contacts, tags and attributes"
+description: "Tag chats, keep details about each contact, build segments for broadcasts, import contacts from a spreadsheet and download chats."
+---
+
+In Marro a WhatsApp chat belongs to a lead, so a WhatsApp **contact** is a lead. Tags, details (attributes), lists and imports work the same everywhere: what you set up for leads is what you use in the Inbox.
+
+## Tags on chats
+
+Open a chat and look at the **Lead** panel beside it. Under the details, **Add tag** (or **Edit tags**) puts tags on the lead. Everyone who can edit leads can tag; renaming, recolouring and deleting tags is in **Settings → Leads → Tags**.
+
+To find tagged chats, open the **Filters** menu above the chat list, choose **Tag**, and pick one. A pill shows the filter is on; **Clear** removes it. While a tag filter is on, chats from other channels are not listed, because tags are shown for WhatsApp chats.
+
+A chat with no lead yet (for example one from Instagram) has no tags until you add it as a lead.
+
+## Attributes (contact details)
+
+The panel's **Details** section shows every field your organisation keeps, and **Edit** changes them. Add or change fields in **Settings → Leads → Fields**: see [custom fields](/guides/custom-fields).
+
+Use attributes in broadcasts: when you fill a template's values, pick one under **Contact attributes**. Each person gets their own value. If a contact has none, the value you type in **If empty, send** goes out instead, or a dash, because WhatsApp does not accept an empty value.
+
+## Segments
+
+A segment is a **lead list**. Make a dynamic list from the leads page filters, for example everyone tagged *Scholarship* whose city is *Pune*, and it stays up to date. A broadcast goes to a list: see [broadcasts](/guides/inbox#broadcasts) and [filtering](/guides/filtering).
+
+## Opt-in
+
+The panel shows **WhatsApp opt-in**: the date the person agreed to get WhatsApp messages, or **Record now** if you know they did. The first record stays. Marro keeps this as a record for you; it does not stop a broadcast by itself. People who reply STOP are still left out of broadcasts.
+
+## Import contacts
+
+Use **Leads → Import** and choose your CSV file. Match each column to a lead field. Two extra choices help with WhatsApp lists:
+
+- **WhatsApp opt-in**: `yes` records the opt-in now, a date (such as `2026-03-01` or `01/03/2026`) records that day, `no` or empty records nothing. It never replaces an opt-in already recorded.
+- **Tags**: names separated by commas, for example `Hot, Scholarship`. Tags that do not exist are created. A row can name ten tags and a lead can hold twenty.
+
+Duplicates are found by phone number. Choose whether numbers you already have are **updated** or **skipped**; tags and opt-in in the file are applied to existing leads only when you choose to update them. Numbers are matched inside your organisation only.
+
+## Download chats
+
+People with the **Export leads** permission see a download button beside the Inbox filters. Choose open or closed chats, a tag, a number, and a date range, then **Download**. You get one row per chat: name, phone number, status, owner, tags, opt-in, last message and how many messages. Turn on **Include every message** for one row per message instead.
+
+- Pictures, videos, audio and files are never included, only their kind, such as `[image]`.
+- Someone who sees only their own chats downloads only those.
+- Each download is recorded in **Settings → Audit log**.
+- The file holds at most 20,000 chats or 50,000 messages; narrow the dates if you hit the limit.
+
+For leads themselves (with tags) use **Leads → Download**.
+
+## Ask the assistant
+
+The assistant can list the chats with a tag, put tags on leads, and record a lead's opt-in. It asks you to confirm changes first. It cannot download a file; use the Inbox button.
