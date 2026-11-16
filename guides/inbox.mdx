@@ -182,6 +182,41 @@ The welcome and away messages pause while the AI receptionist is on, and while a
 
 These replies are ordinary [automations](/guides/automations) underneath, so they also appear there. Build more complex flows in Automations. You can also ask the [assistant](/guides/assistant) to switch the welcome or away message on or off, change their text, or add and edit keyword replies.
 
+## Reply rules
+
+**Inbox → Settings → Reply rules** answers common messages without a person. It needs the Inbox and permission to change WhatsApp settings.
+
+### Keyword replies
+
+Choose **Add rule**, name it, and enter one or more words separated by commas. Choose how a message must match:
+
+- **Contains the words**: whole words in any case. "price" matches "What's the Price?", not "priceless".
+- **Is exactly**: the whole message. Use this for an ice breaker or command a customer taps.
+- **Starts with**: the message begins with those words.
+- **Contains the text**: the text anywhere, even inside a word.
+
+Switch on **Match upper and lower case** when capitals matter. Accents and punctuation are ignored, except in "Contains the text".
+
+Rules are tried from the top, and the first that matches is the only one that answers. Drag a rule, or use the arrows, to change the order. Each rule shows how many times it replied and when it last did. Switch a rule off to pause it; its count stays. Deleting a rule removes its count and cannot be undone.
+
+A rule replies to the same chat at most once every 10 minutes (you can change this). It can be limited to **Only when we are open** or **Only when we are closed**, using the working hours in **Settings → HR**. A message reply goes out inside WhatsApp's 24-hour window; choose an approved template to reply after it has closed. Use `{{first_name}}`, `{{name}}`, `{{owner_name}}` and `{{organization_name}}` in the words.
+
+### Default reply
+
+One reply for everything else. It goes only when no rule matched, no person is in the chat, the AI receptionist is off, and your welcome and away messages did not reply. Choose **Once per conversation** (a conversation ends after 24 hours of quiet) or **Once a day**.
+
+A rule never talks over a person who is handling the chat, the AI receptionist, someone who replied STOP, or a reaction.
+
+### Reply material
+
+The team's quick replies (typed as `/shortcut` in a chat) can be filed in folders here. `{{first_name}}` and `{{name}}` are filled with the person in the chat when you insert one.
+
+### Ice breakers and commands
+
+For each WhatsApp number you can set up to 4 ice breakers (up to 80 characters) that customers can tap when they open a new chat, and up to 30 commands customers see when they type `/`. Neither may contain emoji. Meta shows ice breakers only in a chat that is new or cleared. Save sends the whole set to WhatsApp and shows what WhatsApp now holds; **Refresh from Meta** reads it again. A tap or command reaches you as an ordinary message, so add a rule with **Is exactly** to answer it. Meta does not say whether these work on a number that is also used in the WhatsApp Business app: if WhatsApp refuses, its message is shown.
+
+You can ask the [assistant](/guides/assistant) to read these rules, add or change one, pause or resume it, change their order, file quick replies in folders, or set ice breakers and commands. Each change is put to you first. Deleting a rule is done on the page; the assistant pauses it instead.
+
 ## Chat settings
 
 **Inbox → Settings → Chat** has three switches, all off until an administrator turns them on. You can also ask the assistant to change them.
