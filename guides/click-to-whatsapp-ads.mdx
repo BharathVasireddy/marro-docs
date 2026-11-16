@@ -1,0 +1,50 @@
+---
+title: Click-to-WhatsApp ads
+description: See which ad started each chat, what those leads became, and tell Meta so your ads improve.
+---
+
+When someone taps your click-to-WhatsApp ad and sends a message, Marro keeps the ad with the lead: its headline, its link and, where Meta gives one, the ad's click ID. Nothing here is guessed: a chat that did not come from an ad shows no ad.
+
+## On the lead and in the chat
+
+- The lead's **Ad source** shows the headline, **Open the ad**, and whether an ad click ID was kept. Ads shown in WhatsApp Status carry no click ID, so results for those chats cannot be sent to Meta.
+- The chat shows **From an ad** with the headline above the reply box.
+- If you turned on sending to Meta, the lead also lists **Sent to Meta**: chat started, qualified lead and purchase, each as waiting, sent, not sent (with the reason) or too old to send.
+
+## Reports → Ads
+
+Open **Reports → Ads**. For the period you pick, each ad shows the chats it started, where those leads are now by stage, how many are won, how many events went to Meta, and, when you have entered spend, the spend, cost per chat and cost per win. A lead counts under the ad of its first click-to-WhatsApp chat.
+
+To see costs, an administrator who sees every lead enters what an ad spent in a month under the table (the ad ID is shown under each headline). Marro does not read your spend from Meta.
+
+## Send results to Meta
+
+Off until an administrator turns it on in **Reports → Ads → Send results to Meta**.
+
+<Steps>
+  <Step title="Choose the WhatsApp number">
+    The number you run your ads for. Its access token needs Meta's `whatsapp_business_management` and `whatsapp_business_manage_events` permissions.
+  </Step>
+  <Step title="Find the dataset">
+    Press **Find**. Meta returns the dataset linked to your WhatsApp Business account, or makes one. You can also paste its ID.
+  </Step>
+  <Step title="Choose the stages">
+    Pick the stage that means a **qualified lead** and the stage that means a **purchase**. A lead entering that stage is sent once.
+  </Step>
+  <Step title="Confirm and turn on">
+    Confirm that your customers agreed to their ad activity being shared with Meta, then turn on **Send results to Meta**. Use a test event code from Meta's Events Manager first, and clear it when you are happy.
+  </Step>
+</Steps>
+
+What is sent: the event (chat started, qualified lead or purchase), when it happened, your WhatsApp Business account ID and the ad click ID. A purchase includes its value when the lead has paid payments. Never the person's name, number or messages.
+
+- Only leads that came from an ad with a click ID are sent. Turning it on never sends earlier chats, and Meta refuses events older than 7 days.
+- Each event is sent once per lead. If Meta cannot be reached, Marro tries again after 1 minute, 5 minutes, 30 minutes, 2 hours and 8 hours. If Meta refuses it, it shows as not sent with the reason, and **Try failed again** is there after you fix it.
+- Businesses in health and other sensitive industries are never sent, because Meta forbids sharing that data.
+- Meta bills you directly for WhatsApp messages; this feature adds no charge.
+
+Google Ads and TikTok are not connected: Google's offline conversion upload accepts only Google click IDs, which a WhatsApp chat does not carry.
+
+## Ask the assistant
+
+"Which ad brought the most chats this month?", "How many chats from ad 1203 are won?", "Is sending to Meta on, and how many failed?" The assistant can also change the settings, enter spend or retry failed events after you approve. It never shows an access token.
