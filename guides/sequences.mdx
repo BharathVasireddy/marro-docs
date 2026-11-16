@@ -1,0 +1,43 @@
+---
+title: "Sequences"
+description: "Send a lead an ordered list of WhatsApp messages, emails and follow-ups, with waits between them, that stops when they reply."
+---
+
+A sequence is a list of steps for one lead: send this WhatsApp message now, wait two days, send an email, then give the owner a follow-up. Marro carries each lead through it on its own and shows you, on the lead, where they are and when the next step goes.
+
+For something that starts from an event (a stage change, a form, a missed call) use an [automation](/guides/automations). For a list of emails with your own sending windows see [email sequences](/guides/email-sequences). A sequence is the simple choice when you decide who goes in and the steps are a plain list.
+
+### Steps
+
+- **WhatsApp message.** Choose a template. It is sent outside WhatsApp's 24-hour window, when the lead has not written to you recently. You can also write words to send as a normal message while the lead has written in the last 24 hours; the template is used otherwise. A step with only words and no template waits a day (up to three times) for the lead to write, then is skipped.
+- **Email.** A subject and a message, from the lead's owner's connected mailbox or the organization's sending address.
+- **Follow-up.** A follow-up for the lead's owner, due in a number of days.
+- **Wait.** For a length of time (minutes, hours or days, up to 90 days), or until a time of day, optionally on a working day.
+
+Use details such as `{{lead.first_name}}` in the words; they are filled in for each lead.
+
+### What stops a lead
+
+Before every step Marro checks the lead, and ends their place in the sequence, saying why, when:
+
+- they replied on WhatsApp or by email (switch this off to keep going after a reply);
+- they reached a won or lost stage (also a switch);
+- they were archived, or the sequence was archived.
+
+A lead who opted out of WhatsApp, or unsubscribed from email, is simply skipped for those steps. If nothing left in the sequence can reach them, it ends. Follow-ups still go to your team.
+
+### Quiet hours and the daily limit
+
+A step that falls in your **quiet hours** (21:00 to 09:00 unless you change it, in your organization's time zone) goes when they end. Each sequence also has a **daily limit** (200 messages a day unless you change it); past it, the rest go later. WhatsApp's own limits apply on top: if a message is refused, Marro tries again an hour later, three times, then pauses that lead and says why.
+
+Meta bills WhatsApp conversations directly to your business; Marro shows no price here.
+
+### Where a lead is, and controls
+
+On a lead you can see the sequences they are in: "In Welcome sequence, next step: WhatsApp message on Tue 17 Nov, 10:00." You can **Pause**, **Resume** or **Stop** them there, or pause a whole sequence, which holds everyone until you switch it on again. Resume carries on at the step they were at. Editing a sequence changes it for leads who join later; leads already in it finish the steps they started with.
+
+If a step may have gone out but Marro could not confirm it (for example the connection dropped while sending), Marro never sends it again on its own: the lead is paused with a note, so you can look at the chat and resume or stop.
+
+### Ask Marro
+
+Ask the assistant, on the web or on WhatsApp: "List my sequences", "Where is Asha in sequences?", "Create a sequence: WhatsApp the welcome template now, wait 2 days, then a follow-up for the owner", "Pause the Welcome sequence", "Start it for these 20 leads". Anything that sends or stops messages is shown to you for approval first.
