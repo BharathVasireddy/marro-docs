@@ -1,0 +1,39 @@
+---
+title: "WhatsApp forms (Flows)"
+description: "Build a form that opens inside WhatsApp, send it in a chat, and save the answers on the lead."
+---
+
+A **form** (Meta calls it a *Flow*) opens inside WhatsApp, so a customer fills it in without leaving the chat. When they send it, the answers come back to Marro as a note on their lead and, if you chose, as lead fields.
+
+<Note>
+  Forms need a connected WhatsApp Business number. Meta requires a verified business to publish and send forms, and may refuse a form it finds a problem with. Marro shows Meta's messages as they come back.
+</Note>
+
+## Build a form
+
+<Steps>
+  <Step title="Create the form">
+    Open **Inbox → Settings → Forms** and choose **New form**. Give it a name, a heading and a submit button. A form is one screen of up to 20 questions.
+  </Step>
+  <Step title="Add questions">
+    Each question is a **short answer**, **long answer**, **drop-down list**, **pick one**, **date** or **tick box**. For a list or pick-one, write one option per line. Choose **Save on the lead as** to put an answer in a lead field; otherwise it appears only in the note.
+  </Step>
+  <Step title="Send it to Meta">
+    **Save and send to Meta** gives the form to Meta and shows any problems it finds. When there are none, you can open Meta's preview on your phone.
+  </Step>
+  <Step title="Publish">
+    **Publish** makes it sendable. A published form cannot be changed: to change it, make a new form. **Retire** stops a published form being sent.
+  </Step>
+</Steps>
+
+## Send a form
+
+A published form is sent into a lead's chat, with a short message and a button that opens it. Like other free messages, it can only go while the chat's 24-hour window is open and never after the customer replied STOP. Ask the assistant to send it; it shows you the message for approval first.
+
+## What comes back
+
+When the customer submits, Marro matches the answer to the form you sent them, adds a note to the lead ("Completed the form …") and fills the mapped lead fields. A value a lead field does not accept is left out, and the note still shows what they wrote. Sending the same answer twice changes nothing.
+
+## Limits in this version
+
+Forms are a single screen without a server behind them. Forms with several screens, data that changes while the customer fills it in, and forms inside message templates are not available yet.
