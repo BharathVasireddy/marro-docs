@@ -116,6 +116,8 @@ If the wallet cannot pay for another minute, both people on the call hear that i
 
 While a Cloud call is in progress, the wallet card and wallet page show the money held for it, for example "₹24.00 held for a call in progress". Marro checks the final charge as soon as the call ends. Once all billing records are available, only the call charge is deducted and the unused amount becomes available for your next call. If a billing record is still pending, Marro retries automatically. Wallet charge lines read **Cloud call answered, 44 s**, **Cloud call not answered** or **Cloud call did not connect: nothing charged**.
 
+If nobody answers and the carrier's records, checked once the call has been over for two minutes, do not list a number Marro tried (for example the caller hung up as it was being dialled), that number counts as not billed. The call is settled and the unused money becomes available again, instead of staying set aside.
+
 If a call's end is not reported, it no longer keeps the person who answered busy once its time limit has passed, and Marro checks for the final charge after the time limit. Once the charge is confirmed, any unused amount becomes available again.
 
 ## Listen to a recording
