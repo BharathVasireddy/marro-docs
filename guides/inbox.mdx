@@ -74,6 +74,7 @@ Meta bills your WhatsApp messages directly to your Meta business account, and Ma
 - **Templates**: Meta charges for each one delivered, at its rate for the category and country.
 - **Replies within 24 hours**: the first 1,000 a month on each number are free. After that, Meta charges for each one delivered.
 - **Messages people send you**: always free.
+- **After a click-to-WhatsApp ad**: when someone writes to you from one of your ads and you answer within 24 hours, Meta opens a free period for messages to that person, of any kind, for at least 72 hours (Meta's current pricing page says up to 7 days; Marro shows 72 hours and goes by what Meta marks free). The chat shows **Messages are free until at least** and the time. Until you answer, it shows how long you have to answer to open it. Free-form replies still need the 24-hour reply window. Boosted posts do not open it, and neither do ad clicks made on WhatsApp Web or desktop.
 
 Without a payment method, Meta stops delivering anything it would charge for. See [Meta's pricing](https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing) for current rates.
 
@@ -109,7 +110,17 @@ Basic checks work without AI. When AI wording review is available it uses AI cre
 
 **Edit** changes a template's wording and buttons; its name, language and category stay fixed. Meta reviews it again after an edit. **Delete** removes that language version at Meta. Meta won't let you reuse the name for 30 days.
 
-Authentication, carousel, limited-time offer, Flow, catalog and location-header templates are made in WhatsApp Manager. They show here, but you can't send them from Marro.
+### Special kinds of template
+
+On the first step of **New template**, **Or write a special kind** offers five more kinds. Each is checked against Meta's rules as you type, shown on the phone beside the form, and sent to Meta for review. Its status (pending, approved, rejected) shows in the list, with its kind next to the category.
+
+- **One-time code**: a login or verification code with a **Copy code** button, optionally with one-tap autofill for an Android app. Meta writes the message itself; you choose the button label, how many minutes the code lasts and whether to add "do not share this code". When you send it you enter the code, which goes in both the message and the button. A one-time code can only go to a phone number: someone known only by their WhatsApp username cannot be sent one.
+- **Coupon code**: an ordinary marketing template with a **Copy offer code** button (add it under **Add a button**). You enter the code when you send.
+- **Limited-time offer**: an optional picture or video, a heading of up to 16 characters, a message (numbered placeholders `{{1}}`, `{{2}}`), an optional code to copy and an optional website button. With a countdown, you enter how many hours the offer lasts (1 to 720) when you send, counted from the moment it goes. WhatsApp on the web and desktop does not show the offer.
+- **Carousel**: two to ten cards, each with a picture or video, optional text and one or two buttons. Every card has the same buttons. When you send it you give a file for each card and the end of each card's link if it has one.
+- **Product** and **Several products**: need a product catalog connected to your WhatsApp number in Meta Commerce Manager. When you send a product template you enter the catalog ID and the product's ID; for several products you list sections, like `Popular: sku1, sku2; Premium: sku3` (up to 10 sections and 30 products).
+
+These kinds can be sent from a lead, in a broadcast and by the assistant, which asks for the values each needs. They cannot be edited here yet: delete one and write it again, or change it in WhatsApp Manager. Flow, catalog-button and location-header templates are still made in WhatsApp Manager; they show here, but you can't send them from Marro.
 
 ## Broadcasts
 
@@ -120,6 +131,7 @@ When you set one up, the composer asks for what the template needs:
 - A template with a picture, video or PDF header: choose the file (**Upload**) or give a link to it.
 - A website button that ends in a variable: enter the link ending.
 - A copy-code button: enter the code.
+- A one-time code, offer, carousel or product template: the code, the hours the offer lasts, a file per card, or the product IDs (see [special kinds of template](#special-kinds-of-template)).
 
 On a lead's page, the **Campaigns** tab lists the broadcasts that lead was in and how far each got to them: sent, delivered, read, not delivered or skipped.
 
@@ -128,6 +140,7 @@ Open a broadcast for its report:
 - **Sent, Delivered, Read, Replied, Failed** and **Opted out** tiles. Opt-outs are people who replied STOP within 7 days.
 - **Funnel** and **Over time**.
 - **Why messages failed**: each reason in plain words, with advice on what to do.
+  - **Marketing limit reached**: Meta caps how many marketing messages one person receives from all businesses, and refuses the rest. Those people are counted on their own row, you are not charged for them, and Meta advises waiting at least 24 hours before trying them again (sooner can block them for another day). Replies and utility templates are not limited. In a chat, a refused message says the same, with the time to try again.
 - **Buttons**: how many people tapped each quick-reply button. Website-button clicks are shown for each template only, not for each broadcast.
 - **Cost**: **Estimated**, **Charged**, **Given back** and **Still held**, in your own price.
 - **After the broadcast**: leads that moved stage or were converted afterwards.
