@@ -1,0 +1,46 @@
+---
+title: "Store orders"
+description: "Bring Shopify and WooCommerce orders and left checkouts into Marro as leads and notes, and start automations from them."
+---
+
+Connect your own store and Marro hears about its orders. A customer with a phone number becomes a lead (source **Shopify** or **WooCommerce**) or is added to the lead they already are, and each step of an order is written once on the lead's timeline. You can start an automation from any step, for example an order confirmation or shipping update template message. Nothing is sent to the customer unless an automation you made sends it.
+
+## Connect Shopify
+
+<Steps>
+  <Step title="Make a custom app">
+    In your Shopify admin, open **Settings → Apps and sales channels → Develop apps** and create an app with read access to orders and checkouts.
+  </Step>
+  <Step title="Connect it in Marro">
+    Open **Settings → Integrations → Shopify**. Enter your store address (`your-store.myshopify.com`) and the app's API secret key, then press **Connect**.
+  </Step>
+  <Step title="Add the webhooks">
+    In the app, add a webhook in JSON format for each of `orders/create`, `orders/paid`, `fulfillments/create` and `checkouts/update`, with the webhook URL shown in Marro. Marro only reads calls signed with your secret.
+  </Step>
+</Steps>
+
+## Connect WooCommerce
+
+<Steps>
+  <Step title="Connect it in Marro">
+    Open **Settings → Integrations → WooCommerce**, enter your store address (https) and press **Connect**. Marro shows a webhook URL and a secret.
+  </Step>
+  <Step title="Add the webhooks">
+    In WordPress, open **WooCommerce → Settings → Advanced → Webhooks** and add two webhooks, topics **Order created** and **Order updated**, with that delivery URL and secret.
+  </Step>
+</Steps>
+
+## What each event does
+
+| Event | Where it comes from | What Marro does |
+| --- | --- | --- |
+| An order is placed | Shopify new order, WooCommerce new order | Note on the lead |
+| An order is paid | Shopify paid order, WooCommerce status Processing | Note on the lead |
+| An order is shipped | Shopify fulfilment, WooCommerce status Completed | Note on the lead, with tracking link where Shopify gives one |
+| A checkout is left unfinished | Shopify only | Note with the link back to the checkout |
+
+Each event is handled once, however many times the store sends it. A customer with no phone number is added to an existing lead when the email matches; otherwise no lead is made. An archived lead is left unchanged.
+
+## Start an automation
+
+In **Automations**, choose the trigger **A store order or checkout changes**, optionally limited to some of the events above, then add the steps you want, such as sending an approved WhatsApp template.

@@ -86,6 +86,8 @@
               "guides/sequences",
               "guides/appointments",
               "guides/payments",
+              "guides/store-orders",
+              "guides/whatsapp-catalog",
               "guides/billing",
               "guides/price-list",
               "guides/modules",
