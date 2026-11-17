@@ -3,7 +3,7 @@ title: "Business knowledge"
 description: "Tell the AI about your business: products, prices, dates, policies and FAQs."
 ---
 
-Business knowledge is what you write down about your business for the AI. The assistant, suggested replies and the agents take your facts from here instead of guessing, and say they will check anything that isn't written down.
+Business knowledge is what you write down about your business for the AI. The assistant, suggested replies and agents use permitted reference facts from here. Current products and prices, bought subscription terms, payments and appointment times come from their current records. If a specific fact cannot be confirmed, Marro says so directly.
 
 Open **AI → Knowledge**. Administrators can use it by default; other roles can be given the permission.
 
@@ -51,8 +51,22 @@ Choose **Use this version** or **Keep mine**. Nothing is saved until you press *
 - 60,000 characters an entry.
 - 500,000 characters and 300 entries for your organization.
 
+## Access and validity
+
+Open an entry’s menu and choose **Access and validity**.
+
+- **Staff and customer replies** allows the entry in customer-facing conversations as well as staff answers. Existing entries keep this setting until you review them.
+- **Staff only** excludes it from customer-agent retrieval. You can choose roles and branches; an entry with both restrictions requires both to match. No roles or branches selected means all staff. A branch restriction uses actual membership, including branch managers.
+- Set **Effective from** and **Expires on** to limit when the entry can be used. New dates start at midnight in your organization’s timezone. Existing exact times are preserved if you leave their date unchanged. Blank means no date limit.
+- Choose **Replaced by** when another entry supersedes this one. The old entry remains available for administration but is excluded from AI retrieval.
+- After reading the entry and checking its facts, enable **I reviewed these facts and confirm this revision is accurate** and save. Editing or refreshing its text clears verification. A concurrent edit requires you to reload before reviewing.
+
+A review records the administrator’s confirmation. It does not prove that a payment succeeded, an appointment remains free or a customer has a particular subscription. Ask Marro uses the current operational tools for those questions. Customer agents read the current visible product catalogue before quoting listed prices; a catalogue price does not replace a customer’s agreed quote or invoice.
+
+**Test a question** uses your own role and branch access, so it can include staff-only entries you can read. Customer agents use the public audience. When asking Ask Marro to draft a customer reply, it uses customer-audience retrieval.
+
 ## Check dates and disagreements
 
-Assistant knowledge lookups include source names and document revision dates where available. A revision date shows when a document changed; it does not confirm that a fee, deadline, policy or other fact is current.
+Ordinary answers stay conversational and do not announce document names or internal checks. You can explicitly ask to inspect sources. Revision dates show when text changed; review dates show an administrator’s confirmation. If permitted references disagree on a material fact, Marro says what needs confirming instead of choosing a value by date. Missing information and a failed lookup remain distinct internally.
 
-If passages disagree, ask an administrator to verify the facts in **AI → Knowledge**. Missing knowledge and a temporarily unavailable lookup are different: neither is a reason to invent an answer.
+Small collections fit in a bounded context. Larger collections use word and meaning search to select relevant passages; Marro can search again when a detail is missing.

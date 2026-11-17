@@ -13,7 +13,7 @@ Agents work on your leads in the background, without anyone asking: they reply, 
 
 No agent is on by default. Your AI team is the agents your business adds. Open **AI → Agents** (its tabs are **Agents**, **Knowledge** and **Settings**) to see your own agents, one card each: its colour, whether it is **Working** or **Off**, what it does, its **runs this month** and when it **last ran**, with **Activity** and **Edit**. **Add an agent** is at the right of the tab row. With more than three agents, a search box and a status filter appear.
 
-Choose **Add an agent**, then a template or **Start from scratch**:
+Choose **Add an agent** and describe the job. Marro proposes an agent for you. **Templates or manual setup** is available if you prefer to start from a template or **Start from scratch**:
 
 | Template | What it does |
 | --- | --- |
@@ -29,12 +29,30 @@ When your organization first got agents, the switches you already had became age
 
 ## Create an agent
 
-Whether you start from a template or from scratch, the form has these sections:
+### Describe the job
 
-1. **Its job:** brief it in plain words, as you would a new team member. **Ask Marro to write it** helps.
+Choose **Add an agent**. In **What should your agent do?**, write the result you want, for example: “When a new lead comes in, understand what they need and prepare a WhatsApp welcome message.” You can pick a starting example instead of writing from scratch.
+
+Choose **Plan my agent**. Marro suggests a name, job instructions, when it starts, and the abilities it needs. **Chosen for this job** explains each ability and whether it acts **On its own** or **asks you first**. It checks your plan, permissions, connected services and which abilities that kind of agent actually supports. Customer-facing and money abilities start with **Ask me first**. It does not connect services or grant permissions for you.
+
+If something important is unclear, **A little more detail** asks up to three questions. Answer in **Answer or change something**, then choose **Update the plan**. Use the same field to refine a proposal, for example “Create a task for the owner instead of sending a message.” Apply or clear any typed changes before choosing **Review settings**.
+
+**Before you start** lists setup gaps and limitations. If you already have a chat receptionist, follow-up coordinator or call reviewer, the plan points you to **Edit** that agent. Planning cannot create a second one of those kinds. Chat receptionists answer connected chats and can hand over; their optional actions are currently notes, follow-ups and lead details. Direct appointment booking, quotes and calls are not extra chat-receptionist abilities yet.
+
+Choose **Review settings** once required questions and blockers are resolved. The next screen summarises the draft; open **Customise instructions and abilities** to change details or approval choices. **Save, off** saves it without starting work. **Switch on** saves and activates it. Planning alone never saves or activates an agent and never contacts a customer; planning and trials use your AI allowance. If planning is unavailable, your description stays in the form and you can retry or choose **Templates or manual setup**.
+
+### Review the settings
+
+Whether Marro planned the agent or you start from a template or from scratch, its settings have these sections:
+
+1. **Its job:** brief it in plain words, as you would a new team member. **Write it with Marro** or **Improve it with Marro** helps with the wording.
 2. **When it works** (the trigger): a new lead, a lead messages in a chat, after a call, chat or note, a call has a recording, a stage, a document upload, a booking or a payment, at once or after a wait.
 3. **What it may do:** choose what the agent is allowed to do. A line at the top says in words what it can do. Abilities are in groups (the lead and the team, messages to the lead, calls and documents, appointments, quotes and payments, email sequences, reports) with a search box; each has a one-line description and says how far it reaches: **Looks things up**, **Changes your records**, **Reaches your customers** or **Involves money**. Tick an ability, then choose **Ask me first** or **On its own**. Anything that **Involves money** always asks you first. These permissions are the agent's own; other agents don't get them. Past eight abilities the form suggests splitting the agent in two, because focused agents work best. You can leave them all off for a **Call reviewer** and still save its instructions.
 4. **Most actions a day** (optional): the most the agent may do in a day. Leave it empty for the usual limit (50, of which 20 may reach customers). When it reaches the limit it stops for the day and its **Activity** says so.
+
+### Try its next actions
+
+For an agent that works on leads or follows up after calls, chats and notes, **Try its next actions** lets you choose a recent lead and select **Try on this lead**. The trial proposes its next actions without changing customer records or sending messages. It does not simulate trigger timing or delivery. A chat receptionist or call reviewer does not use this trial: it does not simulate a live chat, voice call or call review. Changing the instructions, abilities or chosen lead clears the displayed trial result.
 
 An agent never does more than the person who owns it could: it works with that person's permissions and your plan, and an ability they can't use isn't offered. The owner is the person who created the agent; saving an agent whose owner has left makes you its owner.
 
@@ -74,7 +92,7 @@ How far an ability reaches decides what you may choose:
 - **Reaches your customers** (a message, a call, a stage or owner change, booking or rescheduling an appointment) may be **On its own** once you choose it. Until then it waits for a person.
 - **Involves money** (a quote, an invoice, a payment link or reminder) always **asks you first**.
 
-An ability that can't be used yet is hidden, or says what to set up first (connect WhatsApp, switch on AI calls, turn on the client portal); one outside your plan isn't offered. Agents can also be asked about in the [assistant](/guides/assistant).
+An ability that can't be used yet is hidden, or says what to set up first (connect WhatsApp, switch on AI calls, turn on the client portal); one outside your plan isn't offered. You can also describe an agent to the [assistant](/guides/assistant), in the app or staff WhatsApp. It uses the same planning checks, explains the proposal and asks for approval before creating or changing the agent. Creation defaults to saved off unless you ask to switch it on; the approval names the trigger, wait, daily limit, abilities and instructions.
 
 ## See their work
 
@@ -93,3 +111,9 @@ Every suggestion waiting for review is listed under **Waiting for review** at th
 ## Hand a single chat to the AI
 
 In the [Inbox](/guides/inbox), **Let the AI reply** gives one chat to the conversation agent, and **Take over** takes it back.
+
+## Lead memory and current facts
+
+A lead’s case file preserves continuity between runs. Newly saved facts include a timeline activity, the exact supporting words and observation date. Marro checks that the activity belongs to that lead and that the quote contains the recorded value. Facts expire after at most 90 days; expired or unsupported facts are excluded when reading the file. Current lead fields and operational reads take priority over historical summaries.
+
+Customer-agent retrieval excludes staff-only, expired, future-dated and superseded knowledge. Listed prices come from the current visible product catalogue. Historical summaries cannot establish a current payment status, price or appointment time. If a required operational read is unavailable, the agent cannot confirm that specific fact and can offer the existing callback or booking flow.
