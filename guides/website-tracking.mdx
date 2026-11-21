@@ -43,8 +43,11 @@ A visitor recognised later as a different lead keeps their earlier visits with t
 
 ## On the lead
 
-- **Website visits**, inside **Where they came from** in the record panel on the left: how many visits and pages, where the first visit came from, the pages viewed most, and the latest visits with their pages. The mobile app shows the same on the lead's screen.
-- **The timeline** has one entry per visit ("Visited your website: 4 pages, from Google"), not one per page, and one entry for the visits from before the lead was known.
+- **Website** in the lead's **About** facts: when the lead was last on your website, like "2 hr ago", and the page they came back to most, like "Pricing 5×". It shows when the last visit was in the last 30 days.
+- **Website visits**, its own section in the record panel on the left, open by itself after a visit in the last 7 days: the pages viewed more than once, then each recent visit with when it was, where it came from ("Google search", "Instagram · Reels campaign", "Facebook ad", "Direct visit"), the device, the time on your website, and the pages in the order they were seen with their times. A page seen again in the same visit says **again**.
+- **The timeline** has one **Website visit** entry per visit, not one per page, at the time the visit happened, with the same details. Visits from before the lead was known get their own entries at their own times, so the timeline reads in order: the visits, then the form or chat that made them known.
+
+Pages are shown by their names, without your website's name ("Pricing", not "Pricing | Your brand"); a page without a title is named from its address. The mobile app shows the same on the lead's screen and timeline.
 
 ## Automations
 
@@ -53,7 +56,7 @@ Choose the trigger **A lead visits a page on your website** in an [automation](/
 - **Address contains** a text, like `pricing`, or **Address is** a page, like `/pricing`. Empty means any page.
 - **Once per page per visit**: on by default, so opening the same page again in one visit starts nothing.
 
-Only leads already known start it. For example: when a lead visits the pricing page, create a follow-up for their owner.
+Only leads already known start it. For example: when a lead visits the pricing page, create a follow-up for their owner. A follow-up for the lead's owner needs the lead to have one: a lead with no owner gets none, and the automation's run says so.
 
 ## Reports
 
