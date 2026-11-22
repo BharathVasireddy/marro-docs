@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "willow",
+  "theme": "almond",
   "name": "Marro",
   "description": "How to set up and use Marro, and connect to its API.",
   "colors": {
