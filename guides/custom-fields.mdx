@@ -1,101 +1,68 @@
 ---
 title: Custom fields
-description: Add the details your team needs on CRM records and custom objects.
+description: Add the details your team needs on leads, contacts, companies and opportunities.
 ---
 
-Open [Fields](https://app.marro.si/settings/leads/fields) in Settings and choose a **Record type**. A field belongs to one type: Lead, Opportunity, Contact or Company. Existing fields remain lead fields. Values are never copied between types automatically. Field keys belong to their record type.
-
-<Frame>
-  <img src="/images/leads/lead-fields.jpg" alt="Lead fields in Settings, with Required and Shown switches" />
-</Frame>
-
-Choose **Add field**, give it a name and section, and select short or long text, number, date, phone, email, link, dropdown, multiple choice yes/no, or record link. Dropdowns need choices. You can require a field when creating or editing a record, show it after another answer, and hide it later. Hidden fields leave saved values in place. The fixed identity, ownership, relationship, value and stage fields on customers and opportunities remain fixed.
-
-Custom fields appear on create/edit forms, record details and lists, including stacked cards on phones. On a lead's page the panel shows the fields that are filled in; the rest are under **Empty fields**. Saving checks the current record type's fields, required rules, formats and choices. Editing changes only submitted keys; send an empty value to clear a field. Values from a previous option list can remain unchanged when editing. Fields hidden by an answer are cleared when the record is saved.
-
-At the end of setup, **Add the suggested fields for my business** starts unchecked. Review the exact field names and record types before choosing it. It adds empty, optional fields for your team to fill in later; existing records and values stay unchanged. Finishing without checking it, or choosing **Skip**, creates no fields. Choosing a category alone never adds fields. If adding them fails, your workspace still opens and tells you where to try again.
-
-In **Settings → Business → Business profile**, the same suggestions are available for Education, Consultancy, Healthcare, Real estate, Sales, Agency, Professional services, Insurance, Finance, Automotive, Travel, Fitness, Beauty, Legal and Mortgage broker. General business and saved Clinic/Property choices remain supported. Most fields belong to opportunities; Study level belongs to contacts and Brand website to companies. For example, Real estate offers Property type, Budget and Location on opportunities. Rename, change, deselect or remove starter items before applying. Preview the additions, then apply them. Reapplying the same starter version adds nothing; an existing field key is preserved across record types, and field names are matched within their own record type. Added fields can be edited or hidden in **Fields** afterwards. Existing organizations receive no automatic changes. Starter version 3 can add the current suggestions even after an older starter was applied. Adding fields during setup leaves the optional pipeline, inactive bookings and disabled follow-ups available for a separate preview and approval later.
-
-**Study-abroad and admissions fields.** Some older organizations have study-abroad fields such as the NEET score, target course, country and study preferences, parents' names and phones, school and coaching, and document type and link. They are ordinary lead custom fields, not built-in ones: you can rename, hide or delete them like any other field, and they keep the same field keys everywhere, including the API, saved lists, automations and scoring. New organizations never get them, whatever industry they choose; the Education suggestions add only general education stages and fields. Fields the product used to carry but never needed (intake month, 10th and 12th boards, 10th school, PCB percentage, passport number, domestic budget, "decision maker (other)" and "wants an FMGE session") no longer exist; a website, app or API client that still sends one of them is not rejected, and the value is ignored.
-
-To delete a custom field, use its **Delete** button in Fields. A field with no saved values or references needs a simple confirmation. If records have saved values, Marro shows the exact affected count, offers **Hide instead**, and requires you to type the field name before deleting. Zero and No count as saved answers. Archived records are included in the count. Built-in fields (name, phone, email, source, owner, priority, date of birth, gender and the address) cannot be deleted. Fields used by another field, a form, call outcome, saved list or view, automation, assignment or scoring rule, agent or import/integration mapping cannot be deleted until those uses are removed. Marro names the uses that need attention.
-
-**Mortgage brokers (Australia).** The Mortgage broker starter offers a home-loan pipeline (New enquiry, Contacted, Fact find, Pre-approval, Application lodged, Conditionally approved, Formally approved, Settled, Not proceeding), client fields on contacts (employment type, income, savings, residency, dependants) and loan fields on opportunities (purpose, first home buyer, loan and property value, property state and address, loan type, lender, finance due date, settlement date, referral source). It also offers two inactive booking types and three disabled follow-up journeys. Marro keeps these records and reminders; credit licence, best-interests, privacy and consent obligations stay with you. In **Settings → Business → Business profile**, you can rename Contact, Company and Opportunity to Client, Business and Loan.
-
-Deletion removes the field from forms, lists, filters, exports, the API and ordinary assistant reads. It retains the definition and ordinary saved values. Record-link rows are removed; restoring a record-link field starts it empty. Settings managers can use **Recently deleted → Restore** for **30 days** after deletion. Restoring brings back ordinary original values; if its name or key has been reused, Marro adds “restored” to the name and chooses a different key. A new field can reuse a deleted field's name and public key immediately and starts empty. It never inherits the old field's values. Reapplying an industry starter skips deleted fields; use Restore explicitly to bring one back.
-
-The restore window ends after 30 days. Automatic permanent removal is not enabled yet: retained definitions and values remain stored after the window, with ordinary restoration unavailable. Deleting a field is therefore not a request for immediate permanent erasure.
-
-The mobile app shows filled custom values on customer and opportunity details, read-only. To change them, use the web form or ask Marro. These mobile changes require a new app build.
-
-Ask Marro or the staff WhatsApp agent to read the fields for a specific record type or update a record's custom values. Marro uses the same permissions, validation and current record version as the web form. The assistant can preview and apply all category starters after explaining the exact additions and receiving approval. Changing setup answers alone never adds fields. Field changes and record writes require approval; no values or choices are guessed. Ask Marro can review deletion counts and blocking uses, read recently deleted fields, and delete or restore one field at a time. Deletion and restoration always ask for individual approval, including Auto mode. For a field with saved values, type its exact name in your own message after reviewing the Hide option. General bulk changes cannot delete or restore fields. Field hiding keeps existing values.
-
-With export access, **Download** on Customers or Opportunities downloads matching accessible records and active custom fields, up to 50,000 rows. A capped download says so. Opportunity values are exported in their stored minor units alongside currency. CSV text is escaped to prevent spreadsheet formulas. The existing lead export continues to include lead custom fields only.
-
-For server integrations, create a key with **crm.records.read** or **crm.records.write** (which also requires read). Existing lead and capture keys have no access to customer or opportunity data. Use `kind` equal to `contacts`, `companies` or `opportunities`:
-
-- `GET /api/v1/crm/{kind}/fields`: active field definitions, keys, types, options and required rules.
-- `GET /api/v1/crm/{kind}?page=1&pageSize=20`: paginated records; `query` searches fixed identity fields.
-- `GET /api/v1/crm/{kind}/{recordId}`: one accessible record.
-- `POST /api/v1/crm/{kind}`: fixed create fields plus optional `customFields`.
-- `PATCH /api/v1/crm/{kind}/{recordId}`: current `version`, changed fixed fields and a `customFields` patch.
-
-For example, send `{"version": 3, "customFields": {"starter_location": "Hyderabad", "starter_budget": 8000000}}` to patch an opportunity after reading its current version and field definitions. Use `null` to clear a custom value. Create/update returns the ID and version; read the record to get normalized values and `customFieldDisplay` labels. Opportunities must be enabled in Business profile. These endpoints do not send messages or create payments.
-
-Use [Filters](/guides/advanced-filters) to combine system and custom-field conditions with AND and OR on the web lists. Lead fields can also narrow follow-ups through their linked lead. Saved views retain the groups; a deleted or hidden field makes a stale group match no records until you edit or clear it.
-
-
+Fields are what you record about a lead: its budget, the service it wants, a date to call back. Open **Settings → Leads → Lead fields**.
 
 <Frame>
   <img src="/images/lead-settings/fields.jpg" alt="Lead fields: one tab per record, required and shown switches" />
 </Frame>
 
+1. **Pick the record**: Lead, Opportunity, Contact or Company. Each has its own fields.
+2. **Sections** group the form: rename, reorder or add them.
+3. **Add field** adds a new one.
+4. Each field has two switches: **Required** (must be filled in) and **Shown** (on the form, or hidden).
+
+Name and Phone are always there (lock icon).
+
+## Add a field
+
 <Frame>
   <img src="/images/lead-settings/add-field.jpg" alt="Adding a dropdown field with its options" />
 </Frame>
 
+1. **Name** it, for example *Service needed*.
+2. Choose a **Type** (1). It can't be changed later.
+3. Choose the **Section** (2) it sits in.
+4. For a dropdown or multiple choice, add the **Options** (3).
+5. Optional: **Help text**, **Required when adding** or **editing**, and **Show only after**, which shows it only when another field has a certain answer.
+
+| Type | For |
+| --- | --- |
+| Short text, Long text | Names, notes |
+| Number | Budgets, counts |
+| Date | Birthdays, deadlines |
+| Phone number, Email address, Link | Ways to reach someone |
+| Dropdown, Multiple choice | One or several answers from a list |
+| Yes / no | A simple tick |
+| Record link | Another lead, contact, company, opportunity or user |
+
+New fields show up on the add and edit forms, on the lead's page and as list columns.
+
+## Hide, delete or restore
+
+- **Hide** a field with its **Shown** switch. Saved answers stay.
+- **Delete** a custom field from its menu. If leads have answers in it, Marro shows how many and asks you to type the field's name.
+- Changed your mind? **Recently deleted → Restore** brings it back with its answers for 30 days.
+- Built-in fields (name, phone, email, source, owner and the address) can't be deleted.
+
+## Fields for your industry
+
+Pick your industry in **Settings → Business → Business profile** to see suggested fields, for example *Property type*, *Budget* and *Location* for real estate. You choose which to add; nothing is added on its own.
+
+<Frame>
+  <img src="/images/leads/industry-starter.jpg" alt="Suggested fields for an industry" />
+</Frame>
+
 ## Record links
 
-Choose **Record link** to point to a lead, contact, company, opportunity or user. Choose one target
-type and either one record or multiple records when creating the field. These choices stay fixed;
-add another field to use a different target type or cardinality. Each owner type can have up to
-**10 record-link fields**, including hidden fields. A multiple-record field holds up to **20 links**.
-The field is offered after its database update is applied; until then existing fields keep working.
+A **Record link** field points to another record, such as the company a contact works at. Choose what it links to and whether it holds one or several. Type a name, email or phone to pick the record; click the name to open it.
 
-Type a name, email or phone in the picker and choose an exact result. Users require the same HR
-visibility as their record page. Names open the linked record. Each viewer sees only targets they
-can currently access. Archived leads, disabled opportunities, removed users and deleted or
-inaccessible records show no linked name or detail and count as absent. Deleting a target removes
-its links and never requires clearing incoming links first. Archiving or disabling hides preserved
-links; restoring access makes surviving links visible again.
+## Ask Marro
 
-The target page has **Linked from**, grouped by field name and limited to source records the viewer
-can see. More than 50 links use Previous and Next. Filters offer **is**, **is not**,
-**is empty** and **is not empty**; saved views keep these conditions. Lists and CSV exports use the
-same current visibility. CSV import on Leads accepts an exact name, email or phone belonging to the
-chosen target kind. Separate multiple entries with `|`. An unmatched or ambiguous entry rejects the
-row with a reason; Marro never chooses between matching names. Opportunities match their own name.
+*"Add a dropdown field Service needed with Website, Ads, Social media and SEO"* or *"Set Neha's budget to 50,000"*. Marro shows the change and asks before saving.
 
-Ask Marro or the staff WhatsApp agent to read links, find targets, show incoming links or replace
-one field. Replacements name the source, field and selected records for approval and recheck
-current access and names before saving. Text in a linked record cannot authorize another action.
+## For developers
 
-For API writes, a record-link value is an array of numeric target IDs, even for a single-record
-field; `[]` or `null` clears it. Definitions include `recordLink.target` and
-`recordLink.multiple`. Reads return arrays of accessible `{id, kind, name, href}` objects.
-Lead destinations require `leads.read`; contact/company/opportunity destinations require
-`crm.records.read`. There is no public API scope for user destinations. Record links cannot be
-anonymous website-form questions or captured through a lead-capture key.
-
-The native app has no record-link editor or incoming-link screen. Its current lead-form contract
-omits this unsupported type so older apps do not render it as a text input. Customer/opportunity
-details show the safe, server-formatted names read-only. Use the web form or Ask Marro to edit links;
-creating a record with a required link needs the web form or assistant. Optional links do not block
-ordinary native forms. Native Ask Marro shares the server tools after the server release.
-
-Background agents and automation Set fields do not gain automatic record-link writes. Use the web form, the scoped API or an approved assistant replacement. Anonymous website forms do not offer record links.
-
-## Fields on custom objects
-
-[Custom objects](/guides/custom-objects) have separate fields under Settings → Custom objects → the object. They reuse the field types, validation, retained deletion and isolated key-reuse rules. Current object fields support the ordinary types listed in that guide; record-link fields for objects are not available yet. Their permissions and API scopes are separate from lead and customer access.
+Read and write custom fields through the API: [list a record type's fields](/api-reference/customers/list-record-fields), [create](/api-reference/customers/create-record) and [update](/api-reference/customers/update-record) records. Fields on [custom objects](/guides/custom-objects) work the same way.
