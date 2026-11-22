@@ -3,13 +3,11 @@ title: "Website chat"
 description: "Put a chat bubble on your website and answer visitors from the Inbox."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Website chat adds a chat bubble to your website. Chats arrive in the [Inbox](/guides/inbox), where your team or the conversation agent replies. It is part of the Inbox module, and you need permission to manage settings.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Visitor chats] --> B[Leaves phone number] --> C[Lead, source Website chat] --> D[Inbox reply]
-```
+<Flow steps={["Visitor chats", "Leaves phone number", "Lead, source Website chat", "Inbox reply"]} />
 
 A visitor who gives a number joins the lead who already has it. New leads have no owner until someone assigns them.
 
@@ -28,7 +26,6 @@ Open **Settings → Messaging → Website chat**.
 | **Websites it may be on** | One per line, with subdomains |
 
 Save to create the chat and see its code.
-
 
 ## Add it to your website
 
@@ -57,10 +54,10 @@ Messages are text only, up to 2,000 characters.
 ## Reply
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Website chat in Inbox] --> B[Your team replies]
-  A --> C[Let the AI reply] --> D[Answers from business knowledge]
+  A(Website chat in Inbox) --> B(Your team replies)
+  A --> C(Let the AI reply) --> D(Answers from business knowledge)
 ```
 
 Reply beside WhatsApp and other chats, or choose **Let the AI reply**: the [conversation agent](/guides/agents) answers from your [business knowledge](/guides/business-knowledge).

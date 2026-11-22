@@ -32,11 +32,11 @@ A first email with no delay goes right after enrolment, unless a [sending window
 ## When follow-ups stop
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Email sent] --> B{Reply, booking, closed lead, new address or unsubscribe?}
-  B -- Yes --> C[Sequence stops]
-  B -- No --> D[Next email after its delay]
+  A(Email sent) --> B{Reply, booking, closed lead, new address or unsubscribe?}
+  B -- Yes --> C(Sequence stops)
+  B -- No --> D(Next email after its delay)
 ```
 
 - Replies are found when the mailbox syncs, not instantly.
@@ -59,11 +59,11 @@ The **Campaigns** tab lists the sequences the lead is in:
 A recorded send means the mail provider accepted it, not that it reached the inbox.
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Send recorded] --> B[Mail provider accepted it]
+  A(Send recorded) --> B(Mail provider accepted it)
   B --> C{Result uncertain?}
-  C -->|Yes| D["Marro does not resend: check the mailbox first"]
+  C -->|Yes| D("Marro does not resend: check the mailbox first")
 ```
 
 [Email tracking](/guides/email-tracking) does not apply to automatic sequences.

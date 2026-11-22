@@ -3,15 +3,11 @@ title: "Sequences"
 description: "Send a lead an ordered list of WhatsApp messages, emails and follow-ups, with waits between them, that stops when they reply."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 A sequence is a list of steps for one lead. Marro carries each lead through it and shows, on the lead, where they are and when the next step goes.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[WhatsApp message] --> B[Wait 2 days]
-  B --> C[Email]
-  C --> D[Follow-up for the owner]
-```
+<Flow steps={["WhatsApp message", "Wait 2 days", "Email", "Follow-up for the owner"]} />
 
 For something that starts from an event (a stage change, a form, a missed call) use an [automation](/guides/automations). For emails with your own sending windows see [email sequences](/guides/email-sequences).
 
@@ -30,9 +26,11 @@ Use details such as `{{lead.first_name}}` in the words. They are filled in for e
 
 Before each step Marro checks the lead and ends their place, saying why, if:
 
-- they replied on WhatsApp or by email (a switch lets you keep going);
-- they reached a won or lost stage (also a switch);
-- the lead or the sequence was archived.
+| Reason | Note |
+| --- | --- |
+| They replied on WhatsApp or by email | A switch lets you keep going |
+| They reached a won or lost stage | Also a switch |
+| The lead or the sequence was archived | Always ends it |
 
 A lead who opted out of WhatsApp or unsubscribed from email is skipped for those steps. Follow-ups still go to your team.
 
@@ -47,7 +45,14 @@ If WhatsApp refuses a message, Marro tries again an hour later, three times, the
 
 ## Where a lead is
 
-Ask Marro, or have it **pause**, **resume** or **stop** one lead, or pause a whole sequence. Resume carries on at the step they were at. Editing a sequence changes it for leads who join later.
+| Action | Effect |
+| --- | --- |
+| **Pause** one lead | Holds their place |
+| **Resume** | Carries on at the step they were at |
+| **Stop** | Ends their place |
+| Pause a whole sequence | Holds every lead in it |
+
+Ask Marro to do any of these. Editing a sequence changes it for leads who join later.
 
 If Marro cannot confirm a step went out, it never resends on its own. The lead is paused with a note so you can check the chat.
 

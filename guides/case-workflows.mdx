@@ -3,13 +3,11 @@ title: "Case workflows"
 description: "Track participants, required work and document progress on an opportunity or case."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 A workflow is a checklist on an opportunity or case. It uses the record's stage and owner, your contacts, task boards and document requests. It doesn't move stages or run automations on its own.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Opportunity or case] --> B[Participants] --> C[Requirements] --> D[Linked tasks and documents] --> E[Progress]
-```
+<Flow steps={["Opportunity or case", "Participants", "Requirements", "Linked tasks and documents", "Progress"]} />
 
 ## Set up a case
 

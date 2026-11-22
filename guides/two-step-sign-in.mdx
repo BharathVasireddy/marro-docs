@@ -3,20 +3,20 @@ title: "Two-step sign-in"
 description: "Use an authenticator, passkeys and backup codes to protect your Marro account."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Open **Sign-in security** in your account menu (or go to `/account/security`). These settings protect your login across all your organizations.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Password, WhatsApp code, Google or Microsoft] --> B[Second step] --> C[Signed in]
-```
+<Flow steps={["Password, WhatsApp code, Google or Microsoft", "Second step", "Signed in"]} />
 
 ## Set up an authenticator
 
-1. Verify your password or an existing sign-in method. Verification lasts five minutes.
-2. Choose **Set up authenticator**. Scan the QR code in your app, or enter the text secret.
-3. Enter the six-digit code. Two-step sign-in turns on only after this code is checked.
-4. Generate backup codes and keep them away from your sign-in device.
+<Steps>
+  <Step title="Verify it's you">Use your password or an existing sign-in method. Verification lasts five minutes.</Step>
+  <Step title="Scan the code">Choose **Set up authenticator**. Scan the QR code in your app, or enter the text secret.</Step>
+  <Step title="Enter the six digits">Two-step sign-in turns on only after this code is checked.</Step>
+  <Step title="Save backup codes">Generate them and keep them away from your sign-in device.</Step>
+</Steps>
 
 No password because you use Google or Microsoft? Use **Forgot password** first. If you sign in through your company, choose **Continue with** your company's connection to verify (see [Company sign-in](/guides/company-sign-in#confirm-its-you-with-your-company)).
 
@@ -24,8 +24,10 @@ Never paste the setup secret, a sign-in code or a backup code into Ask Marro or 
 
 ## Use a passkey
 
-1. Add a passkey and name it, such as **My phone**.
-2. Your browser asks your device to verify you by fingerprint, face or PIN.
+<Steps>
+  <Step title="Add and name it">Add a passkey and name it, such as **My phone**.</Step>
+  <Step title="Verify on your device">Your browser asks your device to verify you by fingerprint, face or PIN.</Step>
+</Steps>
 
 Marro keeps only the public credential. On the web a passkey is a second step, not a sign-in on its own. It works only on the address where it was registered, so on an organization's custom domain use an authenticator or backup code. The Marro app can also sign you in with just a passkey.
 
@@ -55,10 +57,12 @@ A reset removes your factors, signs out every browser and phone, revokes trusted
 
 Your security page lists passkeys (last used) and trusted browsers (expiry).
 
-- **Revoke** asks that browser for a second step next time.
-- **Sign out other devices** ends all other web and mobile sessions and trusted devices.
-- Changing your password signs out sessions and invalidates trusted devices.
-- Removing your last authenticator or passkey turns two-step off and invalidates backup codes.
+| Action | Effect |
+| --- | --- |
+| **Revoke** | Asks that browser for a second step next time |
+| **Sign out other devices** | Ends all other web and mobile sessions and trusted devices |
+| Change your password | Signs out sessions and invalidates trusted devices |
+| Remove your last authenticator or passkey | Turns two-step off and invalidates backup codes |
 
 Security changes are audited and emailed to you.
 
@@ -66,17 +70,18 @@ Security changes are audited and emailed to you.
 
 An administrator turns on **Require two-step sign-in** under **Settings → Sign-in security**, and sees who has set it up (never their methods or secrets).
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Turn on] --> B[7-day grace period] --> C[No CRM without it]
-```
+<Flow steps={["Turn on", "7-day grace period", "No CRM without it"]} />
 
 Turning it off doesn't remove anyone's factors. Platform administrators have no grace period for the console.
 
 ## What it protects
 
-It protects you when someone has your password or a WhatsApp code. Sign-in codes go to WhatsApp, or email if you ask. It doesn't lock an open device, protect a compromised browser, challenge every WhatsApp assistant message or change API-key access. Ask Marro can point you to the security page but can't see or change your factors.
+| It protects | It does not |
+| --- | --- |
+| You, when someone has your password or a WhatsApp code | Lock an open device or protect a compromised browser |
+| Sign-in: codes go to WhatsApp, or email if you ask | Challenge every WhatsApp assistant message or change API-key access |
+
+Ask Marro can point you to the security page but can't see or change your factors.
 
 ## In the Marro app
 

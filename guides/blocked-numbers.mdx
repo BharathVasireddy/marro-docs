@@ -3,13 +3,11 @@ title: "Blocked numbers"
 description: "Stop a spammer's WhatsApp messages and calls on every number you have."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 A blocked number cannot reach your business. Its WhatsApp messages and calls are dropped quietly: nobody is alerted, no lead is made, no automation or AI runs, and you are not charged.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Blocked number] --> B[Any of your numbers] --> C[Dropped quietly]
-```
+<Flow steps={["Blocked number", "Any of your numbers", "Dropped quietly"]} />
 
 The block belongs to your organization and the sender's number, so it still applies if you add or replace a number.
 

@@ -44,9 +44,11 @@ Tick the leads, then choose **Bulk actions** in the bar at the bottom.
   <img src="/images/setup/bulk-actions.jpg" alt="The Bulk actions menu" />
 </Frame>
 
-- **Change owner**, **Move to branch**, **Change stage**
-- **Archive selected**
-- **Delete selected permanently**: asks first and cannot be undone.
+| Action | Effect |
+| --- | --- |
+| **Change owner**, **Move to branch**, **Change stage** | Applies to every ticked lead |
+| **Archive selected** | Archives them |
+| **Delete selected permanently** | Asks first and cannot be undone |
 
 ## Add a lead
 
@@ -93,22 +95,14 @@ Open **Leads → Import** and upload a CSV of up to 10,000 rows. Name and phone 
 
 ## Possible duplicates
 
-**Leads → Possible duplicates** lists pairs with the same phone or email, or a similar name, most certain first.
-
-<Frame>
-  <img src="/images/setup/merge-compare.jpg" alt="Comparing two leads before a merge" />
-</Frame>
-
-1. **Compare** opens a pair. The lead to keep is suggested: the one with the longer history.
-2. Tap a value from the other lead to keep it instead.
-3. Choose **Merge**.
-
-The other lead is archived with a link to the kept lead. Nothing is deleted.
+<CardGroup cols={2}>
+  <Card title="Possible duplicates" icon="copy" href="/guides/duplicates">**Leads → Possible duplicates**: compare pairs that look the same and merge them. Nothing is deleted.</Card>
+</CardGroup>
 
 ## Stages, fields and who gets each lead
 
 <CardGroup cols={2}>
-  <Card title="Lead stages" icon="list-ordered" href="/guides/pipelines">**Settings → Leads → Lead stages**: rename, recolour and order stages.</Card>
+  <Card title="Lead stages" icon="list-ordered" href="/guides/stages">**Settings → Leads → Lead stages**: rename, recolour and order stages.</Card>
   <Card title="Lead fields" icon="square-pen" href="/guides/custom-fields">**Settings → Leads → Lead fields**: add, require or hide fields.</Card>
   <Card title="Lead assignment" icon="users" href="/guides/lead-assignment">**Settings → Leads → Lead assignment**: rules that give new leads to people.</Card>
   <Card title="Industry starter" icon="building">**Settings → Business → Industry starter**: preview a pipeline and fields. Nothing is added until you confirm.</Card>

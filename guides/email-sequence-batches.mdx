@@ -3,17 +3,15 @@ title: Enroll a reviewed email-sequence batch
 description: Enroll 2–50 leads in an email sequence after one review.
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 <Note>
   Not released yet. The screens and the approval step are still being built, and there is no public API endpoint for it.
 </Note>
 
 An administrator picks one active sequence, a From mailbox and **2–50 leads**, then approves the whole batch once.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Pick sequence, mailbox and leads] --> B[Preview] --> C[One approval] --> D[Enrolled]
-```
+<Flow steps={["Pick sequence, mailbox and leads", "Preview", "One approval", "Enrolled"]} />
 
 ## Review before you approve
 
@@ -40,11 +38,7 @@ Enrolling sends nothing by itself. Emails go out in the sending window and stop 
 
 ## If the connection drops
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Unclear result] --> B[Check with the same batch ID and input] --> C[Read-only result]
-```
+<Flow steps={["Unclear result", "Check with the same batch ID and input", "Read-only result"]} />
 
 Checking never enrolls anyone. Don't create a new batch ID to get around an unclear result.
 

@@ -3,16 +3,11 @@ title: "Automations"
 description: "Run steps on their own when something happens to a lead, or when the time comes."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 An automation starts when something happens to a lead, or when the time comes, then runs its steps. Steps can wait, so one automation can follow a lead over days. Open **Automations** in the main menu.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Starts] --> B[Conditions]
-  B --> C[Steps]
-  C --> D[Wait for a reply]
-  D --> E[More steps]
-```
+<Flow steps={["Starts", "Conditions", "Steps", "Wait for a reply", "More steps"]} />
 
 ## Start one
 
@@ -114,11 +109,11 @@ Under **Starts**, **Stop when the lead replies** removes a waiting lead as soon 
 ## Call with AI
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Call with AI] --> B{Answered?}
-  B -->|Yes| C[Agent decides or next step]
-  B -->|No| D[Send WhatsApp]
+  A(Call with AI) --> B{Answered?}
+  B -->|Yes| C(Agent decides or next step)
+  B -->|No| D(Send WhatsApp)
 ```
 
 - **Answered**: picked up, 10 seconds or more with words spoken.

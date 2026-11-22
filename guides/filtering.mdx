@@ -3,18 +3,15 @@ title: "Filtering leads"
 description: "Find leads by any field, and save the filters you use often."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 import Filtering from "/snippets/generated/filtering.mdx";
 
 ## Filter through the API
 
 Field keys come from [List lead fields](/api-reference/reference/list-fields).
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[List lead fields] --> B[Get the field keys]
-  B --> C[Use them in your filters]
-```
+<Flow steps={["List lead fields", "Get the field keys", "Use them in your filters"]} />
 
 <Filtering />
 

@@ -3,6 +3,8 @@ title: Customer quotes and templates
 description: Review a customer quote, publish a private link and record the customer's decision.
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Customer quotes are the quotes made before quotes moved to Finance. They are listed in **Finance → Quotes** with every other quote, marked **Customer quote**. Make new quotes with **New quote** there, or on a lead or customer: see [Quotes and invoices](/guides/quotes-and-invoices).
 
 <Note>
@@ -30,11 +32,7 @@ Marro does not calculate statutory tax. A discount cannot exceed its line. A lin
 
 ## Publish and decide
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Draft] --> B[Publish: private link] --> C[Customer accepts or declines]
-```
+<Flow steps={["Draft", "Publish: private link", "Customer accepts or declines"]} />
 
 - Publishing creates a fixed revision and a new private link. It sends nothing and takes no payment.
 - Editing a published quote switches off its old link. Publish a new revision to replace it.

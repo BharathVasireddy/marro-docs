@@ -3,15 +3,13 @@ title: "Campaigns and return on spend"
 description: "See which campaigns bring leads, how many convert, what each cost and what came back."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 **Reports → Campaigns** counts the period's new leads by the campaign they came from, and shows what each cost and brought back.
 
 ## Where a lead's campaign comes from
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Link with utm_campaign] --> B[Form, ad or website] --> C[Lead keeps campaign] --> D[Counted in report]
-```
+<Flow steps={["Link with utm_campaign", "Form, ad or website", "Lead keeps campaign", "Counted in report"]} />
 
 Every lead keeps where it **first** and **most recently** came in, with its campaign tags (`utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`). The lead page shows them under **Where they came from**. Meta and Google lead ads bring their own campaign name.
 

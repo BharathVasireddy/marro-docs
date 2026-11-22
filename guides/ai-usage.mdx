@@ -6,11 +6,11 @@ description: "Track monthly AI activity, tokens, credits and wallet charges."
 Your plan can include **AI credits** each month, in rupees. Agents, the assistant, AI replies, suggested replies and business knowledge draw on them. When credits run out, AI is paid from your **wallet**, the same one that pays for WhatsApp messages. With no included credits, the wallet pays from the start.
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[AI work] --> B[Included credits]
-  B -- used up --> C[Wallet]
-  C -- empty --> D[AI pauses]
+  A(AI work) --> B(Included credits)
+  B -- used up --> C(Wallet)
+  C -- empty --> D(AI pauses)
 ```
 
 ## See what you used
@@ -34,15 +34,6 @@ Administrators also see **Activity** for the current UTC month or any of the pre
 ## When credits run out
 
 If credits are used and the wallet is empty, AI pauses.
-
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Credits used] --> B[Wallet empty]
-  B --> C["AI pauses: agents start no new work"]
-  C --> D["Add money or wait for credits to renew"]
-  D --> E[AI carries on]
-```
 
 The assistant asks you to add money. The rest of the CRM keeps working.
 

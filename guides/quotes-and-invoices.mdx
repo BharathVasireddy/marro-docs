@@ -3,23 +3,21 @@ title: "Quotes and invoices"
 description: "Quote, invoice with your tax, get paid and see what each lead is worth, without leaving Marro."
 ---
 
-Make quotes and invoices, send them, get paid and track the money, all from **Finance**.
+import { Flow } from "/snippets/flow.jsx";
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Quote] --> B[Sent] --> C[Accepted] --> D[Invoice] --> E[Paid]
-```
+Make quotes and invoices, send them, get paid and track the money, all from **Finance**. They are set up in **Settings → Payments → Quotes and invoices**; the items you sell are in [Products and prices](/guides/products-and-prices).
+
+<Flow steps={["Quote", "Sent", "Accepted", "Invoice", "Paid"]} />
 
 ## Set it up
 
-An administrator opens **Settings → Quotes and invoices**.
+An administrator opens **Settings → Payments → Quotes and invoices**.
 
 | Fill in | Notes |
 | --- | --- |
 | Business name, GSTIN, state, address, email, phone | Without a GSTIN, documents carry no GST. Outside India, tax follows your [regional settings](/guides/regional-settings) and you enter your registration number (ABN, VAT) |
 | Payment, number prefixes, quote validity, due dates, terms | Also whether a paid invoice marks the lead converted, and reminders |
-| **Products and prices** | Name, SKU, unit, price, GST rate (0, 5, 12, 18 or 28%), HSN or SAC. **Import CSV** adds many (name and price needed; existing names are skipped) |
+| **Products and prices** | Kept in their own list: see [Products and prices](/guides/products-and-prices) |
 | **Document appearance** | **Modern**, **Classic** or **Compact**, a font, an accent colour and the logo from **Settings → Branding** |
 
 ## Make a quote or invoice
@@ -67,8 +65,10 @@ Reminders go before and after the due date by email, and on WhatsApp once your r
 
 ## Permissions
 
-- **Quotes and invoices** (Users → Roles) lets people create, send and record payments.
-- **Create leads** lets people quote the leads assigned to them. Invoices, payments and others' leads need **Quotes and invoices**.
+| Permission (Users → Roles) | Lets people |
+| --- | --- |
+| **Quotes and invoices** | Create, send and record payments |
+| **Create leads** | Quote the leads assigned to them. Invoices, payments and others' leads need **Quotes and invoices** |
 
 ## Ask Marro
 

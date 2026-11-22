@@ -3,15 +3,13 @@ title: "Business knowledge"
 description: "Tell the AI about your business: products, prices, dates, policies and FAQs."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Business knowledge is what you write down about your business for the AI. The assistant, suggested replies and agents use it. Current prices, subscriptions, payments and appointment times come from their live records. If a fact cannot be confirmed, Marro says so.
 
 Open **AI → Knowledge**. Administrators can use it by default; other roles can be given permission. It is part of Marro AI, on every plan. Without AI, what you wrote is kept and returns when AI is on.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Add entry, file or website] --> B[Test a question] --> C[AI uses it in answers]
-```
+<Flow steps={["Add entry, file or website", "Test a question", "AI uses it in answers"]} />
 
 ## Add knowledge
 
@@ -112,11 +110,11 @@ Open **More for Business knowledge → Voice pricing review**, or press **Review
 Answers stay conversational and don't name documents unless you ask to see sources.
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Permitted sources] --> B{Do they agree?}
-  B -->|Yes| C[Marro answers]
-  B -->|"No, on an important fact"| D["Marro says what needs confirming"]
+  A(Permitted sources) --> B{Do they agree?}
+  B -->|Yes| C(Marro answers)
+  B -->|"No, on an important fact"| D("Marro says what needs confirming")
 ```
 
 Marro does not pick by date.

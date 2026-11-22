@@ -63,9 +63,9 @@ Pick your industry in **Settings → Business → Business profile** to see sugg
 A **Record link** field points to another record, such as the company a contact works at.
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Contact: Neha Kapoor] -- "Works at (record link)" --> B[Company: Kapoor Boutique]
+  A(Contact: Neha Kapoor) -- "Works at (record link)" --> B(Company: Kapoor Boutique)
   B -- "Linked from" --> A
 ```
 

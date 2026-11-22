@@ -137,12 +137,17 @@
           {
             "group": "Business",
             "pages": [
+              "guides/business-profile",
+              "guides/branding",
               "guides/regional-settings"
             ]
           },
           {
             "group": "Team",
             "pages": [
+              "guides/users",
+              "guides/roles",
+              "guides/teams",
               "guides/access-and-data",
               "guides/branches",
               "guides/two-step-sign-in",
@@ -154,10 +159,15 @@
             "pages": [
               "guides/leads",
               "guides/pipelines",
+              "guides/stages",
               "guides/custom-fields",
-              "guides/lead-sources-and-tags",
+              "guides/lead-sources",
+              "guides/lead-tags",
               "guides/lead-assignment",
+              "guides/lead-rotation",
+              "guides/response-time",
               "guides/log-update",
+              "guides/duplicates",
               "guides/custom-objects",
               "guides/custom-object-automations",
               "guides/advanced-filters",
@@ -168,6 +178,7 @@
           {
             "group": "Payments",
             "pages": [
+              "guides/products-and-prices",
               "guides/quotes-and-invoices",
               "guides/customer-quotes",
               "guides/payments",
@@ -181,6 +192,10 @@
                 "group": "WhatsApp",
                 "pages": [
                   "guides/inbox",
+                  "guides/whatsapp-number",
+                  "guides/whatsapp-templates",
+                  "guides/chat-assignment",
+                  "guides/whatsapp-replies",
                   "guides/whatsapp-contacts",
                   "guides/whatsapp-chatbots",
                   "guides/whatsapp-flows",
@@ -194,6 +209,8 @@
                 "group": "Email",
                 "pages": [
                   "guides/email",
+                  "guides/email-sending",
+                  "guides/email-templates",
                   "guides/email-tracking",
                   "guides/email-campaigns",
                   "guides/email-sequences",
@@ -230,7 +247,17 @@
             "group": "Calls",
             "pages": [
               "guides/cloud-calls",
-              "guides/ai-calling"
+              "guides/who-answers",
+              "guides/call-numbers",
+              "guides/greeting-and-music",
+              "guides/ring-groups",
+              "guides/call-flows",
+              "guides/rules-for-one-number",
+              "guides/call-log",
+              "guides/ai-calling",
+              "guides/voice-agent",
+              "guides/ai-queue",
+              "guides/calling-verification"
             ]
           },
           {
@@ -263,6 +290,7 @@
             "group": "Plan and modules",
             "pages": [
               "guides/billing",
+              "guides/wallet",
               "guides/price-list",
               "guides/modules"
             ]

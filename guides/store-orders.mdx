@@ -3,6 +3,8 @@ title: "Store orders"
 description: "Bring Shopify and WooCommerce orders and left checkouts into Marro as leads and notes, and start automations from them."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Connect your own store and Marro hears about its orders. A customer with a phone number becomes a lead (source **Shopify** or **WooCommerce**) or is added to the lead they already are. Nothing is sent to the customer unless an automation you made sends it.
 
 ## Connect Shopify
@@ -35,10 +37,6 @@ A customer with no phone number is added to an existing lead when the email matc
 
 ## Start an automation
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Store event] --> B[Trigger: A store order or checkout changes] --> C[Your steps, e.g. WhatsApp template]
-```
+<Flow steps={["Store event", "Trigger: A store order or checkout changes", "Your steps, e.g. WhatsApp template"]} />
 
 In **Automations**, choose that trigger, optionally limited to some events, then add the steps you want.

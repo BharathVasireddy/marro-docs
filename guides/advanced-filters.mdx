@@ -22,10 +22,10 @@ Choose **Filter** on Leads, Contacts, Companies, Opportunities or Follow-ups.
 For a rule like (Hot or Warm) and assigned to me, choose **Edit all filters and groups** in the Filter menu.
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Group 1: Hot or Warm] --> C[All groups]
-  B[Group 2: Assigned to Me] --> C
+  A(Group 1: Hot or Warm) --> C(All groups)
+  B(Group 2: Assigned to Me) --> C
 ```
 
 Each group has its own All or Any. Groups combine as **All groups** or **Any group**. A list holds up to four groups with five filters each.

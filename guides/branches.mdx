@@ -3,6 +3,8 @@ title: "Branches"
 description: "Run each location as its own unit: its people, leads, calling numbers and reports, with managers who see only their branch."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Branches are for businesses with more than one location, such as a clinic chain or an education group. Nothing changes, and every branch control stays hidden, until you add your first branch.
 
 ## Add a branch
@@ -44,11 +46,7 @@ The code and colour mark the branch on leads, calls and reports.
 
 ## Leads and branches
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[By hand or import] --> B[Number they called] --> C[Owner's branch]
-```
+<Flow steps={["By hand or import", "Number they called", "Owner's branch"]} />
 
 The first that applies sets a lead's branch:
 

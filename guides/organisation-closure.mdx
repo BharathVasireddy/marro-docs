@@ -6,16 +6,18 @@ description: Close your organization, download its data, restore it within 30 da
 Any active **admin** can close the organization while signed in as themselves. Open **Settings → Close organization**, or **Account → Organization closure** in the app (it opens the same secure web page). Every step asks for your current password. If you sign in with Google or Microsoft, set a password from the sign-in page first.
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Close] --> B[30 days] --> C[Deletion]
-  B --> D[Restore]
+  A(Close) --> B(30 days) --> C(Deletion)
+  B --> D(Restore)
 ```
 
 ## Close
 
-1. Enter your password and choose **Review data**. You see how many leads, contacts, messages, files and other records will be deleted. You can **Download data** right there.
-2. Tick the confirmation and choose **Close organization**.
+<Steps>
+  <Step title="Review the data">Enter your password and choose **Review data**. You see how many leads, contacts, messages, files and other records will be deleted. You can **Download data** right there.</Step>
+  <Step title="Close">Tick the confirmation and choose **Close organization**.</Step>
+</Steps>
 
 Closing signs everyone out and stops messages, calls and automations. It does not cancel your subscription, and amounts owed to Marro are not waived. If a lot changes while you review, Marro asks you to review again.
 
@@ -41,12 +43,19 @@ The closure page shows the exact deadline and days left. **Restoring** brings ev
 
 After the deadline, records and files are deleted in batches, aiming for seven days. The closure page shows progress for records, files and connected services.
 
-- Marro keeps its own billing records (contracts, wallet entries, billable AI calls) for eight years, as accounting law requires. They hold no CRM content.
-- Copies outside Marro (phones, your downloads, other services) and expiring backups are not deleted by Marro.
+| What | After deletion |
+| --- | --- |
+| Marro's own billing records (contracts, wallet entries, billable AI calls) | Kept for eight years, as accounting law requires. They hold no CRM content |
+| Copies outside Marro (phones, your downloads, other services) and expiring backups | Not deleted by Marro |
 
 ## Reassign the recorded creator
 
-Under **Organization creator**, the creator can reassign attribution to another active admin, using their password. This doesn't change who can close: every active admin can. If the creator has left, ask [support](https://app.marro.si/legal/support).
+<Steps>
+  <Step title="Open Organization creator">The creator opens it on the closure page.</Step>
+  <Step title="Choose another active admin">Confirm with the creator's password.</Step>
+</Steps>
+
+This doesn't change who can close: every active admin can. If the creator has left, ask [support](https://app.marro.si/legal/support).
 
 ## Ask Marro
 

@@ -3,15 +3,11 @@ title: Email with leads
 description: Email leads from your own Gmail or Outlook accounts, and see their replies on the lead.
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Connect your own mailbox and emails to leads go out from your address. Replies come back onto the lead, and you get a notification. Only emails with your leads are kept in Marro; the rest of your mailbox is never stored.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Your mailbox] --> B[Email a lead]
-  B --> C[Lead replies]
-  C --> D[Reply on the lead + notification]
-```
+<Flow steps={["Your mailbox", "Email a lead", "Lead replies", "Reply on the lead + notification"]} />
 
 ## Connect your mailboxes
 
@@ -45,40 +41,14 @@ You can connect up to five mailboxes, and an address only once per organization.
 
 In **Chats**, a lead's emails sit beside their WhatsApp messages with the same From choice.
 
-## The organization address
+## Sending address and wording
 
-People who manage the organization set a shared sending address in **Settings → Email sending**.
-
-| Sending address can be | |
-| --- | --- |
-| A shared mailbox | Gmail or Outlook |
-| Your own email server | |
-
-It is used by automations without a lead owner, and by anyone without a connected mailbox. **Send test email** checks it works.
-
-## Emails Marro sends
-
-| Sent by | What |
-| --- | --- |
-| Marro (notifications@marro.si) | Invitations, password resets, reminders, assignments, mentions, HR updates, portal links, appointment reminders, alerts |
-| Your mailbox | Emails to leads, and an automation's emails to leads |
-
-Without a connected mailbox, an email to a lead is sent by Marro and replies still reach you. Change Marro's wording in **Settings → Email templates**. Besides bold, links and lists, the editor has:
-
-| Block | Write |
-| --- | --- |
-| Details panel | `[[details:Title]]`, then one `Label: value` line per fact |
-| Button | `[[button:Label|{{link}}]]` |
+<CardGroup cols={2}>
+  <Card title="Email sending" icon="send" href="/guides/email-sending">The address automations send from, and anyone without a mailbox</Card>
+  <Card title="Email templates" icon="mail" href="/guides/email-templates">The wording of emails Marro sends in your name</Card>
+</CardGroup>
 
 ## Email assistant
-
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Lead emails you] --> B[Assistant drafts a reply]
-  B --> C[Waiting for you]
-  C --> D[You approve or edit]
-```
 
 <Steps>
   <Step title="Set it up">

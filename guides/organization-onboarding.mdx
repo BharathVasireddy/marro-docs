@@ -3,13 +3,11 @@ title: "Set up your organization"
 description: "Go from a new workspace to your first enquiry, then connect the modules your team needs."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Start with one enquiry source and one person responsible for it. Your first milestone: an enquiry comes in, someone owns it, and they know what to do next. Then connect the rest.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Create workspace] --> B[Decide how you work enquiries] --> C[Test one enquiry] --> D[Connect modules]
-```
+<Flow steps={["Create workspace", "Decide how you work enquiries", "Test one enquiry", "Connect modules"]} />
 
 ## 1. Create your workspace
 
@@ -20,7 +18,7 @@ flowchart LR
 1. [Create your workspace](/guides/sign-up) and confirm your email if you used a password. Choose the country and time zone: they set currency, dates and reporting.
 2. Choose the closest industry, or **Others**, and answer the setup questions. You can skip and return later.
 3. If you see **Add suggested fields for your business**, choose it only if they're useful. Industry stages, fields and follow-ups are in **Settings → Business → Industry starter**, previewed before you add them. Starter booking types and workflows must be enabled separately.
-4. On **Welcome**, follow the setup suggestions. In **Settings**, search **Business profile** and describe what you sell, who you serve and what happens after a sale.
+4. On **Welcome**, follow the setup suggestions. In **Settings**, open [Business profile](/guides/business-profile) and describe what you sell, who you serve and what happens after a sale.
 5. Check [Modules](/guides/modules). A missing menu item can mean the module is off, not in your plan, or hidden from your role. A module being on doesn't connect a channel.
 
 ## 2. Decide how your team works enquiries
@@ -33,7 +31,7 @@ flowchart LR
 | --- | --- | --- |
 | Pipeline | [Lead stages](/guides/pipelines) | Mirror what happens, e.g. New → Contacted → Appointment booked → Converted. Keep one pipeline until teams differ |
 | Fields | [Custom fields](/guides/custom-fields) | Only fields that change a decision. Collect the rest later |
-| Ownership | **Users**, **Users → Teams**, **Lead assignment** | Invite the people who will work enquiries. Working alone? Assign enquiries to yourself. See [roles and access](/guides/access-and-data) |
+| Ownership | **Users**, **Users → Teams**, **Lead assignment** | Invite the people who will work enquiries. Working alone? Assign enquiries to yourself. See [users](/guides/users), [roles](/guides/roles) and [teams](/guides/teams) |
 | Locations | [Branches](/guides/branches) | Only if staff, enquiries or reports split by location |
 | Security | [Two-step sign-in](/guides/two-step-sign-in), [Company sign-in](/guides/company-sign-in) | Company sign-in needs the module |
 
@@ -90,11 +88,13 @@ Add a module when it solves a problem for the team.
 
 ## Before real enquiries arrive
 
-- [ ] Each source creates or matches the right record and owner.
-- [ ] Advisors find their work; managers see what needs attention.
-- [ ] A test follow-up and booking show on the lead. Automations run only on intended records.
-- [ ] Connected channels send and receive tests. Check charges in [Plans and billing](/guides/billing).
-- [ ] One report shows new enquiries, overdue follow-ups and conversions.
+| Check | Done when |
+| --- | --- |
+| Sources | Each creates or matches the right record and owner |
+| People | Advisors find their work; managers see what needs attention |
+| Follow-up | A test follow-up and booking show on the lead. Automations run only on intended records |
+| Channels | Connected channels send and receive tests. Check charges in [Plans and billing](/guides/billing) |
+| Reporting | One report shows new enquiries, overdue follow-ups and conversions |
 
 <Card title="Try asking" icon="message-circle" href="/guides/assistant">
   *"Help me set up a lead form for my clinic."*

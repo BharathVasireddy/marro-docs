@@ -7,8 +7,8 @@ Each organization connects its own accounts. Open **Settings → Integrations** 
 
 | Service | What you get | Guide |
 | --- | --- | --- |
-| WhatsApp Business (Meta) | Your number in the Inbox: replies, templates, automations, broadcasts | [Inbox](/guides/inbox) |
-| Instagram, Messenger | DMs and Page messages in the Inbox | [Inbox](/guides/inbox#connect-instagram-and-messenger) |
+| WhatsApp Business (Meta) | Your number in the Inbox: replies, templates, automations, broadcasts | [WhatsApp number](/guides/whatsapp-number) |
+| Instagram, Messenger | DMs and Page messages in the Inbox | [Inbox](/guides/inbox#other-channels) |
 | Website chat | A chat window on your site | [Website chat](/guides/website-chat) |
 | Facebook & Instagram lead ads | Ad leads within seconds | [Below](#facebook-and-instagram-lead-ads) |
 | Google Ads lead forms | Form leads within seconds | [Below](#google-ads-lead-forms) |
@@ -84,9 +84,9 @@ Keep a sheet and your leads in step. Marro sees only the sheet you choose, never
 </Steps>
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Sheet] -- "straight away" --> B[Marro leads]
+  A(Sheet) -- "straight away" --> B(Marro leads)
   B -- "within 5 minutes, or Sync now" --> A
 ```
 
@@ -128,12 +128,6 @@ Each executive's phone number in Marro must match the one MCube rings. Exotel an
 
 ## Zapier, Make, Pabbly Connect, n8n and your own webhook
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Event in Marro] --> B[Webhook URL] --> C[Your workflow]
-```
-
 <Steps>
   <Step title="Paste the webhook URL">
     Create a webhook trigger in your tool and paste its URL into the service's page. For anything else, choose **Custom webhook** with an `https` address.
@@ -160,4 +154,7 @@ Check each event's signature with the **Signing secret** on the page. A failed d
 
 ## Being prepared
 
-[Comment replies](/guides/social-comments) and [lead ad attribution](/guides/lead-ad-attribution) are not released yet.
+<CardGroup cols={2}>
+  <Card title="Comment replies" icon="message-square" href="/guides/social-comments">Not released yet</Card>
+  <Card title="Lead ad attribution" icon="chart-no-axes-combined" href="/guides/lead-ad-attribution">Not released yet</Card>
+</CardGroup>

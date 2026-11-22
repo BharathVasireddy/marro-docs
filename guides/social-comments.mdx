@@ -26,12 +26,6 @@ Facebook comment sending is not available. Comment screens are awaiting release 
   </Step>
 </Steps>
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Comment] --> B[Keyword matches] --> C[Cooldown clear] --> D[Private reply]
-```
-
 Lower priority numbers run first, and only one rule matches each comment. The cooldown applies to the same person on the same account, across rules.
 
 ## Turn sending on

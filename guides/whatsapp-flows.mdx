@@ -3,20 +3,15 @@ title: "WhatsApp forms (Flows)"
 description: "Build a form that opens inside WhatsApp, send it in a chat, and save the answers on the lead."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 A **form** (Meta calls it a *Flow*) opens inside WhatsApp, so a customer fills it in without leaving the chat. The answers come back to Marro as a note on their lead and, if you choose, as lead fields.
 
 <Note>
   Forms need a connected WhatsApp Business number. Meta requires a verified business to publish and send forms, and may refuse one it finds a problem with. Marro shows Meta's messages.
 </Note>
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Build form] --> B[Publish]
-  B --> C[Send in a chat]
-  C --> D[Customer submits]
-  D --> E[Note and fields on the lead]
-```
+<Flow steps={["Build form", "Publish", "Send in a chat", "Customer submits", "Note and fields on the lead"]} />
 
 ## Build a form
 

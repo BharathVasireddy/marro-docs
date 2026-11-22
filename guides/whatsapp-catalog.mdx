@@ -3,6 +3,8 @@ title: "WhatsApp catalog"
 description: "Send products from your Meta catalog in a chat, and see the carts customers send back."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 If your business has a catalog in Meta Commerce Manager, you can send products in a WhatsApp chat. Sending a catalog message charges and reserves nothing.
 
 ## Save your catalog
@@ -35,11 +37,7 @@ After 24 hours WhatsApp only allows a template. Customers who replied STOP are n
 
 ## Carts
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Customer sends a cart] --> B[Note on their lead, once]
-```
+<Flow steps={["Customer sends a cart", "Note on their lead, once"]} />
 
 The note lists the products, quantities and any message. Prices are shown as Meta sends them.
 
@@ -60,14 +58,6 @@ Off until an administrator turns it on.
 </Steps>
 
 To ask for payment, open a chat with a lead who has a sent invoice, press the shopping bag, choose **Payment request** and pick the invoice. Check the amount still due. Nothing sends until you press **Send payment request**. The customer sees Meta's **Review and Pay**.
-
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Send payment request] --> B[Customer pays]
-  B --> C[Note on the lead]
-  C --> D[You press Record payment]
-```
 
 - One open request per invoice. Cancel it before asking again. A paid request can't be canceled.
 - **Marro never charges anything and does not mark the invoice paid.** Use **Record payment** once the money arrives.

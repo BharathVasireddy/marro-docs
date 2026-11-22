@@ -1,17 +1,17 @@
 ---
-title: "Lead assignment and rotation"
-sidebarTitle: "Assignment and rotation"
-description: "Give new leads to the right people, pass untouched leads on, and watch first reply time."
+title: "Lead assignment"
+sidebarTitle: "Lead assignment"
+description: "Rules that give each new lead to the right people."
 ---
 
-These pages are in **Settings → Leads**.
+Rules decide who gets each new lead. Open **Settings → Leads → Lead assignment**.
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[New lead] --> B[Assignment rule]
-  B --> C[Owner]
-  C -->|Untouched too long| D[Rotation to next person]
+  A(New lead) --> B(Assignment rule)
+  B --> C(Owner)
+  C -->|Untouched too long| D(Rotation to next person)
 ```
 
 ## Assignment rules
@@ -22,11 +22,13 @@ flowchart LR
 
 In **Lead assignment**, choose **Add rule**.
 
-1. Name the rule.
-2. **Add a condition**: source, state, words and more. With none, it applies to every lead.
-3. Choose the people and teams. People come first, then team members. People on leave are skipped.
-4. **Share them**: **In turns**, or **In turns among those checked in**.
-5. **Create rule**.
+<Steps>
+  <Step title="Name the rule">Give it a name.</Step>
+  <Step title="Add a condition">Source, state, words and more. With none, it applies to every lead.</Step>
+  <Step title="Give it to">Choose the people and teams. People come first, then team members. People on leave are skipped.</Step>
+  <Step title="Share them">**In turns**, or **In turns among those checked in**.</Step>
+  <Step title="Create rule">Press **Create rule**.</Step>
+</Steps>
 
 The first matching rule wins.
 
@@ -36,31 +38,9 @@ The first matching rule wins.
   Marro creates the rule.
 </Card>
 
-## Rotation
+## Then rotation and response time
 
-A rotation rule passes a lead nobody has touched to the next person after a set time, a set number of times. Open **Lead rotation**.
-
-<Frame>
-  <img src="/images/lead-settings/rotation-form.jpg" alt="A new rotation rule" />
-</Frame>
-
-<Card title="Try asking" icon="message-circle">
-  *"Add a lead rotation rule: if a new lead is not touched within 2 hours, pass it to the next person in the Sales team"*
-
-  Marro drafts the rule. It goes live only when you press **Publish rule**, even in Auto.
-</Card>
-
-Existing leads are left as they are.
-
-## Response time
-
-Open **Response time**.
-
-<Frame>
-  <img src="/images/setup/response-time.jpg" alt="The Response time settings page" />
-</Frame>
-
-1. Set how fast every new lead should get its first reply.
-2. **Open reports** shows how your team is doing.
-
-Automatic welcome messages do not count as a reply.
+<CardGroup cols={2}>
+  <Card title="Lead rotation" icon="refresh-cw" href="/guides/lead-rotation">Pass a lead nobody has touched to the next person.</Card>
+  <Card title="Response time" icon="timer" href="/guides/response-time">Set how fast new leads should get a first reply.</Card>
+</CardGroup>

@@ -3,6 +3,8 @@ title: Custom objects
 description: Keep track of anything your business works with, such as vehicles, courses or properties, the same way you work with leads.
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 A custom object is a kind of record Marro does not have built in: Vehicles for a car dealer, Courses for an education consultancy, Properties for an estate agent. Each gets its own place in the menu, a list like Leads, a board, a calendar and a page per record. The object is the kind (Vehicles); each entry is a record (one vehicle).
 
 ## Add an object
@@ -55,11 +57,7 @@ Each field can have help text, be required when adding or editing, be hidden, or
 
 Add a dropdown field with the stages as choices, then choose it under **Details → Stages**. Each stage has a colour and counts as going, won or lost.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Draft] --> B[Submitted] --> C[Accepted] --> D[Enrolled]
-```
+<Flow steps={["Draft", "Submitted", "Accepted", "Enrolled"]} />
 
 The board then groups by stage, the record shows its stage and time in it, and every change is in its activity. A link with details of its own, such as a student applying to a course, works best as its own object (Applications) linked to both.
 

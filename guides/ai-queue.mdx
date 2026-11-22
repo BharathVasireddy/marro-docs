@@ -1,0 +1,43 @@
+---
+title: "AI queue"
+sidebarTitle: "AI queue"
+description: "See AI calls waiting for a free line and cancel the ones you do not want."
+---
+
+import { Flow } from "/snippets/flow.jsx";
+
+When more AI calls are asked for than you have lines, the extra calls wait. Open **Calls → AI queue** to see them.
+
+## What the queue shows
+
+<Frame>
+  <img src="/images/calls/ai-queue.jpg" alt="The AI queue" />
+</Frame>
+
+| Shown | Meaning |
+| --- | --- |
+| Lines in use | Calls running now. |
+| Calls waiting | Calls that start when a line frees up. |
+| Needs review | Calls whose result could not be confirmed. |
+
+## Cancel a waiting call
+
+<Steps>
+  <Step title="Open the queue">Go to **Calls → AI queue**.</Step>
+  <Step title="Find the call">Look under the calls waiting.</Step>
+  <Step title="Cancel it">Choose to cancel it. Only waiting calls can be cancelled.</Step>
+</Steps>
+
+## How calls get in
+
+<Flow steps={["Ten leads selected, or an automation", "Queue", "Free line", "AI call"]} />
+
+Need more lines? See [Voice agent](/guides/voice-agent#request-more-lines).
+
+## Ask Marro
+
+<Card title="Try asking" icon="message-circle">
+  *"What is waiting in the AI call queue?"*
+
+  Marro lists the waiting calls and the lines in use.
+</Card>

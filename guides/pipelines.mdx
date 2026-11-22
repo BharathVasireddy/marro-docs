@@ -15,7 +15,7 @@ A pipeline is a track with its own stages. Each can hold leads, opportunities or
 
 ## What a pipeline holds
 
-Open **Settings → Lead stages**, pick the pipeline, then **Pipeline options**.
+Open **Settings → Leads → Lead stages**, pick the pipeline, then **Pipeline options**.
 
 <Frame>
   <img src="/images/lead-settings/pipelines.jpg" alt="Lead pipelines" />
@@ -31,33 +31,36 @@ A pipeline can stop taking leads or opportunities only once none are in it. Marr
 
 ## Two defaults
 
-- New leads go into the **default for leads**, unless a form, import or automation names another.
-- New opportunities go into the **default for opportunities**. The Opportunities board opens on it too.
+| New | Goes into |
+| --- | --- |
+| Leads | The **default for leads**, unless a form, import or automation names another |
+| Opportunities | The **default for opportunities**. The Opportunities board opens on it too |
 
 Set each in **Pipeline options**. Changing one never changes the other.
 
 ## Stages
 
-<Frame>
-  <img src="/images/lead-settings/stages.jpg" alt="Lead stages: meaning, order and where new leads start" />
-</Frame>
+Each pipeline has its own stages, set in **Settings → Leads → Lead stages**.
 
-Stages show their order, name and type: *Open*, *Converted* or *Lost*. A tick marks where new leads start. Use the arrows to reorder and the **…** menu to edit, start new leads there, archive or delete.
-
-When a lead moves into a converted stage from one that is not, Marro tells the owner and the organization's admins by email, WhatsApp and the app, once per conversion. The person who moved it is not told.
+<CardGroup cols={2}>
+  <Card title="Lead stages" icon="list-ordered" href="/guides/stages">Name, colour, order and archive stages; choose where new leads start.</Card>
+  <Card title="Converted stages" icon="circle-check" href="/guides/stages#what-a-stage-means">When a lead moves into one, its owner and admins are told once.</Card>
+</CardGroup>
 
 ## Create an opportunity for a lead
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Lead] -- More, Create opportunity --> B[Opportunity form]
-  B --> C[Contact matched or made]
-  C --> D[Opportunity linked to the lead]
+  A(Lead) -- More, Create opportunity --> B(Opportunity form)
+  B --> C(Contact matched or made)
+  C --> D(Opportunity linked to the lead)
 ```
 
-- On a lead, choose **More → Create opportunity** (when Opportunities are on).
-- Or use **Opportunities → New opportunity**. The contact field finds leads too, marked "Lead".
+<Steps>
+  <Step title="From a lead">Choose **More → Create opportunity** (when Opportunities are on).</Step>
+  <Step title="Or from Opportunities">Use **Opportunities → New opportunity**. The contact field finds leads too, marked "Lead".</Step>
+</Steps>
 
 The lead is not changed, and can have as many opportunities as you need.
 

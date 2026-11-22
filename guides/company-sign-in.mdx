@@ -3,13 +3,11 @@ title: "Company sign-in"
 description: "Let your team sign in with your company's identity provider and set the rules for how everyone signs in."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 An organization administrator manages this in **Settings → Team → Sign-in security**. If it isn't in your plan, the page shows which plan has it. Every change asks you to confirm it is you and is recorded in the activity log. With the Activity log, **Sign-in activity** shows every sign-in, failure and change, with a CSV export.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Add connection] --> B[Prove your domain] --> C[Set rules] --> D[Team signs in with company account]
-```
+<Flow steps={["Add connection", "Prove your domain", "Set rules", "Team signs in with company account"]} />
 
 ## Connect your identity provider
 
@@ -55,11 +53,11 @@ Public domains such as gmail.com can't be claimed. For **New company sign-ins** 
 Group rules give people a role, teams and a branch from the groups your provider sends (**Groups claim**).
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Provider sends groups] --> B["Rules checked in Priority order"]
-  B --> C[Role, teams and branch given]
-  B --> D[No match: default role]
+  A(Provider sends groups) --> B("Rules checked in Priority order")
+  B --> C(Role, teams and branch given)
+  B --> D(No match: default role)
 ```
 
 Choose **Add rule** per group.

@@ -1,0 +1,49 @@
+---
+title: "Who answers"
+sidebarTitle: "Who answers"
+description: "Choose which people, or the AI agent, answer each of your business numbers."
+---
+
+import { Flow } from "/snippets/flow.jsx";
+
+Who answers is one list of rules that decides who gets a call. Open it in **Calls → Settings → Who answers**. You need to be an organization administrator.
+
+## How the rules work
+
+<Frame>
+  <img src="/images/calls/who-answers.jpg" alt="Who answers showing a published call flow in plain words" />
+</Frame>
+
+The first rule that matches the number called is used. The last rule covers every other call.
+
+| Setting | What it does |
+| --- | --- |
+| **If the call is to** | Pick numbers. Each number can ring a different team. |
+| **The call goes to** | Staff, the AI agent, or nobody (a missed call). |
+| **Ring** | A team, a [ring group](/guides/ring-groups), the lead’s owner or chosen people, and **Give up after**. |
+| **Ring someone else first** | Adds a second step if nobody answers. |
+| **Different outside working hours and on holidays** | Another handling for those times. Hours come from your HR working week and holidays. |
+
+## Save your rules
+
+<Steps>
+  <Step title="Add or edit a rule">Pick the numbers, then who gets the call.</Step>
+  <Step title="Fix anything shown at the bottom">For example a rule with no numbers, or ringing over five minutes.</Step>
+  <Step title="Save">Choose **Save and use these rules**.</Step>
+</Steps>
+
+People need active access and a registered phone number. Busy or away staff are skipped.
+
+## When nobody answers
+
+<Flow steps={["Call comes in", "First matching rule", "Ring the chosen people", "Ring someone else first", "Missed call"]} />
+
+For menus or checks on new and known callers, use a [call flow](/guides/call-flows) instead. For one number that needs its own handling, see [Rules for one number](/guides/rules-for-one-number).
+
+## Ask Marro
+
+<Card title="Try asking" icon="message-circle">
+  *"Who answers calls to our Hyderabad number?"*
+
+  Marro reads your rules and tells you who rings, in what order.
+</Card>

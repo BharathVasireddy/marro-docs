@@ -1,70 +1,24 @@
 ---
 title: "Access and data"
-description: "Users, teams, roles and who can see which leads."
+description: "Users, roles, teams and who can see which leads."
 ---
 
-Open **Users** in the menu. The tabs are **Users**, **Teams**, **Branches** and **Roles**.
+Open **Users** in the menu to manage who works in your organization and what they can reach.
 
-## Users
-
-<Frame>
-  <img src="/images/setup/users.jpg" alt="The Users page with Invite user, a person's menu and the Roles tab" />
-</Frame>
-
-1. **Invite user** sends an email invitation, or you can set a password yourself.
-2. A person's **⋯** menu changes their role or switches them off.
-3. The **Roles** tab opens the roles.
-
-## Teams
-
-<Frame>
-  <img src="/images/setup/teams.jpg" alt="The Teams tab with New team and a team to open" />
-</Frame>
-
-1. **New team** makes a team.
-2. Open a team to see its members and choose its team lead.
-3. **Lead assignment** is where you choose which team gets which leads. See [Lead assignment and rotation](/guides/lead-assignment).
-
-## Roles
-
-A new organization has **Admin**, **Advisor** (works leads) and **Partner** (refers leads). More ready-made roles (**Manager**, **Operations Head**, **Editor**, **Social Media Manager**) are under **Add a ready-made role**.
-
-<Frame>
-  <img src="/images/setup/roles.jpg" alt="The Roles tab with New role, Add a ready-made role and a role to open" />
-</Frame>
-
-1. **New role** makes your own.
-2. **Add a ready-made role** adds one.
-3. Open a role to edit it.
-
-<Frame>
-  <img src="/images/setup/role-edit.jpg" alt="The Edit role page with name, permission search, Select all and Save role" />
-</Frame>
-
-1. Change the **name**.
-2. **Search permissions**.
-3. **Select all** ticks an area.
-4. **Save role**.
-
-Only permissions your subscription includes are counted.
-
-| Permission | Lets people |
-| --- | --- |
-| **Create leads** | Also quote the leads assigned to them |
-| **Manage reports** | Share reports and dashboards, set a role's home dashboard, email reports. Admin and Manager have it |
-| **Send email campaigns** | Write, test, send and schedule [email campaigns](/guides/email-campaigns). Admin and Social Media Manager have it |
+<CardGroup cols={2}>
+  <Card title="Users" icon="user-plus" href="/guides/users">Invite people, change roles, switch them off.</Card>
+  <Card title="Roles" icon="shield" href="/guides/roles">Choose what each role can see and do.</Card>
+  <Card title="Teams" icon="users" href="/guides/teams">Group people and choose a team lead.</Card>
+  <Card title="Lead assignment" icon="shuffle" href="/guides/lead-assignment">Decide which team gets which leads.</Card>
+</CardGroup>
 
 ## Who sees which leads
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Your lead access] --> B[Lists, follow-ups, scores, review queues] --> C[Same in the assistant and app]
-```
-
-- Lists, follow-ups, scores and AI review queues all follow your current lead access.
-- Partners see their referral tree. Assigning an unrelated lead to a partner does not give access to it.
-- Follow-ups linked to a lead disappear when you lose access to it.
+| Who | Sees |
+| --- | --- |
+| Everyone | Lists, follow-ups, scores and AI review queues follow your current lead access |
+| Partners | Their referral tree. Assigning an unrelated lead to a partner does not give access to it |
+| After losing access | Follow-ups linked to that lead disappear |
 
 ## Good to know
 

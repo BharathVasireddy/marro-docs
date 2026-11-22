@@ -3,6 +3,8 @@ title: "Cloud calls"
 description: "Connect your team’s phones to customers and keep private recordings on each lead."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Cloud calls connect your team’s phones with leads. Incoming calls reach your team or an [AI voice agent](/guides/ai-calling). An organization administrator sets it up in **Calls → Settings**.
 
 ## Set up your calls
@@ -15,127 +17,33 @@ Cloud calls connect your team’s phones with leads. Incoming calls reach your t
 
 <Steps>
   <Step title="Verify your business">Calls need your business registration. We email you when it is checked.</Step>
-  <Step title="Your business number">Marro sets it up once you are verified and emails you. Nothing to do.</Step>
-  <Step title="Who answers">Choose who gets your calls.</Step>
-  <Step title="Send your advertised numbers here">Optional.</Step>
+  <Step title="Your business number">Marro sets it up once you are verified and emails you. Nothing to do. See [Business numbers](/guides/call-numbers).</Step>
+  <Step title="Who answers">Choose who gets your calls. See [Who answers](/guides/who-answers).</Step>
+  <Step title="Send your advertised numbers here">Optional. See [Business numbers](/guides/call-numbers).</Step>
   <Step title="Switch on">Choose **Switch calls on**, then call your business number from another phone to try it.</Step>
 </Steps>
 
-**Switch calls off** stops calls reaching your team and keeps everything you set up. **More options** has greeting and waiting music, call flows, ring groups and rules for one number.
+**Switch calls off** stops calls reaching your team and keeps everything you set up.
+
+## Each setting has its own guide
 
 <Frame>
   <img src="/images/calls/more-options.jpg" alt="More options on Call setup" />
 </Frame>
 
-## Rent another number
-
-<Steps>
-  <Step title="Open Numbers">Go to **Calls → Settings → Numbers** and choose **Rent another number**.</Step>
-  <Step title="Check the price">The first month comes from your wallet now.</Step>
-  <Step title="Confirm">The number is set up straight away and you get an email.</Step>
-</Steps>
-
-- Rent is taken from the wallet every month. **Renews on** shows the date.
-- If the wallet cannot pay, calls on that number stop. A number left unpaid is released within 7 days and cannot be used again.
-- At your limit, the button reads **Ask for another number**. Marro looks at it and emails you.
-
-## Keep your marketing number
-
-Customers keep dialling the number you advertise. Turn on call forwarding on that SIM (phone **Settings → Calls → Call forwarding**) to your business number.
-
-<Frame>
-  <img src="/images/calls/forwarding.jpg" alt="How to forward calls, for iPhone, Android or a dial code" />
-</Frame>
-
-- Outgoing calls show your business number, not the advertised one.
-- Several advertised numbers can forward to one business number. If the network passes it on, the call shows **Dialled +91 …**. Make a test call to check yours.
-- In **Numbers → Your advertised numbers**, add each forwarding number with a label. Marro will not ring those numbers, so a call cannot loop back.
-
-<Frame>
-  <img src="/images/calls/numbers.jpg" alt="Your business numbers and advertised numbers" />
-</Frame>
-
-## Choose who answers
-
-**Calls → Settings → Who answers** is one list of rules. The first rule that matches the number called is used. The last rule covers every other call.
-
-<Frame>
-  <img src="/images/calls/who-answers.jpg" alt="Who answers showing a published call flow in plain words" />
-</Frame>
-
-| Setting | What it does |
-| --- | --- |
-| **If the call is to** | Pick numbers. Each number can ring a different team. |
-| **The call goes to** | Staff, the AI agent, or nobody (a missed call). |
-| **Ring** | A team, a ring group, the lead’s owner or chosen people, and **Give up after**. |
-| **Ring someone else first** | Adds a second step if nobody answers. |
-| **Different outside working hours and on holidays** | Another handling for those times. Hours come from your HR working week and holidays. |
-
-Choose **Save and use these rules**. Fix anything shown at the bottom first, such as a rule with no numbers or ringing over five minutes. People need active access and a registered phone number. Busy or away staff are skipped.
-
-## Ring groups
-
-A ring group is a named list of staff, such as *Shop A*. To use a team you already have, choose the team instead.
-
-<Frame>
-  <img src="/images/calls/ring-group-form.jpg" alt="A new ring group and how it rings" />
-</Frame>
-
-1. Open **More options → Ring groups** and choose **Add ring group**.
-2. Add a **Name**, pick the **People** and **Ring for**.
-3. In **Who answers**, choose **A ring group**.
-
-| Ring style | How it rings |
-| --- | --- |
-| **In turns** | One person at a time. |
-| **All together** | Everyone, up to 10. |
-| **In turns, among those checked in** | Only people checked in. |
-| **Fewest calls today** | Whoever has answered the fewest. |
-| **The lead's owner first** | The owner, then the rest in turns. |
-
-A group still in use cannot be deleted.
-
-## Call flows
-
-Most businesses only need **Who answers**. For menus or checks on new and known callers, open **More options → Call flows**.
-
-<Frame>
-  <img src="/images/calls/flow-steps.jpg" alt="A call flow as steps, with its plain-words summary" />
-</Frame>
-
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[When a call comes in] --> B[Check something]
-  B --> C[Answer the call]
-  C --> D[End the flow]
-```
-
-- **Check something:** working hours, the number dialled, new or known caller, owner, stage or source.
-- **Answer the call:** ring a group or owner, hand to the AI agent, or play a message.
-- **End the flow:** a missed call with your alerts.
-
-**Save draft** changes nothing for callers. **Publish** makes it live. **Stop using it** goes back to ordinary settings. Each call shows its path in plain words, such as *Dialled Shop A · rang Telugu team · answered by Priya*.
-
-## Greeting and waiting music
-
-<Frame>
-  <img src="/images/calls/greeting.jpg" alt="Greeting and waiting music" />
-</Frame>
-
-- **Greeting:** type a message and choose **Create audio**, or upload an MP3 or WAV up to 5 MB.
-- **Waiting music:** **More options → Greeting and waiting music → Add waiting music**. One MP3 or WAV, at least five seconds, up to 5 MB.
-- Callers hear them while staff ring. Press play to hear what callers hear.
+<CardGroup cols={2}>
+  <Card title="Who answers" icon="phone-incoming" href="/guides/who-answers">Choose who gets each call.</Card>
+  <Card title="Business numbers" icon="hash" href="/guides/call-numbers">Rent numbers, advertised numbers, forwarding.</Card>
+  <Card title="Greeting and music" icon="music" href="/guides/greeting-and-music">What callers hear while staff ring.</Card>
+  <Card title="Ring groups" icon="users" href="/guides/ring-groups">Named lists of staff and five ring styles.</Card>
+  <Card title="Call flows" icon="git-branch" href="/guides/call-flows">Menus and checks for new and known callers.</Card>
+  <Card title="Rules for one number" icon="settings" href="/guides/rules-for-one-number">Give one number its own handling.</Card>
+  <Card title="Call log" icon="list" href="/guides/call-log">Every call, filters, transcripts.</Card>
+</CardGroup>
 
 ## Missed calls
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Nobody answers] --> B[Shows as Missed]
-  B --> C[Owner alerted]
-  C --> D[Call back task]
-```
+<Flow steps={["Nobody answers", "Shows as Missed", "Owner alerted", "Call back task"]} />
 
 - A new number creates a lead with source **Phone call**.
 - The lead’s owner is alerted by email, WhatsApp and the app.
@@ -149,7 +57,7 @@ Open the lead, choose **Call**, then **Cloud call**. Your registered phone rings
   <img src="/images/calls/lead-timeline.jpg" alt="Calls on the lead timeline, with an AI call summary" />
 </Frame>
 
-If a request seems stuck, check its saved status before calling again. The first call may already be ringing. **Calls** lists every call you can see: [see your calls](/guides/ai-calling#see-your-calls).
+If a request seems stuck, check its saved status before calling again. The first call may already be ringing. **Calls** lists every call you can see: [the call log](/guides/call-log).
 
 ## Charges and the wallet
 
@@ -170,9 +78,11 @@ Connected calls are recorded, without an announcement. Recordings are private to
   <img src="/images/calls/transcript.jpg" alt="An AI call transcript" />
 </Frame>
 
-1. On the lead’s **Activity → Calls**, choose **Recording** or **Transcript**.
-2. Request a transcript if AI access is on.
-3. Choose **Analyse call** for a summary, objections, commitments and follow-up. It creates no notes or tasks.
+<Steps>
+  <Step title="Open the call">On the lead’s **Activity → Calls**, choose **Recording** or **Transcript**.</Step>
+  <Step title="Request a transcript">Needs AI access on.</Step>
+  <Step title="Analyse the call">You get a summary, objections, commitments and follow-up. It creates no notes or tasks. More in [Call log](/guides/call-log).</Step>
+</Steps>
 
 If **Call reviewer** is on in [AI → Agents](/guides/agents), each recorded call is read automatically for [automations](/guides/automations#after-a-call).
 

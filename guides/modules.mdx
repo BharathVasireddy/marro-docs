@@ -34,12 +34,6 @@ A module your plan doesn't include is greyed, with a crown and the plan that has
 
 Only your organization's administrator can use the switches.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Switch off] --> B[Hidden on web, app and assistant] --> C[Switch on again] --> D[Everything is back]
-```
-
 Nothing is deleted. A switch can only narrow your plan, never add a module it doesn't include.
 
 Some modules need another one. Marro tells you which before you confirm.
@@ -55,9 +49,15 @@ A dependent module shows "Off while … is off".
 
 ## Limits
 
-Some things are counted, not switched: automations on at once, custom objects and partner logins. **Settings → Subscription** shows your use of each.
+Some things are counted, not switched. **Settings → Subscription** shows your use of each.
 
-At a limit, only adding one more is refused, with the plan that lifts it. Nothing you have is hidden or removed. Partner logins never count as paid users.
+| Counted | At the limit |
+| --- | --- |
+| Automations on at once | Adding one more is refused, with the plan that lifts it |
+| Custom objects | The same |
+| Partner logins | The same. They never count as paid users |
+
+Nothing you have is hidden or removed.
 
 ## AI modules
 

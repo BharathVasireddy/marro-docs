@@ -3,6 +3,8 @@ title: Contact preferences
 description: One page where each person chooses which marketing they get from you, by email, WhatsApp and SMS.
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Every marketing email links to the person's own preference page. They choose what you may send, then press **Save**, or **Unsubscribe from all marketing**. Opening the page changes nothing.
 
 ## What each choice stops
@@ -21,13 +23,7 @@ Someone who replied **STOP** on WhatsApp or SMS gets nothing on that channel unt
 
 Each lead's page, on the web and in the app, has a **Marketing** section in the left panel. It shows email, WhatsApp and SMS as allowed or stopped, when and how, and the campaign emails sent.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Person asks to stop] --> B[Press Stop beside the channel]
-  B --> C[You confirm]
-  C --> D[Stopped until they turn it on]
-```
+<Flow steps={["Person asks to stop", "Press Stop beside the channel", "You confirm", "Stopped until they turn it on"]} />
 
 Only the person can turn marketing back on, from their own page.
 

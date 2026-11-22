@@ -3,13 +3,11 @@ title: "WhatsApp chatbots"
 description: "Build a chatbot that asks questions with buttons and lists, fills in lead details and hands the chat to your team or the AI receptionist."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 A **chatbot** answers customers on WhatsApp step by step. It is part of the Inbox, and building or switching one on needs the **Inbox settings** permission.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Keyword or first message] --> B[Questions] --> C[Lead fields filled] --> D[Hand over or end]
-```
+<Flow steps={["Keyword or first message", "Questions", "Lead fields filled", "Hand over or end"]} />
 
 ## Build a chatbot
 

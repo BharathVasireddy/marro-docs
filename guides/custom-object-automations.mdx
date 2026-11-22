@@ -10,11 +10,11 @@ Workflow screens are built and awaiting review and release. They are not live ye
 A custom-object workflow creates or updates a record when another record is created or updated. For example, a new application creates a service job, or an application marked Ready moves its own status to Processing. These are internal record changes. They contact no customer.
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Record created or updated] --> B{Conditions match?}
-  B -->|Yes| C[Create or update records]
-  B -->|No| D[Filtered]
+  A(Record created or updated) --> B{Conditions match?}
+  B -->|Yes| C(Create or update records)
+  B -->|No| D(Filtered)
 ```
 
 Open **Settings → Custom objects → Workflows**.

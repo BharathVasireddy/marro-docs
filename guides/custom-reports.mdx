@@ -3,6 +3,8 @@ title: "Custom reports and dashboards"
 description: "Build the reports you need, put them side by side on dashboards, and have them emailed."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 **Reports → Custom reports** lists your saved reports and **Ready-made** ones to start from. **Reports → Dashboards** puts saved reports side by side.
 
 <CardGroup cols={2}>
@@ -27,12 +29,7 @@ Give it a **Name** and save. **Save as new** keeps the original.
 
 ## Who sees what
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Shared report] --> B[Each viewer]
-  B --> C[Sees only their own leads, team or branch]
-```
+<Flow steps={["Shared report", "Each viewer", "Sees only their own leads, team or branch"]} />
 
 - **Who can see it** keeps a report to yourself or shares it with roles.
 - Sharing needs the **Manage reports** permission. Admin and the ready-made Manager role have it; other roles don't get it on their own, so tick it in **Users → Roles**.

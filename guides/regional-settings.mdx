@@ -3,6 +3,8 @@ title: "Region: currency, formats and tax"
 description: "Your country sets your currency, date and number format, dialling code and tax. An administrator can change any of them."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 The country you chose at sign-up gives your organization its regional settings.
 
 ## Where it comes from
@@ -36,13 +38,7 @@ An administrator opens **Settings → Business** and finds **Region**.
 
 ## Tax on quotes and invoices
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Registration number in Settings] --> B[Lines taxed or tax-free]
-  B --> C[Totals show the tax by name]
-  C --> D[Document prints both numbers]
-```
+<Flow steps={["Registration number in Settings", "Lines taxed or tax-free", "Totals show the tax by name", "Document prints both numbers"]} />
 
 - With one tax rate, add your registration number (your ABN, for example) in **Settings → Quotes and invoices**.
 - Without one, documents carry no tax and an invoice is not a tax invoice.
@@ -51,7 +47,10 @@ flowchart LR
 
 ## Getting paid
 
-A pay link is offered when your connected payment account takes the invoice's currency. If not, the invoice says so and you record payments by hand.
+| Your payment account | On the invoice |
+| --- | --- |
+| Takes the invoice's currency | A pay link is offered |
+| Doesn't | The invoice says so, and you record payments by hand |
 
 ## Ask Marro
 

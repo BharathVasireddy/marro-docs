@@ -3,6 +3,8 @@ title: "Price list and versions"
 description: "How Marro publishes prices and what stays fixed for a subscription you already have."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Marro sells from one published price list. The [pricing page](https://www.marro.si/pricing), checkout in **Settings → Subscription** and the assistant all read it, so the price you see is the price you are offered.
 
 ## Versions
@@ -17,25 +19,22 @@ Each plan and add-on has published terms: prices, included users, extra-user pri
 
 Changing the number of users keeps every term you bought. Nobody is moved automatically.
 
-AI beyond your plan and AI calls are paid from the prepaid [message wallet](/guides/billing#message-wallet). Meta bills WhatsApp messages to your own Meta account.
+AI beyond your plan and AI calls are paid from the prepaid [message wallet](/guides/wallet). Meta bills WhatsApp messages to your own Meta account.
 
 ## The reviewed price
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Choose plan] --> B[Review price] --> C[Accept] --> D[Pay]
-```
+<Flow steps={["Choose plan", "Review price", "Accept", "Pay"]} />
 
 Marro shows the plan and version, period, users, add-ons, tax and total before any payment. The reviewed price lasts 15 minutes. If it expires or a new price list is published, review again. Nothing is charged at a price you did not see.
 
 ## When prices cannot be shown
 
-<Note>
-The pricing page says **Pricing temporarily unavailable** rather than show an older figure. Email hello@marro.si for current prices. The 14-day trial needs no price list or card.
-</Note>
-
-A new publication usually shows within minutes.
+| | |
+| --- | --- |
+| What you see | **Pricing temporarily unavailable**, rather than an older figure |
+| What to do | Email hello@marro.si for current prices |
+| The 14-day trial | Needs no price list or card |
+| A new publication | Usually shows within minutes |
 
 ## For developers
 

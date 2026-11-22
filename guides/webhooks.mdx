@@ -3,6 +3,8 @@ title: "Webhooks"
 description: "Bring in leads from any form tool that can send a webhook."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Form tools such as Elementor, Typeform, JotForm, Google Ads lead forms and landing page builders can send each submission to a web address. Give each one its own Marro address and its submissions become leads, with no code. Open **Settings → Integrations → Webhooks**.
 
 ## Set one up
@@ -17,11 +19,7 @@ Form tools such as Elementor, Typeform, JotForm, Google Ads lead forms and landi
 
 ## What happens next
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Form submitted] --> B[Marro webhook] --> C[Lead made or updated] --> D[Owner assigned] --> E[Automations run]
-```
+<Flow steps={["Form submitted", "Marro webhook", "Lead made or updated", "Owner assigned", "Automations run"]} />
 
 Someone you already have, by phone or email, is updated instead of added twice: only empty fields are filled. The submission shows on the lead's timeline.
 

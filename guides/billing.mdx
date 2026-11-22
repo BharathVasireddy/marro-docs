@@ -3,13 +3,11 @@ title: "Plans and billing"
 description: "Choose a plan, see what renews when, and manage your subscription and wallet."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Your subscription lives in **Settings → Subscription**. Only administrators see it.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[14-day trial] --> B[Choose a plan] --> C[Pay] --> D[Renews automatically]
-```
+<Flow steps={["14-day trial", "Choose a plan", "Pay", "Renews automatically"]} />
 
 ## The trial
 
@@ -43,7 +41,7 @@ Each plan has monthly, quarterly and annual prices. Longer periods cost less tha
 - AI credit renews on the day your subscription started. Unused credit doesn't carry over. AI beyond it is paid from the wallet.
 - Reaching a limit (custom objects, partner logins and so on) only stops adding more.
 
-**What you pay** each period: plan price + extra users × extra-user price. The [calculator on the pricing page](https://www.marro.si/pricing#cost) works it out. Not included: Meta's WhatsApp message charges (billed by Meta to you, no Marro markup), AI beyond your plan, AI calls and business numbers (all from the [wallet](#message-wallet)).
+**What you pay** each period: plan price + extra users × extra-user price. The [calculator on the pricing page](https://www.marro.si/pricing#cost) works it out. Not included: Meta's WhatsApp message charges (billed by Meta to you, no Marro markup), AI beyond your plan, AI calls and business numbers (all from the [wallet](/guides/wallet)).
 
 ## Billing currency
 
@@ -100,10 +98,10 @@ When a lower plan starts, modules it doesn't include switch off. Their data is k
 ## If a payment fails
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
-  A[Renewal fails] --> B[Payment overdue: 7 days] --> C[Modules switch off]
-  B -->|Update payment method| D[Back to normal]
+  A(Renewal fails) --> B(Payment overdue: 7 days) --> C(Modules switch off)
+  B -->|Update payment method| D(Back to normal)
 ```
 
 Razorpay retries on its own. Choose **Update payment method** to approve a new mandate or card. **Nothing is deleted**: paying brings everything back.
@@ -131,19 +129,16 @@ Razorpay retries on its own. Choose **Update payment method** to approve a new m
 | **Payments** on the subscription page | Each charge with amount, period and the Razorpay payment ID |
 | Your email | Razorpay's own receipt |
 
-## Message wallet
+## Wallet
 
-A prepaid balance in rupees for AI calls and for AI beyond your plan's credits. It never expires, and when it is empty AI pauses, so you never owe money for AI. Your subscription isn't paid from it.
-
-<CardGroup cols={2}>
-  <Card title="Where it is" icon="wallet">At the foot of the left menu, with a bar that turns red when low. Press it to open the wallet.</Card>
-  <Card title="Cloud calls" icon="phone">Marro sets aside 10 minutes at a time, checks the final charge at hang-up and returns the unused amount. See [Charges and the wallet](/guides/cloud-calls#charges-and-the-wallet).</Card>
-</CardGroup>
-
-**Business numbers** have a monthly price per number, the same on every plan. It is taken from the wallet a month in advance and shows as **Business number**. If the wallet is short, the page says the number is unpaid. Add money and the month is paid straight away. A number unpaid for 7 days may be released by Marro's team, never automatically.
+<Card title="Wallet" icon="wallet" href="/guides/wallet">
+  The prepaid balance for calls, business numbers and AI beyond your plan's credits. Your subscription isn't paid from it.
+</Card>
 
 ## Plans assigned by Marro
 
-<Note>
-  If Marro assigned your plan directly, **Settings → Subscription** shows the plan and its end date but no payment option. Contact Marro to move to automatic billing or to renew. Nothing is deleted when access ends.
-</Note>
+| If Marro assigned your plan | |
+| --- | --- |
+| **Settings → Subscription** shows | The plan and its end date, with no payment option |
+| To renew or move to automatic billing | Contact Marro |
+| When access ends | Nothing is deleted |

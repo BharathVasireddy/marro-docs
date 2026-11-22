@@ -3,25 +3,26 @@ title: "Inbox"
 description: "Answer WhatsApp, Instagram, Messenger, website chat and SMS from one shared inbox."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 The **Inbox** holds every chat with your leads in one list. Your team, the assistant and the conversation agent all answer from it.
 
 <Note>
   The Inbox is a module of your subscription. If you don't see it, ask your administrator or Marro.
 </Note>
 
-## Connect WhatsApp
+## Set up your Inbox
 
-<Frame>
-  <img src="/images/inbox/06-settings-number.jpg" alt="WhatsApp number settings: standing with Meta and this month" />
-</Frame>
-
-<Steps>
-  <Step title="Open settings">Go to **Inbox → Settings → Connect your WhatsApp number**.</Step>
-  <Step title="Choose your number">**The number on my WhatsApp Business app** keeps working on your phone, and messages typed there appear in Marro. **A number not on WhatsApp yet** is confirmed by Meta by SMS or call.</Step>
-  <Step title="Continue with Meta">Sign in with Facebook and choose your portfolio, account and number. It then shows **Connected**.</Step>
-</Steps>
-
-Earlier chats with people who are already leads come in as read. If you have your own Meta app, connect it in **Settings → Integrations → WhatsApp Business (Meta)**.
+<CardGroup cols={2}>
+  <Card title="WhatsApp number" icon="phone" href="/guides/whatsapp-number">Connect your number, see its standing with Meta, staff alerts</Card>
+  <Card title="WhatsApp templates" icon="file-text" href="/guides/whatsapp-templates">Write and send templates for Meta's review</Card>
+  <Card title="Chat assignment" icon="users" href="/guides/chat-assignment">Who gets a new chat, and returning leads</Card>
+  <Card title="Replies and reply rules" icon="reply" href="/guides/whatsapp-replies">AI receptionist, welcome, away and keyword replies</Card>
+  <Card title="WhatsApp contacts" icon="tag" href="/guides/whatsapp-contacts">Tags, attributes, segments, imports and downloads</Card>
+  <Card title="WhatsApp groups" icon="users-round" href="/guides/whatsapp-groups">Groups and their members</Card>
+  <Card title="Chatbots and flows" icon="bot" href="/guides/whatsapp-chatbots">Automated conversations and forms</Card>
+  <Card title="Catalog" icon="shopping-bag" href="/guides/whatsapp-catalog">Products customers can browse</Card>
+</CardGroup>
 
 ## Other channels
 
@@ -55,10 +56,6 @@ Instagram and Messenger open to every organization once Meta finishes reviewing 
 
 A lead's **Inbox** tab lists its chats on every channel. Write **internal notes** only your team sees. See [Chat reports](/guides/chat-reports).
 
-<Frame>
-  <img src="/images/inbox/08-chat-assignment.jpg" alt="Chat assignment" />
-</Frame>
-
 ## Buttons, lists and links
 
 Inside the 24-hour window, **Send buttons, a list or a link** under the reply box sends tappable choices.
@@ -76,11 +73,7 @@ Add a heading and footer (60 characters each) to the first three. The person's c
 
 Some people hide their number. They appear as a chat marked "Not a lead", and you can reply within the 24-hour window. Marro sends them one button to share their number.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Username chat] --> B[They share a number] --> C[Merges into that number's chat] --> D[Lead made or matched]
-```
+<Flow steps={["Username chat", "They share a number", "Merges into that number's chat", "Lead made or matched"]} />
 
 Until then there is no lead, and no template or one-time code can be sent.
 
@@ -102,42 +95,9 @@ Meta bills WhatsApp messages to your Meta business account; Marro adds no per-me
 | Messages people send you | Free |
 | After a click-to-WhatsApp ad, answered in 24 hours | Free for at least 72 hours. The chat shows **Messages are free until at least** |
 
-## Templates
-
-<Frame>
-  <img src="/images/inbox/07-replies.jpg" alt="Replies: who answers, the AI receptionist, welcome and away messages" />
-</Frame>
-
-**Inbox → Templates** lists name, status, quality, language and category. The chart icon shows sent, delivered, read and taps for 30 days. **Refresh** reads from Meta.
-
-<Steps>
-  <Step title="New template">Choose **Category** (Marketing or Utility), **Name** and **Language**, then **Next**.</Step>
-  <Step title="Write it">Optional **Header** (text, picture, video or PDF sample up to 4 MB), the **Message** with placeholders like `{{first_name}}`, an optional **Footer** and **Buttons**.</Step>
-  <Step title="Review">Choose **Review template** to check whether it reads as Utility or Marketing. Use fictional examples; AI review uses AI credits.</Step>
-  <Step title="Submit">**Submit for review**. Meta decides, and reviews again after an edit.</Step>
-</Steps>
-
-**Or write a special kind** adds more:
-
-| Kind | Needs |
-| --- | --- |
-| One-time code | Button label, minutes valid. You enter the code when sending. Phone numbers only |
-| Coupon code | A **Copy offer code** button |
-| Limited-time offer | Heading up to 16 characters, optional countdown of 1 to 720 hours |
-| Carousel | 2 to 10 cards, a file per card |
-| Product, Several products | A catalog connected in Meta Commerce Manager |
-
-**Delete** removes a template at Meta, and the name cannot be reused for 30 days.
-
 ## Broadcasts
 
-**Inbox → Broadcasts** sends an approved template to a lead list. Email campaigns are separate: [email campaigns](/guides/email-campaigns).
-
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Template] --> B[Lead list] --> C[When] --> D[Sent] --> E[Report]
-```
+**Inbox → Broadcasts** sends an approved [template](/guides/whatsapp-templates) to a lead list. Email campaigns are separate: [email campaigns](/guides/email-campaigns).
 
 **When** has three choices:
 
@@ -164,25 +124,6 @@ The report shows **Sent**, **Delivered**, **Read**, **Replied**, **Failed**, **O
 | **Add a number** | Enter the number and a note |
 | **Opt back in** | Needs the WhatsApp settings permission. Only for someone who agreed again; write how. A later STOP wins |
 
-## Automatic replies
-
-**Inbox → Settings → Replies**. Each message gets one answer:
-
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Person in the chat] --> B[Keyword reply] --> C[AI receptionist] --> D[Welcome or away message]
-```
-
-| Card | What it does |
-| --- | --- |
-| **AI receptionist** | **On** or **Off**, with **Manage** or **Set up** |
-| **Welcome message** | First time someone writes. `{{first_name}}` fills their name |
-| **Away message** | Outside your working hours (from **Settings → HR**), once per closure |
-| **Keyword replies** | **Add** keywords separated by commas and a message or approved template |
-
-Keyword rules match **Contains the words**, **Is exactly**, **Starts with** or **Contains the text**. The first match from the top answers, once per chat every 10 minutes. A **Default reply** covers everything else. Ice breakers (up to 4) and commands (up to 30) are set per number.
-
 ## Chat settings
 
 **Inbox → Settings → Chat** switches, all off until an administrator turns them on:
@@ -204,7 +145,12 @@ Keyword rules match **Contains the words**, **Is exactly**, **Starts with** or *
 
 ## Sound alerts
 
-Marro plays a sound for new messages when the tab is in the background or another chat is open. Use the bell beside the filters to turn it on or off, choose **Chime** or **Pop** and the volume, or turn on **Desktop notifications**. Choices follow your account. The app uses its own notifications.
+Marro plays a sound for new messages when the tab is in the background or another chat is open. Choices follow your account; the app uses its own notifications.
+
+| Choice | Where |
+| --- | --- |
+| On or off, **Chime** or **Pop**, volume | The bell beside the filters |
+| **Desktop notifications** | The same bell |
 
 ## Ask Marro
 

@@ -3,19 +3,15 @@ title: "Personal check-ins in Ask Marro"
 description: "Keep assigned tasks and lead follow-ups current with confirmed check-ins."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 **Ask Marro** watches your overdue assigned tasks and lead follow-ups. It asks what happened, remembers your confirmed answer and checks again at the agreed time.
 
 <Note>
 Check-ins need AI access, enabled background agents and scheduled personal check-ins in your workspace. Tasks without a due date are not monitored.
 </Note>
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Overdue task or follow-up] --> B[Marro asks for an update]
-  B --> C[You confirm]
-  C --> D[Task updated, next check set]
-```
+<Flow steps={["Overdue task or follow-up", "Marro asks for an update", "You confirm", "Task updated, next check set"]} />
 
 ## Give a work update
 
@@ -28,8 +24,10 @@ Open **Ask Marro** and expand **Your work**, or use the **Your work** entry unde
   <Step title="Confirm">Marro updates the task or follow-up and records the change.</Step>
 </Steps>
 
-- Confirmation is needed even in Auto mode. Silence is never treated as completion.
-- For a finished board task, choose its completed or review stage. Review and publishing rules still apply.
+| Rule | Detail |
+| --- | --- |
+| Confirmation | Needed even in Auto mode. Silence is never treated as completion |
+| Finished board task | Choose its completed or review stage. Review and publishing rules still apply |
 
 ## When it checks with you
 
@@ -44,14 +42,20 @@ Proactive WhatsApp reminders are not included yet. You can still answer through 
 
 ## Getting help
 
-- A confirmed **blocked** update is visible to authorised team leads and admins.
-- Work unanswered after two requests and 48 hours is raised with them.
-- Managers see only work they have permission for. Private assistant memories are not shared.
-- If an update is interrupted, Marro asks you to check the work record. It will not repeat the change itself.
+| Situation | What happens |
+| --- | --- |
+| A confirmed **blocked** update | Visible to authorised team leads and admins |
+| Unanswered after two requests and 48 hours | Raised with them |
+| Managers | See only work they have permission for. Private assistant memories are not shared |
+| An interrupted update | Marro asks you to check the work record. It will not repeat the change itself |
 
 ## Pause your agent
 
-Open **Check-in settings** beside **Your work** and choose **Pause check-ins**. It affects only your own monitoring. Choose **Resume check-ins** when ready.
+<Steps>
+  <Step title="Open check-in settings">Find **Check-in settings** beside **Your work**.</Step>
+  <Step title="Pause">Choose **Pause check-ins**. It affects only your own monitoring.</Step>
+  <Step title="Resume">Choose **Resume check-ins** when ready.</Step>
+</Steps>
 
 ## Ask Marro
 

@@ -3,6 +3,8 @@ title: "Assistant"
 description: "Ask Marro to find, explain and do your CRM work, on the web, in the app and on WhatsApp."
 ---
 
+import { Flow } from "/snippets/flow.jsx";
+
 Marro's assistant answers questions about your leads, chats, tasks and reports, and does the work: notes, follow-ups, calls, stage changes, messages and more. It acts as you, so it can only do what your role allows. It is part of Marro AI, on every plan.
 
 If a business detail is missing or conflicting, it says what needs confirming. Ask explicitly if you want to see its sources or manage Business knowledge.
@@ -105,7 +107,7 @@ Open **AI → Settings**, under **WhatsApp**:
     Read and change **Inbox → Settings → Replies**: welcome and away messages, keyword replies.
   </Card>
   <Card title="Voice lines" icon="phone">
-    Tell you how many AI calls can run at once and request more. See [AI calling](/guides/ai-calling#ask-for-more-lines).
+    Tell you how many AI calls can run at once and request more. See [AI calling](/guides/voice-agent#request-more-lines).
   </Card>
   <Card title="How-do-I questions" icon="circle-help">
     Answered from [Help and support](/guides/support), using no AI credits.
@@ -118,13 +120,7 @@ Ask things like *"How do I add a custom field?"* Marro looks up the web app's pa
 
 Ask **"What needs my update?"** to start a [personal check-in](/guides/personal-agent).
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[You ask] --> B[Marro asks about overdue assigned work]
-  B --> C["Records your status and next deadline"]
-  C --> D[Raises unresolved work with managers]
-```
+<Flow steps={["You ask", "Marro asks about overdue assigned work", "Records your status and next deadline", "Raises unresolved work with managers"]} />
 
 These updates always need confirmation, even in Auto.
 
@@ -154,11 +150,7 @@ Messages, paid calls, payments and actions with their own confirmation keep thos
 
 ## Delete records
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
-flowchart LR
-  A[Ask to delete] --> B[Review lists what goes] --> C[You approve] --> D[Deleted]
-```
+<Flow steps={["Ask to delete", "Review lists what goes", "You approve", "Deleted"]} />
 
 Every deletion needs your explicit approval, even in Auto. The review names what will go and ends with "This can't be undone." Archive is a separate choice that keeps a lead in **Leads → Archived**. Users, money, credentials and connections keep their own workflows.
 
