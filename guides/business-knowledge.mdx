@@ -14,7 +14,9 @@ Open **AI → Knowledge**. Administrators can use it by default; other roles can
 ## Add knowledge
 
 - **Add entry**: a title and plain text. Write each topic as its own entry, the way you would brief a new colleague. A line starting with `#`, or a short line ending in a colon ("Fees:"), starts a section.
-- **Upload file**: a `.txt` or `.md` file, up to 256 KB. Its text becomes a new entry you can edit. For a PDF or Word file, paste its text into a new entry.
+- **Upload file**: a `.txt` or `.md` file, up to 256 KB. Its text becomes a new entry you can edit. For PDF, JPEG or PNG, upload one file up to 3 MiB and add the text you want agents to search. The entry starts with staff visibility and switched off. Review its text and access before switching it on. Staff with permission to manage knowledge can download the original. Agents use the approved text to answer questions.
+
+  Choose **Extract text** to draft text from a PDF, scan, or image using your AI allowance. This sends the file for AI processing. Compare the result with the original, especially names, prices, and dates. Choose **Use this version** to put the draft in the editor, make corrections, and choose **Add entry** to save it. If the preview is incomplete, add the missing text manually.
 - **Add website**: see below.
 
 ## Add a website
@@ -28,7 +30,7 @@ Open **AI → Knowledge**. Administrators can use it by default; other roles can
   </Step>
 </Steps>
 
-- To stop a queued or running import, press **Cancel** on its progress card in **AI → Knowledge**. The card shows **Cancelled**. Pages already imported or refreshed stay in Business knowledge. You can then start another import.
+- To stop a queued or running import, press **Cancel** in the import status row in **AI → Knowledge**. The row shows **Cancelled**. Pages already imported or refreshed stay in Business knowledge. You can then start another import.
 - For large sites, give Marro a section such as your services or help pages. A home-page import uses the site's sitemap and links; a section import stays within that section. You can import a different section when the first one finishes.
 - It respects your website's robots.txt and skips files, pages that ask not to be indexed, and repeated pages.
 - A page that fills itself in with scripts has too few words to read. Paste that page's text into an entry instead.
@@ -43,7 +45,8 @@ Choose **Use this version** or **Keep mine**. Nothing is saved until you press *
 
 ## Check what the AI will see
 
-- **Test a question**: sits beside the entries on a wide screen, as a short chat. Ask something a customer or colleague would, or tap an example, and each answer shows the entries the AI would be given. No AI is used, so testing is free.
+- Use **Find an entry** to search by title, file name, or source address. Use the adjacent filter to narrow the list by status or source. The library shows up to 20 entries per page.
+- Choose **Test a question** in the entry toolbar. With an empty library, find it in the **More for Business knowledge** menu. Ask something a customer or colleague would, or select an example, to see the passages the AI would be given. The dialog keeps your questions while you work on the page. Choose **Clear** to start again.
 - **Switch an entry off** to stop the AI using it without deleting it.
 
 ## Limits
@@ -62,6 +65,12 @@ Open an entry’s menu and choose **Access and validity**.
 - After reading the entry and checking its facts, enable **I reviewed these facts and confirm this revision is accurate** and save. Editing or refreshing its text clears verification. A concurrent edit requires you to reload before reviewing.
 
 A review records the administrator’s confirmation. It does not prove that a payment succeeded, an appointment remains free or a customer has a particular subscription. Ask Marro uses the current operational tools for those questions. Customer agents read the current visible product catalogue before quoting listed prices; a catalogue price does not replace a customer’s agreed quote or invoice.
+
+## Review voice pricing
+
+In **AI → Business knowledge**, open **More for Business knowledge → Voice pricing review**. A **Review** button also appears above the entries when pricing issues are available. The review groups pricing lookup issues from up to 200 completed calls in the last 30 days. A call counts once for each issue it encountered. Use the suggested checks to review missing or ambiguous catalogue prices, unavailable lookups, or figures that need verification.
+
+Use **Open catalogue** to make the verified correction through the usual catalogue controls. Then enter the exact item name and select **Test voice price**. Marro shows what the price lookup returns in English, Hinglish and Telugu. You can also ask Ask Marro to show the voice pricing review or test an item. The preview checks the catalogue lookup without placing a call.
 
 **Test a question** uses your own role and branch access, so it can include staff-only entries you can read. Customer agents use the public audience. When asking Ask Marro to draft a customer reply, it uses customer-audience retrieval.
 

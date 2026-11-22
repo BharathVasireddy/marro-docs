@@ -9797,12 +9797,12 @@
           "money.read": {
             "label": "Read products, quotes, invoices and payments",
             "description": "Read the product catalogue, quotes and GST invoices with their lines and totals, and payments received.",
-            "module": "money.quotes"
+            "module": "finance.quotes"
           },
           "money.write": {
             "label": "Create quotes and invoices and record payments",
             "description": "Create quotes and invoices (as drafts, or issued with their number) and record payments against invoices. Needs money.read.",
-            "module": "money.quotes"
+            "module": "finance.quotes"
           },
           "agent.tools": {
             "label": "AI agent tools (MCP)",
