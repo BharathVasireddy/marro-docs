@@ -1,0 +1,48 @@
+/*
+ * Marro docs: small touches so the guides read like the app (app.marro.si).
+ * Corners follow the app's radius ratio (0.28 × height): 10px on controls, 12px on cards and frames.
+ * Mintlify loads every .css file in this folder; keep selectors few and generic, as its markup can change.
+ */
+
+:root {
+  --marro-radius-control: 10px;
+  --marro-radius-card: 12px;
+}
+
+/* Cards on the home page and in guides: the app's card corners, a quiet border, the brand green on hover. */
+a.card,
+.card {
+  border-radius: var(--marro-radius-card) !important;
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+a.card:hover {
+  border-color: rgb(4 120 87 / 0.45) !important;
+  box-shadow: 0 4px 16px -8px rgb(4 120 87 / 0.25);
+  transform: translateY(-1px);
+}
+@media (prefers-reduced-motion: reduce) {
+  a.card:hover { transform: none; }
+}
+
+/* Screenshots in <Frame>: the app's card corners and a soft edge, so a screen reads as a screen. */
+.frame,
+[data-component-part="frame"] {
+  border-radius: var(--marro-radius-card) !important;
+}
+.frame img,
+[data-component-part="frame"] img {
+  border-radius: calc(var(--marro-radius-card) - 4px) !important;
+}
+
+/* Buttons and the search box: control corners. */
+#navbar a[class*="rounded"],
+#navbar button[class*="rounded"],
+#search-bar-entry,
+button#search-bar-entry {
+  border-radius: var(--marro-radius-control) !important;
+}
+
+/* Headings: slightly tighter, as in the app. */
+h1, h2 {
+  letter-spacing: -0.015em;
+}

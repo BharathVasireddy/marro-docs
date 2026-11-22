@@ -12,15 +12,99 @@
   "fonts": {
     "family": "Plus Jakarta Sans"
   },
+  "icons": {
+    "library": "lucide"
+  },
   "appearance": {
     "default": "system"
   },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://marro.si"
+  },
   "navbar": {
+    "links": [
+      {
+        "label": "Pricing",
+        "href": "https://www.marro.si/pricing"
+      },
+      {
+        "label": "Contact",
+        "href": "https://www.marro.si/contact"
+      }
+    ],
     "primary": {
       "type": "button",
       "label": "Open Marro",
       "href": "https://app.marro.si"
     }
+  },
+  "footer": {
+    "socials": {
+      "facebook": "https://www.facebook.com/profile.php?id=61596256717659"
+    },
+    "links": [
+      {
+        "header": "Marro",
+        "items": [
+          {
+            "label": "Website",
+            "href": "https://www.marro.si"
+          },
+          {
+            "label": "Pricing",
+            "href": "https://www.marro.si/pricing"
+          },
+          {
+            "label": "Open Marro",
+            "href": "https://app.marro.si"
+          }
+        ]
+      },
+      {
+        "header": "Help",
+        "items": [
+          {
+            "label": "Help and support",
+            "href": "/guides/support"
+          },
+          {
+            "label": "Contact us",
+            "href": "https://www.marro.si/contact"
+          },
+          {
+            "label": "hello@marro.si",
+            "href": "mailto:hello@marro.si"
+          }
+        ]
+      },
+      {
+        "header": "Legal",
+        "items": [
+          {
+            "label": "Privacy policy",
+            "href": "https://app.marro.si/legal/privacy"
+          },
+          {
+            "label": "Terms of service",
+            "href": "https://app.marro.si/legal/terms"
+          },
+          {
+            "label": "Deleting your data",
+            "href": "https://app.marro.si/legal/data-deletion"
+          }
+        ]
+      }
+    ]
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude"
+    ]
   },
   "api": {
     "playground": {
@@ -157,6 +241,7 @@
             "group": "API",
             "pages": [
               "getting-started",
+              "api-overview",
               "authentication",
               "keys-and-scopes",
               "guides/webhooks",
@@ -257,19 +342,6 @@
           }
         ]
       }
-    ]
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
-    "href": "https://marro.si"
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude"
     ]
   }
 }
