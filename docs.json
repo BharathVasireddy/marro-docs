@@ -264,6 +264,7 @@
             "group": "AI",
             "pages": [
               "guides/assistant",
+              "guides/whatsapp-assistant",
               "guides/personal-agent",
               "guides/agents",
               "guides/business-knowledge",
