@@ -5,6 +5,29 @@ description: "The people and businesses you sell to, with their opportunities an
 
 **Customers** holds your **contacts** (people) and **companies**. A contact is made for you when you create an opportunity from a lead. Open **Leads → Customers**.
 
+## Leads, contacts and opportunities
+
+```mermaid
+%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
+flowchart LR
+  L(Lead: an enquiry) -- "Create opportunity" --> C(Contact: the person)
+  C --> O1(Opportunity: a deal)
+  C --> O2(Another deal)
+  C -. "works at" .-> A(Company)
+  O1 -. "made from" .-> L
+```
+
+| Record | What it is | Where it moves |
+| --- | --- | --- |
+| **Lead** | Someone who got in touch: an enquiry to follow up | Lead stages: calls, chats, follow-ups |
+| **Contact** | The same person as a customer, made once and reused | Stays; holds their deals and money |
+| **Company** | The business a contact works at (optional) | Groups its contacts and their deals |
+| **Opportunity** | One deal: a value, a stage, a close date | Opportunity stages, such as Discovery → Converted |
+
+- Creating an opportunity from a lead makes the contact (or reuses one with the same email or phone) and remembers the lead it came from.
+- The lead is never changed. It keeps its own stage and history; an [automation](/guides/opportunities#make-one-automatically) can keep the two in step.
+- One contact can have many opportunities: a website now, a retainer later.
+
 ## A contact
 
 <Frame>
