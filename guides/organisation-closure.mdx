@@ -1,14 +1,14 @@
 ---
-title: Organisation closure
-description: Close your organisation, download its data, restore it within 30 days, or hand it to another admin.
+title: Organization closure
+description: Close your organization, download its data, restore it within 30 days, or hand it to another admin.
 ---
 
-Any active **admin** of the organisation can close it while signed in as themselves. The recorded creator is not a separate owner role. Open **Settings → Close organization**, or **Account → Organisation closure** in the app (it opens the same secure web page). Every step asks for your current password. If you sign in with Google or Microsoft, set a password from the sign-in page first.
+Any active **admin** of the organization can close it while signed in as themselves. The recorded creator is not a separate owner role. Open **Settings → Close organization**, or **Account → Organization closure** in the app (it opens the same secure web page). Every step asks for your current password. If you sign in with Google or Microsoft, set a password from the sign-in page first.
 
 ## Closing
 
 1. Enter your password and choose **Review data**. You see how many leads, contacts, messages, files and other records will be deleted, and you can **Download data** right there.
-2. Tick the confirmation and choose **Close organisation**.
+2. Tick the confirmation and choose **Close organization**.
 
 Closing signs everyone out at once and stops messages, calls and automations. Your subscription is not cancelled by this, and amounts owed to Marro are not waived.
 
@@ -18,7 +18,7 @@ If records keep arriving while you review (new leads, messages), small changes a
 
 - The closure page shows the exact deadline and how many days are left.
 - We email the admin who requested closure 15 days and 1 day before the deadline.
-- Until the deadline you can **Download data** or **Restore organisation**.
+- Until the deadline you can **Download data** or **Restore organization**.
 - After the deadline, restoring is no longer possible. Until deletion actually starts, you can still download your data.
 
 **Restoring** brings everyone back, but new messages, calls and automations stay paused until you choose **Resume activity**. Reminders set before the closure stay cancelled; add new ones where you need them.
@@ -27,7 +27,7 @@ If records keep arriving while you review (new leads, messages), small changes a
 
 ## Downloading your data
 
-The download is NDJSON: every record table, the member list and your files (each file in base64 chunks, to be joined in order). A large organisation downloads in several parts, one after another; keep them all. The last part ends with `"completed": true`. Internal AI settlement/provider-pricing records, passwords, tokens and data shared with other organisations are left out. Files over 64 MiB are listed as omitted; [support](https://app.marro.si/legal/support) can send those separately.
+The download is NDJSON: every record table, the member list and your files (each file in base64 chunks, to be joined in order). A large organization downloads in several parts, one after another; keep them all. The last part ends with `"completed": true`. Internal AI settlement/provider-pricing records, passwords, tokens and data shared with other organizations are left out. Files over 64 MiB are listed as omitted; [support](https://app.marro.si/legal/support) can send those separately.
 
 ## Deletion
 
@@ -35,9 +35,9 @@ After the deadline, records and files are deleted in batches; we aim to finish w
 
 ## Reassigning the recorded creator
 
-The original creator can reassign creator attribution to another active admin under **Organisation creator**, using their password. This does not grant exclusive closure authority: every active organisation admin can close it. The creator record is kept for attribution and account allowances, and cannot change during a closure.
+The original creator can reassign creator attribution to another active admin under **Organization creator**, using their password. This does not grant exclusive closure authority: every active organization admin can close it. The creator record is kept for attribution and account allowances, and cannot change during a closure.
 
-If the recorded creator has left, ask [support](https://app.marro.si/legal/support) for a reviewed reassignment. No creator assignment is needed to let another admin close the organisation.
+If the recorded creator has left, ask [support](https://app.marro.si/legal/support) for a reviewed reassignment. No creator assignment is needed to let another admin close the organization.
 
 ## In the assistant and WhatsApp
 
@@ -45,4 +45,4 @@ The assistant can tell an admin where a closure stands and open the closure page
 
 ## For Marro platform Owners
 
-**Platform → Settings → Organisation closure** has two switches: **Admins can close their organisation** and **Delete data after the 30 days**. Each asks for a confirmation and is recorded in the platform audit log. Both also need their deployment settings (`ORGANIZATION_CLOSURE_ENABLED`, and for deletion `ORGANIZATION_PURGE_ENABLED` and `DELETION_RESTORE_GATE_REVIEWED`) and pass the safety checks shown on that page. Turning them off never reopens a closed organisation; admins keep the 30-day recovery window. An organisation's **Lifecycle** tab shows its owner and lets a platform Owner record or move it, with a reason.
+**Platform → Settings → Organization closure** has two switches: **Admins can close their organization** and **Delete data after the 30 days**. Each asks for a confirmation and is recorded in the platform audit log. Both also need their deployment settings (`ORGANIZATION_CLOSURE_ENABLED`, and for deletion `ORGANIZATION_PURGE_ENABLED` and `DELETION_RESTORE_GATE_REVIEWED`) and pass the safety checks shown on that page. Turning them off never reopens a closed organization; admins keep the 30-day recovery window. An organization's **Lifecycle** tab shows its owner and lets a platform Owner record or move it, with a reason.
