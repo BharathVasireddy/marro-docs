@@ -47,63 +47,110 @@
               "guides/sign-up",
               "guides/organization-onboarding",
               "guides/settings",
-              "guides/two-step-sign-in"
+              "guides/modules",
+              "guides/mobile-app"
             ]
           },
           {
-            "group": "Use Marro",
+            "group": "Leads",
             "pages": [
-              "guides/inbox",
-              "guides/blocked-numbers",
-              "guides/whatsapp-contacts",
-              "guides/click-to-whatsapp-ads",
-              "guides/whatsapp-chatbots",
-              "guides/whatsapp-flows",
-              "guides/whatsapp-groups",
-              "guides/email",
-              "guides/email-campaigns",
-              "guides/contact-preferences",
-              "guides/website-chat",
-              "guides/website-tracking",
-              "guides/business-knowledge",
-              "guides/assistant",
-              "guides/support",
-              "guides/notifications",
-              "guides/branches",
-              "guides/custom-reports",
-              "guides/chat-reports",
-              "guides/campaigns",
-              "guides/quotes-and-invoices",
-              "guides/regional-settings",
-              "guides/company-sign-in",
-              "guides/personal-agent",
               "guides/leads",
               "guides/pipelines",
               "guides/log-update",
-              "guides/case-workflows",
+              "guides/custom-fields",
               "guides/advanced-filters",
               "guides/favourites",
+              "guides/case-workflows",
+              "guides/custom-objects"
+            ]
+          },
+          {
+            "group": "Forms and websites",
+            "pages": [
+              "guides/forms",
+              "guides/connect-a-website",
+              "guides/website-chat",
+              "guides/website-tracking"
+            ]
+          },
+          {
+            "group": "Inbox and messaging",
+            "pages": [
+              "guides/inbox",
+              "guides/whatsapp-contacts",
+              "guides/whatsapp-chatbots",
+              "guides/whatsapp-flows",
+              "guides/whatsapp-groups",
+              "guides/whatsapp-catalog",
+              "guides/click-to-whatsapp-ads",
+              "guides/blocked-numbers",
+              "guides/contact-preferences",
+              "guides/email",
+              "guides/email-campaigns",
+              "guides/sequences",
+              "guides/campaigns"
+            ]
+          },
+          {
+            "group": "Calling",
+            "pages": [
+              "guides/cloud-calls",
+              "guides/ai-calling"
+            ]
+          },
+          {
+            "group": "Sales and payments",
+            "pages": [
+              "guides/quotes-and-invoices",
+              "guides/price-list",
+              "guides/payments",
+              "guides/store-orders"
+            ]
+          },
+          {
+            "group": "Appointments",
+            "pages": [
+              "guides/appointments",
+              "guides/notifications"
+            ]
+          },
+          {
+            "group": "Assistant and automation",
+            "pages": [
+              "guides/assistant",
+              "guides/personal-agent",
               "guides/agents",
               "guides/automations",
-              "guides/sequences",
-              "guides/appointments",
-              "guides/payments",
-              "guides/store-orders",
-              "guides/whatsapp-catalog",
-              "guides/billing",
-              "guides/price-list",
-              "guides/modules",
-              "guides/ai-calling",
-              "guides/cloud-calls",
+              "guides/business-knowledge",
               "guides/ai-usage",
-              "guides/mcp",
-              "guides/integrations",
-              "guides/mobile-app",
+              "guides/mcp"
+            ]
+          },
+          {
+            "group": "Reports",
+            "pages": [
+              "guides/custom-reports",
+              "guides/chat-reports"
+            ]
+          },
+          {
+            "group": "Team and security",
+            "pages": [
+              "guides/branches",
+              "guides/two-step-sign-in",
+              "guides/company-sign-in",
               "guides/access-and-data",
+              "guides/regional-settings",
+              "guides/integrations"
+            ]
+          },
+          {
+            "group": "Account and billing",
+            "pages": [
+              "guides/billing",
+              "guides/support",
               "guides/organisation-closure",
-              "guides/delete-your-account",
-              "guides/custom-fields",
-              "guides/custom-objects"
+              "guides/delete-your-account"
             ]
           },
           {
@@ -112,8 +159,6 @@
               "getting-started",
               "authentication",
               "keys-and-scopes",
-              "guides/forms",
-              "guides/connect-a-website",
               "guides/webhooks",
               "guides/filtering"
             ]
@@ -218,5 +263,13 @@
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg",
     "href": "https://marro.si"
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude"
+    ]
   }
 }
