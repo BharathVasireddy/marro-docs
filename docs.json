@@ -140,6 +140,7 @@
             "pages": [
               "guides/leads",
               "guides/pipelines",
+              "guides/lead-assignment",
               "guides/log-update",
               "guides/custom-fields",
               "guides/advanced-filters",
