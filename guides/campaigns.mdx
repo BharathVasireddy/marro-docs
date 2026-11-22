@@ -11,6 +11,8 @@ import { Flow } from "/snippets/flow.jsx";
 
 <Flow steps={["Link with utm_campaign", "Form, ad or website", "Lead keeps campaign", "Counted in report"]} />
 
+A visit to your website counts as where a lead came from too, when [website tracking](/guides/website-tracking) is on: it is the first when it came before the form, and a direct visit never counts as the most recent.
+
 Every lead keeps where it **first** and **most recently** came in, with its campaign tags (`utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`). The lead page shows them under **Where they came from**. Meta and Google lead ads bring their own campaign name.
 
 Add `utm_campaign=spring-intake` to links you share and those leads are counted under that campaign.
