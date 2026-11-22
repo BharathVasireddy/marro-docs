@@ -1,35 +1,81 @@
 ---
-title: "Introduction"
-description: "How to set up and use Marro, and connect to its API."
+title: "Marro guides"
+sidebarTitle: "Introduction"
+description: "Set up Marro, run your leads, chats and calls in one place, and connect your own systems."
+mode: "wide"
 ---
-
-import Overview from "/snippets/generated/overview.mdx";
 
 The smart CRM every business needs: CRM, calling and inbox in one AI-powered platform. Marro's AI agents reply, call, follow up and update leads on their own, and your team works leads, chats, appointments and payments at [app.marro.si](https://app.marro.si), in the [mobile app](/guides/mobile-app) and on WhatsApp.
 
-## Use Marro
+## Start here
 
-[Set up your organization](/guides/organization-onboarding): follow your first enquiry from intake to follow-up, then connect the modules your team needs.
+<Columns cols={3}>
+  <Card title="Create your workspace" icon="rocket" href="/guides/sign-up">
+    Sign up, pick your industry and answer a few questions. Free for 14 days.
+  </Card>
+  <Card title="Set up your organization" icon="building-2" href="/guides/organization-onboarding">
+    Take your first enquiry from intake to follow-up, then add your team.
+  </Card>
+  <Card title="Ask Marro" icon="message-circle" href="/guides/assistant">
+    Type or speak what you need. Marro adds leads, books follow-ups and builds forms for you.
+  </Card>
+</Columns>
 
-- [Inbox](/guides/inbox): WhatsApp, Instagram, Messenger, website chat and SMS in one place.
-- [Website chat](/guides/website-chat): a chat bubble on your own website.
-- [Business knowledge](/guides/business-knowledge): the facts the AI answers from.
-- [Assistant](/guides/assistant): ask Marro to find and do your work, on the web, in the app and on WhatsApp.
-- [Agents](/guides/agents): AI that plans next steps, analyses calls and keeps conversations going.
-- [Automations](/guides/automations), [Appointments and booking](/guides/appointments), [Payments](/guides/payments), [AI calling](/guides/ai-calling).
-- [Integrations](/guides/integrations) and the [mobile app](/guides/mobile-app).
+## Run your business
 
-## Connect to the API
+<Columns cols={3}>
+  <Card title="Leads" icon="users" href="/guides/leads">
+    List and board, adding and importing leads, duplicates and follow-ups.
+  </Card>
+  <Card title="Forms and websites" icon="file-text" href="/guides/forms">
+    Enquiry forms, website chat and tracking, each response a lead.
+  </Card>
+  <Card title="Inbox" icon="inbox" href="/guides/inbox">
+    WhatsApp, Instagram, Messenger, email and website chat in one place.
+  </Card>
+  <Card title="Calling" icon="phone" href="/guides/cloud-calls">
+    Cloud calls and AI calls, recorded and logged on the lead.
+  </Card>
+  <Card title="Quotes and payments" icon="receipt" href="/guides/quotes-and-invoices">
+    Quotes, invoices, payment links and your price list.
+  </Card>
+  <Card title="Appointments" icon="calendar" href="/guides/appointments">
+    Booking links, calendars and reminders.
+  </Card>
+  <Card title="Agents and automations" icon="workflow" href="/guides/automations">
+    AI agents and workflows that reply, call and follow up on their own.
+  </Card>
+  <Card title="Reports" icon="chart-line" href="/guides/custom-reports">
+    Standard reports, your own dashboards and forecasts.
+  </Card>
+  <Card title="Team and security" icon="shield-check" href="/guides/access-and-data">
+    Users, roles, branches and two-step sign-in.
+  </Card>
+</Columns>
+
+## For developers
 
 Marro's API lets your own server read and write your organization's leads: a website form that sends enquiries, a sync into a spreadsheet or data warehouse, an ad platform that pushes leads.
 
-<Overview />
+<Columns cols={2}>
+  <Card title="Getting started" icon="key-round" href="/getting-started">
+    Create a key and make your first request.
+  </Card>
+  <Card title="API overview" icon="book-open" href="/api-overview">
+    The base address, response shape and every endpoint at a glance.
+  </Card>
+  <Card title="Connect a website" icon="globe" href="/guides/connect-a-website">
+    Send your website's enquiries into Marro.
+  </Card>
+  <Card title="API reference" icon="code" href="/api-reference/leads/list-leads">
+    Every endpoint, with a playground.
+  </Card>
+</Columns>
 
-- [Getting started](/getting-started): create a key and make your first request.
-- [Connect a website](/guides/connect-a-website): send your website's enquiries into Marro.
-- [Authentication](/authentication), [Keys and scopes](/keys-and-scopes), [Errors](/errors), [Rate limits](/rate-limits), [Filtering leads](/guides/filtering).
-- [API reference](/api-reference/leads/list-leads): every endpoint, with a playground.
+[Authentication](/authentication) · [Keys and scopes](/keys-and-scopes) · [Webhooks](/guides/webhooks) · [Filtering leads](/guides/filtering) · [Errors](/errors) · [Rate limits](/rate-limits)
 
 ## Help
 
-Raise a request from Ask Marro or **Help and support** in your account menu. [Follow your requests and replies](/guides/support). Support uses no AI credits. If you cannot sign in, write to [hello@marro.si](mailto:hello@marro.si) or see [Support](https://app.marro.si/legal/support). Marro is provided by STAGIONE MEDIA LLP: [Privacy policy](https://app.marro.si/legal/privacy), [Terms of service](https://app.marro.si/legal/terms), [Deleting your data](https://app.marro.si/legal/data-deletion).
+Raise a request from Ask Marro or **Help and support** in your account menu, and [follow your requests and replies](/guides/support). Support uses no AI credits. If you cannot sign in, write to [hello@marro.si](mailto:hello@marro.si) or see [Support](https://app.marro.si/legal/support).
+
+Marro is provided by STAGIONE MEDIA LLP: [Privacy policy](https://app.marro.si/legal/privacy), [Terms of service](https://app.marro.si/legal/terms), [Deleting your data](https://app.marro.si/legal/data-deletion).

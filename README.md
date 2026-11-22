@@ -32,7 +32,7 @@ The API pages at the root and in `guides/` are short glue: an intro, the website
 
 | Page | File | Generated part |
 | --- | --- | --- |
-| Introduction | `index.mdx` | `snippets/generated/overview.mdx` |
+| API overview | `api-overview.mdx` | `snippets/generated/overview.mdx` |
 | Getting started | `getting-started.mdx` | `snippets/generated/authentication.mdx` |
 | Authentication | `authentication.mdx` | `snippets/generated/authentication.mdx` |
 | Keys and scopes | `keys-and-scopes.mdx` | `snippets/generated/scopes.mdx` |

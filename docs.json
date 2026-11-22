@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "willow",
+  "theme": "almond",
   "name": "Marro",
   "description": "How to set up and use Marro, and connect to its API.",
   "colors": {
@@ -12,15 +12,99 @@
   "fonts": {
     "family": "Plus Jakarta Sans"
   },
+  "icons": {
+    "library": "lucide"
+  },
   "appearance": {
     "default": "system"
   },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://marro.si"
+  },
   "navbar": {
+    "links": [
+      {
+        "label": "Pricing",
+        "href": "https://www.marro.si/pricing"
+      },
+      {
+        "label": "Contact",
+        "href": "https://www.marro.si/contact"
+      }
+    ],
     "primary": {
       "type": "button",
       "label": "Open Marro",
       "href": "https://app.marro.si"
     }
+  },
+  "footer": {
+    "socials": {
+      "facebook": "https://www.facebook.com/profile.php?id=61596256717659"
+    },
+    "links": [
+      {
+        "header": "Marro",
+        "items": [
+          {
+            "label": "Website",
+            "href": "https://www.marro.si"
+          },
+          {
+            "label": "Pricing",
+            "href": "https://www.marro.si/pricing"
+          },
+          {
+            "label": "Open Marro",
+            "href": "https://app.marro.si"
+          }
+        ]
+      },
+      {
+        "header": "Help",
+        "items": [
+          {
+            "label": "Help and support",
+            "href": "/guides/support"
+          },
+          {
+            "label": "Contact us",
+            "href": "https://www.marro.si/contact"
+          },
+          {
+            "label": "hello@marro.si",
+            "href": "mailto:hello@marro.si"
+          }
+        ]
+      },
+      {
+        "header": "Legal",
+        "items": [
+          {
+            "label": "Privacy policy",
+            "href": "https://app.marro.si/legal/privacy"
+          },
+          {
+            "label": "Terms of service",
+            "href": "https://app.marro.si/legal/terms"
+          },
+          {
+            "label": "Deleting your data",
+            "href": "https://app.marro.si/legal/data-deletion"
+          }
+        ]
+      }
+    ]
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude"
+    ]
   },
   "api": {
     "playground": {
@@ -45,75 +129,122 @@
             "pages": [
               "index",
               "guides/sign-up",
-              "guides/marro-advertising-measurement",
               "guides/organization-onboarding",
               "guides/settings",
-              "guides/two-step-sign-in"
+              "guides/modules",
+              "guides/mobile-app"
             ]
           },
           {
-            "group": "Use Marro",
+            "group": "Leads",
+            "pages": [
+              "guides/leads",
+              "guides/pipelines",
+              "guides/lead-assignment",
+              "guides/log-update",
+              "guides/custom-fields",
+              "guides/advanced-filters",
+              "guides/favourites",
+              "guides/case-workflows",
+              "guides/custom-objects"
+            ]
+          },
+          {
+            "group": "Forms and websites",
+            "pages": [
+              "guides/forms",
+              "guides/connect-a-website",
+              "guides/website-chat",
+              "guides/website-tracking"
+            ]
+          },
+          {
+            "group": "Inbox and messaging",
             "pages": [
               "guides/inbox",
-              "guides/blocked-numbers",
               "guides/whatsapp-contacts",
-              "guides/click-to-whatsapp-ads",
               "guides/whatsapp-chatbots",
               "guides/whatsapp-flows",
               "guides/whatsapp-groups",
+              "guides/whatsapp-catalog",
+              "guides/click-to-whatsapp-ads",
+              "guides/blocked-numbers",
+              "guides/contact-preferences",
               "guides/email",
               "guides/email-campaigns",
-              "guides/contact-preferences",
-              "guides/website-chat",
-              "guides/website-tracking",
-              "guides/business-knowledge",
-              "guides/assistant",
-              "guides/support",
-              "guides/notifications",
-              "guides/branches",
-              "guides/custom-reports",
-              "guides/chat-reports",
-              "guides/campaigns",
+              "guides/sequences",
+              "guides/campaigns"
+            ]
+          },
+          {
+            "group": "Calling",
+            "pages": [
+              "guides/cloud-calls",
+              "guides/ai-calling"
+            ]
+          },
+          {
+            "group": "Sales and payments",
+            "pages": [
               "guides/quotes-and-invoices",
-              "guides/regional-settings",
-              "guides/company-sign-in",
+              "guides/price-list",
+              "guides/payments",
+              "guides/store-orders"
+            ]
+          },
+          {
+            "group": "Appointments",
+            "pages": [
+              "guides/appointments",
+              "guides/notifications"
+            ]
+          },
+          {
+            "group": "Assistant and automation",
+            "pages": [
+              "guides/assistant",
               "guides/personal-agent",
-              "guides/pipelines",
-              "guides/log-update",
-              "guides/case-workflows",
-              "guides/advanced-filters",
-              "guides/favourites",
               "guides/agents",
               "guides/automations",
-              "guides/sequences",
-              "guides/appointments",
-              "guides/payments",
-              "guides/store-orders",
-              "guides/whatsapp-catalog",
-              "guides/billing",
-              "guides/price-list",
-              "guides/modules",
-              "guides/ai-calling",
-              "guides/cloud-calls",
+              "guides/business-knowledge",
               "guides/ai-usage",
-              "guides/mcp",
-              "guides/integrations",
-              "guides/mobile-app",
+              "guides/mcp"
+            ]
+          },
+          {
+            "group": "Reports",
+            "pages": [
+              "guides/custom-reports",
+              "guides/chat-reports"
+            ]
+          },
+          {
+            "group": "Team and security",
+            "pages": [
+              "guides/branches",
+              "guides/two-step-sign-in",
+              "guides/company-sign-in",
               "guides/access-and-data",
+              "guides/regional-settings",
+              "guides/integrations"
+            ]
+          },
+          {
+            "group": "Account and billing",
+            "pages": [
+              "guides/billing",
+              "guides/support",
               "guides/organisation-closure",
-              "guides/delete-your-account",
-              "guides/custom-fields",
-              "guides/custom-objects"
+              "guides/delete-your-account"
             ]
           },
           {
             "group": "API",
             "pages": [
               "getting-started",
+              "api-overview",
               "authentication",
               "keys-and-scopes",
-              "guides/forms",
-              "guides/connect-a-website",
               "guides/webhooks",
               "guides/filtering"
             ]
@@ -213,10 +344,5 @@
         ]
       }
     ]
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
-    "href": "https://marro.si"
   }
 }
