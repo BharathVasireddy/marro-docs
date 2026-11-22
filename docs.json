@@ -159,6 +159,8 @@
             "pages": [
               "guides/leads",
               "guides/pipelines",
+              "guides/opportunities",
+              "guides/customers",
               "guides/stages",
               "guides/custom-fields",
               "guides/lead-sources",

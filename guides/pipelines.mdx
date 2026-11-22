@@ -1,79 +1,63 @@
 ---
 title: "Pipelines for leads and opportunities"
-description: "Keep a lead pipeline and an opportunity pipeline apart, choose where each starts, and create opportunities from a lead."
+description: "Keep a lead pipeline and an opportunity pipeline apart, and choose where each starts."
 ---
 
-A pipeline is a track with its own stages. Each can hold leads, opportunities or both: for example an Enquiries pipeline for leads and an Admissions pipeline for applications.
+A pipeline is a track with its own stages. Each one holds leads, opportunities or both. For example: **Main pipeline** for enquiries, **Sales** for the deals that come out of them. Open **Settings → Leads → Lead pipelines**.
 
 <Frame>
-  <img src="/images/setup/pipelines.jpg" alt="The pipelines list with New pipeline, stage counts and a row menu" />
+  <img src="/images/opportunities/pipelines.png" alt="Lead pipelines: Main pipeline holds leads and opportunities and is the leads default; Sales holds opportunities only and is the opportunities default" />
 </Frame>
 
-1. **New pipeline** adds one.
-2. The stage count opens the stages.
-3. The row menu edits stages, renames, makes it the default, or sets what it holds.
-
-## What a pipeline holds
-
-Open **Settings → Leads → Lead stages**, pick the pipeline, then **Pipeline options**.
+## Add a pipeline for opportunities
 
 <Frame>
-  <img src="/images/lead-settings/pipelines.jpg" alt="Lead pipelines" />
+  <img src="/images/opportunities/new-pipeline.png" alt="New pipeline: name Sales, What it holds Opportunities only, stages one per line" />
 </Frame>
 
-| Option | Effect |
-| --- | --- |
-| **Use for leads and opportunities** | The default for every pipeline. |
-| **Use for leads only** | Left out of every opportunity list and picker. |
-| **Use for opportunities only** | Left out of the leads page, lead forms, imports and lead automations. |
+1. **Name** it, for example *Sales*.
+2. **What it holds**: *Leads and opportunities*, *Leads only* or *Opportunities only*.
+3. **Stages, one per line**. New records start in the first. Stages named *Converted* and *Lost* count as won and lost.
 
-A pipeline can stop taking leads or opportunities only once none are in it. Marro never moves them for you.
+Or **Copy the stages of** another pipeline.
 
-## Two defaults
+## Make it the default for opportunities
+
+<Frame>
+  <img src="/images/opportunities/pipeline-menu.png" alt="A pipeline's menu: Edit stages, Rename, Make it the default for opportunities, Use for leads and opportunities, Use for leads only, Move up, Delete pipeline" />
+</Frame>
+
+Open the pipeline's ⋯ menu and choose **Make it the default for opportunities** (1).
 
 | New | Goes into |
 | --- | --- |
-| Leads | The **default for leads**, unless a form, import or automation names another |
-| Opportunities | The **default for opportunities**. The Opportunities board opens on it too |
+| Leads | The **leads default**, unless a form, import or automation names another |
+| Opportunities | The **opportunities default**. The Opportunities board opens on it too |
 
-Set each in **Pipeline options**. Changing one never changes the other.
+Changing one default never changes the other.
 
-## Stages
+## What each choice hides
 
-Each pipeline has its own stages, set in **Settings → Leads → Lead stages**.
+| What it holds | Where it is left out |
+| --- | --- |
+| **Leads only** | Every opportunity list and picker |
+| **Opportunities only** | The leads page, lead forms, imports and lead automations |
+
+A pipeline can stop taking leads or opportunities only once none are in it. Marro never moves them for you.
+
+## Next
 
 <CardGroup cols={2}>
-  <Card title="Lead stages" icon="list-ordered" href="/guides/stages">Name, colour, order and archive stages; choose where new leads start.</Card>
-  <Card title="Converted stages" icon="circle-check" href="/guides/stages#what-a-stage-means">When a lead moves into one, its owner and admins are told once.</Card>
+  <Card title="Opportunities" icon="target" href="/guides/opportunities">Make them from a lead, by hand or automatically, and move them through the stages.</Card>
+  <Card title="Lead stages" icon="list-ordered" href="/guides/stages">Name, colour, order and archive stages.</Card>
 </CardGroup>
-
-## Create an opportunity for a lead
-
-```mermaid
-%%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
-flowchart LR
-  A(Lead) -- More, Create opportunity --> B(Opportunity form)
-  B --> C(Contact matched or made)
-  C --> D(Opportunity linked to the lead)
-```
-
-<Steps>
-  <Step title="From a lead">Choose **More → Create opportunity** (when Opportunities are on).</Step>
-  <Step title="Or from Opportunities">Use **Opportunities → New opportunity**. The contact field finds leads too, marked "Lead".</Step>
-</Steps>
-
-The lead is not changed, and can have as many opportunities as you need.
-
-To keep them in step, use [automations](/guides/automations#keep-leads-and-opportunities-in-step).
 
 ## Ask Marro
 
 <Card title="Try asking" icon="message-circle">
-  *"What does the Admissions pipeline hold?"*
+  *"Add a Sales pipeline for opportunities only with Discovery, Proposal sent, Negotiation, Converted and Lost"*
 
-  *"Make Admissions opportunities only"*
+  *"Make Sales the default for opportunities"*
 
-  *"Create an opportunity for Neha Kapoor"*
-
-  Marro can also set either default. You approve each change first.
+  You approve each change first.
 </Card>
