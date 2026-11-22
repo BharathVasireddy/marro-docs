@@ -3,7 +3,7 @@ title: "Mobile app"
 description: "Install Marro on your Android phone and work your leads on the go."
 ---
 
-The Marro app puts your work on your phone: leads, chats, appointments, tasks, HR, HR approvals and the assistant. Administration and settings stay on the web.
+The Marro app puts your work on your phone. Administration and settings stay on the web.
 
 ## Install it
 
@@ -16,72 +16,80 @@ The Marro app puts your work on your phone: leads, chats, appointments, tasks, H
     Install Marro only from that page. The Google Play listing is in review.
   </Tab>
   <Tab title="iPhone">
-    The iPhone app is in App Store review and not available yet. Until then, use Marro in Safari at [app.marro.si](https://app.marro.si).
+    The iPhone app is in App Store review. Until then, use Marro in Safari at [app.marro.si](https://app.marro.si).
   </Tab>
 </Tabs>
 
 ## Sign in
 
-Enter the phone number on your Marro account and tap **Send code**. Marro sends a 6-digit code to your WhatsApp. If WhatsApp is unavailable, the same code goes to your account's email instead. If the code does not arrive, wait for the timer and tap **Email it to me**; the web sign-in page has the same option. To sign in with your email and password instead, tap **Use email instead**.
+<Steps>
+  <Step title="Enter your phone number">
+    Use the number on your Marro account and tap **Send code**.
+  </Step>
+  <Step title="Enter the 6-digit code">
+    It arrives on WhatsApp. If it doesn't, wait for the timer and tap **Email it to me**.
+  </Step>
+</Steps>
 
-If you work in several organizations, the app asks which one.
+Prefer a password? Tap **Use email instead**. If you work in several organizations, the app asks which one.
 
 ## What you can do
 
-- **Home**: today's numbers and the leads to work first, with check-in and your timesheet where your organization uses HR.
-- **Favourites**: star records from their details. The star in the Leads header toggles your favourite leads within the existing list, combining with search, stages and other filters.
-- **Leads**: find, add and update leads; call them, log the outcome, add notes, tags, documents and payments; lists and bulk actions with a long press.
-- **Customers**: your people, companies and opportunities (if your organization uses them), with search. Tap **+** to add one, or the pencil on a record to change it. The forms show your organization's own [custom fields](/guides/custom-fields), and the same rules as on the web apply: an opportunity needs a person, a person needs a phone or an email, and you can add or change only what your role allows. On an opportunity, the **Stage** menu moves it along its pipeline, and once it is won you can set its customer phase. A person's company and an opportunity's person are one tap away. If someone changed a record while you were editing it, Marro tells you and loads their version; check it and save again. Added or changed with no signal, a record waits on your phone and is sent when you are back online. Record-link custom fields and deleting records stay on the web.
-- **Inbox**: reply to your [chats](/guides/inbox) with photos, documents and quick replies, ask for suggested replies, or let the AI reply. Press and hold a WhatsApp message to reply to it (quoting it), react with an emoji or copy it; reactions show under the message. Search within a chat from the magnifier (it looks back through earlier messages as you type). On Instagram and Messenger you can also send photos, videos and voice notes; website chat, SMS and email take text only. If you can manage WhatsApp settings, the chat's ⋯ menu has **Quick replies** to write the team's saved answers, as on the web.
-- **Tasks**: your task boards.
-- **Appointments**: your day and week, booking, and your booking link.
-- **HR**: attendance, leave and timesheets, where your organization uses them, and **My requests** to see where each one stands.
-- **Approvals**, if your role approves HR requests: leave, requests to cut leave short, regularisations and timesheet weeks waiting for you, one card each. Swipe a card right to approve or left to reject (each asks first; rejecting asks for the reason the person is told), or tap it to see the details: every leave balance, who else is off, the day's check-ins or the week's hours against attendance. **Decided** lists what has been approved and rejected. Decided by mistake? Tap **Undo** on the message, or swipe the request in Decided, within 15 minutes; it goes back to waiting and the person is told. You can approve your own requests only if your role allows it, as on the web. You get a notification when something new is waiting, and the Menu shows how many.
-- **Help** (Account > Help): raise a [support request](/guides/support), read the team's replies and answer, and find the docs and contact details. You get a notification when the team replies.
-- **Reports** and activity, if your role can see them.
-- **The assistant**: the same [assistant](/guides/assistant) as on the web, with `/` shortcuts, `@` mentions, **Ask first** or **Auto**, and your voice.
+<CardGroup cols={2}>
+  <Card title="Home" icon="house">Today's numbers, the leads to work first, check-in and timesheet.</Card>
+  <Card title="Leads" icon="users">Find, add and update leads. Call, log outcomes, add notes, tags, documents and payments.</Card>
+  <Card title="Customers" icon="building">People, companies and opportunities, with your [custom fields](/guides/custom-fields).</Card>
+  <Card title="Inbox" icon="message">Reply to [chats](/guides/inbox) with photos, documents and quick replies, or let the AI reply.</Card>
+  <Card title="Tasks and Appointments" icon="calendar">Your task boards, your day and week, and your booking link.</Card>
+  <Card title="HR and Approvals" icon="clipboard-check">Attendance, leave, timesheets and, if your role approves, HR requests.</Card>
+  <Card title="Assistant" icon="comments">The same [assistant](/guides/assistant) as on the web, with `/` shortcuts, `@` mentions and your voice.</Card>
+  <Card title="Help" icon="life-ring">Under **Account → Help**: raise a [support request](/guides/support) and read replies.</Card>
+</CardGroup>
 
-The Android app installed from Marro's download page can show which lead is calling before you answer. The standard Google Play build leaves out caller overlays and call-log access. Recordings play while the app is open; it does not use a foreground service for background playback or location tracking.
+## Work your leads
 
-On **Leads**, tap a stage pill to narrow the list. The pill and lead list slide together as you
-move forward or back through stages. Your cards keep their usual actions: tap to open, swipe
-right to call, swipe left for WhatsApp, or long press to select. Recently opened stages keep
-their scroll position; search, filters or an account change start a fresh view. A stage without
-loaded data shows its own loading state. Pull down to refresh the current stage.
+| Do this | To |
+| --- | --- |
+| Tap a stage pill | Narrow the list to that stage |
+| Tap the **Favourites** pill | Show only your starred leads |
+| Swipe a card right | Call |
+| Swipe a card left | WhatsApp |
+| Long press | Select, for bulk actions |
+| Pull down | Refresh |
 
-Notifications never include the words of a message. In the updated app, tapping one opens its
-conversation, follow-up, appointment, support request or HR request when available. If your account
-cannot use Inbox, a message notification opens its linked lead. If chat access changes after a
-notification arrives, you can open the lead from the unavailable chat screen. A prior-day attendance
-reminder opens that day; leave and regularisation notices open their request, and timesheets open
-their week. These improvements apply to newly sent notifications after both the updated app
-and notification service are released.
+Open a lead and choose **Activity** to see its history by day. Filter by **Notes**, **Calls**, **Messages** or **Updates**. **⋯** has **Add a note** and **Send email**.
 
-A notification for another account stays closed. For another workspace, Marro opens Account so
-you can choose the workspace yourself. If the item was removed or you no longer have access, the
-app explains this and offers a useful return. Older app versions may open the lead or list instead.
-A tap during startup waits for sign-in and the app's navigation. Signing out or switching workspace
-discards waiting taps, and a consumed notification does not reopen after sign-in.
+## Inbox tips
 
-## Changing accounts or organizations
+| Do this | To |
+| --- | --- |
+| Press and hold a WhatsApp message | Reply to it, react or copy |
+| Tap the magnifier | Search within the chat |
 
-Responses from a request sent under a previous account or organization are discarded after you switch. Reopen the screen under the current account before retrying. Normal token refresh within the same account and organization keeps working.
+## Approve HR requests
 
-## Call recordings and transcripts
+If your role approves HR requests, each leave, regularisation or timesheet waits as a card.
 
-Open **Leads** and tap the **Favourites** pill beside the pipeline and stage pills to filter the current list to your favourite leads. Tap it again to show all leads, keeping your search, pipeline, stage and other filters. Use the star on a record to add or remove its favourite.
+| Do this | To |
+| --- | --- |
+| Swipe right | Approve (asks first) |
+| Swipe left | Reject (asks for a reason, which the person sees) |
+| Tap the card | See balances, who else is off, check-ins or hours |
+| **Undo** within 15 minutes | Put a decided request back to waiting |
 
-A lead's **Inbox** shows its connected conversations. Until a conversation arrives, it shows **No chats yet**; this does not mean the lead is missing or that a message failed.
+You get a notification when something is waiting.
 
-Open a lead and choose **Activity** to read its history as a timeline, one heading per day. Use the filter above it to show **All activity**, **Notes**, **Calls**, **Messages** or **Updates**, and switch between **Newest first** and **Oldest first**. To write a note or an email, open **⋯** on the lead: **Add a note**, and **Send email** when you have a connected mailbox (otherwise it says to connect or reconnect it on the web). Recording controls stay inside the call they belong to. **Listen to recording** plays available audio; if the provider no longer serves it, the app shows an unavailable message with a retry control.
+## Calls and recordings
 
-For an AI call, **Recording & transcript** opens its recording and the conversation under **What was said**. **Menu → Calls** (formerly Voice calls) lists AI, Cloud and Bridge calls for the leads you can open. An AI call opens its recording and transcript; other calls open the lead. It needs the latest version of the app.
+- **Menu → Calls** lists AI, Cloud and Bridge calls. An AI call opens its **Recording & transcript**.
+- **Listen to recording** plays the audio when it is available.
+- For calls through MCube or another calling integration, **Transcribe recording** creates a transcript if your organization has it.
+- Android installed from Marro's page can show which lead is calling before you answer.
 
-When call transcription is available for your organization, a call through MCube or another supported calling integration shows **Transcript**. Choose **Transcribe recording** to create it, or retry a failed attempt. This requires accessible audio and permission to use call transcription. A missing recording cannot be transcribed. The control stays hidden until the service is available. Nothing is added to the lead’s Details tab.
+## Notifications
 
-Activities performed by an AI agent show the responsible agent’s name when recorded. Historical actions without a known agent identity may show **AI agent**. The staff member responsible for the record and any human approval remain in the audit history.
+They never include the words of a message. Tap one to open its chat, follow-up, appointment, support request or HR request. A notification for another workspace opens **Account** so you can choose.
 
+## Offline
 
-## Custom-object backend preparation
-
-Private person-session endpoints for scoped custom-object records and Inbox linked records are implemented locally. They reuse the existing app session and current permissions; no new sign-in token is required. Supported manual record changes require current versions and stable request identities. Unknown outcomes reconcile the original request without an automatic retry. Unfamiliar field types must be ignored and cannot confer write access. Deletion and restoration remain individually reviewed human workflows. Native navigation and screens, independent review, runtime checks and release are still outstanding.
+A customer record added or changed with no signal waits on your phone and is sent when you are back online. Record-link custom fields and deleting records stay on the web.

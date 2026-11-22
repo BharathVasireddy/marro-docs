@@ -1,24 +1,65 @@
 ---
 title: Instagram and Facebook comments
-description: Understand comment rules, private replies and sending status.
+description: Reply privately to comments that match your rules.
 ---
 
+Administrators manage comment rules in **Inbox → Comments**. A rule watches a connected Instagram account or Facebook Page for a keyword and sends a private reply.
+
 <Note>
-Comment screens are implemented and awaiting release validation. Administrators manage rules in **Inbox → Comments**. Facebook comment sending is unavailable.
+Facebook comment sending is not available. Comment screens are awaiting release validation.
 </Note>
 
-Organization administrators can create a rule for a connected Instagram account or Facebook Page. Choose at least one literal keyword, optional post IDs, reply text and a cooldown from one minute to seven days. Matching ignores letter case and searches for the keyword inside the comment. Lower priority numbers run first; the oldest rule wins a tie. Only one rule matches each comment. A cooldown applies to the same author on the same connected account across rules. Comment text is data; it never controls an agent's system instructions.
+## Make a rule
 
-Preview tests one sample without saving or sending. Saving a rule does not activate sending. Turn off a rule to prevent its waiting intents from being sent. An administrator must separately activate each account. Support impersonation and partner accounts cannot manage or read this backend.
+<Steps>
+  <Step title="Choose an account">
+    A connected Instagram account or Facebook Page.
+  </Step>
+  <Step title="Add keywords">
+    At least one. Matching ignores capital letters and finds the keyword inside the comment. Post IDs are optional.
+  </Step>
+  <Step title="Write the reply">
+    Set a **cooldown** from one minute to seven days.
+  </Step>
+  <Step title="Test it">
+    Preview tests a sample. It sends nothing.
+  </Step>
+</Steps>
 
-Facebook sends remain blocked even when a connection lists Page permissions. Sending also needs a
-verified provider contract, current account-bound permission evidence and Meta app approval. Comment
-ingestion and preview do not establish that those requirements have been met.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Comment] --> B[Keyword matches] --> C[Cooldown clear] --> D[Private reply]
+```
 
-Instagram comment access is optional: the platform must first enable `SOCIAL_COMMENTS_CONNECT=on`, then the administrator reconnects Instagram and actually grants comment permission. The backend records the permissions returned by Meta, bound to the new token. Existing message-only connections cannot send comment replies. Grant evidence expires after 24 hours or a token change; reconnect and explicitly activate again. This conservative limit is temporary until a primary-documented current-grant check is implemented. Every send also reads the comment through Meta to check current access, original author/media and creation time. Live comments are not sent automatically. Facebook comment sending remains unavailable pending the remaining contract and eligibility checks.
+Lower priority numbers run first, and only one rule matches each comment. The cooldown applies to the same person on the same account, across rules.
 
-Comments retain the account, original post/comment IDs, author, received time, matched rule and send intents. A reference to an existing Marro conversation appears when one exists. A private reply does not create an inbound message or open the ordinary DM reply window. Further replies require the person to respond under Meta's messaging rules.
+## Turn sending on
 
-`Pending` means waiting for the worker. `Sending` means reserved for one attempt. `Sent` means Meta returned a message/comment ID; it does not mean delivered or read. `Refused` means Meta explicitly rejected it. `Uncertain` means it may have gone, including a lost response or interrupted worker, and it will not be retried automatically. `Blocked` means verification or activation stopped the attempt. Comments arriving while sending is off are still recorded; intents created while off are durably blocked and are not replayed when sending is enabled. Rules do not retroactively send to old comments.
+| Step | Detail |
+| --- | --- |
+| Save the rule | Does not start sending |
+| Activate the account | An administrator does this for each account |
+| Grant comment permission | Reconnect Instagram and allow comments. Do it again after 24 hours or a token change |
+| Turn a rule off | Stops its waiting replies |
 
-Instagram allows one private reply per comment within seven days. The backend checks this window again before sending and applies the same conservative age limit to public automation. No follow-up sequence, promotion, marketplace, commerce feature or automatic lead creation is included.
+Comments that arrive while sending is off are recorded but never replied to later.
+
+## Instagram limits
+
+| Limit | Detail |
+| --- | --- |
+| One private reply | Per comment, within seven days |
+| Further replies | The person must respond first |
+| Not included | Follow-up sequences, automatic leads |
+
+## Statuses
+
+| Status | Meaning |
+| --- | --- |
+| Pending | Waiting to be sent |
+| Sending | Being sent now |
+| Sent | Accepted by Meta, not necessarily read |
+| Refused | Meta rejected it |
+| Uncertain | May have gone; not retried automatically |
+| Blocked | Verification or activation stopped it |

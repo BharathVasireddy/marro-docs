@@ -1,49 +1,73 @@
 ---
 title: "Blocked numbers"
-description: "Stop a spammer's WhatsApp messages and calls on every number you have, now and after you change a number."
+description: "Stop a spammer's WhatsApp messages and calls on every number you have."
 ---
 
-A blocked number cannot reach your business. Its WhatsApp messages and calls are dropped quietly: nobody on your team is alerted, no lead is created, nothing is sent back to the sender, no automation or AI runs, and you are not charged for a reply.
+A blocked number cannot reach your business. Its WhatsApp messages and calls are dropped quietly: nobody is alerted, no lead is made, no automation or AI runs, and you are not charged.
 
-The block belongs to **your organization and the sender's phone number**. It does not belong to one WhatsApp number or one calling number. If you refresh, replace or add a WhatsApp number or a calling number, the block still applies.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Blocked number] --> B[Any of your numbers] --> C[Dropped quietly]
+```
+
+The block belongs to your organization and the sender's number, so it still applies if you add or replace a number.
 
 ## Block a number
 
-Choose **Block number** from any of these places:
+Choose **Block number** from:
 
-- **A WhatsApp chat in the Inbox**: the **⋯** menu of the chat.
-- **A call in Calls**: open the call and choose **Block number**.
-- **A lead**: **More** on the lead page.
-- **Settings → Blocked numbers**: type a phone number with its country code, add a reason if you like, and choose **Block**.
-- **The Marro app**: the **⋯** sheet of a WhatsApp chat.
+| Where | How |
+| --- | --- |
+| WhatsApp chat in the Inbox | The **⋯** menu |
+| A call in Calls | Open the call |
+| A lead | **More** on its page |
+| The Marro app | The **⋯** sheet of a chat |
+| **Settings → Blocked numbers** | Type the number with its country code, add a reason, choose **Block** |
 
-Blocking asks you to confirm, with an optional reason (up to 200 characters). Existing chats, leads and call history stay as they are. A number that belongs to someone on your team cannot be blocked.
-
-## Who can block
-
-Under **Settings → Blocked numbers → Who can block** you choose:
-
-- **Only administrators** (the default).
-- **Any user with access**: anyone who can open that chat, lead or call can block or unblock its number. Everyone else still cannot.
-
-Unblocking follows the same rule. Only an administrator changes this setting, and only an administrator sees the full list.
+You confirm first, with an optional reason (up to 200 characters). Existing chats, leads and calls stay. A number that belongs to your team cannot be blocked.
 
 ## The list
 
-**Settings → Blocked numbers** shows every blocked number with who blocked it, when, the reason, and how many messages and calls were stopped. Search by number, reason or person. Open a number to read what it tried (the message text, the kind of call and which of your numbers it reached), even after you have unblocked it. Choose **Unblock** to let the number through again straight away.
+**Settings → Blocked numbers** shows:
+
+| Column | Shows |
+| --- | --- |
+| Number and reason | Who blocked it and why |
+| When | Date blocked |
+| Stopped | Messages and calls stopped |
+
+Open a number to see what it tried. **Unblock** lets it through again at once.
+
+## Who can block
+
+| Setting | Who |
+| --- | --- |
+| **Only administrators** (default) | Administrators |
+| **Any user with access** | Anyone who can open that chat, lead or call |
+
+Only an administrator changes this setting or sees the full list.
 
 ## What is stopped
 
-- WhatsApp messages from the number, on every WhatsApp number you have connected.
-- Calls from the number to your calling numbers (AI calls and Cloud calls are rejected before anything rings), and calls reported by a calling provider you connected yourself (these are not logged on a lead).
-- SMS to your SMS number, when SMS conversations show in the Inbox. A STOP reply is still honoured.
+| Channel | Stopped |
+| --- | --- |
+| WhatsApp | Messages, on every connected number |
+| Calls | AI calls and Cloud calls to your numbers, and calls from a provider you connected yourself |
+| SMS | Messages to your SMS number. A STOP reply is still honoured |
 
-Messages the sender received from you earlier are not affected. A person's message in a WhatsApp group is the group's, so it is not blocked here.
+Earlier messages the person received and group messages are not affected.
 
 <Note>
-  **Inbox → Settings → Blocked** is Meta's own list for each WhatsApp number. It only covers people who wrote in the last 24 hours and does not cover calls. Use **Blocked numbers** in Settings for a block that covers every number.
+  **Inbox → Settings → Blocked** is Meta's own list for one WhatsApp number. It covers only people who wrote in the last 24 hours, and not calls.
 </Note>
 
-## The assistant
+## Ask Marro
 
-The assistant (and the WhatsApp assistant) can show the list and, for an administrator and with approval, block or unblock a number and choose who can block. It uses the exact number you give it.
+<Card title="Try asking" icon="message-circle">
+  *"Block 98480 12345"*
+
+  *"Show blocked numbers"*
+
+  For an administrator, Marro asks approval before it blocks or unblocks.
+</Card>

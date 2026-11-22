@@ -3,58 +3,83 @@ title: "AI usage and credits"
 description: "Track monthly AI activity, tokens, credits and wallet charges."
 ---
 
-AI usage is metered by default for all organizations. Your plan can include **AI credits** each month, in rupees. If your plan has no included credits, usage is paid from the wallet from the start. Your agents, the assistant, AI replies to leads, suggested replies and business knowledge improvements draw on them as they work. Once the credits for the period are used, AI is paid from your **wallet**, the same one that pays for WhatsApp messages.
+Your plan can include **AI credits** each month, in rupees. Agents, the assistant, AI replies, suggested replies and business knowledge draw on them. When credits run out, AI is paid from your **wallet**, the same one that pays for WhatsApp messages. With no included credits, the wallet pays from the start.
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[AI work] --> B[Included credits]
+  B -- used up --> C[Wallet]
+  C -- empty --> D[AI pauses]
+```
 
 ## See what you used
 
-Open **Settings → Organization → AI usage**. The current balance is under **Credits now**:
+Open **Settings → Organization → AI usage**. **Credits now** shows:
 
-- **Used**: this month's cost and input/output tokens.
-- **Credits left**: this month's remaining credits. They renew each month on the day your subscription started. During the free trial you have ₹200 of credits for the whole trial.
-- **Paid from the wallet**: usage paid beyond the included credits, and the current wallet balance.
+| Card | Shows |
+| --- | --- |
+| **Used** | This month's cost and input/output tokens. |
+| **Credits left** | Remaining credits. They renew on the day your subscription started. The free trial has ₹200 for the whole trial. |
+| **Paid from the wallet** | Usage beyond the credits, and the wallet balance. |
 
-Organization administrators also see **Activity**. Choose the current UTC month or any of the previous eleven months to see:
+Administrators also see **Activity** for the current UTC month or any of the previous eleven:
 
-- Runs and tokens, with a daily activity chart.
-- Tokens reused from cache, saved to cache, and used for reasoning, when reported. These are already included in input/output totals. A detail labelled **Not reported** is unknown, rather than zero; older records may have no details.
+- Runs and tokens, with a daily chart.
 - Charges covered by credits, paid from the wallet, or left uncovered.
-- Usage by feature: agents, AI replies, the assistant (web and WhatsApp), suggested replies, briefings, call reviews and business knowledge.
+- Usage by feature: agents, AI replies, the assistant, suggested replies, briefings, call reviews and business knowledge.
 
-Selecting an earlier month changes **Activity** only. **Credits now** always shows the current month and current wallet balance. The earlier-month list links directly to each month's activity.
-
-Reports cover recorded text-model activity; AI calling is reported separately. Search embeddings and voice transcription are not included in this report.
-
-The assistant shares the same admin permissions, on the web, mobile and staff WhatsApp. Ask “How much AI have we used this month?” or “Show our AI activity for October 2026.” It can read usage; it does not change prices or your allowance.
-
-## Platform console
-
-Platform administrators with subscription management access can open **Platform → AI usage** for all organizations, then open an organization's **AI** tab for its own report. The console includes breakdowns by feature, model and organization, plus estimated provider costs at the configured rates. Organization settings and assistant answers show only the organization's activity and charges, without models or provider costs.
-
-The private console also records individual AI requests, embedding batches, audio generation, transcription and saved voice-call sessions. It distinguishes successful, failed and unresolved work. Missing measurements or prices are labelled unknown, rather than shown as free use. This operational record does not change customer credits or wallet charges, and is not available through organization settings or the assistant.
-
-Provider costs are estimates, not reconciled invoices or measured cache savings. The organization and model tables show the 100 organizations and 50 models with the most tokens; totals include every recorded run in the selected month.
+**Credits now** always shows the current month. AI calling is reported separately.
 
 ## When credits run out
 
-When this month's credits are used and the wallet is empty, AI pauses: agents don't start new work, and the assistant asks you to add money. Everything else in the CRM keeps working. Add money to the wallet (Inbox → Settings → Wallet) or wait for the credits to renew on your subscription day, and AI carries on.
+If credits are used and the wallet is empty, AI pauses.
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Credits used] --> B[Wallet empty]
+  B --> C["AI pauses: agents start no new work"]
+  C --> D["Add money or wait for credits to renew"]
+  D --> E[AI carries on]
+```
+
+The assistant asks you to add money. The rest of the CRM keeps working.
+
+| Where | Note |
+| --- | --- |
+| **Inbox → Settings → Wallet** | Add money to the wallet |
+| Wallet currency | Wallet payment for AI is available in INR only. If your wallet uses another currency, AI pauses when the credits run out |
 
 ## What each AI charge was for
 
-In **Settings → Organization → Wallet → Top-ups and charges**, every AI charge says what it was for instead of just "AI usage":
+In **Settings → Organization → Wallet → Top-ups and charges**, each AI charge says what it was for.
 
-- **The kind of work**: an assistant reply, an assistant task in the background, a call review, a daily briefing, or an agent working on a lead.
-- **Where the assistant was used**: Web, App or WhatsApp. Charges made before this was recorded don't show it.
-- **Who or what it was for**: the lead, the person who asked and the name of the assistant chat, when they still exist.
-- **How much was read and written**, in tokens. Models and Marro's costs are never shown.
+| Detail | Example |
+| --- | --- |
+| Kind of work | An assistant reply, a call review, a daily briefing, an agent working on a lead |
+| Where | Web, App or WhatsApp |
+| For whom | The lead, the person who asked and the chat name |
+| Size | Tokens read and written |
 
-An agent's charge shows that agent's own icon and colour; assistant charges show the assistant's chat icon.
-
-AI calls are paid by the minute from the wallet (see [AI calling](/guides/ai-calling)).
+Models and Marro's costs are never shown. AI calls are paid by the minute: see [AI calling](/guides/ai-calling).
 
 ## How a price is worked out
 
-Each piece of AI work is priced by how much it read and wrote (tokens), at your plan's AI rate, and rounded up to the paisa. Longer conversations and bigger knowledge lookups cost a little more; short tasks cost very little.
+Each piece of work is priced in three steps. Short tasks cost very little.
 
-Eligible reused input can use a separate rate. If we cannot verify the rate or usage details needed to price a request, it is recorded without a deduction.
+<Steps>
+  <Step title="Tokens counted">Tokens read and written, at your plan's AI rate.</Step>
+  <Step title="Rounded up">To the paisa.</Step>
+  <Step title="Credits first">Credits cover usage first. If a run crosses the limit, only the rest is billed to the wallet.</Step>
+</Steps>
 
-Included credits cover usage first. If a run crosses the credit limit, only the remaining portion is billed at the wallet rate. Wallet payments for AI usage are currently available in INR. If your wallet uses another currency, AI pauses when your included credits run out.
+## Ask Marro
+
+<Card title="Try asking" icon="message-circle">
+  *"How much AI have we used this month?"*
+
+  *"Show our AI activity for October 2026."*
+
+  Marro reads your usage. It does not change prices or your allowance.
+</Card>

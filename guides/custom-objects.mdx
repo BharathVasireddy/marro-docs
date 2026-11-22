@@ -3,237 +3,143 @@ title: Custom objects
 description: Keep track of anything your business works with, such as vehicles, courses or properties, the same way you work with leads.
 ---
 
-A custom object is a kind of record your business needs that Marro does not have built in: Vehicles for a
-car dealer, Courses and Applications for an education consultancy, Properties for an estate agent. Each object
-gets its own place in the menu, a list that works like Leads, a board, a calendar and a page for every record.
-
-The object is the kind of thing (Vehicles). Each entry in it is a record (one vehicle).
+A custom object is a kind of record Marro does not have built in: Vehicles for a car dealer, Courses for an education consultancy, Properties for an estate agent. Each gets its own place in the menu, a list like Leads, a board, a calendar and a page per record. The object is the kind (Vehicles); each entry is a record (one vehicle).
 
 ## Add an object
 
-Administrators add objects in [Settings → Custom objects](https://app.marro.si/settings/objects).
+Administrators open [Settings → Custom objects](https://app.marro.si/settings/objects).
 
-1. Press **New object**.
-2. Give it a name in the plural, such as **Vehicles**. **One record is called** fills in the singular
-   (**Vehicle**); change it if the guess is wrong.
-3. Choose an icon and a colour. They show in the menu, like the built-in places.
-4. Add a short description if you like. The web address is made from the name.
+<Steps>
+  <Step title="New object">
+    Press **New object**.
+  </Step>
+  <Step title="Name it">
+    Use the plural, such as **Vehicles**. **One record is called** fills in the singular.
+  </Step>
+  <Step title="Icon and colour">
+    They show in the menu, like built-in places.
+  </Step>
+  <Step title="Add fields">
+    Every object starts with one field for the record's name. Add the rest on the object's page.
+  </Step>
+</Steps>
 
-Every object starts with one field for the record's name. Add the rest on the object's page.
+Faster routes:
 
-## Start from a ready-made set
-
-Below your objects, **Start from a ready-made set** offers sets for education (Universities, Courses, Applications),
-real estate (Properties, Site visits), clinics (Treatments, Packages), automotive (Vehicles, Test drives) and services
-(Projects, Contracts), with the one for your kind of business first. **Add** shows every object, field and stage it
-adds before anything changes. Everything can be renamed, added or removed afterwards. An object you already have by the
-same name is left as it is.
-
-## Describe what you need
-
-Press **Describe what you need**, or tell Marro in the assistant or on WhatsApp, for example "I run a driving school; I
-need Vehicles, Instructors and Lesson bookings". Marro asks what you keep track of, proposes the objects, their fields,
-links between them and stages in plain words, and changes the proposal until it is right. Nothing is added until you
-approve. Later, ask Marro to add or change fields the same way.
+| Way | What it does |
+| --- | --- |
+| **Start from a ready-made set** | Sets for education, real estate, clinics, automotive and services. **Add** shows every object, field and stage before anything changes |
+| **Describe what you need** | Tell Marro, in the app or on WhatsApp, what you keep track of. It proposes objects, fields, links and stages. Nothing is added until you approve |
 
 ## Fields
 
-On the object's page, **Fields** lists them in the order the form shows them. Press **Add field** and choose:
+On the object's page, **Fields** lists them in form order. Press **Add field**.
 
-- **Short text**, **Long text**, **Number**, **Date**, **Phone number**, **Email address**, **Link**
-- **Dropdown** (one choice) or **Multiple choice**: type each choice on its own row
-- **Yes / no**
-- **Money** (in a currency you choose when adding the field; it starts as your organization's), **Percent**,
-  **Date and time**
-- **Person in your team**
-- **Link to another record**: a lead, contact, company, opportunity, person in your team, or a record of
-  another object. Choose whether it holds one record or several.
+| Type | For |
+| --- | --- |
+| Short text, Long text, Number, Date, Phone number, Email address, Link | The basics |
+| Dropdown, Multiple choice | Choices, each with an optional colour |
+| Yes / no | A tick |
+| Money, Percent, Date and time | Money uses a currency you choose |
+| Person in your team | A staff member |
+| Link to another record | A lead, contact, company, opportunity, team member or another object's record. One or several |
 
-Give a dropdown's choices a colour with the dot beside each one; the colour shows in the list and on the board.
+Each field can have help text, be required when adding or editing, be hidden, or show only when another field has a certain answer. The type can't change later.
 
-For each field you can add help text, make it required when adding or when editing, hide it, or show it only
-when another field has a certain answer (for example, show **Other reason** only when **Reason** is **Other**).
-A field's type cannot change after it is added; add a new field instead.
-
-**Filled in to start with** sets a default: new records start with that value, and people can change it.
-**No two records the same** (for text, phone, email, link, number and money fields) stops two records having the
-same value, such as a registration number, ignoring capitals and spaces. It holds across every record of the
-object, including ones some people cannot see, so adding a value that is already taken is refused. If some records already share a value,
-Marro asks you to make them different first.
-
-Use the **⋯** menu on a field to move it up or down. The preview beside the fields shows the form exactly as
-people will see it when they add a record.
-
-Deleting a field keeps its values for 30 days. Before it goes, Marro says how many records have a value and
-what still uses it (a saved view, or a field shown only when this one has an answer). Type the field's name
-to confirm. Restore it from **Recently deleted** within 30 days.
+- **Filled in to start with**: new records start with that value.
+- **No two records the same**: stops a repeated value such as a registration number, ignoring capitals and spaces. It covers every record, including ones you can't see. Existing duplicates must be fixed first.
+- Move fields with **⋯**. The preview shows the form as people will see it.
+- Deleting a field keeps its values for 30 days: type its name to confirm, restore from **Recently deleted**.
 
 ## Stages
 
-An object can have one stage list, such as Draft, Submitted, Accepted, Enrolled. Add a dropdown field with the
-stages as its choices, then choose it under **Details → Stages**. Each stage can have a colour, and says whether a
-record there is still going, won or lost.
+Add a dropdown field with the stages as choices, then choose it under **Details → Stages**. Each stage has a colour and counts as going, won or lost.
 
-With stages, the board starts by stage, the record page shows the stage at the top (change it there) and since when
-the record has been in it, and every change of stage is in the record's activity.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Draft] --> B[Submitted] --> C[Accepted] --> D[Enrolled]
+```
 
-A link that needs details of its own, such as a student applying to a course with an intake and a status, is best
-kept as an object of its own in the middle (Applications), linking to both.
-
-## How records show
-
-**How records show** sets, for everyone:
-
-- **In the list**: which fields are columns when someone opens the list (each person can still change their own).
-- **On cards**: up to three fields shown on board cards under the name.
-- **Calendar date**: which date field the calendar uses first.
-
-## Menu order
-
-On [Settings → Custom objects](https://app.marro.si/settings/objects), use **⋯ → Move up** or **Move down** to set
-the order objects appear in the menu. They are listed after Leads. With more than six, the rest are under **More**.
+The board then groups by stage, the record shows its stage and time in it, and every change is in its activity. A link with details of its own, such as a student applying to a course, works best as its own object (Applications) linked to both.
 
 ## Who can see it
 
 Under **Who can see it**, each role has:
 
-- **Sees**: nothing, their own records, their team's, their branch's, or all records. "Team" means the teams the
-  person leads; "branch" means the people in the branches they manage, as for leads.
-- **Add**, **Edit**, **Delete** and **Download**.
+| Setting | Options |
+| --- | --- |
+| **Sees** | Nothing, own, team's, branch's or all records |
+| **Add**, **Edit**, **Delete**, **Download** | Each on or off |
 
-Administrators always see and change everything. Partners cannot open custom objects. Access to an object does
-not give access to leads. The [Roles](https://app.marro.si/settings/organization/roles) page links to each object's
-settings.
+Administrators always see everything. Partners can't open custom objects. Access to an object gives no access to leads.
 
-## The list
+## Work with records
 
-Open an object from the menu. The list works like Leads:
+| Tool | What it does |
+| --- | --- |
+| **List** | Search, **Filter**, **Views**, up to 12 columns, sort, click a value to edit. Tick records to bulk change, assign, archive or delete, up to 50 |
+| **Board** | Columns by a dropdown field. Drag a card to change it |
+| **Calendar** | Records on the month by a date field |
+| **⋯** | **Show archived**, **Import**, **Download**, settings |
 
-- **Search** finds records by their name, anywhere in the name.
-- **Filter** narrows the list by any field, the owner or when records were added or changed. Filters in use show
-  as chips; open the full filter to combine several with "and" or "or".
-- **Views** saves the search, filters, sort and columns, for yourself or for everyone.
-- The **columns** button chooses which fields are columns, up to 12.
-- Click a column heading to sort by it.
-- Click a value in the list to change it there and then.
-- Tick records to change a field on all of them, give them to someone, archive or delete them, up to 50 at a time.
+- **Add**: press **Add** (for example **Add vehicle**), fill in the form. Choose an owner or a team, which gives records in turn.
+- A record page shows details, links, and activity: who changed what, and notes. **⋯** has **Archive** and **Delete**.
+- If someone else changed it while you edited, saving is refused so nothing is lost. Reopen and try again.
+- **How records show** sets list columns, up to three fields on board cards, and the calendar's first date field. **⋯ → Move up** or **Move down** sets menu order.
+- Records linked to a lead also show Call and WhatsApp buttons, follow-ups, documents and latest calls, chats and emails.
 
-**⋯** at the top has **Show archived**, **Import**, **Download** and, for administrators, the object's settings.
-Large lists stay quick: when more than 10,000 records match, the count shows as **10,000+**.
+## Recycle bin, import and download
 
-On a phone the list shows each record's name with two of its fields and its owner.
+| Action | Detail |
+| --- | --- |
+| **Delete** | To the recycle bin (**⋯ → Recycle bin**). **Bring back** within 30 days |
+| **Import** | CSV up to 1,000 rows. Match columns, check, import. Mark a field **No two records the same** and choose **Update the one with the same …** to update instead of add. Failed rows can be downloaded with reasons |
+| **Download** | CSV as filtered on screen, up to 50,000 rows. Needs **Download** permission |
 
-## Board and calendar
+## Reports and automations
 
-**Board** shows records in columns by a dropdown field, such as Status. Drag a card to another column to change
-it. With several dropdowns, choose which one makes the columns. Cards show the fields chosen under
-**How records show**. The search and filters apply to the board too.
+<CardGroup cols={2}>
+  <Card title="Reports" icon="chart-column">
+    Each object is a source in [custom reports](/guides/custom-reports): count, add up or average its fields, grouped by dropdowns, owner, dates or the linked lead.
+  </Card>
+  <Card title="Automations" icon="bolt">
+    [Automations](/guides/automations) can start when a record is added, changes or changes stage, for each linked lead. Steps: **Add a custom object record** and **Change the lead's custom object records**.
+  </Card>
+</CardGroup>
 
-**Calendar** shows records on the month by one of their date fields. Use the arrows to move between months. On a
-phone it lists only the days that have records.
-
-## Add and edit records
-
-Press **Add** (for example **Add vehicle**) at the top of the list. The form opens at the side; fill it in and
-press **Add**. You can choose the owner; leave it as **Me** to own the record yourself, or choose a team: the record
-goes to whichever member's turn it is (the one who was given one longest ago).
-
-Open a record to see its details, what it links to, what links to it, and its activity: who added it, who changed
-what (for example "Status: Draft → Submitted"), and notes. **Edit** opens the same form. The owner can be changed at the top of the page. **⋯** has
-**Archive** (it leaves the list and keeps its history; restore it from **Show archived**) and **Delete**.
-
-When a record links to a lead (a student on an application, a buyer on a site visit), its page also shows that
-person: Call and WhatsApp buttons, **+** to add a follow-up for them, their open follow-ups and documents, and their
-latest calls, chats and emails.
-
-With the assistant, a record's **⋯** menu also has **Summarise with Marro** (where it stands, what changed, the linked
-people's latest calls and chats) and **Fill in from a chat or call**: Marro reads the latest WhatsApp chat or call with
-the person the record links to and suggests values for the fields it answers, and changes nothing until you approve.
-
-If someone else changed the record while you were editing, saving is refused so their change is not lost.
-Reopen the record and make your change again.
-
-## Recycle bin
-
-**Delete** moves a record to its object's recycle bin (**⋯ → Recycle bin** on the list). From there,
-**Bring back** returns it with its notes and activity, for 30 days; after that it goes for good. To remove one for
-good straight away, use the bin's delete button and type the record's name.
-
-## Import and download
-
-**⋯ → Download** saves the records as filtered and sorted on screen, up to 50,000, as a spreadsheet (CSV).
-
-**⋯ → Import** reads a CSV file of up to 1,000 rows. Match each column to a field (or leave it out), check the
-first rows, then import. You can choose who owns the new records, a person or a team taking turns.
-
-To update records you already have, mark a field **No two records the same** (a registration number, an email) and
-choose **Update the one with the same …**: a row whose value is already on a record changes that record, and the
-others are added. Rows that could not be saved can be downloaded as a file with the reason for each, to fix and import
-again. Downloading a file needs the role's **Download** permission (it does not stop people seeing the records they
-may see in the list).
-
-## Reports
-
-Each object is a source in [custom reports](/guides/custom-reports): choose it under **Report on**. Count its
-records, or add up, average or find the highest of a number, money or percent field. Group or split by its
-dropdowns, yes/no fields, people fields and **Owner**, by the date it was added, last changed, moved to its stage or
-a date field of its own, and by the linked lead's stage, source, owner, team or fields (a record linked to several
-leads counts under the first; one with none under **No linked lead**). **Filter** narrows it on the object's own
-fields. Save it, put it on a [dashboard](/guides/custom-reports#dashboards) or have it emailed. Each person sees the
-figures for the records they may see; a dashboard's lead filter does not apply to object reports.
-
-**Reports → Custom object reports** stays for a quick count, with the records behind each group; **Make a chart**
-opens the same object in a new report.
-
-## Automations
-
-[Automations](/guides/automations) can start when **A custom object record is added**, **A custom object record
-changes** (any field, or only the ones you choose) or **A custom object record's stage changes** (into any stage, or
-only some). They run for each lead the record links to, such as the student on an application; a record that links
-to no lead starts nothing. Changes made by automations start nothing, so automations cannot loop.
-
-Two steps work on records for the lead:
-
-- **Add a custom object record** adds one, linked to the lead, with the values you set (text can use
-  `{{lead.name}}` and the like). Run twice, it adds it once.
-- **Change the lead's custom object records** sets the fields you choose on every record of that object linked to
-  the lead (up to 20).
-
-Steps act as the person who set up the automation, so that person's access to the object applies.
-
-## Ask Marro and staff WhatsApp
-
-The assistant can list objects and their fields, find and read records (including by board, calendar date or
-owner), and, after you approve, add and change records, add notes, change an object's settings, fields and
-menu order, and set who can see it. The same access rules apply as on the screens.
-
-## Webhooks and integrations
-
-Zapier, Make, n8n and custom webhooks (**Settings → Integrations**) can be sent **A custom object record is added**,
-**changes**, **moves to another stage** and **is deleted**. Each call carries the object, the record with its fields
-and a link to open it.
-
-## Website forms, the customer portal and the Inbox
-
-- A [website form](/guides/connect-a-website) can add a record to an object instead of a lead.
-- An administrator can share chosen fields of one record with a linked lead in their customer portal, from
-  the record page.
-- In the Inbox, the lead panel lists records linked to that lead.
-
-## API
-
-Keys with the custom object scopes can list objects, read, add, change and delete records, and list the records
-linked to a record; see the API reference. Large lists page by position (`cursor`), and `updated_since` returns only
-records changed since a time. Send an `Idempotency-Key` header when adding a record so a retry never adds it twice.
-Deleting moves the record to the recycle bin.
+Webhooks (Zapier, Make, n8n) can be sent when a record is added, changes, moves stage or is deleted. A [website form](/guides/connect-a-website) can add a record instead of a lead.
 
 ## Limits
 
-Your plan sets how many objects and records you can have: **Growth** includes 3 objects and 50,000 records,
-**Complete** sets no object limit of its own (any organization can have up to 20) and 500,000 records. Records are counted across every object, archived ones and those
-in the recycle bin included (until it is cleared). Each object can have up to 100 fields.
+| Plan | Objects | Records |
+| --- | --- | --- |
+| **Growth** | 3 | 50,000 |
+| **Complete** | Up to 20 | 500,000 |
 
-**Settings → Custom objects → Usage** and **Settings → Subscription** show what you use. When you reach a limit,
-everything you have stays usable and editable; only adding more is refused, with a message saying so. Delete records
-you no longer need, or move to a plan with more room. After moving to a smaller plan nothing is removed: you just
-cannot add more until you are back under its limit.
+Each object has up to 100 fields. Records count across all objects, including archived and recycle-bin ones. At a limit, everything stays usable and only adding is refused. **Settings → Custom objects → Usage** shows what you use.
+
+## Ask Marro
+
+<Card title="Try asking" icon="message-circle">
+  *"I run a driving school; I need Vehicles, Instructors and Lesson bookings"*
+
+  *"Add a Status dropdown to Vehicles with Available, Sold and In service"*
+
+  Marro can find and read records, and, after you approve, add and change them, their fields, menu order and access. It follows the same access rules as the screens.
+</Card>
+
+## For developers
+
+Keys with the custom object scopes can:
+
+<CardGroup cols={2}>
+  <Card title="List objects" icon="list" href="/api-reference/custom-objects/list-custom-objects" />
+  <Card title="List records" icon="table" href="/api-reference/custom-objects/list-object-records" />
+  <Card title="Read a record" icon="eye" href="/api-reference/custom-objects/get-object-record" />
+  <Card title="Add a record" icon="plus" href="/api-reference/custom-objects/create-object-record" />
+  <Card title="Change a record" icon="pencil" href="/api-reference/custom-objects/update-object-record" />
+  <Card title="Delete a record" icon="trash" href="/api-reference/custom-objects/delete-object-record" />
+</CardGroup>
+
+Send an `Idempotency-Key` when adding so a retry never adds twice.

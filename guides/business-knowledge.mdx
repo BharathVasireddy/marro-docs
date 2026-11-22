@@ -3,21 +3,25 @@ title: "Business knowledge"
 description: "Tell the AI about your business: products, prices, dates, policies and FAQs."
 ---
 
-Business knowledge is what you write down about your business for the AI. The assistant, suggested replies and agents use permitted reference facts from here. Current products and prices, bought subscription terms, payments and appointment times come from their current records. If a specific fact cannot be confirmed, Marro says so directly.
+Business knowledge is what you write down about your business for the AI. The assistant, suggested replies and agents use it. Current prices, subscriptions, payments and appointment times come from their live records. If a fact cannot be confirmed, Marro says so.
 
-Open **AI → Knowledge**. Administrators can use it by default; other roles can be given the permission.
+Open **AI → Knowledge**. Administrators can use it by default; other roles can be given permission. It is part of Marro AI, on every plan. Without AI, what you wrote is kept and returns when AI is on.
 
-<Note>
-  Business knowledge is part of Marro AI, on every plan. Without AI the Knowledge tab is not offered; what you wrote is kept and comes back when AI is on.
-</Note>
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Add entry, file or website] --> B[Test a question] --> C[AI uses it in answers]
+```
 
 ## Add knowledge
 
-- **Add entry**: a title and plain text. Write each topic as its own entry, the way you would brief a new colleague. A line starting with `#`, or a short line ending in a colon ("Fees:"), starts a section.
-- **Upload file**: a `.txt` or `.md` file, up to 256 KB. Its text becomes a new entry you can edit. For PDF, JPEG or PNG, upload one file up to 3 MiB and add the text you want agents to search. The entry starts with staff visibility and switched off. Review its text and access before switching it on. Staff with permission to manage knowledge can download the original. Agents use the approved text to answer questions.
+| Way | What to do |
+| --- | --- |
+| **Add entry** | A title and plain text. One topic per entry, as if briefing a new colleague |
+| **Upload file** | `.txt` or `.md` up to 256 KB becomes an editable entry |
+| **Add website** | See below |
 
-  Choose **Extract text** to draft text from a PDF, scan, or image using your AI allowance. This sends the file for AI processing. Compare the result with the original, especially names, prices, and dates. Choose **Use this version** to put the draft in the editor, make corrections, and choose **Add entry** to save it. If the preview is incomplete, add the missing text manually.
-- **Add website**: see below.
+For a PDF, JPEG or PNG (one file, up to 3 MiB), add the text you want agents to search. It starts switched off with staff visibility: review its text and access first. Choose **Extract text** to draft the text using your AI allowance. This sends the file for AI processing. Check names, prices and dates against the original, then **Use this version**.
 
 ## Add a website
 
@@ -26,56 +30,93 @@ Open **AI → Knowledge**. Administrators can use it by default; other roles can
     Press **Add website**, enter a public website or section address, then **Start import**. You can leave while it runs.
   </Step>
   <Step title="Review the pages">
-    Marro checks a maximum of **100 pages** per import, extracts readable text, and indexes it for the AI to search. Business knowledge shows progress and how many pages were imported or skipped. Switch off or delete any entry you don't want the AI to use.
+    Marro reads up to **100 pages**. Progress shows how many were imported or skipped. Switch off or delete any entry you don't want used.
   </Step>
 </Steps>
 
-- To stop a queued or running import, press **Cancel** in the import status row in **AI → Knowledge**. The row shows **Cancelled**. Pages already imported or refreshed stay in Business knowledge. You can then start another import.
-- For large sites, give Marro a section such as your services or help pages. A home-page import uses the site's sitemap and links; a section import stays within that section. You can import a different section when the first one finishes.
-- It respects your website's robots.txt and skips files, pages that ask not to be indexed, and repeated pages.
-- A page that fills itself in with scripts has too few words to read. Paste that page's text into an entry instead.
-- Reading the same website again updates its entries rather than adding them twice. To read one page again, press the refresh button on its entry.
-- You can start up to ten imports an hour, one at a time. Your usual Business knowledge storage limits still apply.
+- **Cancel** in the import row stops it. Pages already imported stay.
+- For large sites, give a section such as your services or help pages.
+- Marro respects robots.txt and skips files and repeated pages.
+- A page built with scripts may have too little text. Paste its text into an entry.
+- Importing again updates entries. The refresh button on an entry re-reads one page.
+- Up to ten imports an hour, one at a time.
 
 ## Enhance with AI
 
-While editing an entry, press **Enhance with AI**. The AI tidies the text into sections and shows an **Improved version** beside yours, keeping every fact as you wrote it. If a figure, link or email from your text is missing, it is named so you can check it.
-
-Choose **Use this version** or **Keep mine**. Nothing is saved until you press **Save**.
+<Steps>
+  <Step title="Press Enhance with AI">While editing. It tidies the text into sections, keeping every fact. A missing figure, link or email is named.</Step>
+  <Step title="Compare">An **Improved version** appears beside yours.</Step>
+  <Step title="Choose">**Use this version** or **Keep mine**.</Step>
+  <Step title="Save">Nothing saves until you press **Save**.</Step>
+</Steps>
 
 ## Check what the AI will see
 
-- Use **Find an entry** to search by title, file name, or source address. Use the adjacent filter to narrow the list by status or source. The library shows up to 20 entries per page.
-- Choose **Test a question** in the entry toolbar. With an empty library, find it in the **More for Business knowledge** menu. Ask something a customer or colleague would, or select an example, to see the passages the AI would be given. The dialog keeps your questions while you work on the page. Choose **Clear** to start again.
-- **Switch an entry off** to stop the AI using it without deleting it.
+| Tool | Use |
+| --- | --- |
+| **Find an entry** and the filter | Search by title, file name or source address, 20 per page |
+| **Test a question** | Shows the passages the AI would be given. Find it in **More for Business knowledge** if the library is empty |
+| Switch an entry off | The AI stops using it. Nothing is deleted |
+
+**Test a question** uses your own access, so it can show staff-only entries. Customer agents see only public ones.
 
 ## Limits
 
-- 60,000 characters an entry.
-- 500,000 characters and 300 entries for your organization.
+| Limit | Amount |
+| --- | --- |
+| One entry | 60,000 characters |
+| Your organization | 500,000 characters and 300 entries |
 
 ## Access and validity
 
-Open an entry’s menu and choose **Access and validity**.
+Open an entry's menu and choose **Access and validity**.
 
-- **Staff and customer replies** allows the entry in customer-facing conversations as well as staff answers. Existing entries keep this setting until you review them.
-- **Staff only** excludes it from customer-agent retrieval. You can choose roles and branches; an entry with both restrictions requires both to match. No roles or branches selected means all staff. A branch restriction uses actual membership, including branch managers.
-- Set **Effective from** and **Expires on** to limit when the entry can be used. New dates start at midnight in your organization’s timezone. Existing exact times are preserved if you leave their date unchanged. Blank means no date limit.
-- Choose **Replaced by** when another entry supersedes this one. The old entry remains available for administration but is excluded from AI retrieval.
-- After reading the entry and checking its facts, enable **I reviewed these facts and confirm this revision is accurate** and save. Editing or refreshing its text clears verification. A concurrent edit requires you to reload before reviewing.
+| Setting | What it does |
+| --- | --- |
+| **Staff and customer replies** | Allows customer-facing use. Existing entries keep their setting until reviewed |
+| **Staff only** | Keeps it out of customer replies. Choose roles and branches; both must match. None selected means all staff |
+| **Effective from**, **Expires on** | Limit when it can be used, from midnight in your timezone. Blank means no limit |
+| **Replaced by** | Another entry supersedes this one. The old one is excluded from AI |
+| **I reviewed these facts and confirm this revision is accurate** | Records your confirmation. Editing or refreshing the text clears it |
 
-A review records the administrator’s confirmation. It does not prove that a payment succeeded, an appointment remains free or a customer has a particular subscription. Ask Marro uses the current operational tools for those questions. Customer agents read the current visible product catalogue before quoting listed prices; a catalogue price does not replace a customer’s agreed quote or invoice.
+A review does not prove a payment succeeded, an appointment is free or a customer has a subscription. Marro checks live records for those, and quotes listed prices from the current catalogue, not from a customer's agreed quote.
 
 ## Review voice pricing
 
-In **AI → Business knowledge**, open **More for Business knowledge → Voice pricing review**. A **Review** button also appears above the entries when pricing issues are available. The review groups pricing lookup issues from up to 200 completed calls in the last 30 days. A call counts once for each issue it encountered. Use the suggested checks to review missing or ambiguous catalogue prices, unavailable lookups, or figures that need verification.
+Open **More for Business knowledge → Voice pricing review**, or press **Review** above the entries. It groups pricing problems from up to 200 completed calls in the last 30 days.
 
-Use **Open catalogue** to make the verified correction through the usual catalogue controls. Then enter the exact item name and select **Test voice price**. Marro shows what the price lookup returns in English, Hinglish and Telugu. You can also ask Ask Marro to show the voice pricing review or test an item. The preview checks the catalogue lookup without placing a call.
+<Steps>
+  <Step title="Review the issues">
+    Missing or unclear prices, failed lookups and figures to verify.
+  </Step>
+  <Step title="Fix the catalogue">
+    Press **Open catalogue** and correct it there.
+  </Step>
+  <Step title="Test it">
+    Enter the exact item name and select **Test voice price**. You see the lookup in English, Hinglish and Telugu. No call is placed.
+  </Step>
+</Steps>
 
-**Test a question** uses your own role and branch access, so it can include staff-only entries you can read. Customer agents use the public audience. When asking Ask Marro to draft a customer reply, it uses customer-audience retrieval.
+## Ask Marro
 
-## Check dates and disagreements
+<Card title="Try asking" icon="message-circle">
+  *"Show the voice pricing review"*
 
-Ordinary answers stay conversational and do not announce document names or internal checks. You can explicitly ask to inspect sources. Revision dates show when text changed; review dates show an administrator’s confirmation. If permitted references disagree on a material fact, Marro says what needs confirming instead of choosing a value by date. Missing information and a failed lookup remain distinct internally.
+  *"Test the voice price for Gold facial"*
 
-Small collections fit in a bounded context. Larger collections use word and meaning search to select relevant passages; Marro can search again when a detail is missing.
+  Marro runs the review or the test. Drafted customer replies use customer-audience knowledge only.
+</Card>
+
+## When sources disagree
+
+Answers stay conversational and don't name documents unless you ask to see sources.
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Permitted sources] --> B{Do they agree?}
+  B -->|Yes| C[Marro answers]
+  B -->|"No, on an important fact"| D["Marro says what needs confirming"]
+```
+
+Marro does not pick by date.

@@ -1,39 +1,63 @@
 ---
 title: "Case workflows"
-description: "Bring participants, required work and document progress into an opportunity or case."
+description: "Track participants, required work and document progress on an opportunity or case."
 ---
 
-A workflow is a checklist on an existing opportunity or case. It uses that record’s stage and owner, your existing contacts, task boards and document requests. It does not run a separate automation or move stages automatically.
+A workflow is a checklist on an opportunity or case. It uses the record's stage and owner, your contacts, task boards and document requests. It doesn't move stages or run automations on its own.
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Opportunity or case] --> B[Participants] --> C[Requirements] --> D[Linked tasks and documents] --> E[Progress]
+```
 
 ## Set up a case
 
-Open an opportunity and find **Workflow**. Add participants by selecting existing contacts and describing their role, such as client, applicant, adviser or service provider. A participant role does not give anyone access to the case or to private files.
+Open an opportunity and find **Workflow**.
 
-Choose **Add requirement**, enter what is needed, and choose **Task** or **Document**. Search for an existing task or document request to link it. You can leave a requirement unlinked while planning; it stays outstanding until linked work is complete. Mark nonessential work optional to exclude it from the required progress count.
+<Steps>
+  <Step title="Add participants">From your contacts, with a role such as client, applicant or adviser. A role gives no access to the case or its files.</Step>
+  <Step title="Add requirement">Say what is needed, and pick **Task** or **Document**.</Step>
+  <Step title="Link it">Link an existing task or document request, or leave it unlinked while planning. It stays outstanding until linked work is complete.</Step>
+  <Step title="Mark optional">Nonessential work is left out of the progress count.</Step>
+</Steps>
 
-Before linking work, set a responsible staff member and planning deadline if needed. Assignment changes require assignment permission. Once linked, task owners and deadlines come from the task. Document deadlines come from the document request; the requirement can still name the staff member responsible for checking it. Select the linked record name to work on the source. Each row’s menu also offers **Edit requirement** and **Open task** or **Open document**.
+Once linked, a task keeps its own owner and deadline, and a document keeps its request's deadline. Each row's menu has **Edit requirement** and **Open task** or **Open document**.
 
-Document requests can be linked only from the case’s explicitly connected original lead, with access to that lead. A contact’s previous lead is not used automatically. Cases without a source lead can plan document requirements but cannot link portal requests. Create and review requests through the existing lead workflow.
+Document requests can only be linked from the case's connected original lead, and you need access to that lead. Create and review the requests there.
 
 ## Read progress
 
-- Tasks count as complete only when their task-board stage is marked complete.
-- Uploaded documents still await review. Only accepted requests count as complete.
-- Changes requested, overdue work, missing owners and unlinked requirements remain visible.
-- An archived, withdrawn or inaccessible source never counts as complete. The workflow does not reveal its private content.
+| Item | Counts as done when |
+| --- | --- |
+| Task | Its board stage is marked complete |
+| Document | The request is accepted (an upload still needs review) |
+| Optional item | Never counted |
 
-The progress count covers required items. Completing the checklist does not automatically advance the case, approve a loan, establish compliance, send a message or collect payment.
+Changes requested, overdue work, missing owners and unlinked requirements stay visible.
+
+Finishing the checklist doesn't advance the case, send a message or collect payment. Staff make the professional decisions.
 
 ## Reuse a checklist
 
-On a case with no requirements, open **Workflow actions**, choose **Reuse checklist**, and select another case you can access. Review its requirements and apply them once. Only requirement definitions are copied: participants, task/document links, staff assignments and dates are cleared. Later edits to the original do not change the copy.
-
-If either case changes while you review it, refresh and review the latest version. This prevents duplicate application and lost edits.
+<Steps>
+  <Step title="Open it">On a case with no requirements, open **Workflow actions → Reuse checklist**.</Step>
+  <Step title="Pick a case">Another case you can access.</Step>
+  <Step title="Review and apply">Only the requirements are copied; participants, links, assignments and dates are cleared.</Step>
+</Steps>
 
 ## Ask Marro and mobile
 
-Ask Marro to read a case’s workflow, explain blockers, add a participant, update a requirement or reuse a checklist. It asks for confirmation before applying workflow changes. Task updates and document acceptance use their existing permissions and review rules.
+<Card title="Try asking" icon="message-circle">
+  *"What is blocking the Sharma case?"*
 
-The mobile case screen shows participants, work and blockers. **Ask Marro about this workflow** opens the shared assistant to propose changes for confirmation. Staff WhatsApp uses the same actions and permissions. Workflow editing forms are on the web; mobile edits are through Ask Marro.
+  *"Add Neha as adviser."*
 
-For example, a mortgage broker could track applicants, an adviser, evidence review and a submission task. Another team could use the same fields for onboarding or service delivery. Marro tracks the work; staff make professional and eligibility decisions.
+  Marro asks before applying a change.
+</Card>
+
+| Where | What you can do |
+| --- | --- |
+| Web | Edit participants and requirements |
+| Mobile | See participants, work and blockers. **Ask Marro about this workflow** proposes changes |
+| Staff WhatsApp | The same actions, with the same permissions |

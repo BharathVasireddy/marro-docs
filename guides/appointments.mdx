@@ -3,42 +3,72 @@ title: "Appointments and booking"
 description: "Book appointments with leads, share booking links and keep them in your calendar."
 ---
 
-Appointments are booked by your team, by the assistant, or by leads themselves on a booking link. They go into your Google or Outlook calendar, and leads get a reminder before they start.
+Your team, the assistant or leads themselves can book appointments. They go into your Google or Outlook calendar, and leads get a reminder before they start. Open **Appointments** in the sidebar.
 
-## See and book appointments
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Booking link or team] --> B[Appointment]
+  B --> C[Your calendar]
+  B --> D[Reminder to the lead]
+```
 
-Open **Appointments** in the sidebar. You see your week; people who can see everyone's follow-ups can switch to **Everyone**.
+## Book and manage
 
-- **Book an appointment**: choose the lead, the appointment type, who takes it and a time.
-- On a lead's page, choose **More → Book appointment** to book one. Upcoming appointments show above the tabs, where you can mark one **Completed** or **No-show**, move it or cancel it. To copy a booking link for that lead, choose **More → Copy booking link**. The lead's **Follow-ups** tab lists every appointment the lead has had, past ones included.
-- **Edit details** changes an appointment's title, notes, place or link, and the answers to its type's questions, without moving it. The same works in the mobile app and through the assistant.
+<Steps>
+  <Step title="Book">
+    Choose **Book an appointment**: the lead, the type, who takes it and a time. On a lead's page, use **More → Book appointment**.
+  </Step>
+  <Step title="Follow it">
+    Upcoming appointments show above the lead's tabs. Mark one **Completed** or **No-show**, move it or cancel it.
+  </Step>
+  <Step title="Edit">
+    **Edit details** changes the title, notes, place or link without moving it.
+  </Step>
+</Steps>
+
+**More → Copy booking link** copies a link for that lead. The lead's **Follow-ups** tab lists every appointment. You see your week; if you can see everyone's follow-ups, switch to **Everyone**.
 
 ## Set up your own booking
 
 On the Appointments page, open **Settings**:
 
-- **Your booking link**: switch it on and copy it.
-- **Weekly hours**: the times leads can book you. They start as your organization's working week.
-- **What leads can book**: the appointment types you offer.
-- **Your calendars**: connect **Google Calendar** (Google Meet links for online appointments) or **Outlook Calendar** (Microsoft 365 or Outlook.com; Teams links for online appointments on work accounts). Busy times in your calendar are kept free.
+| Setting | What it does |
+| --- | --- |
+| **Your booking link** | Switch it on and copy it. |
+| **Weekly hours** | When leads can book you. They start as your organization's working week. |
+| **What leads can book** | The appointment types you offer. |
+| **Your calendars** | **Google Calendar** (Google Meet links) or **Outlook Calendar** (Teams links on work accounts). Busy times stay free. |
 
-Leads are only offered times inside your hours, not on holidays or your approved leave, and clear of your other appointments.
+Leads are never offered times outside your hours, on holidays, on approved leave or over another appointment.
 
 ## For administrators
 
-Open **Settings → Forms and booking → Appointments** to set:
+In **Settings → Forms and booking → Appointments**:
 
-- reminders before appointments, and the WhatsApp template they use;
-- how soon and how far ahead leads can book;
-- the appointment types everyone offers;
-- team booking links, which give each booking to the next free team member in turn.
+| Setting | What it does |
+| --- | --- |
+| Reminders | When they go and the WhatsApp template they use |
+| Booking window | How soon and how far ahead leads can book |
+| Types | The appointment types everyone offers |
+| Team booking links | Give each booking to the next free team member in turn |
 
 ## What leads see
 
-The booking link needs no sign-in and shows your logo and colour. Leads pick an appointment type and a time in their own time zone, then confirm. Afterwards they can add it to their calendar, or **Move or cancel** it themselves.
+| Step | What happens |
+| --- | --- |
+| 1 | Opens the link, no sign-in, with your logo and colour |
+| 2 | Picks a type and a time in their own time zone |
+| 3 | Confirms, and can add it to their calendar |
+| Later | **Move or cancel** it themselves |
 
-Two bookings can never take the same time: if a time was just taken, the lead is asked to pick another.
+A time that was just taken can't be booked twice.
 
 ## Automate it
 
-Use the automation triggers **An appointment is booked** and **An appointment is completed or a no-show**, and the step **Send a booking link**. See [Automations](/guides/automations).
+<CardGroup cols={2}>
+  <Card title="Triggers" icon="bolt">**An appointment is booked**, **An appointment is completed or a no-show**</Card>
+  <Card title="Step" icon="link">**Send a booking link**</Card>
+</CardGroup>
+
+See [Automations](/guides/automations).

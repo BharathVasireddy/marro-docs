@@ -1,19 +1,21 @@
 ---
 title: "Access and data"
-description: "How current access, account ownership and document review apply across Marro."
+description: "Users, teams, roles and who can see which leads."
 ---
 
-## Users and teams
-
 Open **Users** in the menu. The tabs are **Users**, **Teams**, **Branches** and **Roles**.
+
+## Users
 
 <Frame>
   <img src="/images/setup/users.jpg" alt="The Users page with Invite user, a person's menu and the Roles tab" />
 </Frame>
 
-1. **Invite user** sends an email invitation, or you can set a password for the person yourself.
+1. **Invite user** sends an email invitation, or you can set a password yourself.
 2. A person's **⋯** menu changes their role or switches them off.
 3. The **Roles** tab opens the roles.
+
+## Teams
 
 <Frame>
   <img src="/images/setup/teams.jpg" alt="The Teams tab with New team and a team to open" />
@@ -21,63 +23,64 @@ Open **Users** in the menu. The tabs are **Users**, **Teams**, **Branches** and 
 
 1. **New team** makes a team.
 2. Open a team to see its members and choose its team lead.
-3. The link to **Lead assignment** is where you choose which team gets which leads. A team shares new leads and chats in turn. See [Lead assignment and rotation](/guides/lead-assignment).
+3. **Lead assignment** is where you choose which team gets which leads. See [Lead assignment and rotation](/guides/lead-assignment).
 
 ## Roles
 
-A new organization starts with three roles: **Admin**, **Advisor** (the people who work leads) and **Partner** (people who refer leads). Rename them or change what they can do in **Users → Roles**. More ready-made roles, **Manager**, **Operations Head**, **Editor** and **Social Media Manager**, are one click away under **Add a ready-made role**, and **New role** makes your own. You can also ask Marro to add one.
+A new organization has **Admin**, **Advisor** (works leads) and **Partner** (refers leads). More ready-made roles (**Manager**, **Operations Head**, **Editor**, **Social Media Manager**) are under **Add a ready-made role**.
 
 <Frame>
   <img src="/images/setup/roles.jpg" alt="The Roles tab with New role, Add a ready-made role and a role to open" />
 </Frame>
 
-1. **New role** makes your own role.
-2. **Add a ready-made role** adds one of the ready-made roles.
+1. **New role** makes your own.
+2. **Add a ready-made role** adds one.
 3. Open a role to edit it.
 
 <Frame>
   <img src="/images/setup/role-edit.jpg" alt="The Edit role page with name, permission search, Select all and Save role" />
 </Frame>
 
-1. Change the role's **name**.
-2. **Search permissions** to find one.
-3. **Select all** ticks every permission in an area.
-4. **Save role** keeps your changes.
+1. Change the **name**.
+2. **Search permissions**.
+3. **Select all** ticks an area.
+4. **Save role**.
 
-The count on the Roles list matches the **N chosen** in the editor. Only permissions your subscription includes are counted.
+Only permissions your subscription includes are counted.
 
-A few permissions that are easy to miss:
+| Permission | Lets people |
+| --- | --- |
+| **Create leads** | Also quote the leads assigned to them |
+| **Manage reports** | Share reports and dashboards, set a role's home dashboard, email reports. Admin and Manager have it |
+| **Send email campaigns** | Write, test, send and schedule [email campaigns](/guides/email-campaigns). Admin and Social Media Manager have it |
 
-- **Create leads** also lets people make and send quotes for the leads assigned to them. Invoices, payments and quotes for anyone else's leads need **Quotes and invoices**.
-- **Manage reports** lets people share reports and dashboards with others, choose a role's home dashboard, and email reports to other people. Admin and the ready-made Manager role have it; give it to any other role in **Users → Roles**. Without it, people with **View analytics** still build and schedule reports for themselves.
-- **Send email campaigns** (under **Marketing**) lets people write, test, send and schedule [email campaigns](/guides/email-campaigns) and see their reports. Admin and the ready-made Social Media Manager role have it; roles made before it was added get it only when you tick it in **Users → Roles**.
+## Who sees which leads
 
-## Lead visibility
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Your lead access] --> B[Lists, follow-ups, scores, review queues] --> C[Same in the assistant and app]
+```
 
-Lead lists, follow-ups, unread email summaries, scores and AI review queues follow your current lead access. Partners see their referral tree; assigning an unrelated lead to a partner does not give them access to it. An empty partner referral scope gives no lead access.
+- Lists, follow-ups, scores and AI review queues all follow your current lead access.
+- Partners see their referral tree. Assigning an unrelated lead to a partner does not give access to it.
+- Follow-ups linked to a lead disappear when you lose access to it.
 
-Follow-ups linked to a lead stop appearing when you lose access to that lead. Archive and restore still require the relevant role permission or ownership, and partners must also have referral access. The assistant and mobile app use these same rules.
+## Good to know
 
-Assignment notifications check that the recipient still belongs to the organization and can access the work before sending. An old assignment event does not preserve access after removal.
+| Topic | Rule |
+| --- | --- |
+| Password links | An invitation link sets a password only for an account your organization manages. Shared and platform accounts use **Forgot password**. A reset signs everyone out |
+| Public forms | A match by phone keeps the lead's saved email. The submitted one stays for staff review |
+| Requested documents | Once accepted, an old upload cannot replace them. A new document needs a new request |
+| Proposal codes | Five verification attempts, then request a new code |
 
-## Password invitations and recovery
+## Ask Marro
 
-An organization's invitation or copied partner password link can set a password only for an account managed by that organization. It cannot reset a shared account or an account with a platform role. Those people should use **Forgot password** to receive a recovery link at their own email address.
+<Card title="Try asking" icon="message-circle">
+  *"Add a Manager role"*
 
-Older recovery links for shared or platform accounts may need to be replaced by requesting a fresh link. A successful password reset invalidates existing sign-in sessions.
+  *"Who is in the Pune team?"*
 
-## Public forms and lead email
-
-Public forms and Meta lead ads can create a lead with the submitted email. When a submission matches an existing lead by phone, it keeps that lead's saved email, including an empty one. The submitted answer remains available for staff review. Knowing a phone number does not authorize changing the email used for portal sign-in.
-
-## Requested documents
-
-Once staff accept a requested document, a previously started upload cannot reopen or replace that request. A new document requires a new request from staff. Upload completion saves a separate private copy, so an upload link that has not yet expired cannot change the file presented for review.
-
-If another upload or review wins while you are uploading, reload the request before trying again.
-
-## Timesheets and proposal codes
-
-Submitted or approved timesheet weeks cannot be changed by an entry save or deletion that started earlier. If entries change while you submit, reload and submit again.
-
-Each proposal code allows five verification attempts, including attempts submitted at the same time. After the budget or expiry is reached, request a new code.
+  Marro shows the change and asks before saving.
+</Card>

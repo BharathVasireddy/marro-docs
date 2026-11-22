@@ -3,15 +3,24 @@ title: "Branches"
 description: "Run each location as its own unit: its people, leads, calling numbers and reports, with managers who see only their branch."
 ---
 
-Branches are for businesses with more than one location, such as a clinic chain, an education group or a developer with several sites. Nothing changes until you add your first branch: every branch control stays hidden until then.
+Branches are for businesses with more than one location, such as a clinic chain or an education group. Nothing changes, and every branch control stays hidden, until you add your first branch.
 
 ## Add a branch
 
-An organization administrator opens **Users → Branches** and chooses **Add your first branch** (later, **Add branch**). Give it a **Name**, an optional **City**, a **Short code** (made from the name, such as *BH* for Banjara Hills, and editable) and a **Colour**. The code and colour mark the branch on leads, calls and reports. A grey dot on a colour means another branch already uses it.
+An organization administrator opens **Users → Branches** and chooses **Add your first branch** (later, **Add branch**).
+
+| Field | Detail |
+| --- | --- |
+| **Name** | Required |
+| **City** | Optional |
+| **Short code** | Made from the name, such as *BH* for Banjara Hills. Editable |
+| **Colour** | A grey dot means another branch uses it |
+
+The code and colour mark the branch on leads, calls and reports.
 
 ## Cards and the organization view
 
-**Cards** shows each branch with its people, who manages it, this week's open leads, new leads and conversions, and how many teams, calling numbers and offices it has. Open a card to see the branch.
+**Cards** shows each branch with its people, manager, this week's open leads, new leads and conversions, and its teams, calling numbers and offices.
 
 <Frame>
   <img src="/images/setup/branches.jpg" alt="Branch cards with Add a branch and the Cards and Organization switch" />
@@ -22,48 +31,65 @@ An organization administrator opens **Users → Branches** and chooses **Add you
 3. **Add a branch**.
 4. The **Cards** and **Organization** switch.
 
-**Organization** shows every branch side by side, with its teams and people, and **Head office** for people and teams that belong to no branch. Drag a person or a team to move them. On a phone or with a keyboard, use **⋯** on a person and **Move … to**. Every move can be undone from its message.
+**Organization** shows every branch side by side, plus **Head office** for people and teams in no branch. Drag a person or team to move them, or use **⋯ → Move … to**. Every move can be undone from its message.
 
 ## A branch's page
 
-- **People:** each person works in one branch. **Add people** adds several at once from head office. Use **⋯** on a person to **Make manager** or **Remove** them from the branch. A person can manage several branches.
-- **Teams, Calling numbers and Offices:** **Add** brings one in from what your organization already has. Taking one from another branch says where it moves from.
+| Part | What you do |
+| --- | --- |
+| **People** | Each person works in one branch. **Add people** adds several from head office. **⋯ → Make manager** or **Remove**. A person can manage several branches |
+| **Teams**, **Calling numbers**, **Offices** | **Add** brings in what you already have. Taking one from another branch says where it moves from |
 
-**Edit branch** changes its name, city, code or colour. **Archive** (on the card's **⋯**) is possible once the branch has no people and no calling numbers; archived branches keep their history and can be restored.
+**Edit branch** changes name, city, code or colour. **Archive** (card **⋯**) works once the branch has no people or calling numbers. Archived branches keep their history and can be restored.
 
 ## Leads and branches
 
-A lead's branch is set, first match wins:
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[By hand or import] --> B[Number they called] --> C[Owner's branch]
+```
 
-1. By hand: on the lead, with **More → Move to branch**; for many leads at once from the Leads list; from a **Branch** column when you import; or through the API.
-2. From the number they called: a call to a branch's calling number creates the lead in that branch.
-3. From its owner: a lead with no branch takes its owner's branch when it is assigned. A new lead takes its owner's branch when the owner is a member of a branch. A manager's own leads do not.
+The first that applies sets a lead's branch:
 
-Assigning a lead to someone in another branch asks whether to move the lead too. Every move is in the lead's activity. The Leads and Calls lists have a **Branch** filter and column.
+1. **By hand**: **More → Move to branch** on the lead, in bulk from the Leads list, a **Branch** column on import, or the API.
+2. **The number they called**: a call to a branch's number creates the lead in that branch.
+3. **Its owner**: a lead with no branch takes its owner's branch. A manager's own leads do not.
+
+Assigning a lead to someone in another branch asks whether to move it too. Moves show in the lead's activity. Leads and Calls have a **Branch** filter and column.
 
 ## Who sees what
 
-Give a role **See their branch's leads** (Users → Roles) to let its people see the leads of the branches they manage: the branch's own leads and leads owned by its people, everywhere: lists, search, reports, exports, the assistant and the API. It sits between **See their team's leads** and **See all leads**.
+| Where | What it does |
+| --- | --- |
+| **Users → Roles** | Give a role **See their branch's leads**: the branch's own leads and leads owned by its people, in lists, search, reports, exports, the assistant and the API. It sits between **See their team's leads** and **See all leads** |
+| Branch switcher | Anyone who sees more than one branch gets it at the top of the menu: **All branches** or one |
 
-## Switch the whole app to one branch
-
-Anyone who can see more than one branch has a switcher at the top of the menu: **All branches**, or one branch. It narrows Leads, Customers, Opportunities, Calls, Inbox, Tasks, the dashboard and reports at once, and Marro remembers it for you. It only narrows what you see; it never shows anything you could not see already.
+The switcher narrows Leads, Customers, Opportunities, Calls, Inbox, Tasks, the dashboard and reports. It never shows more than you could already see.
 
 ## Compare branches
 
-**Reports → Branches** puts every branch side by side for the chosen period: leads in, contacted, converted, the conversion rate, calls answered and missed, and the typical first reply. It appears once you have two or more branches. Download it as CSV.
+**Reports → Branches** (with two or more branches) puts them side by side for a period. Download as CSV.
+
+| Measure |
+| --- |
+| Leads in |
+| Contacted |
+| Converted |
+| Conversion rate |
+| Calls answered and missed |
+| Typical first reply |
 
 ## Ask Marro
 
-**Ask Marro:** *"Make the Sales team part of the Hyderabad branch"*
+<Card title="Try asking" icon="message-circle">
+  *"Add a branch called Hyderabad and make Vikram Shetty its manager"*
 
-Marro does it in one step and opens the branch. The card then shows 1 team.
+  *"Make the Sales team part of the Hyderabad branch"*
+
+  Marro does it in one step and opens the branch.
+</Card>
 
 <Frame>
   <img src="/images/setup/ask-marro-branch.jpg" alt="Ask Marro adding the Sales team to the Hyderabad branch" />
 </Frame>
-
-Other things you can ask:
-
-- *"Add a branch called Hyderabad and make Vikram Shetty its manager"*
-- *"Create a team called Sales with Vikram Shetty as team lead and Priya Nambiar and Sneha Kulkarni as members"*

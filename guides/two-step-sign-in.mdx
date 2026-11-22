@@ -3,76 +3,89 @@ title: "Two-step sign-in"
 description: "Use an authenticator, passkeys and backup codes to protect your Marro account."
 ---
 
-Open **Sign-in security** in your account menu, or go to `/account/security`. These settings protect your personal Marro login across all your organizations. They are available after the sign-in security migration is installed.
+Open **Sign-in security** in your account menu (or go to `/account/security`). These settings protect your login across all your organizations.
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Password, WhatsApp code, Google or Microsoft] --> B[Second step] --> C[Signed in]
+```
 
 ## Set up an authenticator
 
 1. Verify your password or an existing sign-in method. Verification lasts five minutes.
-2. Choose **Set up authenticator**. Scan the QR code in your authenticator app, or enter the text secret manually.
-3. Enter the six-digit code to finish. Two-step sign-in is enabled only after this code is checked.
-4. Generate backup codes and save them somewhere separate from your sign-in device.
+2. Choose **Set up authenticator**. Scan the QR code in your app, or enter the text secret.
+3. Enter the six-digit code. Two-step sign-in turns on only after this code is checked.
+4. Generate backup codes and keep them away from your sign-in device.
 
-If you signed up with Google or Microsoft and have no password or existing factor, use **Forgot password** to set a password by email before enrolling. If you sign in through your company, choose **Continue with** and your company's connection to verify instead (see [Company sign-in](/guides/company-sign-in#confirm-its-you-with-your-company)).
+No password because you use Google or Microsoft? Use **Forgot password** first. If you sign in through your company, choose **Continue with** your company's connection to verify (see [Company sign-in](/guides/company-sign-in#confirm-its-you-with-your-company)).
 
-The setup secret is shown only during setup. Marro encrypts the stored secret. Never paste it, a sign-in code or a backup code into Ask Marro or WhatsApp.
+Never paste the setup secret, a sign-in code or a backup code into Ask Marro or WhatsApp.
 
 ## Use a passkey
 
-Give each passkey a name, such as **My phone**. Your browser asks your device to verify you with its fingerprint, face or PIN. Marro keeps the public credential, not your fingerprint, face, PIN or private key.
+1. Add a passkey and name it, such as **My phone**.
+2. Your browser asks your device to verify you by fingerprint, face or PIN.
 
-On the web a passkey is a second step, not a way to sign in on its own (the Marro app can also sign you in with just a passkey, see below): after your password, WhatsApp code, Google or Microsoft sign-in, Marro asks for it and your device verifies you. Passkeys must be configured for the address where you use them. A passkey registered on one address may not work on an organization's different custom domain; use an authenticator or backup code there.
+Marro keeps only the public credential. On the web a passkey is a second step, not a sign-in on its own. It works only on the address where it was registered, so on an organization's custom domain use an authenticator or backup code. The Marro app can also sign you in with just a passkey.
 
-## Signing in
+## Sign in
 
-If you have an authenticator or passkey, entering your password or WhatsApp code is the first step. On the web, enter your **Authenticator code**, or open **Try other methods** to switch to a passkey (if available) or backup code. Choose **Sign out** to leave verification. Google and Microsoft sign-in follow the same second-step rule. After company sign-in, Marro skips its own code when your company's identity provider reports it already asked for a second factor (see [Company sign-in](/guides/company-sign-in#two-step-sign-in-after-company-sign-in)).
+On the web, enter your **Authenticator code**, or open **Try other methods** for a passkey or backup code. Choose **Sign out** to leave.
 
-After the second step, you can choose **Trust this device for 30 days** on a private browser. This skips the second step on later sign-ins from that browser; you still need your password, WhatsApp code, Google or Microsoft sign-in. Platform administrators must verify a second step on every new sign-in and cannot use this exception.
+| Option | What it does |
+| --- | --- |
+| **Trust this device for 30 days** | Skips the second step on that private browser. You still need your first step |
+| Platform administrators | Must verify a second step every time |
+| After company sign-in | Marro skips its own code if your provider already asked for a second factor |
 
-The challenge expires after five minutes. Five unsuccessful checks end that sign-in attempt. Repeated attempts against one account are also limited. Start again if the challenge expires.
+The challenge expires after five minutes, and five wrong tries end it.
 
 ## Backup codes and lost devices
 
-There are ten backup codes in each set. Marro shows them once and keeps only their hashes. Each code works once. Regenerating a set invalidates every previous code.
+| | |
+| --- | --- |
+| Codes in a set | Ten, shown once. Each works once |
+| Regenerate | Invalidates every earlier code |
+| Lost everything | Use a backup code, or ask an organization administrator to reset you from **Settings → Sign-in security** |
 
-If you lose access to all your methods, use a backup code. Otherwise, ask an organization administrator you know to reset your two-step sign-in from **Settings → Sign-in security**. They must verify their own sign-in method first. A reset removes your factors, signs out all your browsers and mobile devices, revokes trusted devices and sends you an email.
-
-A platform administrator with the dedicated recovery permission can reset a recorded organization owner's two-step sign-in from the owner's profile in the platform console. Organization administrators cannot reset a platform administrator's account. Platform administrators should keep backup codes away from their primary device.
+A reset removes your factors, signs out every browser and phone, revokes trusted devices and emails you. Organization administrators can't reset a platform administrator.
 
 ## Review and remove access
 
-Your security page lists passkeys with their last use and trusted browsers with their expiry. Verify before removing methods, regenerating codes or revoking devices.
+Your security page lists passkeys (last used) and trusted browsers (expiry).
 
-- **Revoke** asks that browser for a second step at its next sign-in. Its existing session continues.
-- **Sign out other devices** ends every other web session and every mobile session, and revokes all trusted devices. The browser making the change stays signed in.
-- Changing your password invalidates trusted devices and signs out existing sessions through the password-change process.
-- Removing the last authenticator or passkey turns two-step sign-in off and invalidates remaining backup codes and trusted devices.
+- **Revoke** asks that browser for a second step next time.
+- **Sign out other devices** ends all other web and mobile sessions and trusted devices.
+- Changing your password signs out sessions and invalidates trusted devices.
+- Removing your last authenticator or passkey turns two-step off and invalidates backup codes.
 
-Enabling a factor does not sign out sessions that were already open. Use **Sign out other devices** if you want to end those sessions. Security changes are audited and factor changes, resets and backup-code regeneration generate an email notice.
+Security changes are audited and emailed to you.
 
 ## Require it for an organization
 
-An organization administrator can enable **Require two-step sign-in** under **Settings → Sign-in security**. The page lists which users have it set up, without showing their methods or secrets.
+An administrator turns on **Require two-step sign-in** under **Settings → Sign-in security**, and sees who has set it up (never their methods or secrets).
 
-The grace period is seven days from enabling the organization requirement. Users without a factor are sent to setup on their next web sign-in. After the deadline, they cannot open the CRM until they enrol. Users joining after that deadline must enrol before opening the CRM. Disabling the requirement does not remove anyone's factors.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Turn on] --> B[7-day grace period] --> C[No CRM without it]
+```
 
-Platform administrators have no grace period for console access. Their browser session must have completed a real second step; a remembered device or an older unverified CRM session does not grant console access. If the console asks you to sign in again, complete the fresh sign-in and verification to return to the console. A first administrator can sign in with their existing password and open their security page to enrol before entering the console.
+Turning it off doesn't remove anyone's factors. Platform administrators have no grace period for the console.
 
-## What this protects
+## What it protects
 
-An authenticator or passkey adds protection when someone obtains your password or a WhatsApp login code. A sign-in code goes to the account's WhatsApp, or to its email when WhatsApp is unavailable or you ask for email, so someone holding your unlocked phone or your email inbox may receive that first factor. Keep your authenticator, backup codes and trusted browsers secure too.
-
-This does not lock an already signed-in device, protect a compromised browser, add a challenge to every WhatsApp assistant message, or change API-key access. A phone's existing WhatsApp assistant access follows its own number-based checks. Ask Marro can point you to the security page; it cannot inspect or change factors, codes, passkeys, trusted devices or administrator recovery.
+It protects you when someone has your password or a WhatsApp code. Sign-in codes go to WhatsApp, or email if you ask. It doesn't lock an open device, protect a compromised browser, challenge every WhatsApp assistant message or change API-key access. Ask Marro can point you to the security page but can't see or change your factors.
 
 ## In the Marro app
 
-After your password or WhatsApp code, the app asks for the second step. If you work in several organizations, you choose the organization first.
+After your password or WhatsApp code, the app asks for the second step.
 
-- **Authenticator code**: type the six digits. The app signs you in on the sixth digit.
-- **Backup code**: tap **Use a backup code** and enter one of your codes (`xxxxx-xxxxx-xxxxx-xxxxx`). Each code works once.
-- **Passkey**: tap **Use a passkey** and confirm on your phone. You can also tap **Sign in with a passkey** on the first screen to skip the password or WhatsApp code; if you work in several organizations the app then asks which one. If the passkey is cancelled or does not work, the code options stay on the screen.
+| Method | How |
+| --- | --- |
+| **Authenticator code** | Type six digits; it signs you in on the sixth |
+| Backup code | **Use a backup code**, then enter it |
+| Passkey | **Use a passkey**. Or **Sign in with a passkey** on the first screen to skip the first step |
 
-A wrong code shows how many tries are left. The sign-in lasts five minutes and allows five tries; after that, or when you wait too long, the app takes you back to the first step with a message. After too many attempts on one account, wait 15 minutes. Passkeys on the phone need the latest version of the app.
-
-If your organization requires two-step sign-in and you have not set it up, the app tells you so and opens your security page in the browser. Setting up and managing methods stays on the web; the app never shows setup secrets or backup codes.
-
-Older versions of the app cannot complete a second step. They show a clear message and stay signed out; update Marro, or use the web.
+A wrong code shows the tries left. After five tries, wait 15 minutes. If your organization requires two-step and you haven't set it up, the app opens your security page in the browser. Setup stays on the web. Older app versions can't complete a second step: update Marro or use the web.

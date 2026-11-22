@@ -1,41 +1,62 @@
 ---
 title: "Price list and versions"
-description: "How Marro publishes prices, what stays fixed for a subscription you already have, and how the published price list is read."
+description: "How Marro publishes prices and what stays fixed for a subscription you already have."
 ---
 
-Marro sells from one published price list. The [pricing page](https://www.marro.si/pricing), the checkout in **Settings → Subscription** and the assistant all read it, so the price you see is the price you are offered.
+Marro sells from one published price list. The [pricing page](https://www.marro.si/pricing), checkout in **Settings → Subscription** and the assistant all read it, so the price you see is the price you are offered.
 
 ## Versions
 
-Each plan and each add-on has published terms: its monthly, quarterly and annual price in rupees, the users it includes, the price of each extra user (a month, or a year on annual billing), its modules, its automation and organization limits and the AI use it includes. A change to any of them is published as a new version. A published version never changes afterwards.
+Each plan and add-on has published terms: prices, included users, extra-user price, modules, limits and included AI. Any change is published as a new version, and a published version never changes.
 
-- **New subscriptions** are sold on the version on sale when you accept the reviewed price.
-- **Your subscription** keeps the version you bought, at every renewal, even after that plan stops being sold. The tax rate it was sold with is kept too.
-- **Moving to a newer version** is your choice: choose **Review new terms** (or **Review new add-on terms** for one add-on) in **Settings → Subscription**, compare, and approve. Nobody is moved automatically.
-- **Changing the number of users** keeps every term you bought. Only the billed users and the total change.
+| Who | Which version |
+| --- | --- |
+| New subscriptions | The one on sale when you accept the reviewed price |
+| Your subscription | The one you bought, at every renewal, with the tax rate it was sold with |
+| Moving to a newer version | Your choice: **Review new terms** (or **Review new add-on terms**) in **Settings → Subscription**, compare, approve |
 
-Usage is separate from the price list: AI beyond what your plan includes and AI calls are paid from the prepaid [message wallet](/guides/billing#message-wallet), and Meta bills WhatsApp messages to your own Meta account.
+Changing the number of users keeps every term you bought. Nobody is moved automatically.
+
+AI beyond your plan and AI calls are paid from the prepaid [message wallet](/guides/billing#message-wallet). Meta bills WhatsApp messages to your own Meta account.
 
 ## The reviewed price
 
-Before any payment, Marro prices your choice on the server and shows it for you to accept: the plan and its version, the period, users, each add-on, modules, limits, AI use, tax and total. Accepting starts payment on exactly those terms. The reviewed price lasts 15 minutes; if it expires, or a new price list is published in the meantime, refresh it and review again. Nothing is charged at a price you did not see.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Choose plan] --> B[Review price] --> C[Accept] --> D[Pay]
+```
+
+Marro shows the plan and version, period, users, add-ons, tax and total before any payment. The reviewed price lasts 15 minutes. If it expires or a new price list is published, review again. Nothing is charged at a price you did not see.
 
 ## When prices cannot be shown
 
-If no price list is published, or it cannot be read, the pricing page says **Pricing temporarily unavailable** instead of showing an older figure. Email hello@marro.si for current prices. The 14-day trial does not need a price list or a card.
+<Note>
+The pricing page says **Pricing temporarily unavailable** rather than show an older figure. Email hello@marro.si for current prices. The 14-day trial needs no price list or card.
+</Note>
 
-The pricing page and [marro.si/pricing.md](https://www.marro.si/pricing.md) reuse the price list for 5 minutes, then the next visit rebuilds them, so a publication usually shows within minutes but a quiet page can show an older version once. They never fall back to an older price list when it cannot be read. Checkout always prices from the published list.
+A new publication usually shows within minutes.
 
-## Reading the price list from code
+## For developers
 
-The published price list is public and needs no API key: `GET https://app.marro.si/api/public/billing-catalogue` (see the [API reference](/api-reference/public-billing-catalogue/get-published-billing-catalogue)). It returns only versions on sale now, with amounts as whole paise, a `generation` number that goes up with each publication. A limit of `null` means unlimited; `aiCreditsPaise: null` and `0` both mean the plan includes no AI credit. It is never cached, and answers `503` when it cannot be read. A running subscription keeps the tax it was sold with; the checkout review decides the tax and total for yours.
+<Card title="Published billing catalogue" icon="list" href="/api-reference/public-billing-catalogue/get-published-billing-catalogue">
+  Public, no key needed. Only versions on sale, amounts in whole paise, `null` limit means unlimited.
+</Card>
 
 ## For Marro platform administrators
 
-The price list is managed in the platform console under **Plans**, by people allowed to manage subscriptions.
+In the platform console, under **Plans**:
 
-1. Change a plan or add-on: it saves as a draft. **On sale** shows what is published, and the draft shows the fields you changed.
-2. Choose **Review and publish…**. The review shows each changed field, modules added or removed, and who keeps their terms. Tick **I have checked these prices and limits. New subscriptions will be sold on them.** and choose **Publish**.
-3. To stop selling a plan or an add-on, choose **Stop new sales…**. Existing subscriptions keep it and renew on it.
+<Steps>
+  <Step title="Change a plan or add-on">
+    It saves as a draft.
+  </Step>
+  <Step title="Review and publish">
+    Choose **Review and publish…**, check the changes, tick **I have checked these prices and limits. New subscriptions will be sold on them.** and choose **Publish**.
+  </Step>
+  <Step title="Stop selling">
+    Choose **Stop new sales…**. Existing subscriptions keep it.
+  </Step>
+</Steps>
 
-Publishing changes nothing for existing subscriptions and is never automatic. If someone else changes the price list while you are working, the page reloads and asks you to check it and try again. Publication history and earlier versions are read only.
+Publishing never changes existing subscriptions.

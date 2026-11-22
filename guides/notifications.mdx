@@ -3,62 +3,66 @@ title: "Notifications"
 description: "Choose which alerts your team gets by email, WhatsApp and push, and what happens after a missed call."
 ---
 
-An organization administrator opens **Settings → Notifications**. Anything switched off there stops for everyone in the organization. Each module's own settings page shows a one-line summary of its alerts with **Change**, which opens this page at that module.
-
-## Alerts by module
-
-Each area (Calls, Leads, Tasks and so on) is a table: one row per alert and a column for each channel, **In app**, **Push**, **Email** and **WhatsApp**. Tick a box to send that alert by that channel. A dash means the alert is never sent that way.
-
-- **Calls:** Missed call.
-- **Leads:** New lead assigned, Follow-up assigned, Follow-up due, Lead converted, New message from a lead, Portal activity.
-- **Tasks:** Task assigned, Task moved, Task completed, Mentioned in a comment.
-- **HR:** Approval needed, Request decided, Check-in reminder.
-- **Appointments:** Appointment booked or moved, Appointment starting.
-- **Automations:** Automation failed. When an automation fails, or finishes with a step that failed, an email goes to the person who made it (or your administrators if they are no longer active). It is sent at most once a day for each automation, and you can switch it off here.
-
-A channel that cannot send yet shows as an unticked, greyed box; point at it to see why. For example, WhatsApp shows "Waiting for WhatsApp to approve the message" until the message is approved. Existing organizations keep every alert they had; nothing is switched off for you.
+An organization administrator opens **Settings → Notifications**. Anything switched off there stops for everyone in the organization.
 
 <Frame>
   <img src="/images/setup/notifications.jpg" alt="Alerts by module with Push, WhatsApp and the missed call follow-up" />
 </Frame>
 
-1. **Push** column.
-2. **WhatsApp** column. A box that cannot be ticked says why when you point at it, for example while WhatsApp approves the message.
-3. **After a missed call: add a follow-up to call back**.
+## Alerts by module
 
-Columns appear only for channels an alert can use.
+Each area is a table: one row per alert, one column per channel (**In app**, **Push**, **Email**, **WhatsApp**). Tick a box to send that alert that way. A dash means it is never sent that way. A greyed box shows why when you point at it, for example while WhatsApp approves the message.
+
+| Area | Alerts |
+| --- | --- |
+| Calls | Missed call |
+| Leads | New lead assigned, Follow-up assigned, Follow-up due, Lead converted, New message from a lead, Portal activity |
+| Tasks | Task assigned, Task moved, Task completed, Mentioned in a comment |
+| HR | Approval needed, Request decided, Check-in reminder |
+| Appointments | Appointment booked or moved, Appointment starting |
+| Automations | Automation failed |
+
+When an automation fails, an email goes to the person who made it, at most once a day for each automation.
 
 ## Missed calls
 
-The **Calls** section also decides what a missed call sets off beyond its alerts:
+The **Calls** section also decides what a missed call sets off:
 
-- **Add a follow-up to call back:** after a missed call, one open follow-up per lead, however often they call. Choose when it is **Follow-up due**.
-- **AI follow-up to the caller:** lets your AI agents act on a missed call. When it is off, which is the default, they leave missed calls to your team. Automations set to **Missed calls only** still run.
-
-An AI agent with nothing it can send stays silent: it leaves no note, follow-up or suggestion about a message it cannot send.
+| Setting | What it does |
+| --- | --- |
+| **Add a follow-up to call back** | One open follow-up per lead, however often they call. Choose when it is **Follow-up due**. |
+| **AI follow-up to the caller** | Lets your AI agents act on a missed call. Off by default. Automations set to **Missed calls only** still run. |
 
 ## Ask Marro
-
-- **Ask Marro:** *"After a missed call, add a follow-up to call back"*
-- **Ask Marro:** *"Turn off email alerts for Lead converted for everyone"*
-
-These apply to the whole organization, and Marro says so.
 
 <Frame>
   <img src="/images/setup/ask-marro-notifications.jpg" alt="Ask Marro changing notification settings" />
 </Frame>
 
+<Card title="Try asking" icon="message-circle">
+  *"After a missed call, add a follow-up to call back"*
+
+  *"Turn off email alerts for Lead converted for everyone"*
+
+  Marro changes the setting for the whole organization, and says so.
+</Card>
+
 ## Messages sent
 
-**Settings → Messages sent** lists every WhatsApp message, SMS and email Marro sent for you. The **Status** column shows how far each one got:
+**Settings → Messages sent** lists every WhatsApp message, SMS and email Marro sent for you. Use the **Status** filter to find messages that failed or were not read.
 
-- **Sent:** handed to the provider.
-- **Delivered:** reached the person's phone or inbox.
-- **Read** (WhatsApp) or **Opened** (email): the person looked at it.
-- **Failed:** it did not arrive, with the reason when the provider gave one.
+| Status | Means |
+| --- | --- |
+| **Sent** | Handed to the provider |
+| **Delivered** | Reached the phone or inbox |
+| **Read** / **Opened** | The person looked at it (WhatsApp / email) |
+| **Failed** | It did not arrive, with the reason when known |
 
-Use the **Status** filter to find messages that were delivered but not read, or that failed. Open a message to see it as the person saw it, with ticks for sent, delivered and read, and a **Delivery** line in **Details** with the time of the latest update. SMS shows Sent or Failed only, because SMS carriers do not report delivery. An email opens only when the person's mail app loads images, so treat **Opened** as a minimum.
+SMS shows only Sent or Failed. An email shows **Opened** only if the person's mail app loads images, so treat it as a minimum.
 
 ## Not on this page
 
-Reminders your leads get before an appointment are set in **Appointments**. Sign-in, invitation and password emails, and steps you add to your own automations, always send.
+| Where | What |
+| --- | --- |
+| **Appointments** | Reminders leads get before an appointment |
+| Always sent | Sign-in, invitation and password emails, and steps in your own automations |

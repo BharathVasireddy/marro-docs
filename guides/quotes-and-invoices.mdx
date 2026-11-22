@@ -3,55 +3,79 @@ title: "Quotes and invoices"
 description: "Quote, invoice with your tax, get paid and see what each lead is worth, without leaving Marro."
 ---
 
+Make quotes and invoices, send them, get paid and track the money, all from **Finance**.
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Quote] --> B[Sent] --> C[Accepted] --> D[Invoice] --> E[Paid]
+```
+
 ## Set it up
 
-An administrator opens **Settings → Quotes and invoices** and fills in the business name, GSTIN, state, address, email and phone, how customers pay, the number prefixes, how long quotes stay valid and when invoices fall due, your terms, whether a paid invoice marks the lead converted, and reminders. Without a GSTIN, documents carry no GST. Outside India the tax follows your [regional settings](/guides/regional-settings): you enter your registration number (an ABN, a VAT number) instead of a GSTIN, and there is no state.
+An administrator opens **Settings → Quotes and invoices**.
 
-**Products and prices** holds what you sell: name, SKU or code, unit, price, GST rate (0, 5, 12, 18 or 28%) and HSN or SAC code. **Import CSV** adds many at once (name and price columns; sku, unit, gst, hsn and description optional; names that already exist are skipped).
+| Fill in | Notes |
+| --- | --- |
+| Business name, GSTIN, state, address, email, phone | Without a GSTIN, documents carry no GST. Outside India, tax follows your [regional settings](/guides/regional-settings) and you enter your registration number (ABN, VAT) |
+| Payment, number prefixes, quote validity, due dates, terms | Also whether a paid invoice marks the lead converted, and reminders |
+| **Products and prices** | Name, SKU, unit, price, GST rate (0, 5, 12, 18 or 28%), HSN or SAC. **Import CSV** adds many (name and price needed; existing names are skipped) |
+| **Document appearance** | **Modern**, **Classic** or **Compact**, a font, an accent colour and the logo from **Settings → Branding** |
 
-## Set the document appearance
+## Make a quote or invoice
 
-Under **Settings → Quotes and invoices → Document appearance**, choose **Modern**, **Classic** or **Compact**, a font and an accent colour. Use **Workspace logo** to include the logo from **Settings → Branding**. The invoice and quotation examples update as you make changes. Save to apply the defaults across the workspace, including when an existing document is opened or printed again.
+Open **Finance → Quotes → New quote** or **Finance → Invoices → New invoice**. A lead's **Finance** tab also has **Quote** and **Invoice**. A quote for a lead needs nothing else first: the lead is the customer.
 
-You can hide line numbers on every document. On quotations and invoices without tax, you can also hide quantity, unit price and line discounts. **Tax details on quotations** controls the line tax columns and the breakdown by rate. Tax still appears in the totals when it is charged. Tax invoices keep their tax details and quantities.
+<Steps>
+  <Step title="Add items">Choose **Add products and services**, search by name or SKU, tick items, then **Add selected**. **New item** adds one that is not in your list. **Add blank line** types one from scratch.</Step>
+  <Step title="Edit the lines">Change quantity, price and tax. **More details** on a line has the description, discount (*10%* or an amount), HSN/SAC and unit.</Step>
+  <Step title="Preview">Switch between **Edit** and **Preview**. The PDF uses the same A4 layout.</Step>
+  <Step title="Save or send">**Save draft** or **Save and send** (Ctrl or ⌘ + S, Ctrl or ⌘ + Enter). The footer shows the live total.</Step>
+</Steps>
 
-## Make a quote or an invoice
-
-Open **Finance → Quotes** and choose **New quote**, or **Finance → Invoices** and choose **New invoice**. From a lead, its **Finance** tab has **Quote** and **Invoice**; a customer's page has **New quote**, for the lead the customer came from. A quote for a lead needs nothing else first: the lead is the customer.
-
-- Choose **Add products and services**, search by name or SKU, tick the items you want, then choose **Add selected**. Items stay checked as you search, and the button shows the count. The list shows prices in the document’s currency. To add something new, choose **New item** beside the search field, enter its name and unit price, then **Select item**. The item appears checked in the same list. People who manage the catalogue can also choose **Also save to Products and prices**.
-- Edit quantity, unit price and applicable tax in the item table. Open **More details** on a line for its description, discount (*10%* or an amount), HSN/SAC and unit. To type a line from scratch, choose **Add blank line** below the items.
-- Switch between **Edit** and **Preview** without losing your draft. Use **Fit width** for the whole page or **Actual size** to read details. The preview and downloaded PDF use the same A4 layout, including continuation pages for long descriptions or terms.
-- Under India GST, tax is split into CGST and SGST inside your state, or IGST for another state, from the place of supply. Under one tax rate (Australia's GST, for example), each line is taxed or tax-free and the total shows the tax by its name.
-- New documents are in your organization's currency.
-- The footer shows the live total beside **Save draft** and **Save and send** (Ctrl or ⌘ + S to save, Ctrl or ⌘ + Enter to send).
-
-Numbers are given when a document is sent: quotes as *QT-0001*, invoices as *INV/2026-27/0001*, with a new invoice series each April.
-
-## Every quote in one list
-
-**Finance → Quotes** lists every quote, newest first. Search by number or customer, and filter by status: **All**, **Drafts**, **Accepted** or **Void**. Quotes made before quotes moved to Finance show **Customer quote** beside their title and open on their own page (see [Customer quotes and templates](/guides/customer-quotes)); where you have them, the filter also offers **Archived**, and **Templates** opens their templates.
+- Under India GST, tax is CGST and SGST inside your state, or IGST for another state. Under one tax rate (Australia's GST), each line is taxed or tax-free.
+- Numbers are given on sending: quotes *QT-0001*, invoices *INV/2026-27/0001*, a new series each April.
+- **Finance → Quotes** lists every quote. Search by number or customer and filter by **All**, **Drafts**, **Accepted** or **Void**.
 
 ## After it is sent
 
-From a sent document: **Send on WhatsApp** or email, **Copy link**, **Copy pay link**, **Record payment**, **Mark accepted** or **declined**, **Make invoice** from a quote, **Duplicate**, **Void** and **Download PDF**. Your customer's link lets them **Accept**, **Decline**, **Pay now** and download the PDF.
+| You can | Your customer's link can |
+| --- | --- |
+| **Send on WhatsApp** or email, **Copy link**, **Copy pay link** | **Accept** or **Decline** |
+| **Record payment**, **Mark accepted** or **declined** | **Pay now** |
+| **Make invoice**, **Duplicate**, **Void**, **Download PDF** | Download the PDF |
 
 A document is *draft*, *sent*, *accepted*, *declined*, *partly paid*, *paid*, *void*, *expired* or *overdue*.
 
 ## Getting paid
 
-Pay links use the payment account your organization connected (see [Payments](/guides/payments)). Record cash, UPI, bank transfer, card, cheque or other payments by hand. When an invoice is paid in full, the lead is marked converted (to the stage set for "When a lead pays", or your first converted stage).
+<Steps>
+  <Step title="Pay link">Uses the payment account you connected ([Payments](/guides/payments)).</Step>
+  <Step title="Record by hand">Cash, UPI, bank transfer, card, cheque or other.</Step>
+  <Step title="Paid in full">The lead is marked converted, to the stage set for "When a lead pays" or your first converted stage.</Step>
+</Steps>
 
 Reminders go before and after the due date by email, and on WhatsApp once your reminder template is approved.
 
-## On the lead and in reports
+## On the lead, in reports and automations
 
-A lead's **Finance** tab shows what was quoted, invoiced, paid and due, with its quotes and invoices; a customer shows the money of the lead it came from. **Finance → Revenue** shows revenue by month, source and person, and what is outstanding.
+| Where | What |
+| --- | --- |
+| Lead's **Finance** tab | Quoted, invoiced, paid and due |
+| **Finance → Revenue** | Revenue by month, source and person, and what is outstanding |
+| [Automations](/guides/automations) | Triggers: quote sent, opened, accepted, declined, expires; invoice sent, paid, overdue, due soon. Actions: create and send a quote or invoice, send a payment link |
 
-## Automations, permissions and the assistant
+## Permissions
 
-- Automations can start when **A quote is sent**, **opened**, **accepted**, **declined** or **expires**, when **An invoice is sent**, **paid**, **overdue** or **due soon**, and can **Create and send a quote**, **Create and send an invoice** (from the accepted quote, a saved quote or your price list) and **Send a payment link**. See [Automations](/guides/automations). Outbound webhooks can send any of these events.
-- A quote counts as opened the first time the customer opens its link; link previews in chat apps don't count.
-- The permission **Quotes and invoices** (Users → Roles) lets people create, send and record payments.
-- People who can **Create leads** can also quote the leads assigned to them: make a quote from the lead's **Finance** tab, send it, copy it, void it, and mark it accepted or declined. Invoices, payments and quotes for other people's leads stay with **Quotes and invoices**.
-- The assistant and the WhatsApp agent can draft quotes and invoices, record payments and send reminders, each with your approval and within the same permissions; voiding stays on the page. Ask it to quote a lead and it makes the draft in one step, with the lead as the customer and your business details and tax from your settings, then offers to send it on WhatsApp or by email; sending gives a draft its number first.
+- **Quotes and invoices** (Users → Roles) lets people create, send and record payments.
+- **Create leads** lets people quote the leads assigned to them. Invoices, payments and others' leads need **Quotes and invoices**.
+
+## Ask Marro
+
+<Card title="Try asking" icon="message-circle">
+  *"Quote Neha 10 hours of design at 2,000 an hour"*
+
+  *"Record a 5,000 UPI payment on invoice 12"*
+
+  Marro drafts the document, asks your approval and then offers to send it. Voiding stays on the page.
+</Card>

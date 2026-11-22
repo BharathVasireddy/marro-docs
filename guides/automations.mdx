@@ -3,195 +3,178 @@ title: "Automations"
 description: "Run steps on their own when something happens to a lead, or when the time comes."
 ---
 
-An automation starts when something happens to a lead, or when the time comes (every Monday at 9, three days before a renewal, when a follow-up is late), then runs its steps. Steps can wait, so one automation can follow a lead over days.
+An automation starts when something happens to a lead, or when the time comes, then runs its steps. Steps can wait, so one automation can follow a lead over days. Open **Automations** in the main menu.
 
-Open **Automations** in the main menu, then **New automation**, or start from a ready-made journey or a WhatsApp recipe. Each opens the builder filled in, to change and save.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Starts] --> B[Conditions]
+  B --> C[Steps]
+  C --> D[Wait for a reply]
+  D --> E[More steps]
+```
 
-### Ask Marro to build it
+## Start one
 
-At the top of **New automation**, tell Marro what should happen and when, for example: "When a lead comes from Facebook, call them with AI in 5 minutes. If they don't answer, send the welcome WhatsApp and remind their owner tomorrow at 11." Choose **Ask Marro**: the assistant builds it from your own stages, people and templates, asks about anything it needs, and shows you the steps before saving them. **Just draft it** skips the conversation and opens the draft in the builder, switched off, for you to check and switch on. Either way it uses your [AI credits](/guides/ai-usage) like an assistant message.
+<Steps>
+  <Step title="Choose a starting point">
+    **New automation**, a ready-made journey, or a WhatsApp recipe. Each opens the builder filled in.
+  </Step>
+  <Step title="Check and test">
+    Change what you need, then use **Try on a lead**.
+  </Step>
+  <Step title="Switch on">
+    Switch it on in the builder or in its row on the **Automations** page.
+  </Step>
+</Steps>
 
-From [Ask Marro in the web app](/guides/assistant#build-and-open-an-automation), ask it to build a new automation directly. It saves it switched off and opens the editor unless you have unsaved changes or moved to another page.
+The builder shows steps on the canvas and as a list. Both are the same automation. On a phone you see the steps.
 
-On a saved automation, **Change it with Marro** under its steps does the same for a change ("also send a WhatsApp if they don't reply in two days"), and **Explain it** has Marro say what it does, step by step. Marro shows the change before saving it, and if something can't be done it says what is missing instead of building something else. You can also ask the assistant on WhatsApp.
+<Card title="Try asking" icon="message-circle">
+  *"When a lead comes from Facebook, call them with AI in 5 minutes. If they don't answer, send the welcome WhatsApp and remind their owner tomorrow at 11"*
 
-### Ready to use
+  Choose **Ask Marro** and it builds the steps from your own stages, people and templates, and shows them before saving. **Just draft it** opens the draft, switched off. On a saved automation, **Change it with Marro** edits it and **Explain it** describes it. It uses your [AI credits](/guides/ai-usage).
+</Card>
 
-**Ready to use** lists automations made for your industry (education, clinics, property, services, insurance, finance, automotive, travel, fitness, beauty) and for every business: an appointment reminder the day before, a renewal reminder a month ahead, birthday wishes, an invoice and payment link when a quote is accepted, a nudge when a follow-up is late. Choose one, answer what only you know (which WhatsApp template, which person or team, which date field) and choose **Add automation**. It is added switched off and opens in the builder, to check, test and switch on.
-
-Below it are **ideas for your industry**: full journeys teams actually run, such as taking a student from enquiry to a counselling session, collecting application documents, or reaching every new lead within 5 minutes. Each shows its steps; choose one and Marro builds it for you. **Ready-made** starts open the builder already filled in.
-
-The builder shows every automation two ways, on the canvas and as a list of steps. Both are the same automation: change it in one and the other shows it. On a phone, the builder shows the steps.
+**Ready to use** lists automations for your industry and every business: a reminder the day before an appointment, a renewal reminder, birthday wishes, an invoice and payment link when a quote is accepted, a nudge when a follow-up is late. Answer what only you know and choose **Add automation**. It is added switched off.
 
 ## When it starts
 
-- A lead is created, is updated, or its stage changes
-- A lead is assigned or reassigned
-- A call is logged (every call, missed calls only, or answered calls only), or a note is added
-- A follow-up is created on a lead, or a follow-up on a lead is done
-- A lead sends a message: on WhatsApp, Instagram, Messenger, the website chat, by SMS or by email (choose which)
-- A quote is sent, opened, accepted, declined or expires; an invoice is sent, paid or overdue
-- An opportunity is created, won or lost
-- A web form is submitted
-- A lead visits a page on your website ([Website tracking](/guides/website-tracking)): the page's address contains or is a text you choose
-- A payment is received
-- An appointment is booked, or is completed or a no-show
-- A lead becomes Hot, Warm or Cold
-- An AI call ends (every call, answered calls only, or calls they did not answer)
-- A call is analysed, a few minutes after a recorded call ends: AI calls, Cloud calls and Bridge calls, incoming, outgoing or both, any outcome or only some (interested, wants a callback, not interested…). See [After a call](#after-a-call)
-- An AI call is analysed, a few minutes after an answered call (any outcome, or only some: interested, wants a callback, not interested…)
-- An opportunity's stage changes (any stage, or only some), for the lead it came from
-- A custom object record is added, changes, or its stage changes, for each lead it links to: see [Custom objects](/guides/custom-objects#automations)
-- Another automation uses it
-- When the time comes: see [On a schedule or a date](#on-a-schedule-or-a-date)
+| Kind | Examples |
+| --- | --- |
+| Lead | Created, updated, stage changes, assigned, becomes Hot, Warm or Cold |
+| Activity | A call is logged, a note is added, a follow-up is created or done |
+| Messages | A lead sends a message on WhatsApp, Instagram, Messenger, website chat, SMS or email |
+| Money | A quote is sent, opened, accepted, declined or expires; an invoice is sent, paid or overdue; a payment is received |
+| Other records | An opportunity is created, won, lost or changes stage; a custom object record changes ([Custom objects](/guides/custom-objects#automations)) |
+| Web | A web form is submitted; a lead visits a page ([Website tracking](/guides/website-tracking)) |
+| Appointments | Booked, or completed or a no-show |
+| Calls | An AI call ends or is analysed; a call is analysed (see [After a call](#after-a-call)) |
+| Another automation | Uses it |
 
-Add conditions to narrow it down: stage, pipeline, branch, tags, priority, days since last contact, the outcome of the lead's last AI call, the message's text, whether it was sent outside working hours, and more.
+Add conditions to narrow it: stage, pipeline, branch, tags, priority, days since last contact, message text, outside working hours and more.
 
-## On a schedule or a date
+### On a schedule or a date
 
-- **On a schedule**: every day, on chosen weekdays, or once a month, at a time on your organization's clock. It runs for every lead that meets its conditions, so add one (for example, Hot leads with no open follow-up).
-- **A date on the lead comes round**: a number of days before, on, or after a date field such as a renewal, a due date or a date of birth, at a time you choose. Turn on **Every year** for birthdays and anniversaries.
-- **A follow-up is overdue**: an open follow-up passes its due time (or a number of hours after).
-- **A lead has had no contact for a while**: nobody has called, messaged, emailed or met the lead for the days you choose.
-- **An appointment is coming up**: a set time before a booked appointment.
-- **An invoice is due soon**: a number of days before an unpaid invoice's due date.
+| Start | Runs |
+| --- | --- |
+| On a schedule | Every day, on chosen weekdays or monthly, for every lead that meets its conditions |
+| A date on the lead comes round | Days before, on or after a date field. **Every year** for birthdays |
+| A follow-up is overdue | When it passes its due time, or hours after |
+| No contact for a while | Nobody has called, messaged, emailed or met the lead for the days you choose |
+| An appointment is coming up | A set time before it |
+| An invoice is due soon | Days before an unpaid invoice's due date |
 
-Each runs once for each lead each time it comes round, from when you switch it on. Marro checks every five minutes, so it can start up to five minutes late. To reach leads already in that state (already quiet, already Hot), use [Run for leads already here](#leads-already-here).
+Each runs once per lead each time it comes round, from when you switch it on, and can start up to five minutes late. Use [Run for leads already here](#leads-already-here) for leads already in that state.
 
 ## What it does
 
-- **Update fields**, **Change stage**, **Move to another pipeline**, **Assign**
-- **Add a note**, **Create a follow-up**, **Tag the lead**, **Take tags off the lead**
-- **Send a WhatsApp template to the lead**, **Send a WhatsApp reply**, **Send an SMS to the lead**, **Send an email to the lead**
-- **Send a booking link**, **Send the portal link**
-- **Notify someone**: choose the lead owner, named people, **Teams**, **Roles** (everyone active with that role) and the lead's branch (its managers, or everyone in it). Anyone chosen hears once, however many ways they match.
-- **Create record**, **Create opportunity**, **Move the lead's opportunities**, **Set the lead's stage from the opportunity** and **Link records**: see [Customers and records](#customers-and-records)
-- **Add a custom object record** and **Change the lead's custom object records**: see [Custom objects](/guides/custom-objects#automations)
-- **Call with AI** (with [AI calling](/guides/ai-calling)): see [Call with AI](#call-with-ai)
-- **Set the stage from the call** and **Book what was agreed on the call** (with Marro AI): see [After a call](#after-a-call)
-- **Agent decides** (with Marro AI): the agent reads the lead and takes the next step itself: notes, follow-ups and fields straight away; messages, stage changes and new owners follow its [agent permissions](/guides/agents#choose-what-they-may-do). Its ways on can split into **Acted** and **Did nothing**, for example to tell the owner when it did nothing. Automations that used **Hand to the assistant** now show this step and keep working.
-- **Add a row to a Google Sheet** (once a [Google Sheet](/guides/integrations#google-sheets) is connected): pick the sheet and a tab, then choose which lead field goes in each column (name, phone, email, stage, owner, source, created date, custom fields). With **Update the lead's row if it is already there**, the lead's row is found by its Marro ID, or else by phone or email, and updated instead of adding another.
-- **Add the lead to a list** and **Take the lead off a list**: fixed lists only. If the list is synced with a Google Sheet, the lead's row appears there straight away, or is marked as no longer in the list.
-- **Stop WhatsApp messages to the lead**, **Archive the lead**
-- **Create and send a quote**, **Create and send an invoice**, **Send a payment link**: a quote or invoice from a saved quote or your price list (prices always come from there), sent on WhatsApp or by email; the payment link needs a payment account in **Settings**. See [Quotes and invoices](/guides/quotes-and-invoices).
-- **Reply on the same channel** (Instagram, Messenger, the website chat), **Send an email template**, **Take the lead out of an email sequence**
-- **Book an appointment** with the lead owner or someone you choose, **Move to a branch**
-- **Notify someone** by email, WhatsApp or a mobile app notice, to the lead owner, people, teams, roles or the lead's branch; **Create a follow-up** can go to the next person in a team
-- **Send to a web address**: posts the lead and what started the automation (the quote, the call, the form…) to a public `https` address. Each request has an `X-CRM-Signature` header: `sha256=` and the HMAC-SHA256 of the body, keyed with the signing secret shown in the step.
-- **Call an API**: sends a request to a public `https` address and keeps its answer, so later steps can use it as `{{response.<name>.<field>}}`.
+<CardGroup cols={2}>
+  <Card title="Change the lead" icon="pen">**Update fields**, **Change stage**, **Move to another pipeline**, **Assign**, **Tag the lead**, **Archive the lead**</Card>
+  <Card title="Keep track" icon="list-check">**Add a note**, **Create a follow-up** (due after a time, or **At a time of day**)</Card>
+  <Card title="Message" icon="message">WhatsApp template or reply, SMS, email, email template, **Reply on the same channel**, **Send a booking link**, **Send the portal link**</Card>
+  <Card title="Tell your team" icon="bell">**Notify someone**: owner, people, **Teams**, **Roles** or the lead's branch. Anyone chosen hears once.</Card>
+  <Card title="Money" icon="receipt">**Create and send a quote**, **Create and send an invoice**, **Send a payment link**. Prices come from your price list. See [Quotes and invoices](/guides/quotes-and-invoices).</Card>
+  <Card title="Calls and AI" icon="phone">**Call with AI**, **Set the stage from the call**, **Book what was agreed on the call**, **Agent decides**</Card>
+  <Card title="Records" icon="link">**Create record**, **Create opportunity**, **Move the lead's opportunities**, **Link records**, custom object steps</Card>
+  <Card title="Connect out" icon="plug">**Add a row to a Google Sheet**, **Add the lead to a list**, **Send to a web address**, **Call an API**</Card>
+</CardGroup>
 
-**Create a follow-up** is due after a length of time, or **At a time of day**: so many days from today at a time in your organization's time zone, for example 10:00 on the next working day with **Only on a working day** on.
-
-An email (**Send an email to the lead** or **Send an email template**) can name the automation's invoice or quote: `{{invoice.number}}`, `{{invoice.total}}`, `{{invoice.paid}}`, `{{invoice.due}}`, `{{invoice.link}}`, `{{quote.number}}`, `{{quote.total}}` and `{{quote.link}}`. It is the invoice or quote an earlier step made, the one paid or accepted while the automation waited for it, the one that started it, or else the lead's latest. The link opens the invoice or quote as it is now, so **Wait for a reply or a change** (an invoice is paid) followed by an email with `{{invoice.paid}}` and `{{invoice.link}}` is a receipt. An email that names an invoice the lead does not have is not sent. Files cannot be attached to automation emails yet.
-
-An automation that starts when a lead sends in a form can name that form in any step's words, with `{{form.name}}` (the form's name in Marro) and `{{form.title}}` (the title people see). Choose them from **Insert field** in the builder.
+- **Agent decides** reads the lead and takes the next step within your [agent permissions](/guides/agents#choose-what-they-may-do). Its ways on are **Acted** and **Did nothing**.
+- **Send to a web address** signs each request with an `X-CRM-Signature` header. **Call an API** keeps the answer for later steps.
+- Emails can name an invoice or quote (for example `{{invoice.link}}`, `{{quote.total}}`): choose from **Insert field**.
 
 ## Customers and records
 
-Two steps connect a lead to the rest of your records:
+| Step | What it does |
+| --- | --- |
+| **Create record** | Makes a company, contact or opportunity. Later steps can use it. Run twice, it makes it once. |
+| **Create opportunity** | **The lead's opening opportunity** (reused if it exists) or **A new one each time**. **Skip when one is already open** avoids duplicates. Does nothing if Opportunities are off or the lead has no phone or email. |
+| **Link records** | Points one record at another through a link field. The field must already exist. Never links twice. |
+| **Move the lead's opportunities** | Moves them to one stage, or the stage you match to the lead's stage |
+| **Set the lead's stage from the opportunity** | The reverse, from **An opportunity's stage changes** |
 
-- **Create record** makes a company, a contact or an opportunity. For an opportunity, choose its pipeline and stage, or leave it to start in the default pipeline for opportunities. Run twice, it makes the record once. A later step can use the record an earlier **Create record** step made: for example, create a company, create a contact, create an opportunity for that contact, then link them.
-- **Create opportunity** has two choices:
-  - **The lead's opening opportunity**: makes the lead's customer and its one opening opportunity, and reuses them if they already exist.
-  - **A new one each time**: makes another opportunity for the lead whenever the automation runs, for example for a second application. Its contact is the one matching the lead's email or phone, or a new one made from the lead. Turn on **Skip when one is already open** so a lead that comes back to the stage doesn't get a second one.
-
-  Choose the currency, and if you like, the pipeline and stage, a value and a name. Without a pipeline, it starts in the default pipeline for opportunities. An opening opportunity whose lead is in a pipeline that also takes opportunities starts at the lead's own stage. It does nothing when Opportunities are switched off, or when the lead has no phone number or email. The lead itself is not changed, and nothing is sent.
-- **Link records** points one record at another through a link field, for example putting the customer into a "Referred by" field on the lead. Choose what to link from (this lead, its customer, or its opening opportunity), the link field, what to link to, and whether to add it, replace what is there, or take it out. The field has to exist already, and it must allow that kind of record.
-
-A customer or opportunity has to exist before **Link records** can use it, so put **Create opportunity** earlier in the automation. Running a step twice never links the same record twice.
-
-You can ask Marro to build this for you: "When a lead reaches Qualified, create the opportunity in rupees and link it to the lead's company field."
-
-### Keep leads and opportunities in step
-
-- **Move the lead's opportunities** moves the lead's opportunities in a pipeline to one stage, or to the stage you match to the lead's current stage. For example: Interested goes to Applied, and Enrolled goes to Admitted. Choose all of the lead's opportunities in that pipeline, or only its opening one. Use it with **A lead's stage changes**.
-- **Set the lead's stage from the opportunity** moves the lead to the stage you match to its opportunity's stage. Use it with **An opportunity's stage changes**.
-
-A stage you don't match leaves things as they are. Moves made by automations never start other automations, so syncing both ways can't go round in circles. An opportunity reaches its lead's automations only when it came from that lead: its opening opportunity, one made by an automation, or one created from the lead.
+Moves made by automations never start other automations, so syncing both ways can't loop.
 
 ## Journeys
 
-Steps that pause make an automation a journey:
+Steps that pause make an automation a journey.
 
-- **Wait**: a length of time, or until a time of day, optionally on a working day. In an automation that starts from an appointment (**An appointment is booked** or **An appointment is coming up**), also **Until before the appointment**, so a reminder a day before and another an hour before live in one automation. If that time has already come it carries on at once; if the appointment is moved, the wait follows it; if it is cancelled, the automation stops for that lead.
-- **Wait for a reply or a change**: the lead replies on WhatsApp, by email or on any channel, changes stage, a follow-up is done, a field changes, or a call with the lead is logged (answered calls unless you choose otherwise, optionally with a call outcome). It has two ways on: if it happens, and if it doesn't happen in time.
-- **If… otherwise…** sends each lead down the first way whose condition it matches.
-- **Use another automation** runs a reusable automation for the same lead, then carries on.
-- **Call with AI** waits for its call to end. It has two ways on: **Answered** and **Not answered**.
+| Step | What it does |
+| --- | --- |
+| **Wait** | A time, or until a time of day. In appointment automations, **Until before the appointment** follows moves and stops on cancel. |
+| **Wait for a reply or a change** | A reply, stage change, follow-up done, field change or call logged. Two ways on: it happens, or not in time. |
+| **If… otherwise…** | Sends each lead down the first way whose condition it matches |
+| **Use another automation** | Runs a reusable one, then carries on |
 
-The **Automations** page shows how many are on, how many leads are waiting inside a journey, and how many runs failed, then every automation in a table. Pick dates to count runs and failures for that period (the last 7 days unless you choose), search by name, filter by type or status, and sort by any column. Switch an automation on or off in its row.
+Each automation is labelled **Instant**, **Journey** or **Reusable**. The **Automations** page shows how many are on, how many leads are waiting and how many runs failed. Filter, search and sort the table.
 
-Each automation is labelled **Instant**, **Journey** or **Reusable**.
-
-### Stop when the lead replies
-
-Under **Starts**, a journey can **Stop when the lead replies**: a lead waiting in it leaves as soon as they reply on WhatsApp, by email, by SMS or on another inbox channel. A **Wait for a reply or a change** that waits for that reply still goes its **If they reply** way.
-
-For example, a missed call: **When a call is logged** (missed calls only), send a WhatsApp, create a callback follow-up, then **Wait for a reply or a change** (a call with the lead is logged, answered calls only) for a day. When they are called back and the call connects, the journey ends.
+Under **Starts**, **Stop when the lead replies** removes a waiting lead as soon as they reply.
 
 ## Call with AI
 
-**Call with AI** has the AI voice agent call the lead's phone, then waits for the call to end and goes on one of two ways:
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Call with AI] --> B{Answered?}
+  B -->|Yes| C[Agent decides or next step]
+  B -->|No| D[Send WhatsApp]
+```
 
-- **Answered**: the lead picked up, and the call lasted 10 seconds or more with words spoken.
-- **Not answered**: the call rang out, was cut short, was not placed (for example, calling is off or the number is not an Indian +91 number), or had not ended after 2 hours.
+- **Answered**: picked up, 10 seconds or more with words spoken.
+- **Not answered**: rang out, cut short, not placed (calling off, or not a +91 number), or not ended after 2 hours.
 
-Finish the sentence **Call them with AI…** (for example, "to confirm the course they asked about"); the agent opens with it. A new card already says "to welcome them and find out what they are looking for", so it works as soon as you add it. Under **More options**, add **Anything else for this call**, or switch off **Only call in working hours**. With it on (the default), a lead who arrives outside the hours, days off and holidays set in **Settings → HR** is called at the start of the next working day.
-
-The call is paid like any other AI call and appears on the lead's timeline and in **Calls**, where its details say "Started by an automation: &lt;name&gt;". Automations that start from an AI call can't make another AI call, so calls never follow calls.
-
-To go on by how the call went, add **If… otherwise…** after it with the condition **Last AI call outcome**, or start a separate automation from **An AI call is analysed**. The ready-made journey **New lead: AI call in 5 minutes, WhatsApp if no answer** sets this up: it calls each new lead after 5 minutes, lets **Agent decides** take the next step when they answer, and sends a WhatsApp template when they don't.
+Finish the sentence **Call them with AI…**. Under **More options**, add **Anything else for this call**, or switch off **Only call in working hours**. With it on (default), a lead who arrives outside **Settings → HR** hours is called next working day. The call is paid like any AI call and shows in **Calls**. Calls never start more AI calls. Try the ready-made **New lead: AI call in 5 minutes, WhatsApp if no answer**.
 
 ## After a call
 
-Each recorded call is read by itself a few minutes after it ends, while **Call reviewer** is on in [AI → Agents](/guides/agents). That covers AI calls, [Cloud calls](/guides/cloud-calls) and Bridge calls through a calling service you connected. Its transcript appears on the call like a transcript you asked for. The reading counts as AI use, paid from your plan's AI credit, then your wallet.
+While **Call reviewer** is on in [AI → Agents](/guides/agents), each recorded call (AI, [Cloud](/guides/cloud-calls) and Bridge) is read a few minutes after it ends, using your AI credit. Start from **A call is analysed**, choose the calls and outcomes, then use:
 
-Start an automation from **A call is analysed** to act on it. Choose which calls (**AI call**, **Cloud call**, **Bridge call**, or every call), incoming, outgoing or both, and which outcomes. Two steps work only in these automations:
+| Step | What it does |
+| --- | --- |
+| **Set the stage from the call** | Moves the lead to one of the stages you allow, only when the call clearly fits. The reason is noted, with **Put back** to undo. If unclear, the owner gets a follow-up. |
+| **Book what was agreed on the call** | Books the day and time both sides agreed, with the lead owner, up to 90 days ahead. If unclear, the owner gets a follow-up. |
 
-- **Set the stage from the call**: choose the stages the AI may move the lead to. It moves the lead only when what was said clearly fits one of them. The reason and the words from the call are noted on the lead, with a **Put back** button that returns the lead to its earlier stage. When the call is not clear, the lead stays where it is and its owner gets a follow-up to check the call.
-- **Book what was agreed on the call**: when both sides agreed a day and time, it books the appointment with the lead owner, in your organization's time zone, up to 90 days ahead. When no time was clearly agreed, the owner gets a follow-up to fix one.
+Ways on: **Moved** or **Booked**, and **Not clear**. A call with no recording can't be read. Ready-made starts: **Move the lead after every call**, **Book the appointment agreed on a call**, **Missed call: send a WhatsApp**, **Close leads that say they are not interested**.
 
-To update only new enquiries, add a **Stage** condition for **New enquiry** and use only **Set the stage from the call**. An existing booking or a slot both sides accepted can justify **Appointment booked**. Sending a confirmation message later does not make an agreed slot pending. A proposed time, a slot still being checked, or a promise to call back is **Follow-up needed**. Add **Decision guidance** to explain how your team uses these stages. If there is no clear next step, the stage stays as it is. The stage step does not create an appointment.
+## WhatsApp alerts to staff
 
-Each step goes on one of two ways: **Moved** or **Booked**, and **Not clear**. Switch off the follow-up in the step if you don't want it.
+Add **Notify someone**, set **How** to **WhatsApp**, then choose a **WhatsApp sender**.
 
-Ready-made automations to start from:
+| Sender | Use |
+| --- | --- |
+| **Marro** | Ready alerts: **Lead stage changed**, **Missed call**, **New lead assigned**, **Follow-up due**, **New task assigned**, **Lead converted** |
+| **Your WhatsApp number** | An approved utility template. Turn on **Send staff alerts from this number** under **Inbox → Settings** |
 
-- **Move the lead after every call**: choose the stages, and every call moves the lead on.
-- **Book the appointment agreed on a call**: books the time agreed on calls where the lead is interested or wants a callback.
-- **Missed call: send a WhatsApp**: sends a template when nobody answers a lead's call. The owner already gets a missed-call alert; add **Create a follow-up** if you also want a task.
-- **Close leads that say they are not interested**: moves them to the stage you choose, with a note.
-
-A call with no recording can't be read. Automations that start from a call can't make an AI call.
-
-## Send WhatsApp alerts to staff
-
-1. In the automation, add **Notify someone**. Choose **Chosen people** and select the admin, or choose the lead owner, a team or a role. Each recipient needs their own WhatsApp number in their staff profile.
-2. Under **How**, choose **WhatsApp**. Under **WhatsApp sender**, choose **Marro** or **Your WhatsApp number**. Marro alerts are only for staff, even if your business has no number connected. A template sent to a lead or customer always uses the business's own number and separate messaging step.
-3. With **Marro**, choose the alert: **Lead stage changed**, **Missed call**, **New lead assigned**, **Follow-up due**, **New task assigned** or **Lead converted**. Each shows one line saying when it sends, and sends only after that kind of event happened in the run (for example **New task assigned** after a **Create a follow-up** step). The alert includes fixed fields from the event. You don't need to write a template or connect a number. Each Marro template must be approved before it can send.
-4. With **Your WhatsApp number**, enable **Send staff alerts from this number** on your default number under **Inbox → Settings**. Create an approved utility template in **Inbox → Templates**, then choose its language and fill its values with **Insert field**, such as **Stage name**. Use only the lead details the staff member needs.
-5. For a stage set by the call automation, add the alert on the **Moved** path. To use different business templates by stage, add **If… otherwise…** there, check the resulting **Stage**, and add a **Notify someone** step for each result. For staff moves outside the call workflow, use **A lead's stage changes** and select the destination stage.
-6. For missed calls, use a separate automation starting with **A call is logged**, filtered to **Missed calls only**, then **Notify someone**. A new caller starts in the pipeline's entry stage. Leave out **Change stage** to keep the stage of existing leads. **Settings → Notifications** also has a separate built-in missed-call alert for the lead owner; leave it off for that channel if it would duplicate your alert.
-
-Check the automation's **Runs** and **Settings → Logs → Messages sent** for the send result. If the connection does not confirm acceptance, check the result before sending again.
-
+Each person needs a WhatsApp number in their staff profile. **Settings → Notifications** also has a built-in missed-call alert: switch one off to avoid duplicates.
 
 ## If a step fails
 
-Any step that does something can have an **If it fails** way on, and **Try again up to** 3 times first. **Call an API** and **Send to a web address** try again after 1 minute, then 10 minutes, then an hour, as the other system may be down for a while; the lead waits at that step meanwhile. Other steps try again a few seconds apart. A step that fails with an **If it fails** way carries on along it (for example, tell the owner) instead of stopping the whole automation. The run history says which step failed and why. Each run shows how it really went: **Done**, **Done with a failed step**, **Skipped a step** (with the step and the reason, such as no phone number or the lead opted out), **Failed** or **Waiting**. A step that had nothing to change, such as moving a lead to the stage it is already in, reads **No change needed** and is not counted as skipped. The **Failed** count on the Automations page includes runs that finished with a failed step, and an email tells the person who made the automation when one fails (see [Notifications](/guides/notifications)). **Run again** on a finished run runs the automation again, as it is now, for the same lead.
+Any step that does something can have an **If it fails** way on and **Try again up to** 3 times. **Call an API** and **Send to a web address** retry after 1 minute, 10 minutes, then an hour.
+
+| Run result | Means |
+| --- | --- |
+| **Done** / **Done with a failed step** | Finished, with or without a failure |
+| **Skipped a step** | With the reason, such as no phone number or opted out |
+| **Failed** / **Waiting** | Stopped, or paused in a journey |
+| **No change needed** | Nothing to change; not counted as skipped |
+
+An email goes to the person who made the automation when one fails (see [Notifications](/guides/notifications)). **Run again** repeats a finished run for the same lead. If an email step's outcome can't be confirmed, Marro marks it uncertain and never resends it automatically: check the mailbox first.
 
 ## Test it
 
-Press **Try on a lead** in the builder and choose a lead. **Test on this lead** shows what each step would do for that lead, which it would skip and why, and where it would wait. Nothing is sent or changed, and it tests what is in the builder now, unsaved changes included. **Run for real** runs the saved automation on that lead, so its steps really happen. Marro can test an automation for you too.
+| Button | What happens |
+| --- | --- |
+| **Try on a lead** then **Test on this lead** | Shows what each step would do, skip and wait on. Nothing is sent or changed, and unsaved changes are included |
+| **Run for real** | Runs the saved automation on that lead |
 
 ### Leads already here
 
-An automation only runs for what happens from now on. For one that starts from the lead as it is (a stage, an owner, no contact, a schedule, a new lead), switch it on and press **Run for leads already here** to run it for leads already in that state. It runs for up to 500 leads at a time that it has never run for, oldest first. Press it again for the next ones. Its conditions and limits still apply, and its steps really happen. You can also ask Marro to do it.
+An automation only runs for what happens from now on.
 
-To run one for particular leads, select them on the **Leads** page and choose **Bulk actions → Run an automation** (for people who manage settings, up to 500 at a time). The same rules apply: leads it already ran for, leads not in the state that starts it (its stage, owner or band) and leads outside its conditions are left out, and you see how many it started for.
+<Steps>
+  <Step title="Press Run for leads already here">Runs it for up to 500 leads at a time that it has never run for, oldest first.</Step>
+  <Step title="Or select leads">On **Leads**, choose **Bulk actions → Run an automation** (settings managers, up to 500).</Step>
+</Steps>
 
-The number of automations you can have depends on your plan. See **Settings → Subscription**.
-
-## Interrupted email sends
-
-If an email step starts but its outcome cannot be confirmed after an interruption, Marro marks it uncertain and does not automatically send it again. Check the mailbox before deciding whether to send a new message.
+Its conditions apply and its steps really happen. The number of automations depends on your plan: see **Settings → Subscription**.

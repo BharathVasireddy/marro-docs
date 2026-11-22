@@ -3,24 +3,19 @@ title: "Forms"
 description: "Build a lead form, choose how it looks, publish it and share it."
 ---
 
-Open **Settings → Channels → Forms**. Every form is a row with its status (**Live**, **Paused** or **Draft**), how many
-responses it has had, the lead source its new leads get, and when it was created and last changed. Search by name and
-filter by status or lead source. Tick several forms to publish, pause or delete them together; a form that has
-responses is kept with its results, so pause it instead.
+Open **Settings → Channels → Forms**. Each form is a row with its status (**Live**, **Paused** or **Draft**), responses, lead source and dates. Search by name, filter by status or source, or tick several forms to publish, pause or delete together.
 
-A form takes responses only while it is **Live**. Pausing one form closes its link; the others are not affected.
+A form takes responses only while it is **Live**. A form with responses is kept with its results, so pause it instead of deleting.
 
 ## Make a form
 
-Choose **New form** and start from a template (an enquiry form, a detailed request in steps, a document upload, or an
-industry starter) or a blank form. Every form starts as a draft that only your team can see.
+Choose **New form** and start from a template (an enquiry form, a detailed request in steps, a document upload, or an industry starter) or a blank form. Every form starts as a draft only your team can see.
 
 <Frame>
   <img src="/images/forms/forms-start.jpg" alt="Form templates to start from" />
 </Frame>
 
-On **Questions**, each question says which lead field it **saves to**. Add a section to start a new step; the builder
-shows where each step begins. Name and phone are always asked.
+On **Questions**, each question says which lead field it **saves to**. Add a section to start a new step. Name and phone are always asked.
 
 <Frame>
   <img src="/images/forms/form-questions.jpg" alt="Questions with the live preview beside them" />
@@ -30,31 +25,36 @@ shows where each step begins. Name and phone are always asked.
 
 On **Appearance**:
 
-- **Layout:** **Card** (the form on a card over a background), **Split** (a picture on one side, the form on the other)
-  or **Full page**.
-- **How questions appear:** **All questions** (split into steps by your sections) or **One at a time** (one question
-  per screen with progress; Enter moves on).
-- **Background:** your brand tint, plain, or a picture. Split and a picture background need a picture: PNG, JPEG or
-  WebP up to 2 MB.
-- **Style:** corners, font, logo size and alignment, then the brand colour, logo and how the form sits inside your
-  website.
+| Setting | Choices |
+| --- | --- |
+| **Layout** | **Card**, **Split** (picture beside the form), **Full page** |
+| **How questions appear** | **All questions** in steps, or **One at a time** |
+| **Background** | Brand tint, plain, or a picture (PNG, JPEG or WebP, up to 2 MB) |
+| **Style** | Corners, font, logo, brand colour |
 
-The preview beside the settings shows the form on a phone or a computer. **Open preview** shows the saved form full
-screen. Nothing is sent from a preview.
+The preview shows a phone or computer view. Nothing is sent from a preview.
 
 ## Where new leads go
 
-On **Settings**, choose the **Lead source** new leads get. Choose **New source…** to create one there. Choose who new
-leads go to (or let your assignment rules decide) and, with several pipelines, which pipeline they start in.
+On **Settings**:
 
-Someone who is already a lead keeps their owner and details: the form fills in only what is empty, and the lead's
-timeline says what was filled and what was answered differently. An email sent on a public form is not added to an
-existing lead; add it yourself if it is theirs. Every answer stays on the form's **Responses**.
+<Steps>
+  <Step title="Lead source">
+    Choose one, or **New source…** to create it.
+  </Step>
+  <Step title="Owner">
+    Choose who gets new leads, or let your assignment rules decide.
+  </Step>
+  <Step title="Pipeline">
+    With several pipelines, choose where they start.
+  </Step>
+</Steps>
+
+Someone who is already a lead keeps their owner and details. The form fills only what is empty, and the timeline records it. An email from a public form is not added to an existing lead. Every answer stays on **Responses**.
 
 ## Publish and share
 
-Choose **Publish**. On **Share**, copy the link, send it on WhatsApp, download the QR code, or copy the snippet for your
-website. See [Connect a website](/guides/connect-a-website) to send your own website form's enquiries instead.
+Choose **Publish**. On **Share**, copy the link, send it on WhatsApp, download the QR code or copy the website snippet. To send your own website form's enquiries instead, see [Connect a website](/guides/connect-a-website).
 
 <Frame>
   <img src="/images/forms/form-share.jpg" alt="Share link, QR code and website code" />
@@ -66,8 +66,21 @@ website. See [Connect a website](/guides/connect-a-website) to send your own web
 
 ## Responses
 
-The form's **Responses** tab counts responses, how many became new leads and how many were already leads. Below, every response is a row: the name (opening the lead), whether it was a new lead, when it came in, one column per question, and where it came from. On a phone each response is a card that opens to its answers. The tab fetches new responses each time you open it.
+**Responses** counts responses, new leads and existing leads. Each row shows the name (opens the lead), when it came in, one column per question and the source. On a phone each is a card.
 
 <Frame>
   <img src="/images/forms/form-responses.jpg" alt="Responses as a table" />
 </Frame>
+
+## Ask Marro
+
+<Frame>
+  <img src="/images/assistant/ask-marro-form.jpg" alt="Ask Marro creating and publishing a form" />
+</Frame>
+
+
+<Card title="Try asking" icon="message-circle">
+  *"Create an enquiry form and publish it"*
+
+  Marro builds the form, publishes it and gives you the link.
+</Card>

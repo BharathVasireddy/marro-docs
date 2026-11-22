@@ -3,145 +3,161 @@ title: "Integrations"
 description: "Connect your own WhatsApp, Meta, Razorpay, SMS, calendar and automation accounts."
 ---
 
-Each organization connects its own accounts. Open **Settings → Integrations** and pick a service; its page has a step-by-step setup guide. You need permission to manage your organization's settings.
+Each organization connects its own accounts. Open **Settings → Integrations** and pick a service; its page has a step-by-step guide. You need permission to manage settings.
 
 | Service | What you get | Guide |
 | --- | --- | --- |
-| WhatsApp Business (Meta) | Your WhatsApp number in the Inbox, for replies, templates, automations and broadcasts | [Inbox](/guides/inbox) |
-| Instagram messages, Facebook Messenger | DMs and Page messages in the Inbox | [Inbox](/guides/inbox#connect-instagram-and-messenger) |
-| Website chat | A chat window on your website, its chats in the Inbox | [Website chat](/guides/website-chat) |
-| Facebook & Instagram lead ads | Ad leads arrive within seconds, with campaign and answers | [Below](#facebook-and-instagram-lead-ads) |
-| Google Ads lead forms | Leads from Search, YouTube, Demand Gen and Performance Max lead forms arrive within seconds, with the campaign and answers | [Below](#google-ads-lead-forms) |
-| Google Sheets | A lead list and a Google Sheet kept in step, both ways | [Below](#google-sheets) |
-| Razorpay | Payment links from a lead, and payments recorded on it | [Payments](/guides/payments) |
-| MSG91 (SMS) | DLT-registered SMS to leads, and two-way SMS in the Inbox | [Below](#sms-msg91) |
-| Google Calendar, Outlook Calendar | Appointments in each person's own calendar, with Meet or Teams links | [Appointments](/guides/appointments) |
-| Zapier, Make, Pabbly Connect, n8n | Marro's events sent to your workflows | [Below](#zapier-make-pabbly-connect-and-n8n) |
-| API keys | Your own applications read and write leads | [Getting started](/getting-started) |
+| WhatsApp Business (Meta) | Your number in the Inbox: replies, templates, automations, broadcasts | [Inbox](/guides/inbox) |
+| Instagram, Messenger | DMs and Page messages in the Inbox | [Inbox](/guides/inbox#connect-instagram-and-messenger) |
+| Website chat | A chat window on your site | [Website chat](/guides/website-chat) |
+| Facebook & Instagram lead ads | Ad leads within seconds | [Below](#facebook-and-instagram-lead-ads) |
+| Google Ads lead forms | Form leads within seconds | [Below](#google-ads-lead-forms) |
+| Google Sheets | Leads and a sheet kept in step | [Below](#google-sheets) |
+| Razorpay | Payment links and recorded payments | [Payments](/guides/payments) |
+| MSG91 | DLT SMS and two-way SMS | [Below](#sms-msg91) |
+| MCube | Call logging | [Below](#phone-calls-mcube) |
+| Google Calendar, Outlook Calendar | Appointments in each person's calendar | [Appointments](/guides/appointments) |
+| Zapier, Make, Pabbly Connect, n8n | Marro's events sent to your workflows | [Below](#zapier-make-pabbly-connect-n8n-and-your-own-webhook) |
+| API keys | Your own apps read and write leads | [Getting started](/getting-started) |
 
 <Note>
-  Instagram messages, Messenger and lead ads open to every organization once Meta finishes reviewing Marro's app.
+  Instagram messages, Messenger and lead ads open to every organization once Meta finishes reviewing Marro's app. When connecting Instagram, stay signed in to the same Marro account and organization.
 </Note>
 
-When connecting Instagram, stay signed in to the same Marro account and organization on the callback domain. If that session has ended or changed, sign in and start Connect Instagram again.
-
-## Facebook & Instagram lead ads
+## Facebook and Instagram lead ads
 
 <Steps>
   <Step title="Log in with Facebook">
-    In **Settings → Integrations → Facebook & Instagram lead ads**, press **Log in with Facebook** with the account that runs your Page, and allow what it asks.
+    In **Facebook & Instagram lead ads**, press **Log in with Facebook** with the account that runs your Page.
   </Step>
   <Step title="Choose your Pages">
     Pick the Pages your ads run from.
   </Step>
   <Step title="Check your forms">
-    Each form's questions are matched to your lead fields. Change a match if needed, then press **Done**.
+    Questions are matched to lead fields. Change a match if needed, then press **Done**.
   </Step>
 </Steps>
 
-New leads arrive with the source "Facebook ads" or "Instagram ads", go through your assignment rules and start your automations. **Fetch recent leads** on a form brings in the last 90 days, for anything missed while disconnected.
+New leads get the source "Facebook ads" or "Instagram ads", go through your assignment rules and start your automations. **Fetch recent leads** brings in the last 90 days.
 
 ## Google Ads lead forms
 
-Leads from your Google Ads lead forms (Search, YouTube, Demand Gen and Performance Max) arrive in Marro within seconds. There is no Google sign-in: Google sends each lead to a web address and key that Marro makes for you.
-
-You can add several connections, for example one per Google Ads account, brand or agency, each with its own address and key.
+Leads from Search, YouTube, Demand Gen and Performance Max forms arrive within seconds. There is no Google sign-in: Google sends each lead to a web address and key Marro makes for you. Add one connection per account, brand or agency.
 
 <Steps>
   <Step title="Add a connection">
-    In **Settings → Integrations → Google Ads lead forms**, press **Add connection** and give it a name you will recognise, such as "Admissions – Search".
+    In **Google Ads lead forms**, press **Add connection** and name it.
   </Step>
   <Step title="Copy the address and key">
-    Open the connection. Its **Connection setup** section shows a **Webhook URL** and a **Key**. Keep the key private: anyone who has it could send leads to this connection.
+    **Connection setup** shows a **Webhook URL** and a **Key**. Keep the key private.
   </Step>
-  <Step title="Paste them into Google Ads">
-    In Google Ads open **Assets**, edit your lead form, choose **Webhook** for lead delivery and paste the Webhook URL and Key.
+  <Step title="Paste into Google Ads">
+    In **Assets**, edit your lead form, choose **Webhook** and paste both.
   </Step>
   <Step title="Send test data">
-    Press **Send test data** in Google Ads. A test lead appears under the connection's **Recent leads** section within seconds. A test with a phone number becomes a lead named "Google test lead"; delete it when you are done. Then save the form.
+    Press **Send test data** in Google Ads. The lead shows under **Recent leads**. A test with a phone number becomes "Google test lead"; delete it afterwards.
   </Step>
-  <Step title="Check where answers go">
-    When a form's first lead arrives, open the connection's **Forms and field mapping** section. Each question is already matched to a lead field; anything that does not fit is kept in a note on the lead. Change a match if you like. Google sends only campaign numbers, so you can give each campaign a name there.
+  <Step title="Check the mapping">
+    Under **Forms and field mapping**, questions are already matched. You can also name each campaign there.
   </Step>
 </Steps>
 
-New leads get the source "Google ads", go through your assignment rules and start your automations. A lead with the same phone number (or, failing that, email) is filled in rather than duplicated: only empty fields are filled and staff edits are never overwritten. A lead needs a phone number; a form without a phone question can only update people already in Marro by email. If a lead cannot be added, the **Recent leads** section says why, and Marro tries again automatically.
-
-Ask the assistant "how many Google Ads leads did we get this week?" or "what are the latest leads from Google Ads?"; it can read your connections, recent leads and leads per campaign. It never sees or shows the key.
-
-Disconnecting stops new leads at once (remove the webhook from the lead form in Google Ads too). Leads already in Marro stay.
+New leads get the source "Google ads". A lead needs a phone number. The same phone number (or email) is filled in, not duplicated. If a lead cannot be added, **Recent leads** says why and Marro retries. Disconnecting stops new leads at once: also remove the webhook in Google Ads.
 
 ## Google Sheets
 
-Keep a Google Sheet and your leads in step: new rows become leads, and new leads and changes appear as rows. Marro sees only the sheet you choose, never the rest of your Google Drive.
-
-Each connection is one Google account and one sheet. Add another connection for another sheet, for example one per team or campaign.
+Keep a sheet and your leads in step. Marro sees only the sheet you choose, never the rest of your Drive. Each connection is one Google account and one sheet.
 
 <Steps>
   <Step title="Connect a sheet">
-    In **Settings → Integrations → Google Sheets**, press **Connect a sheet** and sign in with the Google account that owns the sheet.
+    Press **Connect a sheet** and sign in with the owning Google account.
   </Step>
   <Step title="Choose the sheet">
-    Pick an existing sheet with Google's file picker, or press **Create a new sheet** and Marro makes one with a header row. Marro adds a **Marro ID** column at the end; it links each row to its lead, so you can sort the sheet freely. Do not delete or edit that column.
+    Pick one, or press **Create a new sheet**. Marro adds a **Marro ID** column: do not delete or edit it.
   </Step>
   <Step title="Check the columns">
-    In the **Column mapping** section each column is matched to a lead field by its name. Change a match, or set a column to **Not shared** and Marro never reads or changes it.
+    Under **Column mapping**, change a match or set a column to **Not shared**.
   </Step>
-  <Step title="Choose the direction and the leads">
-    In the **Sync settings** section choose **Both ways**, **Sheet to CRM only** or **CRM to sheet only**, and share all leads or just one saved lead list. Sync direction, lead list and column mapping save together. Press **Save and start syncing**; later changes use **Save sync settings and mapping**.
+  <Step title="Choose the direction">
+    Under **Sync settings**, pick **Both ways**, **Sheet to CRM only** or **CRM to sheet only**, and all leads or one saved list. Press **Save and start syncing**.
   </Step>
 </Steps>
 
-Changes you make in the sheet, including new rows, reach Marro straight away: a new row with a phone number becomes a lead within moments, assigned by your usual rules. Leads and changes made in Marro reach the sheet within five minutes, or at once with **Sync now**. If instant updates are not available for your sheet, everything syncs every five minutes. When a new row's person is already in Marro they are updated, not duplicated, and only empty fields are filled. If a cell and the lead were both changed since the last sync, Marro keeps its own value and puts it back in the sheet, with a note on the lead. Deleting a row never deletes a lead, and a lead that leaves the shared list keeps its row. The **Recent activity** section shows what each sync changed.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Sheet] -- "straight away" --> B[Marro leads]
+  B -- "within 5 minutes, or Sync now" --> A
+```
 
-Ask the assistant "is the Google Sheet syncing?" or "sync the Google Sheet now"; it can check each sheet and run a sync after you approve it.
-
-A lead list that a Google Sheet adds leads to cannot be deleted until the sheet is disconnected. The message names the sheet: This list is linked to the Google Sheet "&lt;name&gt;". Disconnect the sheet first, then delete the list.
-
-Disconnecting stops syncing and withdraws Marro's access to your Google account. The sheet and your leads are left as they are.
+- A new row with a phone number becomes a lead, assigned by your usual rules. Only empty fields are filled.
+- If both sides changed, Marro keeps its value and notes it on the lead.
+- Deleting a row never deletes a lead. **Recent activity** shows each sync.
+- A list a sheet adds leads to cannot be deleted until the sheet is disconnected.
+- Disconnecting stops syncing and withdraws access. The sheet and leads stay.
 
 ## SMS (MSG91)
 
-You need an MSG91 account with your sender ID and templates registered on the DLT portal.
-
-1. In **Settings → Integrations → MSG91 (SMS)**, enter your **Auth key**, **Sender ID** and **DLT entity ID**.
-2. On the same page, add your SMS templates with their MSG91 and DLT template IDs, and choose the lead detail that fills each blank.
-3. Send a test SMS to your own phone.
-4. Turn on delivery reports in MSG91 with the callback URL and header shown on the page.
-
-Your team can then send SMS from a lead's page (the sender is under **Activity → Messages**) and from automations. Leads who reply STOP get no more SMS.
-
-## Phone calls (MCube)
-
-Connect MCube to log the calls your team takes on your MCube numbers. On the MCube integration page, copy the **Call events URL** and ask MCube to set it as the push URL for incoming call events (On Call and On Hangup) on your account.
-
-- Each call is written on the caller's lead, found by phone number, or a new lead (source **Phone call**) assigned by your rules.
-- An answered call is logged under the executive who took it, with the talk time and recording, and marks the lead contacted. Each executive's phone number in Marro must match the one MCube rings.
-- Every call also appears in **Calls**, for the leads each person can open, shown as **Bridge call · MCube**. Calls from other connected calling services such as Exotel or Tata Smartflo appear there the same way.
-- A missed call shows as **Missed call**, and the lead's owner gets a missed-call alert by email, WhatsApp and the app. Automations can start on missed calls only, for example to add a follow-up.
-- When you start a call from a lead through a connected calling service, Marro follows it until it ends. If the service does not report back, Marro asks the service itself (Exotel and Tata Smartflo can be asked) and closes a call that is still unreported after 45 minutes, so you can call again; a report that arrives later still updates it. If the service could not confirm the call started, it shows as **Not confirmed**: check your phone before calling again. Recordings are copied into Marro, so they stay playable on the lead even if the service's link expires.
-
-## Zapier, Make, Pabbly Connect, n8n and your own webhook
-
-Marro sends events to your workflow's webhook as they happen. For any other system, choose **Custom webhook** and enter your own `https` address. To change Marro from a workflow, call the [API](/getting-started) with an API key.
+You need an MSG91 account with your sender ID and templates registered on DLT.
 
 <Steps>
-  <Step title="Paste the workflow's webhook URL">
-    Create a webhook trigger in your workflow tool, copy its URL, and paste it into the service's page in **Settings → Integrations**.
+  <Step title="Enter your details">
+    In **MSG91 (SMS)**, enter **Auth key**, **Sender ID** and **DLT entity ID**.
   </Step>
-  <Step title="Choose the events">
-    Anything that can start an automation: a lead added, changed, moved or given a new owner; calls, notes and follow-ups; messages on every channel; web forms; quotes sent, opened, accepted, declined or expired; invoices sent, paid or overdue; payments; appointments; opportunities won or lost; and records of your [custom objects](/guides/custom-objects) added, changed, moved to another stage or deleted. Search the list to find one.
+  <Step title="Add templates">
+    Add each template with its MSG91 and DLT IDs, and choose the lead detail that fills each blank.
   </Step>
-  <Step title="Send test event">
-    **Send test event** posts a made-up lead with every field, so your workflow learns the field names.
+  <Step title="Test and track">
+    Send a test SMS to your phone, then turn on delivery reports in MSG91 with the callback URL and header shown.
   </Step>
 </Steps>
 
-Each event is a `POST` with a JSON body of `id`, `event`, `occurredAt`, `test` (on test events only), `organization`, `lead` and `change`. Check the `X-CRM-Signature` header: `sha256=` followed by the hex HMAC-SHA256 of the raw body, keyed with the **Signing secret** shown on the page. `X-CRM-Event` names the event and `X-CRM-Delivery` identifies the delivery.
+Your team sends SMS from a lead's page or automations. Leads who reply STOP get no more.
 
-An event that gets no answer, a `429` or a `5xx` is tried again after 1 minute, 5 minutes, 30 minutes, 2 hours and 8 hours, then dropped. Every try has the same `X-CRM-Delivery`, so your workflow can ignore one it has already had.
+## Phone calls (MCube)
 
+On the MCube page, copy the **Call events URL** and set it in MCube as the push URL for incoming call events (On Call and On Hangup).
 
-## Features being prepared
+| Call | What Marro does |
+| --- | --- |
+| Answered | Logs it on the lead (found by phone number, or a new lead with source **Phone call**) under the executive who took it, with talk time and recording |
+| Missed | Shows **Missed call**, alerts the owner, and can start automations |
+| Any | Appears in **Calls** as **Bridge call · MCube** |
 
-[Comment replies and private replies](/guides/social-comments) and [lead ad attribution and internal feedback](/guides/lead-ad-attribution) describe work in preparation. Their screens are not released. Facebook comment sending is unavailable, and advertising feedback provider sends are off.
+Each executive's phone number in Marro must match the one MCube rings. Exotel and Tata Smartflo calls appear the same way. If a call you start cannot be confirmed it shows **Not confirmed**: check your phone before calling again.
+
+## Zapier, Make, Pabbly Connect, n8n and your own webhook
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Event in Marro] --> B[Webhook URL] --> C[Your workflow]
+```
+
+<Steps>
+  <Step title="Paste the webhook URL">
+    Create a webhook trigger in your tool and paste its URL into the service's page. For anything else, choose **Custom webhook** with an `https` address.
+  </Step>
+  <Step title="Choose the events">
+    Anything that can start an automation: leads, calls, messages, forms, quotes, invoices, payments, appointments, opportunities and [custom objects](/guides/custom-objects). Search the list.
+  </Step>
+  <Step title="Send test event">
+    Posts a made-up lead so your workflow learns the field names.
+  </Step>
+</Steps>
+
+Check each event's signature with the **Signing secret** on the page. A failed delivery is retried after 1 minute, 5 minutes, 30 minutes, 2 hours and 8 hours, then dropped. Full details are in [Webhooks](/guides/webhooks).
+
+## Ask Marro
+
+<Card title="Try asking" icon="message-circle">
+  *"How many Google Ads leads did we get this week?"*
+
+  *"Sync the Google Sheet now"*
+
+  Marro reads your connections and recent leads, and runs a sync after you approve. It never shows keys.
+</Card>
+
+## Being prepared
+
+[Comment replies](/guides/social-comments) and [lead ad attribution](/guides/lead-ad-attribution) are not released yet.

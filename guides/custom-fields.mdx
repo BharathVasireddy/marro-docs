@@ -42,10 +42,13 @@ New fields show up on the add and edit forms, on the lead's page and as list col
 
 ## Hide, delete or restore
 
-- **Hide** a field with its **Shown** switch. Saved answers stay.
-- **Delete** a custom field from its menu. If leads have answers in it, Marro shows how many and asks you to type the field's name.
-- Changed your mind? **Recently deleted → Restore** brings it back with its answers for 30 days.
-- Built-in fields (name, phone, email, source, owner and the address) can't be deleted.
+| You want to | Do this | What happens to answers |
+| --- | --- | --- |
+| Stop showing a field | Turn off **Shown** | Kept |
+| Remove a custom field | **Delete** in its menu (type its name if leads have answers) | Kept 30 days |
+| Bring it back | **Recently deleted → Restore** within 30 days | Back as they were |
+
+Built-in fields (name, phone, email, source, owner and the address) can't be deleted.
 
 ## Fields for your industry
 
@@ -57,12 +60,33 @@ Pick your industry in **Settings → Business → Business profile** to see sugg
 
 ## Record links
 
-A **Record link** field points to another record, such as the company a contact works at. Choose what it links to and whether it holds one or several. Type a name, email or phone to pick the record; click the name to open it.
+A **Record link** field points to another record, such as the company a contact works at.
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Contact: Neha Kapoor] -- "Works at (record link)" --> B[Company: Kapoor Boutique]
+  B -- "Linked from" --> A
+```
+
+Choose what it links to and whether it holds one or several. Type a name, email or phone to pick the record; click the name to open it.
 
 ## Ask Marro
 
-*"Add a dropdown field Service needed with Website, Ads, Social media and SEO"* or *"Set Neha's budget to 50,000"*. Marro shows the change and asks before saving.
+<Card title="Try asking" icon="message-circle">
+  *"Add a dropdown field Service needed with Website, Ads, Social media and SEO"*
+
+  *"Set Neha's budget to 50,000"*
+
+  Marro shows the change and asks before saving.
+</Card>
 
 ## For developers
 
-Read and write custom fields through the API: [list a record type's fields](/api-reference/customers/list-record-fields), [create](/api-reference/customers/create-record) and [update](/api-reference/customers/update-record) records. Fields on [custom objects](/guides/custom-objects) work the same way.
+<CardGroup cols={3}>
+  <Card title="List fields" icon="list" href="/api-reference/customers/list-record-fields">A record type's fields, types and options.</Card>
+  <Card title="Create a record" icon="plus" href="/api-reference/customers/create-record">With its custom fields.</Card>
+  <Card title="Update a record" icon="pencil" href="/api-reference/customers/update-record">Change some fields, keep the rest.</Card>
+</CardGroup>
+
+Fields on [custom objects](/guides/custom-objects) work the same way.

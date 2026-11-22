@@ -3,27 +3,54 @@ title: "Webhooks"
 description: "Bring in leads from any form tool that can send a webhook."
 ---
 
-Many form tools can send each submission to a web address: Elementor and other WordPress form plugins, Typeform, JotForm, Google Ads lead forms, landing page builders and some property and education portals. Give each one its own Marro address and its submissions become leads, with no code.
+Form tools such as Elementor, Typeform, JotForm, Google Ads lead forms and landing page builders can send each submission to a web address. Give each one its own Marro address and its submissions become leads, with no code. Open **Settings → Integrations → Webhooks**.
+
+## Set one up
 
 <Steps>
-  <Step title="Add a webhook">
-    Open **Settings → Integrations → Webhooks → New webhook** and name it after the form or tool, for example "Website contact form".
-  </Step>
-  <Step title="Paste the address into your tool">
-    Copy the address and paste it where your form tool asks for a webhook URL. It accepts JSON, form posts and query strings.
-  </Step>
-  <Step title="Send one test">
-    Submit your form once. Marro shows what arrived and suggests where each field goes.
-  </Step>
-  <Step title="Match the fields">
-    Choose **Map fields** and pick, for each field your tool sends, the Marro field it fills: name (or first and last name), phone, email, a message for the timeline, or any of your lead fields (Settings → Leads and sales → Lead setup → Fields). Name and phone are needed. Choose the lead source and pipeline, then save.
-  </Step>
+  <Step title="Add a webhook">Choose **New webhook** and name it after the form, for example "Website contact form".</Step>
+  <Step title="Paste the address">Copy it into your tool's webhook URL box. It accepts JSON, form posts and query strings.</Step>
+  <Step title="Send a test">Submit your form once. Marro shows what arrived and suggests where each field goes.</Step>
+  <Step title="Map fields">Choose **Map fields** and pick the Marro field each one fills: name, phone, email, a message for the timeline, or any lead field. Name and phone are needed.</Step>
+  <Step title="Save">Choose the lead source and pipeline, then save.</Step>
 </Steps>
 
-From then on, every submission becomes a lead. Someone you already have, by phone or email, is updated instead of added twice: only empty fields are filled. New leads get an owner from your assignment rules, the submission shows on the lead's timeline, and your [automations](/guides/automations) run, so the first caller can ring them within minutes.
+## What happens next
 
-Each webhook shows how many submissions and leads it has had, and the last problem if a submission couldn't become a lead. **Replace address** gives it a new one if the old one was shared by mistake; the old one stops working at once. Turn **Take submissions** off to pause it.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Form submitted] --> B[Marro webhook] --> C[Lead made or updated] --> D[Owner assigned] --> E[Automations run]
+```
 
-<Tip>
-  Writing your own website code instead? Use the [lead capture API](/guides/connect-a-website), which takes the same fields from your server.
-</Tip>
+Someone you already have, by phone or email, is updated instead of added twice: only empty fields are filled. The submission shows on the lead's timeline.
+
+## Manage it
+
+| Control | What it does |
+| --- | --- |
+| Counts and last problem | Shows submissions, leads and why one failed |
+| **Replace address** | Gives a new address. The old one stops at once |
+| **Take submissions** | Turn off to pause |
+
+## Check it came from Marro
+
+Each event Marro sends to your address is a `POST` with a JSON body of `id`, `event`, `occurredAt`, `test` (on test events only), `organization`, `lead` and `change`. These headers come with it.
+
+| Header | What it holds |
+| --- | --- |
+| `X-CRM-Signature` | `sha256=` followed by the hex HMAC-SHA256 of the raw body, keyed with the **Signing secret** shown on the page |
+| `X-CRM-Event` | The name of the event |
+| `X-CRM-Delivery` | Identifies the delivery. Every try of one event has the same value, so your workflow can ignore one it has already had |
+
+```text
+X-CRM-Signature: sha256=<hex HMAC-SHA256 of the raw body, keyed with the Signing secret>
+```
+
+An event that gets no answer, a `429` or a `5xx` is tried again after 1 minute, 5 minutes, 30 minutes, 2 hours and 8 hours, then dropped.
+
+## For developers
+
+<Card title="Writing your own website code?" icon="code" href="/guides/connect-a-website">
+  Use the lead capture API, which takes the same fields from your server.
+</Card>

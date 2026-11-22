@@ -3,39 +3,62 @@ title: "Personal check-ins in Ask Marro"
 description: "Keep assigned tasks and lead follow-ups current with confirmed check-ins."
 ---
 
-**Ask Marro is your personal work assistant.** It watches your overdue assigned tasks and lead follow-ups. It asks what happened, remembers your confirmed answer, and checks again at the agreed time.
+**Ask Marro** watches your overdue assigned tasks and lead follow-ups. It asks what happened, remembers your confirmed answer and checks again at the agreed time.
 
 <Note>
-Personal check-ins require AI access and enabled background agents. Your workspace must have scheduled personal check-ins enabled. Existing check-ins show when scheduled monitoring is off. Tasks without a due date are not monitored in this first version.
+Check-ins need AI access, enabled background agents and scheduled personal check-ins in your workspace. Tasks without a due date are not monitored.
 </Note>
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Overdue task or follow-up] --> B[Marro asks for an update]
+  B --> C[You confirm]
+  C --> D[Task updated, next check set]
+```
 
 ## Give a work update
 
-Open **Ask Marro** and expand **Your work**, or use the compact **Your work** entry below your dashboard’s question box. You can also ask **“What needs my update?”** in Marro, the mobile app or your personal assistant on WhatsApp.
+Open **Ask Marro** and expand **Your work**, or use the **Your work** entry under your dashboard's question box. Or ask *"What needs my update?"* in Marro, the app or WhatsApp.
 
-1. Select a work item to discuss it, choose **Review with Marro**, or ask about it in your own words. Each row shows its type and due date, whose it is when it isn't yours, and its check-in status when it needs more than an update. Use **Show more** to browse the rest of the loaded list.
-2. Say whether you are **still working**, **blocked**, or **finished**, with a short note.
-3. For unfinished work, agree the next deadline and time. Times use your organization's time zone.
-4. Review and confirm. Marro updates the actual task or follow-up and records what changed.
+<Steps>
+  <Step title="Pick an item">Select it, choose **Review with Marro**, or ask in your own words.</Step>
+  <Step title="Say where it stands">**Still working**, **blocked** or **finished**, with a short note.</Step>
+  <Step title="Agree the next deadline">For unfinished work. Times use your organization's time zone.</Step>
+  <Step title="Confirm">Marro updates the task or follow-up and records the change.</Step>
+</Steps>
 
-Confirmation is required even when the assistant is in Auto mode. If the work changed or was reassigned since the request, refresh before replying. Marro does not treat silence as completion.
-
-For a finished board task, choose its completed or review stage. Existing review and publishing requirements still apply; saying you finished does not approve your own work.
+- Confirmation is needed even in Auto mode. Silence is never treated as completion.
+- For a finished board task, choose its completed or review stage. Review and publishing rules still apply.
 
 ## When it checks with you
 
-Monitoring runs in the background. Routine invitations are grouped into at most one per day, on weekdays between 9 am and 6 pm in your organization's time zone. Approved leave suppresses routine invitations. The in-app invitation opens a conversation; mobile notifications contain no customer or task details.
+| Rule | Detail |
+| --- | --- |
+| How often | At most one grouped invitation a day |
+| When | Weekdays, 9 am to 6 pm in your time zone |
+| Leave | Approved leave pauses routine invitations |
+| Notifications | Mobile notifications show no customer or task details |
 
-Proactive WhatsApp reminders are not included in this release. You can still read requests and respond through your personal assistant on WhatsApp. Mobile notification taps need the app version that supports personal-agent notifications.
+Proactive WhatsApp reminders are not included yet. You can still answer through your personal assistant on WhatsApp.
 
 ## Getting help
 
-A confirmed **blocked** update is visible to authorised team leads and admins. Work left unanswered after two requests and at least 48 hours is also raised with them. Managers only see work they have permission to access; private assistant memories are not shared.
-
-If an update is interrupted, Marro asks you to open the work record and check what was saved. It will not repeat the change automatically.
+- A confirmed **blocked** update is visible to authorised team leads and admins.
+- Work unanswered after two requests and 48 hours is raised with them.
+- Managers see only work they have permission for. Private assistant memories are not shared.
+- If an update is interrupted, Marro asks you to check the work record. It will not repeat the change itself.
 
 ## Pause your agent
 
-Open **Check-in settings** beside **Your work** and choose **Pause check-ins**, or ask Marro to pause your check-ins. This affects your monitoring in the current organization, not another person's agent. Existing requests remain available to read and answer. Choose **Resume check-ins** when ready.
+Open **Check-in settings** beside **Your work** and choose **Pause check-ins**. It affects only your own monitoring. Choose **Resume check-ins** when ready.
 
-Marro keeps the conversation friendly and helpful, with one relevant follow-up question at the end of each conversational reply. A confirmation question counts as that follow-up. You can ask it to stop at any time.
+## Ask Marro
+
+<Card title="Try asking" icon="message-circle">
+  *"What needs my update?"*
+
+  *"Pause my check-ins"*
+
+  Marro lists your work or pauses your check-ins.
+</Card>

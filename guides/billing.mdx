@@ -1,186 +1,149 @@
 ---
 title: "Plans and billing"
-description: "Choose a plan, review its currency and payment terms, and see what renews when."
+description: "Choose a plan, see what renews when, and manage your subscription and wallet."
 ---
 
-Your organization's subscription lives in **Settings → Subscription**. Only people who can manage the organization (administrators) see it.
+Your subscription lives in **Settings → Subscription**. Only administrators see it.
 
-## Billing currency, Australian dollars and pounds
-
-Your organization has one subscription currency, set from its country when it signs up: India and most countries in rupees (INR), Australia in Australian dollars (AUD), the United Kingdom in pounds sterling (GBP).
-
-**UK billing is not open yet.** A UK organization sees its plans in pounds, before VAT, on **Settings → Subscription**, with the notice **UK billing is not open yet**. Nothing can be bought in pounds until payment collection for the UK opens; contact Marro to start your plan.
-
-Your organization has one subscription currency. Existing paid INR subscriptions keep INR and their
-accepted terms. Australian dollar subscription billing is being prepared and stays unavailable until
-Marro confirms its selling entity, payment account, final prices and tax treatment. A published AUD
-price does not mean checkout is open. The reviewed checkout shows the exact price to accept before
-any payment. There is no self-service currency switch after purchase.
-
-When AUD checkout is available, it opens a hosted Stripe page. Returning to Marro does not confirm
-payment: the subscription waits for verified payment confirmation. Renewals retain the accepted AUD
-prices. A same-period upgrade starts after its reviewed adjustment is paid; a lower price or different
-billing period starts at renewal. An uncertain provider result must be reconciled before another
-payment request; Marro does not automatically repeat it.
-
-Recovery checks the original payment and subscription before resolving an interrupted change. A
-confirmed unpaid draft can be discarded without stopping renewal. A late captured adjustment may
-need a human refund review; recovery never issues an automatic refund or grants access from an
-unconfirmed payment. Missing payment or schedule evidence still needs investigation.
-After a schedule-creation timeout, an empty status read is not proof that the request cannot finish
-later. Marro keeps the change blocked until the original request is resolved.
-
-Cancelling an AUD subscription stops renewal and keeps access through the paid end. An unpaid
-plan-change invoice must be cancelled, or a paid change reconciled, first. A scheduled Stripe
-cancellation can be resumed before the paid end if the subscription has not ended. INR subscriptions
-keep the Razorpay workflow described below.
-
-Receipts show the actual currency, paid amount and dates. AUD supplier and tax terms come from the
-agreement accepted for that charge. A provider invoice link does not itself establish compliance with
-all tax-invoice requirements. AUD wallet top-ups and AUD calling or messaging usage prices remain later work.
-
-Included AI use and wallet credit remain in INR even when a subscription price is shown in AUD or GBP.
-They are not converted into a dollar allowance. Published annual extra-user prices, when present,
-apply for the year; otherwise annual billing uses twelve monthly extra-user prices. Online checkout
-requires a configured monthly extra-user price before offering extra users on any billing period.
-
-Near the end of a trial, checkout may ask you to return after
-the trial ends so no remaining trial time is lost. An expired unpaid upgrade leaves the existing
-subscription renewing on its accepted terms.
-
-The currency-aware subscription screens are implemented and awaiting release validation. When AUD
-checkout is available, **Accept and pay with Stripe** opens its secure page. On return, Marro shows
-**Confirming** until the server verifies payment. If a request is uncertain, use **Check status**.
-An AUD subscription scheduled to cancel offers **Keep subscription** before the paid end.
-Each payment's **Receipt** shows its own currency, amounts and covered dates; AUD receipts also show
-the accepted supplier and tax terms, with the Stripe invoice link.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[14-day trial] --> B[Choose a plan] --> C[Pay] --> D[Renews automatically]
+```
 
 ## The trial
 
-A new organization starts on a 14-day trial with every module except calling (cloud calls, call flows and AI calls) and the Inbox with broadcasts. Those need a paid plan: opening one shows which plan includes it. The trial also includes ₹200 of AI credits for the assistant, agents and knowledge. The page shows **Trial** and the last day. There is no subscription charge during the trial and you do not need a payment method to use the included credits. If you use all ₹200, AI pauses unless you have funds in an INR wallet.
-
-Choosing a plan during the trial never shortens it: the first payment is taken when the trial ends. If the trial ends without a plan, the modules pause. **Nothing is deleted**, and choosing a plan brings everything back.
+| During the trial | |
+| --- | --- |
+| Length | **14 days** |
+| Modules | Every module except calling (Cloud calls, call flows, AI calls) and the Inbox with broadcasts. Those need a paid plan |
+| AI | ₹200 of credits, no payment method needed. If used up, AI pauses unless your INR wallet has funds |
+| Choosing a plan | Never shortens the trial. The first payment is taken when it ends |
+| If it ends with no plan | Modules pause. **Nothing is deleted** |
 
 ## Plans
 
-Current prices are on [marro.si/pricing](https://www.marro.si/pricing). That page reads the price list published in Marro, the same one checkout sells from, so the prices there are the prices you are offered. If it shows **Pricing temporarily unavailable**, email hello@marro.si.
+Current prices are on [marro.si/pricing](https://www.marro.si/pricing), the same list checkout sells from. If it shows **Pricing temporarily unavailable**, email hello@marro.si.
 
 | Plan | What it includes |
 | --- | --- |
-| Starter | Never lose a lead: leads, customers, forms, import and export, the Inbox with one WhatsApp number, tasks, appointments, Cloud calls, catalogue and payment links, standard reports, 5 automations and the assistant |
-| Growth | Starter plus AI agents and AI calls, call flows and ring groups, quotes, invoices and the customer portal, custom reports and dashboards, 3 custom objects, partners, the full API and webhooks, 25 automations, and HR attendance and leave |
-| Complete | Growth plus unlimited automations, up to 20 custom objects, forecast and scheduled reports, sub-partners, branches, company sign-on and provisioning, the activity log, all of HR and the largest AI allowance |
+| Starter | Leads, customers, forms, import and export, the Inbox with one WhatsApp number, tasks, appointments, Cloud calls, catalogue and payment links, standard reports, 5 automations, the assistant |
+| Growth | Starter plus AI agents and AI calls, call flows and ring groups, quotes, invoices and the customer portal, custom reports and dashboards, 3 custom objects, partners, the full API and webhooks, 25 automations, HR attendance and leave |
+| Complete | Growth plus unlimited automations, up to 20 custom objects, forecast and scheduled reports, sub-partners, branches, company sign-on and provisioning, the activity log, all of HR, the largest AI allowance |
 
-Each plan has a monthly, a quarterly and an annual price, a number of full users included (3, 5 and 15), a price for each extra full user (a month on monthly and quarterly billing, a year on annual billing) and a limit on automations switched on at once. Each plan includes the one before it. Partner logins never count as paid users. Two-step sign-in, roles and data export are on every plan.
+Each plan has monthly, quarterly and annual prices. Longer periods cost less than the same months paid monthly. A running subscription keeps the price it was bought at.
 
-AI use included each month: Starter ₹100, Growth ₹500 and Complete ₹1,500. It renews each month on the day your subscription started, unused credit does not carry over, and AI beyond it is paid from the wallet. HR is part of the plans: attendance and leave on Growth, all of HR on Complete. There is no HR add-on for new subscriptions; one you already have keeps its terms.
+| | Starter | Growth | Complete |
+| --- | --- | --- | --- |
+| Full users included | 3 | 5 | 15 |
+| AI included each month | ₹100 | ₹500 | ₹1,500 |
 
-Each plan's limits on custom objects, custom object records, partner logins and sub-partners apply: reaching one stops only adding more, and everything you already have keeps working. **Settings → Subscription** shows how many of each you use. Every organization connects one WhatsApp number. A new subscription gets exactly the modules its plan includes, and anything a higher plan includes is marked with a crown and the plan that has it. Organizations that were on Marro before November 2026 keep everything they had. Staff who only use HR self-service and the one-time setup help shown on the pricing page are arranged with Marro; they are not billed online yet.
+- Extra users have their own price: per month on monthly and quarterly billing, per year on annual.
+- Partner logins never count as paid users. Two-step sign-in, roles and data export are on every plan.
+- AI credit renews on the day your subscription started. Unused credit doesn't carry over. AI beyond it is paid from the wallet.
+- Reaching a limit (custom objects, partner logins and so on) only stops adding more.
 
-A running subscription keeps the price it was bought at until you change it.
+**What you pay** each period: plan price + extra users × extra-user price. The [calculator on the pricing page](https://www.marro.si/pricing#cost) works it out. Not included: Meta's WhatsApp message charges (billed by Meta to you, no Marro markup), AI beyond your plan, AI calls and business numbers (all from the [wallet](#message-wallet)).
 
-### What you pay
+## Billing currency
 
-Plan price for the period + extra users × extra-user price × months + any add-ons you already have. The quarterly price is lower than three monthly payments, and the annual price is lower than twelve monthly payments. Extra users cost the same each month on monthly and quarterly billing; on annual billing each extra user has a price per year.
+<CardGroup cols={3}>
+  <Card title="India and most countries" icon="indian-rupee">Rupees (INR), paid through Razorpay.</Card>
+  <Card title="Australia" icon="globe">Australian dollars. Checkout isn't open yet.</Card>
+  <Card title="United Kingdom" icon="pound-sterling">Pounds, before VAT. **UK billing is not open yet**: contact Marro to start your plan.</Card>
+</CardGroup>
 
-For example, Growth for 8 people when Growth includes 5 users: the plan price, plus 3 × the extra-user price each month (× 3 on quarterly billing). On annual billing the plan price is for the year, and each extra user is charged at the per-user yearly price. The [calculator on the pricing page](https://www.marro.si/pricing#cost) works it out with current prices.
-
-An add-on bought earlier has its own monthly, quarterly and annual price. It may cover a number of users and charge for each user beyond them, or cover every user for one price; the review before you pay shows which.
-
-Not in the plan price: Meta's WhatsApp message charges (billed by Meta to your Meta account; no Marro markup), AI beyond what your plan includes, AI calls and business numbers for calls (all three paid from the [message wallet](#message-wallet)).
+One currency per organization, set from its country, with no switch after purchase. Included AI use and wallet credit stay in INR.
 
 ## Choose a plan
 
-1. Open **Settings → Subscription** and choose **Choose a plan**.
-2. Pick a plan and a billing period: **monthly**, **quarterly** or **annual**.
-3. Review the price. Marro prices it on the server and shows exactly what you are agreeing to: the plan, the billing period, users included and each extra user's price, any add-ons, the modules, limits and AI use, and the total charged each period.
-4. For an INR subscription, choose **Accept and continue**. Razorpay opens. Pay with **UPI AutoPay** (approve the mandate in your UPI app) or a **card**. Your bank may ask for a one-time approval. AUD checkout remains unavailable until the requirements above are met.
+<Steps>
+  <Step title="Open Subscription">**Settings → Subscription**, then **Choose a plan**.</Step>
+  <Step title="Pick a plan and period">**Monthly**, **quarterly** or **annual**.</Step>
+  <Step title="Review the price">Marro shows plan, period, users, add-ons, modules, limits and the total each period.</Step>
+  <Step title="Accept and continue">Razorpay opens: pay with **UPI AutoPay** or a **card**. Your bank may ask for a one-time approval.</Step>
+</Steps>
 
-The reviewed price is valid for 15 minutes. If it expires, or the price list changes before you accept, the page says **This price has expired. Refresh it to continue.** Choose **Refresh price** and review the new one; nothing is charged at a price you did not see.
+The reviewed price is valid for 15 minutes. If it expires, choose **Refresh price**. Nothing is charged at a price you didn't see. The page says **Confirming your payment** until it is confirmed, then the plan's modules switch on. Later periods are charged automatically, and each charge is listed under **Payments** on the same page.
 
-When the payment is confirmed the plan's modules switch on. Confirmation can take a short while after you pay; the page says **Confirming your payment** until it arrives.
+## Your terms stay put
 
-Each period after that (a month, three months or twelve months) is charged automatically from the same UPI mandate or card. Each charge is listed under **Payments** on the same page.
+What you bought is recorded with your subscription. A new price list applies only to new subscriptions: nobody is moved automatically.
 
-## Your terms when the price list changes
-
-What you buy is recorded with your subscription: the plan's prices, users included, extra-user price, modules, limits, AI use, add-ons and tax. **Settings → Subscription** shows them under your current terms: "What you bought. These terms stay the same when the price list changes."
-
-When Marro publishes a new price list, new subscriptions are sold on it. Your subscription keeps its terms, including at renewal and after a plan stops being sold to new customers. Nobody is moved to new terms automatically.
-
-If newer terms are on sale for your plan, the page says **New subscriptions get different prices, modules or limits.** Choose **Review new terms** to compare them with yours, line by line. Moving to them is your choice and starts the same way as any plan change: a priced review, then your approval.
-
-Add-ons have their own terms. An add-on you already have keeps its terms when you change other things; **Review new add-on terms** moves only that add-on to its current terms. Adding an add-on uses the terms on sale today. Removing one stops it at your next renewal.
-
-A subscription bought before the price list had versions shows **Current, earlier terms**. Those terms stay as they are; changes to their users or terms are reviewed by Marro first.
+| Button | What it does |
+| --- | --- |
+| **Review new terms** | Compares newer terms for your plan with yours, line by line. Moving is your choice |
+| **Review new add-on terms** | Moves only that add-on. An add-on keeps its own terms otherwise |
 
 ## Extra users
 
-A plan includes a number of users. Partners, customer-portal users and deactivated users never count. When the active count differs from the billed count, **Update billed users** shows the current price difference. A same-period increase uses the remaining-time calculation below; reductions start at renewal. Existing subscriptions keep their agreed unit prices when users are recounted: a change in users keeps every other term you bought and never moves you to a newer price list. A new payment authorization may be required; adding a person does not silently change a mandate.
+| | |
+| --- | --- |
+| Never counted | Partners, customer-portal users, deactivated users |
+| **Update billed users** | Appears when the active count differs from the billed count, with the price difference |
+| Increase | Starts now |
+| Reduction | Starts at renewal |
 
 ## Change plan or period
 
-Choose **Change plan** and pick another plan or period. You review the new terms beside your current ones before anything changes. A different plan uses the terms on sale today, with today's tax. A higher-priced choice on the same period starts after the prorated payment is captured. Moving to a lower plan, or between monthly, quarterly and annual, starts at your next renewal, so you keep what you paid for until then.
+Choose **Change plan** and review the new terms beside your current ones before anything changes.
 
-When a lower plan starts, modules it does not include switch off; their data is kept and comes back if you move up again. Automations above the new limit keep running, but you cannot switch on more until you are under it.
+| Change | When it starts |
+| --- | --- |
+| Higher price, same period | After the prorated payment is taken |
+| Lower plan, or a different period | At your next renewal |
+
+When a lower plan starts, modules it doesn't include switch off. Their data is kept. Automations above the new limit keep running, but you can't switch on more.
+
+**Prorated changes:** the review shows the unused-time difference, today's total, when it starts and the next amount. For example, a ₹1,000 increase halfway through a month costs ₹500. Razorpay needs a new mandate: authorise it, then pay the adjustment link (valid 16 minutes). Your current features continue until it is captured. Use **Check status** if confirmation is pending, and don't create another mandate to get past it. **Cancel renewal** is available from an open change.
 
 ## If a payment fails
 
-For INR subscriptions, Razorpay retries a failed renewal on its own. While it does, the page shows **Payment overdue** and your plan keeps working for **7 days** after the period ended. Choose **Update payment method** to approve a new mandate or card. If it still has not been paid when the 7 days end, the plan's modules switch off. **Nothing is deleted**: your leads, chats and settings stay exactly as they are, and paying brings everything back.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Renewal fails] --> B[Payment overdue: 7 days] --> C[Modules switch off]
+  B -->|Update payment method| D[Back to normal]
+```
 
-## Cancel
+Razorpay retries on its own. Choose **Update payment method** to approve a new mandate or card. **Nothing is deleted**: paying brings everything back.
 
-Choose the red **Cancel subscription** button. Review the end date and no-refund policy, choose **Continue to confirmation**, then type **CANCEL** and select **Cancel subscription**. Nothing changes during the review steps. It stops renewing and the plan stays on until the end of the period you paid for; nothing is deleted. For INR subscriptions, cancellation cannot be undone from the page: write to hello@marro.si before the period ends and we keep it running, or choose a plan again once it has ended. Cancelling during a trial, before the first payment, stops the payment and the trial continues.
+## Cancel and refunds
 
-## Refunds
+<Steps>
+  <Step title="Cancel">Choose the red **Cancel subscription** button.</Step>
+  <Step title="Review">Check the end date and no-refund policy, then **Continue to confirmation**.</Step>
+  <Step title="Confirm">Type **CANCEL** and select **Cancel subscription**.</Step>
+</Steps>
 
-Fees already paid are not refunded, and there are no refunds for part of a period. Cancelling stops the next renewal; your plan stays on until the end of the period you paid for.
-
-## Price changes
-
-We tell you at least 30 days before a price change, and your current price holds until the first renewal after that notice. Publishing a new price list for new customers does not change a running subscription: it keeps the terms it was bought at.
+| | |
+| --- | --- |
+| After cancelling | The plan stays on until the end of the period you paid for, and nothing is deleted |
+| Undo | Write to hello@marro.si before the period ends |
+| During a trial | Cancelling stops the first payment |
+| Refunds | Fees already paid are not refunded, and there are no part-period refunds |
+| Price changes | At least 30 days' notice, and your price holds until the first renewal after that |
 
 ## Receipts
 
-**Payments** on the same page lists each charge with the amount, the period and the Razorpay payment ID. Razorpay also emails its own payment receipt.
+| Where | Shows |
+| --- | --- |
+| **Payments** on the subscription page | Each charge with amount, period and the Razorpay payment ID |
+| Your email | Razorpay's own receipt |
 
 ## Message wallet
 
-The wallet is a prepaid balance in rupees for AI calls and for AI beyond your plan's monthly credits. It is not paid from your subscription, and your subscription is not paid from it. When it is empty, AI pauses, so you never owe money for AI. The balance never expires. Meta bills WhatsApp messages to your own Meta business account; Marro adds no charge per message.
+A prepaid balance in rupees for AI calls and for AI beyond your plan's credits. It never expires, and when it is empty AI pauses, so you never owe money for AI. Your subscription isn't paid from it.
 
-The wallet sits at the foot of the menu on the left with a bar showing how much of your last top-up is left; it turns red when the balance is low. On plans with AI credits, the AI credits left this month show beneath it with their own bar. Press it to open the wallet. Marro sets aside money for a call while it lasts: a Cloud call sets aside 10 minutes at a time and adds the next 10 while it runs, so one call never ties up an hour of calling (see [Charges and the wallet](/guides/cloud-calls#charges-and-the-wallet)). For Cloud calls, Marro checks the final charge at hang-up and returns the unused amount to your available balance as soon as the billing records are complete.
+<CardGroup cols={2}>
+  <Card title="Where it is" icon="wallet">At the foot of the left menu, with a bar that turns red when low. Press it to open the wallet.</Card>
+  <Card title="Cloud calls" icon="phone">Marro sets aside 10 minutes at a time, checks the final charge at hang-up and returns the unused amount. See [Charges and the wallet](/guides/cloud-calls#charges-and-the-wallet).</Card>
+</CardGroup>
 
-### Business numbers
+**Business numbers** have a monthly price per number, the same on every plan. It is taken from the wallet a month in advance and shows as **Business number**. If the wallet is short, the page says the number is unpaid. Add money and the month is paid straight away. A number unpaid for 7 days may be released by Marro's team, never automatically.
 
-A business number for calls has a monthly price for each number, the same on every plan and every billing period. It is taken from the wallet a month in advance, starting on the day the number is first charged, so you only pay for numbers you hold. The charge shows in the wallet as **Business number** with the number. A number you asked for in [calling verification](/guides/ai-calling) is charged its first month as soon as it is set up; if the wallet is short then, it is set up as soon as you add money.
+## Plans assigned by Marro
 
-If the wallet can't pay when a month is due, the wallet page says the number is unpaid and the date it may be released after. Nothing is overdrawn: add money and the month is paid straight away, continuing from where the last paid month ended. A number unpaid for 7 days may be released, after which callers can no longer reach you on it; Marro's team decides this, it never happens automatically.
-
-## Organizations set up by hand
-
-If a platform administrator assigned your plan directly, **Settings → Subscription** shows the plan and its end date but no payment option. Contact Marro to move to automatic billing.
-
-## Renewing a plan assigned by Marro
-
-A plan with a recorded end date runs through its last day of access. Renewal is required for the next period; nothing is deleted when access ends. When online renewal is available, an administrator can renew an unchanged named plan monthly from **Settings → Subscription**. The quote uses the current seat count and today's prices for new subscriptions.
-
-Save the payment method at least one day before the current term ends to schedule the first charge for that boundary. If less than a day remains, renew after the term ends or contact Marro; this renewal flow does not charge you early. Continued access depends on payment being confirmed, so authorization alone does not extend the current term.
-
-Indefinite grants, custom module sets and plans with individually added or removed modules remain managed by Marro. A failed old checkout does not change those rules. Payment authorization and changes are completed on the subscription page, including when the assistant directs you there.
-
-Online renewal depends on payment setup and the organization's recorded country. The current Razorpay subscription checkout supports India. If it is unavailable, contact Marro to arrange renewal. Other countries need an applicable international payment flow or administrator-managed renewal. An Indian rupee quote should not be treated as an approved international tax invoice.
-
-
-## Prorated changes
-
-Where prorated changes are enabled, **Change plan**, add-on changes and **Update billed users** show a server-priced review before anything is charged. It lists the current period, the unused-time price difference, today's total, when the change starts, and the next recurring amount and date.
-
-For an increase, Marro uses the actual seconds left in your paid cycle rather than assuming every month has 30 days. For example, a ₹1,000 increase halfway through a paid month costs ₹500 for that period. Differences below ₹1 are waived.
-
-Razorpay needs a new mandate because existing UPI and some card mandates cannot change their recurring price. Authorize the replacement, then pay the adjustment through its hosted payment link. The adjustment is recalculated after authorization and can only decrease from the amount you approved. The link expires after 16 minutes. Return to Subscription or choose **Check status** to see confirmation; a browser success message alone does not switch on features.
-
-The replacement mandate authorizes the displayed price from the next renewal even if you close the adjustment payment. Until that adjustment is captured, your current paid features continue. If its deadline passes, the uncharged upgrade waits for the next renewal. **Cancel renewal** is available from an open change if you do not want that future charge; the current paid period is retained.
-
-Reductions and changes of billing period start at renewal. Nothing is charged or refunded for the current period because you keep the features already paid for. Requests in the last day before renewal may need to wait until renewal so Razorpay can schedule the replacement correctly.
-
-Interrupted confirmations stay visible. Do not create another mandate to get past a pending result; use **Check status**, or contact Marro when the page asks for a review. Online payments remain subject to country and supplier setup. This flow does not enable payments for an organization where online checkout is closed.
+<Note>
+  If Marro assigned your plan directly, **Settings → Subscription** shows the plan and its end date but no payment option. Contact Marro to move to automatic billing or to renew. Nothing is deleted when access ends.
+</Note>

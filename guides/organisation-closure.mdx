@@ -3,46 +3,55 @@ title: Organization closure
 description: Close your organization, download its data, restore it within 30 days, or hand it to another admin.
 ---
 
-Any active **admin** of the organization can close it while signed in as themselves. The recorded creator is not a separate owner role. Open **Settings → Close organization**, or **Account → Organization closure** in the app (it opens the same secure web page). Every step asks for your current password. If you sign in with Google or Microsoft, set a password from the sign-in page first.
+Any active **admin** can close the organization while signed in as themselves. Open **Settings → Close organization**, or **Account → Organization closure** in the app (it opens the same secure web page). Every step asks for your current password. If you sign in with Google or Microsoft, set a password from the sign-in page first.
 
-## Closing
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Close] --> B[30 days] --> C[Deletion]
+  B --> D[Restore]
+```
 
-1. Enter your password and choose **Review data**. You see how many leads, contacts, messages, files and other records will be deleted, and you can **Download data** right there.
+## Close
+
+1. Enter your password and choose **Review data**. You see how many leads, contacts, messages, files and other records will be deleted. You can **Download data** right there.
 2. Tick the confirmation and choose **Close organization**.
 
-Closing signs everyone out at once and stops messages, calls and automations. Your subscription is not cancelled by this, and amounts owed to Marro are not waived.
-
-If records keep arriving while you review (new leads, messages), small changes are fine. If a lot changed, Marro asks you to review again.
+Closing signs everyone out and stops messages, calls and automations. It does not cancel your subscription, and amounts owed to Marro are not waived. If a lot changes while you review, Marro asks you to review again.
 
 ## The 30 days
 
-- The closure page shows the exact deadline and how many days are left.
-- We email the admin who requested closure 15 days and 1 day before the deadline.
-- Until the deadline you can **Download data** or **Restore organization**.
-- After the deadline, restoring is no longer possible. Until deletion actually starts, you can still download your data.
+| When | What you can do |
+| --- | --- |
+| Until the deadline | **Download data** or **Restore organization** |
+| 15 days and 1 day before | We email the admin who requested closure |
+| After the deadline | No restore. You can still download until deletion starts |
+| Any time | **Delete now** skips the rest. It can't be undone |
 
-**Restoring** brings everyone back, but new messages, calls and automations stay paused until you choose **Resume activity**. Reminders set before the closure stay cancelled; add new ones where you need them.
+The closure page shows the exact deadline and days left. **Restoring** brings everyone back, but messages, calls and automations stay paused until you choose **Resume activity**. Reminders set before the closure stay cancelled.
 
-**Delete now** skips the rest of the 30 days. It cannot be undone.
+## Download your data
 
-## Downloading your data
-
-The download is NDJSON: every record table, the member list and your files (each file in base64 chunks, to be joined in order). A large organization downloads in several parts, one after another; keep them all. The last part ends with `"completed": true`. Internal AI settlement/provider-pricing records, passwords, tokens and data shared with other organizations are left out. Files over 64 MiB are listed as omitted; [support](https://app.marro.si/legal/support) can send those separately.
+<CardGroup cols={2}>
+  <Card title="Included" icon="download">Every record table, the member list and your files, as NDJSON. Large organizations download in several parts: keep them all. The last ends with `"completed": true`.</Card>
+  <Card title="Left out" icon="eye-slash">Internal AI pricing records, passwords, tokens and data shared with other organizations. Files over 64 MiB are listed as omitted; [support](https://app.marro.si/legal/support) can send them.</Card>
+</CardGroup>
 
 ## Deletion
 
-After the deadline, records and files are deleted in batches; we aim to finish within seven days. The closure page shows progress for records, files and connected services. Marro keeps its own billing records (contracts, wallet entries, billable AI calls) for eight years, as accounting law requires; they hold no CRM content. Copies outside Marro (phones, downloads you made, other services) and backups that expire on their own schedule are not deleted by Marro.
+After the deadline, records and files are deleted in batches, aiming for seven days. The closure page shows progress for records, files and connected services.
 
-## Reassigning the recorded creator
+- Marro keeps its own billing records (contracts, wallet entries, billable AI calls) for eight years, as accounting law requires. They hold no CRM content.
+- Copies outside Marro (phones, your downloads, other services) and expiring backups are not deleted by Marro.
 
-The original creator can reassign creator attribution to another active admin under **Organization creator**, using their password. This does not grant exclusive closure authority: every active organization admin can close it. The creator record is kept for attribution and account allowances, and cannot change during a closure.
+## Reassign the recorded creator
 
-If the recorded creator has left, ask [support](https://app.marro.si/legal/support) for a reviewed reassignment. No creator assignment is needed to let another admin close the organization.
+Under **Organization creator**, the creator can reassign attribution to another active admin, using their password. This doesn't change who can close: every active admin can. If the creator has left, ask [support](https://app.marro.si/legal/support).
 
-## In the assistant and WhatsApp
+## Ask Marro
 
-The assistant can tell an admin where a closure stands and open the closure page for them. It never asks for your password and never closes, restores or deletes anything in chat.
+<Card title="Try asking" icon="message-circle">
+  *"Where is our organization closure?"*
 
-## For Marro platform Owners
-
-**Platform → Settings → Organization closure** has two switches: **Admins can close their organization** and **Delete data after the 30 days**. Each asks for a confirmation and is recorded in the platform audit log. Both also need their deployment settings (`ORGANIZATION_CLOSURE_ENABLED`, and for deletion `ORGANIZATION_PURGE_ENABLED` and `DELETION_RESTORE_GATE_REVIEWED`) and pass the safety checks shown on that page. Turning them off never reopens a closed organization; admins keep the 30-day recovery window. An organization's **Lifecycle** tab shows its owner and lets a platform Owner record or move it, with a reason.
+  Marro tells an admin where it stands and opens the closure page. It never asks for your password and never closes, restores or deletes anything in chat.
+</Card>

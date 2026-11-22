@@ -3,64 +3,59 @@ title: "WhatsApp groups"
 description: "Make a WhatsApp group from the Inbox, invite people with a link, and write to everyone in it."
 ---
 
-**Inbox → Groups** lists the WhatsApp groups your business made. A group is not a lead's chat: it has its own list, its own thread, and its people are linked to leads where their phone number matches.
+**Inbox → Groups** lists the WhatsApp groups your business made. A group has its own thread, and its people are linked to leads where their phone number matches.
 
 <Warning>
-  Groups need a number that Meta allows to make them. The number must be an **Official Business Account** on the WhatsApp Cloud API. Numbers still used in the WhatsApp Business app, or added through Multi-solution Conversations, cannot make groups. Marro cannot see whether your number qualifies: if it does not, Meta refuses when you create the group and Marro shows its reason on the group.
+  Groups need a number that Meta allows to make them: an **Official Business Account** on the WhatsApp Cloud API. Numbers still used in the WhatsApp Business app, or added through Multi-solution Conversations, cannot. If yours does not qualify, Meta refuses when you create the group and Marro shows its reason.
 </Warning>
 
 ## Limits
 
-- A group holds up to **8 people** besides your business, which is always the admin.
-- People join through the **invite link**. You cannot add someone by number.
-- Groups carry text, pictures, videos and documents. Buttons and lists are not sent into groups.
-- WhatsApp can suspend a group; Marro shows it as suspended.
-- Meta bills your business directly for group messages, as it does for other WhatsApp messages. Marro shows no prices.
+| Rule | Detail |
+| --- | --- |
+| Size | Up to **8 people** besides your business, which is always the admin |
+| Joining | Through the **invite link** only; you can't add someone by number |
+| Content | Text, pictures, videos and documents. No buttons or lists |
+| Cost | Meta bills your business directly. Marro shows no prices |
 
 ## Make a group
 
 <Steps>
   <Step title="Choose New group">
-    Open **Inbox → Groups** and choose **New group**. You need permission to manage WhatsApp settings.
+    In **Inbox → Groups**. You need permission to manage WhatsApp settings.
   </Step>
   <Step title="Name it">
-    Give a name (up to 128 characters), an optional description, and the number to make it on. **I approve each person who asks to join** is on by default: you see who asked and decide.
+    Add a name (up to 128 characters), an optional description and the number. **I approve each person who asks to join** is on by default.
   </Step>
   <Step title="Share the link">
-    WhatsApp makes the group in a moment and Marro shows its invite link. Copy it and send it to the people you want. **New link** makes a fresh link and stops every earlier one.
+    Copy the invite link and send it. **New link** makes a fresh one and stops every earlier one.
   </Step>
 </Steps>
 
-## Write to a group
+## Use a group
 
-Open the group and write in the box under its messages. Everyone in the group sees it. Whatever they write back appears in the thread, with their name, and the people list shows **· lead** next to anyone whose number is one of your leads. Marro never makes a lead from a group member.
+| Do this | How |
+| --- | --- |
+| Write to everyone | Type in the box under the messages |
+| Approve people | Under **Waiting to join**, **Approve** or **Reject**. **Check for requests** reloads the list |
+| Rename | **Edit** |
+| Add existing groups | **Import existing groups** (up to 50 at a time; sends nothing) |
+| Remove a person | **×** beside them. They can't rejoin with the link |
+| Delete | **Delete** removes everyone and can't be undone. Marro keeps the history |
 
-People who use a WhatsApp username have no phone number to show; they appear by username and are not linked to a lead.
-
-## Approve who joins
-
-If the group asks for approval, people who use the link appear under **Waiting to join**. Choose **Approve** or **Reject**; **Check for requests** reads the list from WhatsApp again. Rejecting cannot be undone, but the person may ask again.
-
-## Rename a group
-
-Choose **Edit** to change the name or description. WhatsApp confirms the change in a moment.
-
-## Bring in groups you already have
-
-**Import existing groups** adds groups your number already has on WhatsApp (made before this feature, or with Meta's own tools): their names, people and invite links. It sends nothing, and brings up to 50 at a time.
-
-## Remove people and delete a group
-
-Choose **×** beside a person to remove them; they cannot rejoin with the link. **Delete** removes everyone from the group on WhatsApp and cannot be undone. Marro keeps the history. Both need permission to manage WhatsApp settings, and both are done on this page only: the assistant does not do them.
+Replies show the person's name, with **· lead** next to numbers that match a lead. Marro never makes a lead from a group member.
 
 ## Who can use it
 
-Reading and writing in groups needs the permission to see all WhatsApp chats, because a group has no single owner. Creating, deleting, removing people and renewing the link need permission to manage WhatsApp settings.
+| Permission | Allows |
+| --- | --- |
+| See all WhatsApp chats | Reading and writing in groups |
+| Manage WhatsApp settings | Creating, deleting, removing people, renewing the link |
 
 ## Ask the assistant
 
-The assistant can list your groups, read one, create a group, send a message into one, approve or reject people waiting to join, rename a group, import existing groups and make a new invite link. Each change is shown to you first. What people wrote in a group is treated as information, never as instructions.
+<Card title="What it can do" icon="comments">
+List and read groups, create one, send a message, approve or reject people, rename, import and make a new invite link. Each change is shown first. Removing people and deleting are done on this page only.
+</Card>
 
-## Not here yet
-
-Sending a template or a broadcast into a group, an automation step that writes to a group, sending pictures and files from the thread, changing a group's picture, and the mobile app.
+Not here yet: templates, broadcasts or automations into a group, sending files from the thread, changing a group's picture, and the mobile app.

@@ -5,21 +5,27 @@ description: "Send your website's form enquiries into Marro as leads."
 
 import Capture from "/snippets/generated/capture.mdx";
 
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Visitor submits form] --> B[Your server] --> C[Marro lead]
+```
+
 <Steps>
   <Step title="Create a Website form key">
     In Marro, open **Settings → Integrations → API keys → New key → Website form**. Copy the key.
   </Step>
-  <Step title="Store the key on your website's server">
+  <Step title="Store it on your server">
     Save it as an environment variable, for example `MARRO_API_KEY`. In WordPress, define it in `wp-config.php`.
   </Step>
   <Step title="Send each enquiry from your server">
-    Your form posts to your own website's server (a route handler, a server action or a PHP handler). The server sends the enquiry to Marro with the key, using the code below. `name` and `phone` are required.
+    Your form posts to your own server, which sends the enquiry to Marro with the key, using the code below. `name` and `phone` are required.
   </Step>
   <Step title="Add your own fields">
-    Send other details in `fields`, using the field keys shown in **Settings → Leads and sales → Lead setup → Fields** or returned by [List lead fields](/api-reference/reference/list-fields).
+    Send other details in `fields`, using the keys in **Settings → Leads and sales → Lead setup → Fields** or from [List lead fields](/api-reference/reference/list-fields).
   </Step>
   <Step title="Test it">
-    Submit your form once and check that the lead appears in Marro, with the enquiry on its timeline.
+    Submit your form once. The lead should appear in Marro with the enquiry on its timeline.
   </Step>
 </Steps>
 

@@ -1,16 +1,64 @@
 ---
 title: Enroll a reviewed email-sequence batch
-description: Review a complete lead selection and reconcile its enrollment receipt.
+description: Enroll 2–50 leads in an email sequence after one review.
 ---
 
-**Unreleased backend.** Parent transaction/authentication, approval policy and recovery integration are complete locally. Screens, actual signed approval UX, independent review and release validation remain required. There is no new public API endpoint or availability claim.
+<Note>
+  Not released yet. The screens and the approval step are still being built, and there is no public API endpoint for it.
+</Note>
 
-An organization administrator with CRM, settings and current lead access chooses one active sequence, an available From mailbox and 2–50 explicit leads. The read-only preview names every lead and recipient and shows the actual From address, sequence/version and complete sending window, including its name, revision, organization timezone, weekdays and local hours. Inaccessible, closed, archived, suppressed or already enrolled leads make the complete selection unavailable. Two leads sharing the same normalized recipient are refused; nothing is silently merged. Preview does not reserve a place or promise delivery.
+An administrator picks one active sequence, a From mailbox and **2–50 leads**, then approves the whole batch once.
 
-One human decision approves the complete named batch. The dedicated assistant action requires approval even in Auto, and cannot be wrapped in generic bulk actions. Web, mobile and staff WhatsApp use the same trusted-current-actor service and current authorization. Browser actions also refuse acting sessions. Support and partner sessions cannot enroll batches.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Pick sequence, mailbox and leads] --> B[Preview] --> C[One approval] --> D[Enrolled]
+```
 
-Admission checks every record again in one database transaction. Changed names, addresses, sender, sequence/version or sending window require another complete review. A failed member, unsubscribe or concurrent enrollment causes the entire transaction to roll back. Enrollment itself sends nothing; the existing worker decides when to attempt each message and applies the existing reply, booking, suppression, subscription, lifecycle and sending-window stop rules. A provider request already underway may finish.
+## Review before you approve
 
-Keep the original batch UUID and exact reviewed input until the result is known. With current authorized administrator access, an exact replay returns its original minimal receipt, including after completion, stop or source deletion; changed input cannot reuse that UUID. If the connection drops while committing, use reconciliation with that same UUID/input. Reconciliation only reads the outcome and never starts enrollment. An absent receipt is not permission for an automatic retry. Do not create a fresh batch ID to work around an uncertain result.
+| The preview shows | Detail |
+| --- | --- |
+| Every lead and recipient | By name |
+| From address | The mailbox you chose |
+| Sequence | Name and version |
+| Sending window | Name, organization time zone, weekdays, local hours |
 
-Receipts retain only the input hash, count, timestamp and nullable enrollment references. They do not store names, recipients, message bodies or reusable approval input. Deleting a lead or sequence can clear references without erasing the receipt. Restoring stopped enrollment history does not reconnect cleared references, recreate authorization or restart outreach. Tenant closure controls final receipt purge.
+The whole selection is refused if any lead is inaccessible, closed, archived, suppressed or already enrolled, or if two leads share a recipient address. Nothing is merged for you.
+
+## Approve
+
+| Rule | What it means |
+| --- | --- |
+| One decision | Approves the complete named batch |
+| Auto mode | Marro still asks for approval |
+| Access | You need CRM, settings and lead access. Support and partner sessions can't enroll |
+| Changes | A new name, address, sender, sequence or window means a new review |
+| One failure | The whole batch rolls back |
+
+Enrolling sends nothing by itself. Emails go out in the sending window and stop on a reply, a booking, an unsubscribe or a closed lead.
+
+## If the connection drops
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Unclear result] --> B[Check with the same batch ID and input] --> C[Read-only result]
+```
+
+Checking never enrolls anyone. Don't create a new batch ID to get around an unclear result.
+
+## Privacy
+
+<CardGroup cols={2}>
+  <Card title="Kept" icon="receipt">A hash of the input, the count and the time.</Card>
+  <Card title="Not kept" icon="eye-slash">Names, addresses and message text.</Card>
+</CardGroup>
+
+## Ask Marro
+
+<Card title="Try asking" icon="message-circle">
+  *"Enroll these five leads in the Welcome sequence."*
+
+  Marro shows the full preview and asks for your approval.
+</Card>

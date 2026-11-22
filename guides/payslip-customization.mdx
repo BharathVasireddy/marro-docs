@@ -1,21 +1,50 @@
 ---
 title: Customize future payslips
-description: Choose payslip presentation without changing saved salary figures.
+description: Choose how payslips look without changing saved salary figures.
 ---
 
-<Note>
-Payslip design screens are implemented and awaiting release validation. Open **Team HR → Payroll → Payslip**. Saved designs apply to future approvals; approved payslips retain their captured design.
-</Note>
+Payroll managers can set how payslips look. Open **Team HR → Payroll → Payslip**. Salary figures and calculations do not change: payroll stays in INR and deductions stay manual.
 
-Payroll managers can save a payslip presentation for their organization. It includes a template name, payslip title, plain-text header/footer, section labels and compact or comfortable spacing. Attendance display is optional. Payroll continues to use INR and its existing calculations.
+## What you can set
 
-Save the template before approving a payroll month. Approval captures the then-current saved template together with the run, and later template changes apply to future approvals. A preview shows a selected employee's draft or approved figures using the proposed formatting; previewing does not save or approve anything. If another manager saves a change first, reload the template and review it again before saving.
+<CardGroup cols={2}>
+  <Card title="Wording" icon="type">
+    Template name, payslip title, plain-text header and footer, section labels.
+  </Card>
+  <Card title="Layout" icon="layout">
+    Compact or comfortable spacing, and whether attendance is shown.
+  </Card>
+</CardGroup>
 
-Employees can read their own approved payslips. Payroll managers can read approved payslips and preview entries within their current organization. Access depends on current payroll/employee permissions and the Attendance module.
+## Save and preview
 
-Older approvals without a recorded presentation use standard formatting and state that original approval-time branding was not recorded. Their stored salary and attendance figures remain unchanged. If presentation storage is unavailable, the payslip explicitly says its approval-time branding cannot be verified.
+<Steps>
+  <Step title="Change and preview">
+    Preview shows a selected employee's figures in the new design. It saves nothing.
+  </Step>
+  <Step title="Save before approving">
+    Save the template **before** you approve a payroll month.
+  </Step>
+  <Step title="If someone saved first">
+    Reload and review before saving again.
+  </Step>
+</Steps>
 
-Managers can download a portable CSV for an approved payroll month. It includes employee identity, explicit INR currency and the stored gross, deduction and net amounts. Text fields are protected against spreadsheet formulas. The file is a confidential payroll report; it is not a payment instruction or a claimed Zoho Payroll/RazorpayX import format.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Save template] --> B[Approve month] --> C[Payslip keeps that design]
+```
 
-Deductions remain manually entered. This feature adds no statutory calculations, payment processing, bank details or provider setup. Jurisdiction-specific requirements, provider accounts/contracts and legal approval must be handled separately.
+Later template changes only apply to future approvals.
 
+## Who can see payslips
+
+| Who | Sees |
+| --- | --- |
+| Employees | Their own approved payslips |
+| Payroll managers | Approved payslips and previews in their organization |
+
+## Download a month
+
+Managers can download a CSV for an approved month: employee identity, INR amounts, gross, deduction and net. Treat it as a confidential report. It is not a payment file.

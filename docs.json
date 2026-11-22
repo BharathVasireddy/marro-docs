@@ -131,8 +131,22 @@
               "guides/sign-up",
               "guides/organization-onboarding",
               "guides/settings",
-              "guides/modules",
               "guides/mobile-app"
+            ]
+          },
+          {
+            "group": "Business",
+            "pages": [
+              "guides/regional-settings"
+            ]
+          },
+          {
+            "group": "Team",
+            "pages": [
+              "guides/access-and-data",
+              "guides/branches",
+              "guides/two-step-sign-in",
+              "guides/company-sign-in"
             ]
           },
           {
@@ -140,72 +154,91 @@
             "pages": [
               "guides/leads",
               "guides/pipelines",
+              "guides/custom-fields",
+              "guides/lead-sources-and-tags",
               "guides/lead-assignment",
               "guides/log-update",
-              "guides/custom-fields",
+              "guides/custom-objects",
+              "guides/custom-object-automations",
               "guides/advanced-filters",
               "guides/favourites",
-              "guides/case-workflows",
-              "guides/custom-objects"
+              "guides/case-workflows"
             ]
           },
           {
-            "group": "Forms and websites",
+            "group": "Payments",
             "pages": [
-              "guides/forms",
-              "guides/connect-a-website",
-              "guides/website-chat",
-              "guides/website-tracking"
+              "guides/quotes-and-invoices",
+              "guides/customer-quotes",
+              "guides/payments",
+              "guides/store-orders"
             ]
           },
           {
-            "group": "Inbox and messaging",
+            "group": "Channels",
             "pages": [
-              "guides/inbox",
-              "guides/whatsapp-contacts",
-              "guides/whatsapp-chatbots",
-              "guides/whatsapp-flows",
-              "guides/whatsapp-groups",
-              "guides/whatsapp-catalog",
-              "guides/click-to-whatsapp-ads",
-              "guides/blocked-numbers",
-              "guides/contact-preferences",
-              "guides/email",
-              "guides/email-campaigns",
-              "guides/sequences",
-              "guides/campaigns"
+              {
+                "group": "WhatsApp",
+                "pages": [
+                  "guides/inbox",
+                  "guides/whatsapp-contacts",
+                  "guides/whatsapp-chatbots",
+                  "guides/whatsapp-flows",
+                  "guides/whatsapp-groups",
+                  "guides/whatsapp-catalog",
+                  "guides/click-to-whatsapp-ads",
+                  "guides/social-comments"
+                ]
+              },
+              {
+                "group": "Email",
+                "pages": [
+                  "guides/email",
+                  "guides/email-tracking",
+                  "guides/email-campaigns",
+                  "guides/email-sequences",
+                  "guides/email-sequence-sending-windows",
+                  "guides/email-sequence-batches",
+                  "guides/sequences"
+                ]
+              },
+              {
+                "group": "Forms and booking",
+                "pages": [
+                  "guides/forms",
+                  "guides/website-chat",
+                  "guides/appointments"
+                ]
+              },
+              {
+                "group": "Notifications and spam",
+                "pages": [
+                  "guides/notifications",
+                  "guides/blocked-numbers",
+                  "guides/contact-preferences"
+                ]
+              }
             ]
           },
           {
-            "group": "Calling",
+            "group": "Automations",
+            "pages": [
+              "guides/automations"
+            ]
+          },
+          {
+            "group": "Calls",
             "pages": [
               "guides/cloud-calls",
               "guides/ai-calling"
             ]
           },
           {
-            "group": "Sales and payments",
-            "pages": [
-              "guides/quotes-and-invoices",
-              "guides/price-list",
-              "guides/payments",
-              "guides/store-orders"
-            ]
-          },
-          {
-            "group": "Appointments",
-            "pages": [
-              "guides/appointments",
-              "guides/notifications"
-            ]
-          },
-          {
-            "group": "Assistant and automation",
+            "group": "AI",
             "pages": [
               "guides/assistant",
               "guides/personal-agent",
               "guides/agents",
-              "guides/automations",
               "guides/business-knowledge",
               "guides/ai-usage",
               "guides/mcp"
@@ -215,24 +248,37 @@
             "group": "Reports",
             "pages": [
               "guides/custom-reports",
-              "guides/chat-reports"
+              "guides/chat-reports",
+              "guides/sales-forecasting",
+              "guides/campaigns"
             ]
           },
           {
-            "group": "Team and security",
+            "group": "HR and tasks",
             "pages": [
-              "guides/branches",
-              "guides/two-step-sign-in",
-              "guides/company-sign-in",
-              "guides/access-and-data",
-              "guides/regional-settings",
-              "guides/integrations"
+              "guides/payslip-customization"
             ]
           },
           {
-            "group": "Account and billing",
+            "group": "Plan and modules",
             "pages": [
               "guides/billing",
+              "guides/price-list",
+              "guides/modules"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "guides/integrations",
+              "guides/connect-a-website",
+              "guides/website-tracking",
+              "guides/lead-ad-attribution"
+            ]
+          },
+          {
+            "group": "Account",
+            "pages": [
               "guides/support",
               "guides/organisation-closure",
               "guides/delete-your-account"

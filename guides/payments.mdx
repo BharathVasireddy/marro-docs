@@ -3,45 +3,53 @@ title: "Payments"
 description: "Send Razorpay payment links from a lead and record what they pay."
 ---
 
-Marro sends payment links through your organization's own Razorpay account. A payment counts once Razorpay confirms it: it shows on the lead and its timeline, can move the lead to a stage, starts automations, and appears as revenue in Reports.
+Marro sends payment links through your own Razorpay account. Once Razorpay confirms a payment, it shows on the lead and its timeline, can move the lead to a stage, starts automations and counts as revenue in Reports.
 
-## View payments
-
-Open **Finance → Payments**. It starts with **Received**. Use **Status**, **Method**, **From** and **To**, then choose **Apply filters**. Dates are shown in your organization’s time zone, using the day received for a payment and the day created for a request that has yet to be paid. Each amount is shown in its own currency. Open the invoice number or lead name to see the related record. The list follows the invoices and leads your role can see.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Request payment] --> B[Send link] --> C[Lead pays] --> D[Razorpay confirms] --> E[Lead updated]
+```
 
 ## Connect Razorpay
 
-<Steps>
-  <Step title="Enter your keys">
-    Open **Settings → Integrations → Razorpay**. Enter your **Key ID** and **Key secret** from Razorpay's **Account & Settings → API Keys**.
-  </Step>
-  <Step title="Add the webhook in Razorpay">
-    In Razorpay, open **Account & Settings → Webhooks → Add New Webhook**. Paste the webhook URL and secret shown in Marro, tick `payment_link.paid`, `payment_link.expired` and `payment_link.cancelled`, and save. Use the same mode (Test or Live) as your key.
-  </Step>
-</Steps>
+1. Open **Settings → Integrations → Razorpay**.
+2. Enter your **Key ID** and **Key secret** from Razorpay's **Account & Settings → API Keys**.
+3. In Razorpay, open **Account & Settings → Webhooks → Add New Webhook**.
+4. Paste the webhook URL and secret shown in Marro.
+5. Tick `payment_link.paid`, `payment_link.expired` and `payment_link.cancelled`, then save. Use the same mode (Test or Live) as your key.
 
 ## Set up what you sell
 
-- **Settings → Products and payments → Products and prices**: each product or service with its price and, optionally, the parts it is paid in.
-- **Settings → Products and payments → Payments**: under **When a lead pays**, choose **Move the lead to** a stage, or **Keep it where it is**. A lead only ever moves forwards.
+- **Settings → Products and payments → Products and prices**: each product or service with its price and, if you like, the parts it is paid in.
+- **Settings → Products and payments → Payments**: under **When a lead pays**, choose **Move the lead to** a stage or **Keep it where it is**. A lead only moves forwards.
 
 ## Request a payment
 
-<Steps>
-  <Step title="Open the lead's Payments">
-    On the lead's page, open the **Finance** tab. **Interested in** lists what the lead wants and its agreed amount; together they make the lead's **Value**, with **Paid** and **Still due** beside it.
-  </Step>
-  <Step title="Create the link">
-    Press **Request payment**. Choose a product, one part of its price, or **Something else**. Change the amount for a discount or a part payment, and optionally set a day to pay by. Then **Create payment link**.
-  </Step>
-  <Step title="Send it">
-    **Send on WhatsApp** sends it from your WhatsApp number within the 24-hour reply window, or copy the link to share it another way.
-  </Step>
-</Steps>
+1. Open the lead and go to the **Finance** tab. It shows **Value**, **Paid** and **Still due**.
+2. Press **Request payment**.
+3. Choose a product, one part of its price, or **Something else**. Change the amount for a discount or part payment, and set a pay-by day if you want.
+4. Press **Create payment link**.
+5. **Send on WhatsApp** (within the 24-hour reply window), or copy the link and share it another way.
 
 Razorpay's own SMS and email are off, so the lead hears from your team.
 
-Use the trigger **A payment is received** in [Automations](/guides/automations) to act on each payment.
+## View payments
 
+Open **Finance → Payments**. It starts on **Received**. You see only the invoices and leads your role can see.
 
-[Customer quotes](/guides/customer-quotes) are being prepared separately. Publishing a quote does not send it, create a charge or collect a payment.
+| Filter | Use it for |
+| --- | --- |
+| **Status** | Received, or not yet paid |
+| **Method** | How it was paid |
+| **From**, **To** | The dates. Choose **Apply filters** |
+
+## Automate
+
+<Card title="A payment is received" icon="bolt" href="/guides/automations">
+  Use this trigger in Automations to act on each payment.
+</Card>
+
+## For developers
+
+[List payments](/api-reference/money/list-payments) and [record an invoice payment](/api-reference/money/record-invoice-payment).

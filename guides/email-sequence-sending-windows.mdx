@@ -1,24 +1,48 @@
 ---
 title: Email sequence sending windows
-description: Review sending hours and preserve each enrollment’s original schedule.
+description: Limit the hours an email sequence may send, and keep each enrollment's original schedule.
 ---
 
-<Note>These backend capabilities are integrated locally. Screens, independent review and release are pending.</Note>
+<Note>The backend for sending windows is ready. Screens and release are pending.</Note>
 
-The backend is integrated locally. Screens, independent review and release remain pending.
+A sending window says when a sequence's due emails may go out. Saving a window enrolls no lead and sends no email.
 
-An organization administrator with CRM and settings access can review a named sending window for each email sequence. Review the organization, sequence name and version, window name and version, timezone, weekdays and times before confirming. Saving a window does not enroll a lead or send an email. Changes require a person's approval even when the assistant is set to Auto. Support view and partner accounts cannot configure windows. Browser settings use the administrator's own session. Ask Marro, mobile and staff WhatsApp use the same current administrator checks and require individual approval; automated agents cannot configure windows.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Email is due] --> B{Inside the window?}
+  B -->|Yes| C[Sent]
+  B -->|No| D[Moved to the next opening]
+```
 
-Choose **Unrestricted** to allow due messages at any time. An unconfigured sequence is labelled **Unrestricted (unconfigured)**. Older enrollments without a schedule snapshot are explicitly unrestricted; adding a window does not change them.
+## Choose a window
 
-For a weekly window, choose at least one weekday and one same-day time interval. Opening times are included and closing times are excluded: 09:00–17:00 includes exactly 09:00 and excludes exactly 17:00. Choose distinct weekdays and separate periods in time order. Midnight can be used as the end of a day. Touching, overlapping and overnight intervals are rejected, never merged or adjusted. Combine touching periods yourself; split overnight periods into same-day intervals and review the eligible weekdays. The same interval list applies to every selected weekday; different intervals per weekday are not implemented.
+| Choice | Meaning |
+| --- | --- |
+| **Unrestricted** | Due emails go at any time. An unconfigured sequence shows **Unrestricted (unconfigured)**. |
+| Weekly window | At least one weekday and one same-day time interval, applied to every chosen weekday. |
 
-Times use the organization's saved time zone, which is fixed by the existing organization settings policy, never the recipient's guessed location or the worker machine's timezone. Enrollment preview shows the timezone and schedule that will be frozen. If configuration, timezone or displayed organization/sequence/window names change before enrollment is confirmed, review again. A lead's name and the exact sender/recipient must also match the parent's enrollment preview.
+- Opening times are included, closing times are not: 09:00–17:00 includes 09:00 and excludes 17:00.
+- Intervals must be in order. Touching, overlapping and overnight intervals are rejected, not merged. Split overnight periods into same-day ones.
+- Times use your organization's saved time zone, not the recipient's.
 
-Each enrollment keeps its immutable schedule and timezone snapshot. Later sending-window changes affect newly reviewed enrollments only. A future authorized time-zone migration must not retime existing snapshots. Pausing and resuming an existing enrollment does not retime it. Existing step delays still run from the previous email's acceptance; the window may postpone sending after that due time, but does not replace the delay.
+## Who can change it
 
-During a spring daylight-saving gap, nonexistent minutes never qualify. If the complete opening disappears, the next eligible day is used. During a fall repetition, both occurrences of an eligible local time qualify, while the one-intent-per-step rule still prevents a second send. If a valid opening cannot be found in the next fifteen days, the enrollment pauses for review. A preview is a read-only estimate at its displayed instant, not a reservation or a promise of delivery then.
+| Who | Can |
+| --- | --- |
+| Organization administrator with CRM and settings access | Review and save windows |
+| Support view, partner accounts, automated agents | Cannot |
 
-A worker checks the existing unsubscribe, reply, booking, recipient, mailbox-sync and lifecycle safeguards first. Outside a window, it moves the due time forward and releases the processing claim without changing the step or creating a send intent. It checks again after preparing the message and immediately before intent reservation. A provider request already begun may finish after closing; it cannot be recalled. An interrupted or unknown provider outcome never retries automatically. These checks do not promise a transaction spanning database and network.
+Review the sequence, window, time zone, days and times before confirming. A person's approval is needed even when the assistant is set to **Auto**.
 
-Enrollment lists expose the saved hours and timezone, and explicitly label older unrestricted enrollments. Missing snapshot data is unavailable, not assumed unrestricted. Deleting a lead removes its enrollment and snapshot descendants. Recovery restores stopped enrollment history and the original snapshot graph without generating a fresh schedule, creating another snapshot or restarting outreach. Tenant purge remains possible. There is no holiday calendar, recipient timezone, tracking handle, observation activation or autonomous opt-in in this feature.
+## What changes for enrollments
+
+| Topic | What happens |
+| --- | --- |
+| Schedule and time zone | Each enrollment keeps the ones it was enrolled with. A later window change affects only new enrollments |
+| Step delays | Still run from the previous email; the window can only postpone the send after that |
+| Enrollment preview | Shows the schedule that will be frozen. If anything changes before you confirm, review again |
+| No opening in the next fifteen days | The enrollment pauses for review |
+| Other safeguards | Unsubscribes, replies and bookings are checked first. An email already being sent when a window closes may still finish |
+
+There is no holiday calendar or recipient time zone in this feature.

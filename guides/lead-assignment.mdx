@@ -1,70 +1,60 @@
 ---
 title: "Lead assignment and rotation"
 sidebarTitle: "Assignment and rotation"
-description: "Tag and source your leads, give new leads to the right people, pass untouched leads on, and watch first reply time."
+description: "Give new leads to the right people, pass untouched leads on, and watch first reply time."
 ---
 
 These pages are in **Settings → Leads**.
 
-## Sources and tags
-
-Open **Settings → Leads → Lead sources** and **Lead tags** to keep the lists your team picks from.
-
-<Frame>
-  <img src="/images/setup/ask-marro-sources-tags.jpg" alt="Ask Marro adding lead sources and lead tags" />
-</Frame>
-
-**Ask Marro:** *"Add lead sources Google Ads, Facebook Ads and Referral, and create two lead tags: Hot and VIP"*
-
-<Frame>
-  <img src="/images/lead-settings/sources.jpg" alt="Lead sources" />
-</Frame>
-
-<Frame>
-  <img src="/images/lead-settings/tags.jpg" alt="Lead tags" />
-</Frame>
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[New lead] --> B[Assignment rule]
+  B --> C[Owner]
+  C -->|Untouched too long| D[Rotation to next person]
+```
 
 ## Assignment rules
-
-Open **Settings → Leads → Lead assignment** and choose **Add rule**.
 
 <Frame>
   <img src="/images/setup/assignment-rule.jpg" alt="A new lead assignment rule" />
 </Frame>
 
-1. Give the rule a name.
-2. **Add a condition**: source, state, words and more. With no conditions, the rule applies to every lead.
+In **Lead assignment**, choose **Add rule**.
+
+1. Name the rule.
+2. **Add a condition**: source, state, words and more. With none, it applies to every lead.
 3. Choose the people and teams. People come first, then team members. People on leave are skipped.
 4. **Share them**: **In turns**, or **In turns among those checked in**.
 5. **Create rule**.
 
-The first rule that matches wins. A new lead that a rule takes needs no owner chosen, even when **Assign to** is required.
+The first matching rule wins.
 
-**Ask Marro:** *"Create a lead assignment rule called Ad leads: leads from Google Ads or Facebook Ads go to the Sales team in turns"*
+<Card title="Try asking" icon="message-circle">
+  *"Create a lead assignment rule called Ad leads: leads from Google Ads or Facebook Ads go to the Sales team in turns"*
 
-<Frame>
-  <img src="/images/setup/ask-marro-assignment-rule.jpg" alt="Ask Marro creating a lead assignment rule" />
-</Frame>
+  Marro creates the rule.
+</Card>
 
 ## Rotation
 
-Open **Settings → Leads → Lead rotation**. A rotation rule passes a lead nobody has touched to the next person after a set time, a set number of times.
-
-**Ask Marro:** *"Add a lead rotation rule: if a new lead is not touched within 2 hours, pass it to the next person in the Sales team"*
-
-Marro drafts the rule and shows the idle time, the maximum moves, the sources and the team. It goes live only when you press **Publish rule**, even in Auto. Existing leads are left as they are.
-
-<Frame>
-  <img src="/images/setup/ask-marro-rotation.jpg" alt="Ask Marro drafting a lead rotation rule" />
-</Frame>
+A rotation rule passes a lead nobody has touched to the next person after a set time, a set number of times. Open **Lead rotation**.
 
 <Frame>
   <img src="/images/lead-settings/rotation-form.jpg" alt="A new rotation rule" />
 </Frame>
 
+<Card title="Try asking" icon="message-circle">
+  *"Add a lead rotation rule: if a new lead is not touched within 2 hours, pass it to the next person in the Sales team"*
+
+  Marro drafts the rule. It goes live only when you press **Publish rule**, even in Auto.
+</Card>
+
+Existing leads are left as they are.
+
 ## Response time
 
-Open **Settings → Leads → Response time**.
+Open **Response time**.
 
 <Frame>
   <img src="/images/setup/response-time.jpg" alt="The Response time settings page" />

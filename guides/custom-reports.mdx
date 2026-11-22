@@ -3,29 +3,66 @@ title: "Custom reports and dashboards"
 description: "Build the reports you need, put them side by side on dashboards, and have them emailed."
 ---
 
-**Reports → Custom reports** lists your saved reports and the **Ready-made** ones to start from. **Reports → Dashboards** puts saved reports side by side.
+**Reports → Custom reports** lists your saved reports and **Ready-made** ones to start from. **Reports → Dashboards** puts saved reports side by side.
+
+<CardGroup cols={2}>
+  <Card title="Report" icon="chart-bar">One question, one chart.</Card>
+  <Card title="Dashboard" icon="layout-dashboard">Saved reports as cards, with one period and filters.</Card>
+</CardGroup>
 
 ## Build a report
 
-Choose **New report** (or open a ready-made one and change it). The preview updates as you go.
+Choose **New report**, or open a ready-made one and change it. The preview updates as you go.
 
-- **Report on:** leads, calls, follow-ups and tasks, appointments, WhatsApp chats, [website visits](/guides/website-tracking#reports), or one of your [custom objects](/guides/custom-objects#reports); only what your role can use is offered.
-- **Measure:** a count, a sum or average of a number field, a conversion (**The share that reached** a stage, **Of leads that reached** another), or the first-response time.
-- **Group by** and **Split by:** stage, source, owner, team, branch, pipeline, a field's options, or the date by day, week or month.
-- **Only:** narrow it with conditions (**Add a condition**), the same ones as Leads filters.
-- **When:** the date it counts by and the **Period**, including a custom range.
-- **Chart:** a number, bars, stacked bars, a line, a donut, a funnel or a table.
+| Setting | Choices |
+| --- | --- |
+| **Report on** | Leads, calls, follow-ups and tasks, appointments, WhatsApp chats, [website visits](/guides/website-tracking#reports) or your [custom objects](/guides/custom-objects#reports). Only what your role can use is offered. |
+| **Measure** | A count, a sum or average of a number field, a conversion (**The share that reached** a stage, **Of leads that reached** another) or first-response time. |
+| **Group by**, **Split by** | Stage, source, owner, team, branch, pipeline, a field's options, or date by day, week or month. |
+| **Only** | **Add a condition**, the same ones as Leads filters. |
+| **When** | The date it counts by and the **Period**, including a custom range. |
+| **Chart** | A number, bars, stacked bars, a line, a donut, a funnel or a table. |
 
 Give it a **Name** and save. **Save as new** keeps the original.
 
 ## Who sees what
 
-Reports always count only what the person looking may see: a shared report shows each viewer their own leads, team or branch. **Who can see it** keeps a report to yourself or shares it with roles; sharing needs the **Manage reports** permission (Admin and the ready-made Manager role have it; an admin can give it to any role in **Users → Roles**), and never widens anyone's access to leads. Manage reports is new: it was not added to roles you already had, so tick it on those roles yourself. On the web, the branch switcher narrows reports too.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Shared report] --> B[Each viewer]
+  B --> C[Sees only their own leads, team or branch]
+```
+
+- **Who can see it** keeps a report to yourself or shares it with roles.
+- Sharing needs the **Manage reports** permission. Admin and the ready-made Manager role have it; other roles don't get it on their own, so tick it in **Users → Roles**.
+- Sharing never widens anyone's access to leads.
 
 ## Dashboards
 
-A dashboard is a set of saved reports as cards, with one period and filters for all of them. Add a report to a dashboard from the report, drag cards to arrange them, and change their size. In **Dashboard settings**, someone with **Manage reports** chooses **Home dashboard for** a role to make it what those people see first.
+<Steps>
+  <Step title="Add a report">To a dashboard, from the report.</Step>
+  <Step title="Arrange">Drag cards to arrange them and resize them.</Step>
+  <Step title="Set the home dashboard">In **Dashboard settings**, someone with **Manage reports** sets **Home dashboard for** a role to be what those people see first.</Step>
+</Steps>
+
+**Manage reports** is not added to existing roles on its own: tick it for each role in **Users → Roles**.
 
 ## Download and email
 
-Download any report as CSV. **Email on a schedule** sends a report or a dashboard **Every day** or **Every week** to the people you choose under **Send to**; each person receives their own figures, and only reports they may open. Anyone can schedule a report to themselves; sending it to other people needs **Manage reports**.
+| You want to | Do this |
+| --- | --- |
+| Keep a copy | Download any report as CSV |
+| Get it regularly | **Email on a schedule** sends a report or dashboard **Every day** or **Every week** to the people under **Send to**. Each person gets their own figures, only for reports they may open |
+| Schedule for yourself | Anyone can |
+| Send to others | Needs **Manage reports** |
+
+## Ask Marro
+
+<Card title="Try asking" icon="message-circle">
+  *"Show leads by source this month"*
+
+  *"What is our first-response time by owner?"*
+
+  Marro reads your reports within your own access.
+</Card>

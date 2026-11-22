@@ -1,40 +1,66 @@
 ---
 title: "Chat reports"
-description: "See how fast your team answers WhatsApp chats, set targets, and find the chats that missed them."
+description: "See how fast your team answers WhatsApp chats and find the chats that missed your targets."
 ---
 
-**Reports → Chats** measures your WhatsApp chats: how long customers waited for a first reply, how long chats took to close, and how many messages each needed. It is for people who can see all leads, because it names who answered.
+Open **Reports → Chats** to see how long customers wait for a first reply, how long chats take to close, and how many messages each needs. It is for people who can see all leads, because it names who answered.
 
 ## What is counted
 
-A chat is counted each time a customer starts waiting: their first message, or their first message after the chat was closed. A chat the customer reopens is counted again.
+A chat is counted when a customer starts waiting: their first message, or their first message after a chat was closed. Only chats that **started** in the period you choose are counted.
 
-- **First response** is the time from the customer's message to the first reply from a person. Replies typed on the WhatsApp Business app count. Automatic replies, the AI receptionist and welcome or away messages do not.
-- **Resolution** is the time from the customer's message to the moment someone closes the chat.
-- **Messages per chat** counts every message in that stretch, in both directions.
+| Measure | What it is |
+| --- | --- |
+| **First response** | Time to the first reply from a person. Replies typed on the WhatsApp Business app count. Automatic replies, the AI receptionist and welcome or away messages don't |
+| **Resolution** | Time until someone closes the chat |
+| **Messages per chat** | Every message in that stretch, both ways |
 
-Figures show the **typical** (median) time, so one very slow chat does not distort the picture. Choose a period at the top. Only chats that **started** in the period are counted.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Customer writes] --> B[First reply] --> C[Chat closed]
+```
 
-You see the figures **by person** (first replies, who closed chats, messages sent) and **by number**, if you have more than one WhatsApp number.
+Figures show the typical (median) time, so one very slow chat doesn't distort them. You see them **by person** and, with more than one WhatsApp number, **by number**.
 
 ## Set targets
 
-Administrators set a **first response** target and a **resolution** target, in minutes, on the Chats report. Leave a box empty for no target. Nothing counts as missed until you set one.
+Administrators set targets in minutes. Leave a box empty for no target. Nothing counts as missed until you set one.
 
-Turn on **Count business hours only** and only time inside Monday to Saturday, 10:00 to 18:00, in your organization's time zone counts. A customer writing at night starts the clock the next morning.
+| Setting | Effect |
+| --- | --- |
+| **First response** target | Minutes allowed for a first reply |
+| **Resolution** target | Minutes allowed to close |
+| **Count business hours only** | Counts just Monday to Saturday, 10:00 to 18:00, in your organization's time zone |
 
-## Chats that missed a target
+## Missed targets
 
-The **Missed targets** list shows each chat that took longer than the target, worst first, with how long it took, how far over it was, and who answered. A chat still waiting is listed with "so far" once it passes the target. Select a chat to open it.
+The **Missed targets** list shows each chat that went over, worst first.
 
-## Ask the assistant
+| Column | Shows |
+| --- | --- |
+| Time taken | How long it took |
+| Over by | How far past the target |
+| Answered by | Who replied |
 
-Ask the assistant for the chat figures, the chats that missed their targets, or to change the targets. It asks you to approve a change.
+Select a chat to open it.
 
-## Notes for your team
+## Notes, locations and contacts
 
-You can write an **internal note** on any chat you can open, from **Internal notes** under the conversation. Notes are only for your team and are never sent to the customer. Mention a colleague with **Mention** (or type `@` and their name) and they get a notification on their phone. A note can be deleted by its author or an administrator.
+<CardGroup cols={3}>
+  <Card title="Internal notes" icon="note-pencil">Under a conversation. Team only, never sent. Mention a colleague with **Mention** (or `@`) to notify them.</Card>
+  <Card title="Location" icon="map-pin">Opens in your maps app. Send one with the pin button next to the message box.</Card>
+  <Card title="Contact" icon="address-book">Shows numbers with a **Copy** button.</Card>
+</CardGroup>
 
-## Locations and contacts
+Sending a location or contact needs an open 24-hour window.
 
-Customers can send a **location** or a **contact**, and you see them in the chat: a location opens in your maps app, and a contact shows its numbers with a **Copy** button. To send one, choose the pin button next to the message box, enter the coordinates or the contact, and send. Like any message, it can only be sent while the customer's 24-hour window is open.
+## Ask Marro
+
+<Card title="Try asking" icon="message-circle">
+  *"How fast did we reply to chats this week?"*
+
+  *"Set the first response target to 15 minutes."*
+
+  Marro answers from the report and asks you to approve any change.
+</Card>

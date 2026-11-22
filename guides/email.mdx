@@ -3,87 +3,112 @@ title: Email with leads
 description: Email leads from your own Gmail or Outlook accounts, and see their replies on the lead.
 ---
 
-Connect your own mailbox and emails to leads go out from your address. Replies come
-back onto the lead, and you get a notification.
+Connect your own mailbox and emails to leads go out from your address. Replies come back onto the lead, and you get a notification. Only emails with your leads are kept in Marro; the rest of your mailbox is never stored.
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Your mailbox] --> B[Email a lead]
+  B --> C[Lead replies]
+  C --> D[Reply on the lead + notification]
+```
 
 ## Connect your mailboxes
 
-Open **Email → Your email** from the menu and choose **Connect Gmail** or **Connect
-Outlook**. You sign in on Google's or Microsoft's own page; Marro never sees your
-password.
+<Steps>
+  <Step title="Open Your email">
+    Go to **Email → Your email**.
+  </Step>
+  <Step title="Connect">
+    Choose **Connect Gmail** or **Connect Outlook** and sign in on Google's or Microsoft's own page. Marro never sees your password.
+  </Step>
+</Steps>
 
-You can connect up to five mailboxes, in any mix of Gmail and Outlook. **Add mailbox**
-connects another. Each one shows whether replies come back, or that it only sends.
+You can connect up to five mailboxes, and an address only once per organization. **Add mailbox** connects another.
 
-- **Default.** One mailbox is your default. New emails, automations on your leads and
-  the assistant use it unless you pick another. Choose **Make default** on any
-  mailbox's menu.
-- **Reconnect.** If Google or Microsoft stops letting Marro use a mailbox (the password
-  changed, or access was removed), it shows **Needs reconnecting**. Reconnect it with
-  the same address.
-- **Disconnect.** Marro stops sending from and reading that mailbox and forgets its
-  sign-in. Emails already on your leads stay there. If you disconnect your default, your
-  next oldest mailbox becomes the default.
-
-An address can be connected only once in an organization.
+| Action | What it does |
+| --- | --- |
+| **Make default** | New emails, automations on your leads and the assistant use it unless you pick another |
+| **Needs reconnecting** | Google or Microsoft stopped access. Reconnect with the same address |
+| Disconnect | Marro stops using it and forgets its sign-in. Emails already on leads stay |
 
 ## Email a lead
 
-Press **Email** in the action row at the top of a lead's page (shown when the lead has an email address). The sheet shows To and From. With more than one
-connected address, choose which one it goes from. Replying to a conversation uses the
-mailbox that conversation came in on, unless you pick another. A mailbox that needs
-reconnecting is listed but can't be chosen.
+<Steps>
+  <Step title="Press Email">
+    In the action row at the top of the lead's page (shown when the lead has an email address).
+  </Step>
+  <Step title="Choose From">
+    With more than one mailbox, pick which one sends. A reply uses the mailbox the conversation came in on.
+  </Step>
+</Steps>
 
-In **Chats**, a lead's emails sit beside their WhatsApp messages and the same From choice
-appears above the reply box.
+In **Chats**, a lead's emails sit beside their WhatsApp messages with the same From choice.
 
 ## The organization address
 
-People who manage the organization can set a shared sending address in **Settings →
-Email sending**. Automations without a lead owner send from it, and so does anyone who
-hasn't connected their own mailbox. It can be a shared Gmail or Outlook mailbox, or your
-own email server. **Send test email** checks that it works.
+People who manage the organization set a shared sending address in **Settings → Email sending**.
 
-## What Marro reads
+| Sending address can be | |
+| --- | --- |
+| A shared mailbox | Gmail or Outlook |
+| Your own email server | |
 
-Only emails with your leads are kept in Marro. The rest of your mailbox is never stored.
-
-Ask Marro or the staff WhatsApp agent to list your mailboxes, send an email to a lead
-from a chosen mailbox, or change your default. Sending and changing the default use the
-usual approval. Connecting, reconnecting and disconnecting a mailbox are done in the
-web app only.
-
+It is used by automations without a lead owner, and by anyone without a connected mailbox. **Send test email** checks it works.
 
 ## Emails Marro sends
 
-Invitations, password resets, follow-up reminders, assignments, mentions, HR updates, portal links, appointment reminders and alerts come from Marro (notifications@marro.si), with Marro's name and logo. Dates and times are shown on your organization's clock, with the time zone, for example "Wed, 11 Nov, 2026, 7:30 pm IST".
+| Sent by | What |
+| --- | --- |
+| Marro (notifications@marro.si) | Invitations, password resets, reminders, assignments, mentions, HR updates, portal links, appointment reminders, alerts |
+| Your mailbox | Emails to leads, and an automation's emails to leads |
 
-Emails go out with your own name and branding only when you send them through a mailbox you connected (see [Connect your mailboxes](#connect-your-mailboxes)): emails to leads, and an automation's emails to leads. Without a connected mailbox, an email to a lead is sent by Marro and replies still reach you.
+Without a connected mailbox, an email to a lead is sent by Marro and replies still reach you. Change Marro's wording in **Settings → Email templates**. Besides bold, links and lists, the editor has:
 
-Change the wording of Marro's emails in **Settings → Email templates**. Besides **bold**, links, lists, quotes and a heading, the editor has two blocks:
+| Block | Write |
+| --- | --- |
+| Details panel | `[[details:Title]]`, then one `Label: value` line per fact |
+| Button | `[[button:Label|{{link}}]]` |
 
-- **Details panel**: `[[details:Title]]`, then one `Label: value` line per fact, up to a blank line. A line whose value is empty is left out.
-- **Button**: `[[button:Label|{{link}}]]`, the one thing the email asks the reader to do.
+## Email assistant
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Lead emails you] --> B[Assistant drafts a reply]
+  B --> C[Waiting for you]
+  C --> D[You approve or edit]
+```
+
+<Steps>
+  <Step title="Set it up">
+    On **Email → Your email**, choose **Set up an Email assistant**, or pick the **Email assistant** template in **AI → Agents**. Connecting a mailbox alone never switches an agent on.
+  </Step>
+  <Step title="Review and switch on">
+    It starts with **Email → Ask me first**. Review the instructions, then **Save, off** or **Switch on**.
+  </Step>
+  <Step title="Approve replies">
+    Drafts appear in **Waiting for you**. Edit the body, approve or dismiss. Only the owner of a personal mailbox can approve its reply.
+  </Step>
+</Steps>
+
+- To let it answer routine questions, change its **Email** ability to **On its own**. It still asks for review for sensitive requests (complaints, refunds, negotiation, security, legal, medical), missing knowledge, limits or working hours.
+- It replies from the mailbox that received the email, in the same thread. A newer email, a staff reply or a paused agent stops a pending reply.
+- Automated replies, newsletters, group emails, attachments and replies older than one day need a person.
 
 ## Email sequences
 
-Reusable sales templates and timed follow-ups are being prepared. They are separate from system email wording and are not enabled for sending yet. See [Email sequences and sales templates](/guides/email-sequences) for the planned workflow and stopping rules.
+<CardGroup cols={2}>
+  <Card title="Email sequences and sales templates" icon="mail" href="/guides/email-sequences">Reusable sales templates and timed follow-ups, being prepared and not enabled for sending yet</Card>
+  <Card title="Optional email observations" icon="eye" href="/guides/email-tracking" />
+</CardGroup>
 
+## Ask Marro
 
-[Optional email observations](/guides/email-tracking) are being prepared. They require separate review for each human-written message and do not prove reading, clicking or delivery. Automatic sequences and agent-written email are excluded.
+<Card title="Try asking" icon="message-circle">
+  *"List my connected mailboxes"*
 
-## Let AI help with replies
+  *"Email Neha from my Outlook mailbox"*
 
-On **Email → Your email**, choose **Set up an Email assistant**, or open **AI → Agents** and pick the **Email assistant** template. It starts when an existing lead emails a connected mailbox. Connecting a mailbox alone never switches an agent on.
-
-The template starts with **Email → Ask me first** and automatic follow-ups. Review the instructions and choose **Save, off** or **Switch on**. Draft replies appear in **Waiting for you** with From, To, subject and the full reply. You can edit the body, approve it or dismiss it. The subject stays with the original conversation. Only the owner of a personal receiving mailbox can approve its reply.
-
-To let it answer routine questions, explicitly change its **Email** ability to **On its own**. It uses your business knowledge and still asks for review when it has no matching knowledge, the request is sensitive, a limit is reached or working hours prevent an automatic reply. Complaints, refunds, negotiation, security, legal and medical requests need a person. Automatic replies are not guaranteed for every message.
-
-The agent replies from the exact mailbox that received the email, in the original thread, to the lead's existing address. It never switches to a colleague's mailbox or another channel. Only the agent owner's own mailboxes and the organization's shared mailbox are eligible. A newer email, a staff reply, changed lead address, paused agent or disconnected mailbox stops the pending reply. Replies older than one day need manual review.
-
-Automated replies, delivery notices, newsletters, group emails, emails only copied to you, different Reply-To addresses emails with attachments and unusually long subjects are excluded. A new draft replaces only a draft for the same receiving address and conversation. Unrelated personal email and messages from before connection remain outside this feature. Each incoming email has one reply send key, including when more than one agent sees it. A send with an uncertain result needs manual checking rather than an automatic retry.
-
-Arrival notifications can start a background refresh promptly when configured by Marro. The regular five-minute sync remains the recovery path; processing and delivery can take longer. This is not an instant-delivery guarantee.
-
-You can also ask Marro, including from staff WhatsApp, to plan or configure an Email assistant, read its activity and review its reply suggestions. Changes require approval and use the same permissions as the page.
+  Marro shows sending and default changes first. Connecting, reconnecting and disconnecting a mailbox are done on the web only.
+</Card>

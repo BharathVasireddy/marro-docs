@@ -3,49 +3,76 @@ title: "WhatsApp chatbots"
 description: "Build a chatbot that asks questions with buttons and lists, fills in lead details and hands the chat to your team or the AI receptionist."
 ---
 
-A **chatbot** answers customers on WhatsApp by itself, step by step. It can ask a question with up to three buttons or a list of up to ten options, ask for typed words (a name, a number, an email address), branch on what the customer chose, put an answer into a lead field, and hand the chat to a person or the AI receptionist.
+A **chatbot** answers customers on WhatsApp step by step. It is part of the Inbox, and building or switching one on needs the **Inbox settings** permission.
 
-<Note>
-  Chatbots are part of the Inbox. Building and switching them on needs the **Inbox settings** permission.
-</Note>
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Keyword or first message] --> B[Questions] --> C[Lead fields filled] --> D[Hand over or end]
+```
 
 ## Build a chatbot
 
 <Steps>
   <Step title="Open Chatbots">
-    Open **Inbox → Settings → Chatbots** and choose **New chatbot**. It starts with a small example you can change.
+    Open **Inbox → Settings → Chatbots** and choose **New chatbot**. It starts with a small example.
   </Step>
   <Step title="Choose when it starts">
-    Type the **keywords** that start it, separated by commas. A keyword matches a whole word in any case: "price" matches "What is the price?". You can also switch on **First message of a new chat**.
+    Type **keywords** separated by commas. A keyword matches a whole word in any case. You can also switch on **First message of a new chat**.
   </Step>
   <Step title="Add steps">
-    Each step does one thing, and says which step comes next:
-    - **Say something**: a message.
-    - **Ask with buttons**: up to three buttons. Each button leads to its own next step.
-    - **Ask with a list**: up to ten options.
-    - **Ask for typed words**: the customer types an answer, which must be words, a number, an email address or a phone number. Name the answer so later steps can use it.
-    - **Branch on an answer**: choose the next step from an earlier answer.
-    - **Set a lead field**: put an answer, or words you write, into one of the lead's fields. A value the field does not accept is refused, never saved.
-    - **Hand over to a person**, **Hand over to the AI receptionist**, or **End the chat**.
+    Each step does one thing and says which step comes next. See the table below.
   </Step>
   <Step title="Save and switch on">
-    The page lists anything still to fix, such as a step that leads nowhere or can never be reached. **Save and switch on** works once nothing is left to fix.
+    The page lists anything to fix, such as a step that leads nowhere. **Save and switch on** works once nothing is left.
   </Step>
 </Steps>
 
+## Step types
+
+| Step | What it does |
+| --- | --- |
+| **Say something** | Sends a message |
+| **Ask with buttons** | Up to three buttons, each leading to its own next step |
+| **Ask with a list** | Up to ten options |
+| **Ask for typed words** | A word, number, email address or phone number. Name the answer to reuse it |
+| **Branch on an answer** | Picks the next step from an earlier answer |
+| **Set a lead field** | Saves an answer, or words you write, into a lead field. A value the field refuses is never saved |
+| **Hand over to a person**, **Hand over to the AI receptionist**, **End the chat** | Finishes the chatbot |
+
 ## How it behaves
 
-- **One chatbot per chat.** A chat runs at most one chatbot at a time.
-- **It never talks over your team.** It does not start while a person is writing in the chat or the AI receptionist has it, and it stops the moment a person sends a message (from Marro or the WhatsApp Business app).
-- **The 24-hour window.** A chatbot runs only while WhatsApp allows free messages: 24 hours after the customer's last message. If the window closes, the chatbot ends quietly and sends nothing.
-- **Wrong answers.** If a customer types instead of tapping, or types something a question does not accept, it asks again once. A second miss follows the step's **Unclear answer** choice, or hands the chat to a person when none is set.
-- **STOP.** A customer who replies STOP is never messaged again, and their chatbot stops.
-- **Replies from the AI receptionist, keyword replies and welcome or away messages stay quiet** while a chatbot answers a message.
+<CardGroup cols={2}>
+  <Card title="One at a time" icon="message">
+    A chat runs at most one chatbot.
+  </Card>
+  <Card title="Never over your team" icon="user">
+    It does not start while a person or the AI receptionist has the chat, and stops when a person sends a message.
+  </Card>
+  <Card title="24-hour window" icon="clock">
+    It runs only while WhatsApp allows free messages. If the window closes, it ends quietly.
+  </Card>
+  <Card title="STOP" icon="ban">
+    A customer who replies STOP is never messaged again.
+  </Card>
+</CardGroup>
+
+If an answer is not accepted, it asks again once. A second miss follows the step's **Unclear answer** choice, or hands the chat to a person.
 
 ## See what it did
 
-Above the message box, the chat shows one line: which chatbot ran, whether it is still asking, was handed over or finished, and the answers so far. While it runs, **Stop** ends it so your team can take over. When a chatbot hands over or finishes, a note is added to the lead with the answers it collected.
+| Where | What you see |
+| --- | --- |
+| Above the message box | Which chatbot ran, its state and the answers so far |
+| **Stop** | Ends it so your team can take over |
+| The lead | A note with the collected answers when it hands over or finishes |
 
-## Ask the assistant
+## Ask Marro
 
-The assistant can list your chatbots, create or change one as a draft, switch it on or off, and stop one running in a chat. Each change is shown for your approval first; saving a chatbot never switches it on.
+<Card title="Try asking" icon="message-circle">
+  *"Create a chatbot that asks for budget and saves it on the lead"*
+
+  *"Switch off the price chatbot"*
+
+  Marro shows each change for approval. Saving never switches a chatbot on.
+</Card>

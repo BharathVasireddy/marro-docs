@@ -1,38 +1,80 @@
 ---
 title: Customer quotes and templates
-description: Prepare reviewed quotes and record a decision on an immutable revision.
+description: Review a customer quote, publish a private link and record the customer's decision.
 ---
 
+Customer quotes are the quotes made before quotes moved to Finance. They are listed in **Finance → Quotes** with every other quote, marked **Customer quote**. Make new quotes with **New quote** there, or on a lead or customer: see [Quotes and invoices](/guides/quotes-and-invoices).
+
 <Note>
-Customer quotes are the quotes made before quotes moved to Finance. They are listed in **Finance → Quotes** with every other quote, marked **Customer quote**, and open on their own page. New quotes are made with **New quote** there, or on a lead or customer: see [Quotes and invoices](/guides/quotes-and-invoices). Publishing a customer quote gives you a private link to share yourself; Marro does not send it. Certified provider e-signing is not configured.
+Publishing gives you a private link to share yourself. Marro does not send it. Certified e-signing is not configured.
 </Note>
 
-Certified signing requires an explicitly selected provider, an implemented adapter and verified
-callback flow, and reviewed test-account, legal-entity and signer configuration. Readiness reports
-the missing provider selection and adapter separately. Accepting a quote records a digital decision
-on that quote; it does not create a certified signing request.
+## Prepare a quote
 
-Prepare a product or service quote for an existing customer. Optionally link its company, opportunity and an existing customer payment request. You need current CRM access and the normal customer record permissions. Opportunities that your organization has turned off cannot be used.
+<Steps>
+  <Step title="Start">
+    Use a draft or a template. Open existing ones from **Finance → Quotes** (archived under **Archived**) and templates under **Templates**.
+  </Step>
+  <Step title="Supplier and customer">
+    Enter the supplier name, address and tax identity from your confirmed details, then the customer, currency and validity date. Marro never supplies a GSTIN, tax treatment or legal terms.
+  </Step>
+  <Step title="Lines">
+    Each line has a description, quantity, unit amount, fixed discount and named tax amounts. Use **Tax not configured** when unsure.
+  </Step>
+  <Step title="Preview and publish">
+    Review totals, validity and terms, then publish.
+  </Step>
+</Steps>
 
-**New quote**, on a customer's page and in **Finance → Quotes**, now opens the quote builder described in
-[Quotes and invoices](/guides/quotes-and-invoices). Existing customer quotes stay as they are: open them from
-**Finance → Quotes** (archived ones under the **Archived** filter) and their templates from **Templates** there.
-A linked payment is context; it does not create a charge or send a payment request.
+Marro does not calculate statutory tax. A discount cannot exceed its line. A linked payment is context only: no charge is made.
 
-Start with a draft or an accessible template. Enter the supplier name/address and tax identity from confirmed organization details. A missing tax identity stays unconfigured; Marro does not supply a GSTIN, tax treatment or legal terms. Add the customer's display label, currency and confirmed currency decimal places. Amount fields use integer minor units as strings. For INR, 100 minor units represents ₹1; no currency conversion occurs.
+## Publish and decide
 
-Each product/service line has a description, quantity with up to four decimal places, unit amount, explicit fixed discount and named explicit tax amounts. Marro rounds each extended line half up to a minor unit before subtracting the discount and adding the supplied taxes. It does not calculate statutory tax or infer whether tax should apply. A discount cannot exceed its line amount. Use **Tax not configured** when tax treatment is unknown; this state cannot carry tax amounts. No supplier or legal detail is inferred from the industry.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Draft] --> B[Publish: private link] --> C[Customer accepts or declines]
+```
 
-Review the entire quote, totals, validity date and terms in Preview. Publication requires the same draft version and preview fingerprint. Publishing creates an immutable revision and a new private access token. It does not email or message anyone and does not create a payment. An existing payment reference is internal context only; it is not a new charge or an automatic customer payment button.
+- Publishing creates a fixed revision and a new private link. It sends nothing and takes no payment.
+- Editing a published quote switches off its old link. Publish a new revision to replace it.
+- Accepted, declined or cancelled quotes cannot be edited. Make a new quote.
+- Expired links cannot record a decision.
 
-Editing a published quote immediately disables its previous customer access. Publish a newly reviewed revision to replace it. Accepted, declined and cancelled quotes cannot be edited or republished; create a new quote instead. Expired links cannot record a new decision. An exact retry of an already saved decision returns that decision without creating another event.
+## What acceptance means
 
-Customers reviewing a private link can accept or decline the exact revision and its terms. The backend records the revision, complete snapshot, fingerprint, bearer authentication and server time. A bearer decision does not independently verify the identity of the person holding the link. **Digital acceptance is not certified provider e-signing.** No claim about legal enforceability is made.
+| Accepting | |
+| --- | --- |
+| Records | A digital decision on that exact revision |
+| The link | Does not prove who holds it |
+| Is it e-signing? | **Not** certified e-signing |
+| Legal enforceability | No claim is made |
 
-Cancel stops an open quote. Archive removes it from active lists and stops customer access, while retaining its history and existing acceptance evidence. Archiving an accepted quote does not undo the acceptance. There is no reactivation or delete action in this release.
+## Cancel or archive
 
-Deleting a linked contact/company/opportunity/payment archives the affected quote and revokes customer access. Restoring that relationship does not reopen the quote or trigger any message, e-sign request or payment. Detached customer histories are visible only through the original creator's current own/team/all scope. Existing lead/stage recovery rules still apply; this feature adds no direct lead/stage foreign key.
+| Action | Effect |
+| --- | --- |
+| **Cancel** | Stops an open quote |
+| **Archive** | Removes it from active lists and stops customer access. History and acceptance stay |
 
-Templates retain explicit reusable lines and terms. They are scoped to their owner with current own/team/all permissions. Applying a template supplies a draft only; choose the customer and a fresh validity date, then review all supplier/tax/legal details. Changing or archiving a template never changes an existing quote or sent revision.
+There is no delete. Deleting a linked contact, company, opportunity or payment archives the quote. Restoring it does not reopen the quote.
 
-Provider e-signing is awaiting a choice between Digio and Leegality, an explicitly configured test account, review of current primary documentation and verified callback/replay protection. Neither provider has been activated or called by this implementation. Future outreach must use the existing approved email/WhatsApp channels with a separate review.
+## Templates
+
+<Steps>
+  <Step title="Apply a template">
+    It gives you a draft of reusable lines and terms.
+  </Step>
+  <Step title="Finish it">
+    Choose the customer and a fresh validity date, then review everything.
+  </Step>
+</Steps>
+
+Templates belong to their owner, within your own, team or all permissions. Changing one never changes existing quotes.
+
+## For developers
+
+<CardGroup cols={2}>
+  <Card title="Read a published quote" icon="eye" href="/api-reference/customer-quote-access/read-published-customer-quote">What the customer sees.</Card>
+  <Card title="Decide a published quote" icon="check" href="/api-reference/customer-quote-access/decide-published-customer-quote">Accept or decline.</Card>
+</CardGroup>

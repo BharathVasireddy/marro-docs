@@ -3,40 +3,51 @@ title: "Campaigns and return on spend"
 description: "See which campaigns bring leads, how many convert, what each cost and what came back."
 ---
 
-**Reports** has a **Campaigns** section. It counts the new leads of the period by the campaign they came from, and shows what each campaign cost and what it brought back.
+**Reports → Campaigns** counts the period's new leads by the campaign they came from, and shows what each cost and brought back.
 
 ## Where a lead's campaign comes from
 
-Every lead keeps where it **first** came in and where it **most recently** came in: a form or lead page, a Meta or Google lead ad, your website or the API, or website chat. Each carries the campaign tags (`utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`) and the ad click, when there is one. Meta and Google lead ads bring the ad's campaign name themselves. The lead page shows both under **Where they came from**, in the record panel on the left.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Link with utm_campaign] --> B[Form, ad or website] --> C[Lead keeps campaign] --> D[Counted in report]
+```
 
-Add `utm_campaign=spring-intake` to the links you share (ads, emails, WhatsApp, posters' links) and the leads that arrive through them are counted under that campaign. Leads that came in before this was added to Marro are included when a form response kept its tags.
+Every lead keeps where it **first** and **most recently** came in, with its campaign tags (`utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`). The lead page shows them under **Where they came from**. Meta and Google lead ads bring their own campaign name.
+
+Add `utm_campaign=spring-intake` to links you share and those leads are counted under that campaign.
 
 ## Set up a campaign
 
-**Reports → Campaigns → Manage campaigns → New campaign** (needs the **Manage reports** permission; entering spend also needs access to every lead).
+<Steps>
+  <Step title="Open it">Go to **Reports → Campaigns → Manage campaigns → New campaign**. It needs the **Manage reports** permission.</Step>
+  <Step title="Name it">Leads with the same campaign tag, ignoring capitals, are counted in it. **Also matches** adds other names. A name belongs to one campaign.</Step>
+  <Step title="Channel, dates, currency">The currency cannot change once spend is entered.</Step>
+  <Step title="Spend by month">Type each month's spend, then **Save**. Leave a month empty to remove it.</Step>
+</Steps>
 
-- **Name:** leads whose campaign tag is the same name, ignoring capital letters, are counted in it. **Also matches** adds other names (an ad's campaign name that differs from your tag). A name can belong to only one campaign.
-- **Channel, dates, currency:** the currency is the one you spend in; it cannot change once spend is entered.
-- **Spend by month:** type what the campaign spent each month. Spend saves with the campaign when you press **Save**; leave a month empty to remove it.
-
-Campaign names that leads carry but that you have not set up appear in the report as **Not set up yet**, with a link to add them. The Campaigns page lists them too, most leads first, each with **Add**, which opens a new campaign with the name filled in. On a phone, campaigns and their figures are shown as cards.
+Names leads carry that you have not set up show as **Not set up yet**, each with **Add**.
 
 ## Read the report
 
-For the period you choose, each campaign shows:
-
 | Column | Meaning |
 | --- | --- |
-| New leads | Leads added in the period whose **first touch** (or **latest touch**, with the switch above the table) carries the campaign. |
-| Qualified | Of those, leads now past the first stage of their pipeline and not lost, plus converted ones. |
-| Converted | Of those, leads now in a stage marked as converted. |
-| Spend | What you entered, counted for the days of each month the period covers. |
-| Cost per lead, per conversion | Spend divided by new leads, or by converted leads. |
-| Revenue | Money those leads paid (payments marked paid), whenever it was paid. |
-| Return on spend | Revenue divided by spend: 3.2× means 3.2 was paid for every 1 spent. |
+| New leads | Added in the period, by **first touch** (or **latest touch** with the switch) |
+| Qualified | Past the first stage and not lost, plus converted |
+| Converted | Now in a converted stage |
+| Spend | What you entered, for the days of each month in the period |
+| Cost per lead, per conversion | Spend divided by new or converted leads |
+| Revenue | Payments marked paid by those leads |
+| Return on spend | Revenue divided by spend: 3.2× means 3.2 paid per 1 spent |
 
-Money is never added across currencies. A campaign's revenue and return use its own currency; payments in other currencies are listed beneath, not added. People who see only their own leads see their own leads' counts and revenue, but not spend.
+Money is never added across currencies: other-currency payments are listed beneath. People who see only their own leads do not see spend. Spend is entered by hand; Meta and Google Ads spend is not automatic yet.
 
-You can also group a [custom report](/guides/custom-reports) by **Campaign**, **Traffic source** or **Medium** of the first touch, and ask the [assistant](/guides/assistant) (or the WhatsApp agent) how campaigns are doing, or to add a campaign or a month's spend; changes are put to you for approval first.
+## Ask Marro
 
-Automatic spend from Meta and Google Ads is not available yet; for now spend is entered by hand.
+<Card title="Try asking" icon="message-circle">
+  *"How are our campaigns doing this month?"*
+
+  *"Add 20,000 spend for spring-intake in March"*
+
+  Marro asks approval before changing anything.
+</Card>

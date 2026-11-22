@@ -6,48 +6,51 @@ description: "Sign up, verify your phone, confirm your email and answer a few se
 Sign up at [app.marro.si/signup](https://app.marro.si/signup). The trial is free for 14 days and needs no card.
 
 <Note>
-**Continue with Microsoft** works only with an address Microsoft has confirmed belongs to your company's domain (or to a personal Microsoft account). If it says the address isn't verified, use Google or your work email instead.
+**Continue with Microsoft** works only with an address Microsoft has confirmed for your company's domain, or a personal Microsoft account. If it says the address isn't verified, use Google or your work email.
 </Note>
 
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Email] --> B[Company] --> C[Verify phone] --> D[Industry] --> E[Agree] --> F[Confirm email]
+```
+
 <Steps>
-  <Step title="Your email">
-    Choose **Continue with Google** or **Continue with Microsoft**, or enter your work email. With either, Marro skips the password and the emailed code.
-  </Step>
-  <Step title="Your account">
-    Enter your name and a password of at least 8 characters.
+  <Step title="Your email and account">
+    Choose **Continue with Google** or **Continue with Microsoft**, or enter your work email. With Google or Microsoft there is no password or emailed code. Otherwise enter your name and a password of at least 8 characters.
   </Step>
   <Step title="Your company">
-    Its name becomes your workspace. Choose its **country** and **time zone**; both start from your device. They can't be changed later: they decide which terms apply, your currency, and how dates and reports are counted.
+    Its name becomes your workspace. Choose its **country** and **time zone**. They can't be changed later: they decide your terms, currency and how dates are counted. Enter your phone number here too.
 
     <Frame>
       <img src="/images/sign-up/company.jpg" alt="Company name, country and time zone" />
     </Frame>
   </Step>
   <Step title="Verify your phone">
-    Enter your phone number on the company step. The next step is **Verify your phone number**: press **Send WhatsApp code**, enter the six-digit code from WhatsApp and press **Verify phone number**. Verification is required for email, Google and Microsoft signup before you choose your business type or create a workspace. The code expires after five minutes; resend is available after 60 seconds. Five incorrect attempts require a new code. Changing your phone number or email requires verification again. Email cannot substitute for the phone code.
+    Press **Send WhatsApp code**, enter the six-digit code and press **Verify phone number**. It is required before a workspace is created, and email cannot replace it. The code lasts five minutes; resend after 60 seconds. Five wrong tries need a new code.
   </Step>
   <Step title="What your business does">
-    Pick the closest industry, or **Others** if none fits. Your choice decides which agent templates and suggestions you see. It doesn't add anything to your workspace: every new workspace starts with the same general lead stages, fields and call outcomes. Industry stages and fields are offered later, listed in full, and added only if you choose them.
+    Pick the closest industry, or **Others**. It decides your agent templates and suggestions. Every workspace starts with the same general lead stages, fields and call outcomes; industry ones are offered later and added only if you choose.
 
     <Frame>
       <img src="/images/sign-up/industry.jpg" alt="Every industry shown in two columns, with Others last" />
     </Frame>
   </Step>
   <Step title="Review and agree">
-    Read the short summary and the full terms of service and privacy policy for your country. Then tick the box to confirm that you agree and that you may accept them for your organization. You can't continue without agreeing. Marro keeps a record of what was accepted, when, from which IP address and in which browser.
+    Read the summary, terms of service and privacy policy for your country, then tick the box to agree. You can't continue without it. Marro records what was accepted, when, and from which IP address and browser.
 
     <Frame>
       <img src="/images/sign-up/review-and-agree.jpg" alt="Review and agree" />
     </Frame>
   </Step>
   <Step title="Confirm your email">
-    Enter the 6-digit code from the email, or open its link and press **Confirm**. Nothing is created until your phone is verified and your email is confirmed.
+    Enter the 6-digit code from the email, or open its link and press **Confirm**. Nothing is created until your phone and email are both confirmed.
   </Step>
 </Steps>
 
 ## Setup questions
 
-Next come five short questions. You can skip any of them.
+Five short questions follow. You can skip any.
 
 <Frame>
   <img src="/images/sign-up/setup-mobile-and-fields.jpg" alt="Mobile number and suggested fields for your business" />
@@ -55,31 +58,32 @@ Next come five short questions. You can skip any of them.
 
 | Question | What it changes |
 | --- | --- |
-| Your role | Kept for your workspace. |
-| How many people sell or follow up | **Just me** removes "Invite your team" from the setup guide. |
-| Where your leads come from | Lists the ways to connect those sources first, such as Meta lead ads or [webhook lead sources](/guides/webhooks). |
-| What Marro should do first | Suggests the first agent: the first caller for AI calls, the chat receptionist for WhatsApp and other chats, or the lead qualifier for fast replies. |
-| Your mobile number | Starts with the number verified during signup and is saved on your account, for lead alerts and for using the [assistant](/guides/assistant) from WhatsApp. Leads never see it. |
-| Add suggested fields for your business | Shown with your mobile number when your industry has suggested fields. Unticked; tick it to add those empty, optional fields to your forms. Nothing else is added. |
+| Your role | Kept for your workspace |
+| How many people sell or follow up | **Just me** removes "Invite your team" from the setup guide |
+| Where your leads come from | Lists those connections first, such as Meta lead ads or [webhook lead sources](/guides/webhooks) |
+| What Marro should do first | Suggests a first agent: AI calls, chat receptionist or lead qualifier |
+| Your mobile number | Used for lead alerts and the [assistant](/guides/assistant) on WhatsApp. Leads never see it |
+| Add suggested fields | Unticked. Tick it to add your industry's empty, optional fields |
 
-Phone verification proves access to the number at signup. It does not request a demo, a callback or marketing messages. If a WhatsApp code cannot be sent, check that your number has WhatsApp and retry after a minute. You cannot create a new self-serve workspace without completing phone verification. Existing users keep their current sign-in.
+## Welcome
 
-After the questions, the setup guide opens on **Welcome**. To change your answers later, open `/setup` again, or ask the assistant.
+The setup guide opens on **Welcome**. To change your answers later, open `/setup` or ask the assistant.
 
 <Frame>
   <img src="/images/sign-up/welcome.jpg" alt="The Welcome setup guide" />
 </Frame>
 
-If **Request a demo or callback** appears on **Welcome**, use it to contact the Marro team. You can ask a question by email, or share a phone number when you request a demo or callback. Completing signup by itself does not request a call.
-
-Next: [Set up your organization](/guides/organization-onboarding) and take your first enquiry through to a follow-up.
+**Request a demo or callback** on **Welcome** contacts the Marro team. Signing up alone does not request a call. Next: [Set up your organization](/guides/organization-onboarding).
 
 ## When the terms change
 
-Each country has its own terms of service and privacy policy: the governing law, the taxes added to fees, the consumer rights nothing in them takes away, and the privacy law that applies are your country's. An Australian organization's terms, for example, are governed by the laws of New South Wales and keep its rights under the Australian Consumer Law. Read your country's at `app.marro.si/legal/terms/<country>` and `app.marro.si/legal/privacy/<country>`, such as [Australia's terms](https://app.marro.si/legal/terms/au); the plain `/legal/terms` page shows India's.
+Each country has its own terms and privacy policy, for example [Australia's terms](https://app.marro.si/legal/terms/au). Read yours at `app.marro.si/legal/terms/<country>` and `app.marro.si/legal/privacy/<country>`.
 
-When the terms or privacy policy for your country change, Marro asks each administrator to review and accept them the next time they open Marro. Other users aren't asked: the organization accepts through its administrators.
+| When | Who is asked |
+| --- | --- |
+| Terms or privacy policy change | Each administrator, next time they open Marro |
+| Other users | Not asked: administrators accept for the organization |
 
 ## Protect your sign-in
 
-After setup, open **Sign-in security** in your account menu to add an authenticator or passkey and save backup codes. See [Two-step sign-in](/guides/two-step-sign-in). If your organization requires it, complete setup before its seven-day deadline.
+Open **Sign-in security** in your account menu to add an authenticator or passkey and save backup codes. See [Two-step sign-in](/guides/two-step-sign-in). If your organization requires it, finish before its seven-day deadline.

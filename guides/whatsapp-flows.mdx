@@ -3,37 +3,70 @@ title: "WhatsApp forms (Flows)"
 description: "Build a form that opens inside WhatsApp, send it in a chat, and save the answers on the lead."
 ---
 
-A **form** (Meta calls it a *Flow*) opens inside WhatsApp, so a customer fills it in without leaving the chat. When they send it, the answers come back to Marro as a note on their lead and, if you chose, as lead fields.
+A **form** (Meta calls it a *Flow*) opens inside WhatsApp, so a customer fills it in without leaving the chat. The answers come back to Marro as a note on their lead and, if you choose, as lead fields.
 
 <Note>
-  Forms need a connected WhatsApp Business number. Meta requires a verified business to publish and send forms, and may refuse a form it finds a problem with. Marro shows Meta's messages as they come back.
+  Forms need a connected WhatsApp Business number. Meta requires a verified business to publish and send forms, and may refuse one it finds a problem with. Marro shows Meta's messages.
 </Note>
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Build form] --> B[Publish]
+  B --> C[Send in a chat]
+  C --> D[Customer submits]
+  D --> E[Note and fields on the lead]
+```
 
 ## Build a form
 
 <Steps>
-  <Step title="Start from a template">
-    Open **Inbox → Settings → Forms** and choose **New form**. Pick a starting point (Contact request, Appointment request, Feedback) or start blank. Everything can be changed.
+  <Step title="Start">
+    Open **Inbox → Settings → Forms**, choose **New form**, and pick Contact request, Appointment request, Feedback or blank.
   </Step>
-  <Step title="Shape the form">
-    Name the form (only your team sees the name), then write the heading and an optional introduction. Beside the builder, a phone shows the form the way your customer sees it in WhatsApp, and updates as you type. Tap a question in the phone to edit it.
+  <Step title="Shape it">
+    Name it (only your team sees the name), then write the heading and an optional introduction. A phone beside the builder shows what the customer sees.
   </Step>
-  <Step title="Add and arrange questions">
-    **Add a question** offers short answer, long answer, email, phone, number, drop-down, pick one, pick several, date and tick box, plus a heading or a note for words on the form. Drag a question by its handle to reorder it. Open a question to change its words, its options (press Enter for the next one), whether it is required, and where the answer is saved: choose **Save on the lead as** to put an answer in a lead field; otherwise it appears only in the note. A form can have up to 20 questions.
+  <Step title="Add questions">
+    **Add a question** (up to 20). Drag to reorder. Open one to set its words, options, whether it is required, and **Save on the lead as** to fill a lead field.
   </Step>
   <Step title="Publish">
-    **Save draft** keeps your work. **Publish** checks the form with WhatsApp and makes it ready to send from any chat; if WhatsApp finds a problem, the form stays a draft and the problem is shown. A published form cannot be changed: choose **Make a copy**, change the copy and publish that. **Retire** stops a published form being sent.
+    **Save draft** keeps your work. **Publish** checks the form with WhatsApp; if there is a problem it stays a draft and says why.
   </Step>
 </Steps>
 
+| Question types |
+| --- |
+| Short answer, long answer, email, phone, number, drop-down, pick one, pick several, date, tick box, plus a heading or a note |
+
+A published form can't be changed: **Make a copy**, change the copy and publish it. **Retire** stops a form being sent.
+
 ## Send a form
 
-A published form is sent into a lead's chat, with a short message and a button that opens it. Like other free messages, it can only go while the chat's 24-hour window is open and never after the customer replied STOP. In a chat, choose **Send a form** (the clipboard icon beside the message box), pick the form, check the message and button label, and send. You can also ask the assistant to send it; it shows you the message for approval first.
+<Steps>
+  <Step title="Open a chat">
+    Choose **Send a form** (the clipboard icon beside the message box).
+  </Step>
+  <Step title="Pick and send">
+    Pick the form, check the message and button label, and send. The assistant can send one too, after you approve the message.
+  </Step>
+</Steps>
+
+Like other free messages, it can only go while the chat's 24-hour window is open and never after the customer replied STOP.
 
 ## What comes back
 
-When the customer submits, Marro matches the answer to the form you sent them, adds a note to the lead ("Completed the form …") and fills the mapped lead fields. A value a lead field does not accept is left out, and the note still shows what they wrote. Sending the same answer twice changes nothing.
+| Result | Where |
+| --- | --- |
+| A note, "Completed the form …" | The lead's timeline |
+| Mapped answers | The lead's fields. A value a field does not accept is left out; the note still shows it. |
 
-## Limits in this version
+Sending the same answer twice changes nothing.
 
-Forms are a single screen without a server behind them. Forms with several screens, data that changes while the customer fills it in, and forms inside message templates are not available yet.
+## Not available yet
+
+| Feature |
+| --- |
+| Forms with several screens |
+| Data that changes while the customer fills it in |
+| Forms inside message templates |

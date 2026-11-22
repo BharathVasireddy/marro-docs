@@ -1,20 +1,58 @@
 ---
 title: Optional email observations
-description: Understand optional image and link request observations without treating them as proof of reading.
+description: Optional image and link request observations on sales email, and what they do not prove.
 ---
 
 <Note>
-The backend is being prepared and rollout is off. Settings/composer controls and independent review are still pending.
+Not released yet. The feature is off, and the settings and composer controls are still pending.
 </Note>
 
-An administrator can allow observations for individually reviewed sales email. The feature starts off and also needs platform configuration. It does not apply to system emails, sign-in messages, invitations, inbound mail, automatic sequences or messages written by an agent.
+An administrator can allow observations on individually reviewed sales email. It starts off. It never applies to system emails, sign-in messages, invitations, inbound mail, automatic sequences or messages written by an agent.
 
-Before sending, review the exact message, From mailbox, image option and selected links, then approve that one send. Approval expires after ten minutes and cannot be reused. Selected HTML links will go through Marro before redirecting to the exact reviewed original public HTTPS destination. An image observation adds a hidden transparent image. Plain text and unsubscribe headers stay unchanged. Opt-out, private, document, portal, payment and access links are never tracked. Only public marketing destinations that the administrator reviewed are eligible.
+## How a send works
 
-An image observation means the image was requested. A link observation means its redirect was requested. Email providers can proxy or prefetch images, and security scanners can request links. These observations do not prove that a person read or clicked your email, who requested it, or that the email was delivered. Link figures count selected destinations observed at least once, not people or total clicks. A provider-accepted status only means the provider accepted the send.
+<Steps>
+  <Step title="Review">
+    The message, the From mailbox, the image option and the selected links.
+  </Step>
+  <Step title="Approve that one send">
+    The approval expires after ten minutes and can't be reused.
+  </Step>
+</Steps>
 
-Reports follow current lead access and mailbox ownership. A personal mailbox's figures remain private to its owner, including when another person is an administrator. This first version allows the person assigned to the lead or an administrator to use observations; team and partner access do not broaden this permission. Reports are paged. No raw request information, recipient, message content, target URLs or confidential tokens are included in assistant reports.
+| Part | What happens |
+| --- | --- |
+| Link | Goes through Marro, then on to the exact reviewed public HTTPS address |
+| Image | A hidden transparent image is added |
+| Opt-out, private, document, portal, payment and access links | Never tracked |
+| Plain text and unsubscribe headers | Unchanged |
+| Missing configuration, permission or consent | The original email is sent |
 
-Changing observation settings revokes old approvals and links. Changing a mailbox sender identity or connection status permanently revokes that mailbox's approvals and links. Organization closure or suspension revokes them too; restore does not bring them back. Deleting the source lead, mailbox, membership or message removes its observations. If configuration, permission or consent is unavailable, the original email is used. Refused or uncertain sends remain unobservable and are not automatically retried. Image/link tokens expire after ninety days.
+## What it does not prove
 
-Tracking configuration and send approvals belong in the signed-in settings/composer screens. Ask Marro and the staff WhatsApp assistant may summarize visible aggregate observations; they cannot enable observations or approve tracking for you. Never paste confidential approval handles or observation links into a conversation.
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ecfdf5','primaryBorderColor':'#047857','primaryTextColor':'#0f172a','lineColor':'#047857','fontSize':'14px'}}}%%
+flowchart LR
+  A[Image or link requested] --> B[Observed]
+  B -.-> C[Not proof a person read or clicked]
+```
+
+- Providers can preload images and scanners can open links. It does not prove who, or that the email arrived.
+- Link figures count selected links seen at least once, not people or total clicks.
+
+## Who sees it
+
+| Rule | Detail |
+| --- | --- |
+| Who can use it | The person assigned to the lead, or an administrator. Team and partner access do not widen this |
+| Personal mailbox | Figures stay private to its owner, even from administrators |
+| Revoked | Changing settings, a mailbox's sender or connection, or closing or suspending the organization |
+| Tokens | Expire after ninety days |
+
+## Ask Marro
+
+<Card title="Try asking" icon="message-circle">
+  *"How did my last email to Neha do?"*
+
+  Marro summarises visible totals. It cannot turn observations on or approve a send. Never paste approval handles or observation links into a chat.
+</Card>
