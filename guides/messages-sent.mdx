@@ -1,6 +1,6 @@
 ---
 title: "Messages sent"
-description: "Every email, WhatsApp message and SMS Marro sent for you, what it said, and whether it arrived."
+description: "Every email, WhatsApp message and SMS Marro sent for you, what it said, and when it was delivered and read."
 ---
 
 **Messages sent** lists every alert and message Marro sent for your organization: new-lead alerts to your team, follow-up reminders, portal links and more. Open **Settings → Logs → Messages sent**.
@@ -9,27 +9,36 @@ description: "Every email, WhatsApp message and SMS Marro sent for you, what it 
   <img src="/images/messages-sent/list.png" alt="Messages sent: who it went to, channel, subject or template, status and time" />
 </Frame>
 
-1. Search a recipient, lead, subject or error.
+1. Search a person, lead, subject or error.
 2. A period.
 3. **Email**, **WhatsApp** or **SMS**.
 4. **Status**: find what **Failed**, or was not read.
-5. **Sent**, **Delivered**, **Read** (an email says **Opened**) or **Failed**.
+5. How far it got: **Sent**, **Delivered**, **Read** (an email says **Opened**) or **Failed**.
 
-Under the recipient, **About** names the lead a message was about. A team member told about a new lead is the recipient; the lead is what it was about.
+Each message is its own row: an alert sent by WhatsApp and by email shows twice. A team member shows by name; under it, **About** names the lead the message was about.
+
+## When it was delivered and read
+
+Click a row.
+
+<Frame>
+  <img src="/images/messages-sent/alert.png" alt="A WhatsApp alert to Priya: when it was sent, delivered and read, then the message itself" />
+</Frame>
+
+1. When it was **Sent**, **Delivered** and **Read** (or **Opened**, for an email). A step not reached yet is not listed.
 
 ## Why a message failed
 
-Click a row to see the message as it was sent.
-
 <Frame>
-  <img src="/images/messages-sent/detail.png" alt="A failed WhatsApp message: why it failed, and the message as the recipient would see it" />
+  <img src="/images/messages-sent/detail.png" alt="A failed WhatsApp alert: when it failed, why, and the message as it would have read" />
 </Frame>
 
-1. **Why it failed**, in plain words.
-2. The message as the recipient would see it.
+1. When it failed.
+2. **Why it failed**, in plain words.
+3. The message as it would have read.
 
 <Note>
-Fix the cause (here, connect the WhatsApp number) so later messages go through.
+Fix the cause so later messages go through. Here, the team member's number in **Users** is not on WhatsApp.
 </Note>
 
 Which alerts are sent, and by which channel, is set in [Notifications](/guides/notifications).
