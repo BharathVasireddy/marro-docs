@@ -5,7 +5,7 @@ description: "Quote, invoice with your tax, get paid and see what each lead is w
 
 import { Flow } from "/snippets/flow.jsx";
 
-Make quotes and invoices, send them, get paid and track the money, all from **Finance**. They are set up in **Settings → Payments → Quotes and invoices**; the items you sell are in [Products and prices](/guides/products-and-prices).
+Make quotes and invoices, send them, get paid and track the money, all from **Finance**. The items you sell are in [Products and prices](/guides/products-and-prices).
 
 <Flow steps={["Quote", "Sent", "Accepted", "Invoice", "Paid"]} />
 
@@ -13,21 +13,14 @@ Make quotes and invoices, send them, get paid and track the money, all from **Fi
 
 An administrator opens **Settings → Payments → Quotes and invoices**.
 
-| Fill in | Notes |
-| --- | --- |
-| Business name, GSTIN, state, address, email, phone | Without a GSTIN, documents carry no GST. Outside India, tax follows your [regional settings](/guides/regional-settings) and you enter your registration number (ABN, VAT) |
-| **Letter of Undertaking (LUT)** | India only. Its ARN and last day, so exports go without IGST. See [Customers abroad](#customers-abroad) |
-| Payment, number prefixes, quote validity, due dates, terms | Also whether a paid invoice marks the lead converted, and reminders |
-| **Products and prices** | Kept in their own list: see [Products and prices](/guides/products-and-prices) |
-| **Document appearance** | **Modern**, **Classic** or **Compact**, a font, an accent colour and the logo from **Settings → Branding** |
-
 <Frame>
-  <img src="/images/quotes-and-invoices/business.png" alt="Your business: business name, GSTIN, state, address, email and phone" />
+  <img src="/images/quotes-and-invoices/business.png" alt="Your business: business name, GSTIN, state, Letter of Undertaking and address" />
 </Frame>
 
-1. **Business name**, as registered.
-2. **GSTIN**: with it, invoices are tax invoices.
-3. **State**: decides CGST and SGST, or IGST.
+1. **GSTIN**: with it, invoices are tax invoices. Your state comes from it and decides CGST and SGST, or IGST.
+2. **Letter of Undertaking (LUT)**: its ARN and last day, for [customers abroad](#customers-abroad). India only.
+
+Below them: address, email and phone, how to pay, number prefixes, validity and due days, terms, reminders, and **Document appearance** (layout, font, colour, logo). Outside India, tax follows your [regional settings](/guides/regional-settings).
 
 <Frame>
   <img src="/images/quotes-and-invoices/appearance.png" alt="Document appearance: the columns shown, and a live preview of an invoice" />
@@ -37,64 +30,100 @@ An administrator opens **Settings → Payments → Quotes and invoices**.
 2. **Fit width** or **Actual size**.
 3. The preview, as customers and the PDF show it.
 
-## Make a quote or invoice
+## Quotes
 
-Open **Finance → Quotes → New quote** or **Finance → Invoices → New invoice**. A lead's **Finance** tab also has **Quote** and **Invoice**. A quote for a lead needs nothing else first: the lead is the customer.
+<Frame>
+  <img src="/images/quotes-and-invoices/quotes.png" alt="Finance, Quotes: the list of quotes with status and actions" />
+</Frame>
 
-<Steps>
-  <Step title="Add items">Choose **Add products and services**, search by name or SKU, tick items, then **Add selected**. **New item** adds one that is not in your list. **Add blank line** types one from scratch.</Step>
-  <Step title="Edit the lines">Change quantity, price and tax. **More details** on a line has the description, discount (*10%* or an amount), HSN/SAC and unit.</Step>
-  <Step title="Preview">Switch between **Edit** and **Preview**. The PDF uses the same A4 layout.</Step>
-  <Step title="Save or send">**Save draft** or **Save and send** (Ctrl or ⌘ + S, Ctrl or ⌘ + Enter). The footer shows the live total.</Step>
-</Steps>
+1. **New quote**. A lead's **Finance** tab also has **Quote**.
+2. Search by number or customer, and filter: **All**, **Drafts**, **Accepted**, **Void**.
+3. Status: *draft*, *sent*, *accepted*, *declined*, *void*.
+4. **Actions**: open the lead, send, view (edit for a draft).
 
-- Under India GST, tax is CGST and SGST inside your state, or IGST for another state. Under one tax rate (Australia's GST), each line is taxed or tax-free.
-- Numbers are given on sending: quotes *QT-0001*, invoices *INV/2026-27/0001*, a new series each April.
-- **Finance → Quotes** lists every quote. Search by number or customer and filter by **All**, **Drafts**, **Accepted** or **Void**.
+## Make one
+
+<Frame>
+  <img src="/images/quotes-and-invoices/editor.png" alt="The quote editor: customer, country, currency, place of supply and items" />
+</Frame>
+
+1. **Country**: the customer's. Another country makes it an export.
+2. **Currency**: your own unless you choose another.
+3. **Place of supply**: from the customer's state; **Outside India** for an export.
+4. **Items**: **Add products and services** picks from your list; **Add blank line** types one. **More details** on a line has the discount, HSN/SAC, unit and description.
+5. **Save draft** or **Save and send quote** (Ctrl or ⌘ + S, Ctrl or ⌘ + Enter).
+
+Started from **Finance**, pick the customer from **Lead** above the fields: they fill in from the lead. Numbers are given on sending: *QT-0001*, *INV/2026-27/0001*, a new series each April.
+
+## Send it and win it
+
+<Frame>
+  <img src="/images/quotes-and-invoices/quote.png" alt="A sent quote: Send quote, Mark accepted, Declined, Make invoice" />
+</Frame>
+
+1. **Send quote** on WhatsApp or by email, or copy the link.
+2. **Mark accepted** or **Declined**. The customer can also accept or decline on their link.
+3. **Make invoice**: once accepted, this is the next step.
+4. **Download PDF**, **Copy customer link**, **Duplicate**, **Void**.
+
+## Invoices and getting paid
+
+<Frame>
+  <img src="/images/quotes-and-invoices/invoices.png" alt="Finance, Invoices: status, total, what is due and actions" />
+</Frame>
+
+1. *Overdue* once the due day passes; *partly paid* and *paid* follow payments.
+2. **Due**: what is still to be paid.
+3. **Record payment** straight from the list.
+
+<Frame>
+  <img src="/images/quotes-and-invoices/invoice.png" alt="An invoice partly paid: totals, Record payment and the payments made" />
+</Frame>
+
+1. Total, paid and due.
+2. **Record payment**: cash, UPI, bank transfer, card, cheque or other, with its reference. A pay link uses the account you connected in [Payments](/guides/payments).
+3. **Payments** made against it.
+
+Paid in full, the lead is marked converted, to the stage set for "When a lead pays". Reminders go before and after the due date by email, and on WhatsApp once your reminder template is approved.
+
+## Payments and revenue
+
+<Frame>
+  <img src="/images/quotes-and-invoices/payments.png" alt="Finance, Payments: every payment with its method and reference" />
+</Frame>
+
+1. Filter by status, method and period.
+2. The reference you recorded (UTR, cheque number).
+
+<Frame>
+  <img src="/images/quotes-and-invoices/revenue.png" alt="Finance, Revenue: received, waiting and overdue, and money by month" />
+</Frame>
+
+1. **Received**, **Waiting for payment** and **Overdue**. Other currencies are shown apart, never added.
+2. **By month**: the last twelve months.
+3. **By source** and **By staff**, then every invoice still owed.
 
 ## Customers abroad
 
-Set the customer's **Country** and the document's **Currency** in the editor. A customer in another country makes it an export.
+Set the customer's **Country** and the document's **Currency**. A customer in another country makes it an export.
 
 | Your business | What the export gets |
 | --- | --- |
-| India, with an LUT in force on the document's date | No IGST, any currency. It prints *"Supply meant for export under LUT without payment of IGST"* with your ARN |
+| India, with an LUT in force on the document's date | No IGST, any currency |
 | India, without an LUT | IGST at each line's rate, in rupees only |
 | One-rate tax (Australia's GST, VAT) | No tax: a GST-free export |
 
-The place of supply reads **Outside India** and the customer's country is printed under their address.
+<Frame>
+  <img src="/images/quotes-and-invoices/export.png" alt="An export invoice in US dollars: outside India, zero-rated, with the LUT declaration" />
+</Frame>
+
+1. **Outside India** and the country, *Zero-rated export*.
+2. The declaration, with your LUT's ARN.
+3. The amount in words, in the document's currency.
 
 <Note>Your products' prices are in your own currency. On a document in another currency, enter each price yourself.</Note>
 
-<Warning>An LUT lasts one financial year. Add the new one each April in **Settings → Payments → Quotes and invoices**, or exports carry IGST again.</Warning>
-
-## After it is sent
-
-| You can | Your customer's link can |
-| --- | --- |
-| **Send on WhatsApp** or email, **Copy link**, **Copy pay link** | **Accept** or **Decline** |
-| **Record payment**, **Mark accepted** or **declined** | **Pay now** |
-| **Make invoice**, **Duplicate**, **Void**, **Download PDF** | Download the PDF |
-
-A document is *draft*, *sent*, *accepted*, *declined*, *partly paid*, *paid*, *void*, *expired* or *overdue*.
-
-## Getting paid
-
-<Steps>
-  <Step title="Pay link">Uses the payment account you connected ([Payments](/guides/payments)).</Step>
-  <Step title="Record by hand">Cash, UPI, bank transfer, card, cheque or other.</Step>
-  <Step title="Paid in full">The lead is marked converted, to the stage set for "When a lead pays" or your first converted stage.</Step>
-</Steps>
-
-Reminders go before and after the due date by email, and on WhatsApp once your reminder template is approved.
-
-## On the lead, in reports and automations
-
-| Where | What |
-| --- | --- |
-| Lead's **Finance** tab | Quoted, invoiced, paid and due |
-| **Finance → Revenue** | Revenue by month, source and person, and what is outstanding |
-| [Automations](/guides/automations) | Triggers: quote sent, opened, accepted, declined, expires; invoice sent, paid, overdue, due soon. Actions: create and send a quote or invoice, send a payment link |
+<Warning>An LUT lasts one financial year. Add the new one each April, or exports carry IGST again.</Warning>
 
 ## Permissions
 
