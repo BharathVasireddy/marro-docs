@@ -284,6 +284,7 @@
           {
             "group": "Reports",
             "pages": [
+              "guides/reports",
               "guides/custom-reports",
               "guides/chat-reports",
               "guides/sales-forecasting",
