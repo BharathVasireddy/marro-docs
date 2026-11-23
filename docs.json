@@ -295,6 +295,8 @@
             "group": "HR and tasks",
             "pages": [
               "guides/tasks",
+              "guides/my-hr",
+              "guides/team-hr",
               "guides/payslip-customization"
             ]
           },
