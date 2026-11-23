@@ -152,6 +152,7 @@
               "guides/teams",
               "guides/access-and-data",
               "guides/branches",
+              "guides/languages",
               "guides/two-step-sign-in",
               "guides/company-sign-in"
             ]
@@ -230,7 +231,8 @@
                 "pages": [
                   "guides/forms",
                   "guides/website-chat",
-                  "guides/appointments"
+                  "guides/appointments",
+              "guides/customer-portal"
                 ]
               },
               {
@@ -316,6 +318,8 @@
             "group": "Account",
             "pages": [
               "guides/support",
+              "guides/activity-log",
+              "guides/messages-sent",
               "guides/organisation-closure",
               "guides/delete-your-account"
             ]
