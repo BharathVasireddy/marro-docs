@@ -10,12 +10,35 @@ Form tools such as Elementor, Typeform, JotForm, Google Ads lead forms and landi
 ## Set one up
 
 <Steps>
-  <Step title="Add a webhook">Choose **New webhook** and name it after the form, for example "Website contact form".</Step>
+  <Step title="Add a webhook">Choose **Add webhook** and name it after the form, for example "Website contact form".</Step>
   <Step title="Paste the address">Copy it into your tool's webhook URL box. It accepts JSON, form posts and query strings.</Step>
   <Step title="Send a test">Submit your form once. Marro shows what arrived and suggests where each field goes.</Step>
-  <Step title="Map fields">Choose **Map fields** and pick the Marro field each one fills: name, phone, email, a message for the timeline, or any lead field. Name and phone are needed.</Step>
+  <Step title="Match fields">Choose **Match fields** and pick the Marro field each one fills: name, phone, email, a message for the timeline, or any lead field. Name and phone are needed.</Step>
   <Step title="Save">Choose the lead source and pipeline, then save.</Step>
 </Steps>
+
+<Frame>
+  <img src="/images/webhooks/card.png" alt="A webhook waiting for its fields to be matched: its address, Match fields, the on switch and the menu" />
+</Frame>
+
+1. **Add webhook**.
+2. Its address, to paste into your form tool.
+3. Copy the address. The eye shows it in full.
+4. **Match fields**, once a test has arrived.
+5. On or off: off stops taking submissions.
+6. **Replace address** or **Delete**.
+
+<Frame>
+  <img src="/images/webhooks/match.png" alt="Match fields: each field the form sent, with its sample value, and the Marro field it goes into" />
+</Frame>
+
+1. The webhook's name.
+2. **Lead source**: where the leads say they came from.
+3. **Pipeline** they go into.
+4. Each field your form sent, with what it held in the test, and where it goes. Marro suggests these; change any. **Don't use** leaves one out.
+5. **Take submissions**.
+
+Submissions that arrive before the fields are matched are kept for the test, but don't become leads.
 
 ## What happens next
 
