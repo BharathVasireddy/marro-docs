@@ -3219,10 +3219,37 @@
                       "address": {
                         "type": "string",
                         "maxLength": 500
+                      },
+                      "country": {
+                        "description": "ISO country, like \"US\", for a customer abroad. Left out: the business's own country.",
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 2,
+                            "maxLength": 2
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
                       }
                     },
                     "required": [
                       "name"
+                    ]
+                  },
+                  "currency": {
+                    "description": "The document's currency; the organization's own when left out. An Indian export in another currency needs an LUT in Settings → Quotes and invoices.",
+                    "type": "string",
+                    "enum": [
+                      "INR",
+                      "USD",
+                      "EUR",
+                      "GBP",
+                      "AED",
+                      "AUD",
+                      "CAD",
+                      "SGD"
                     ]
                   },
                   "placeOfSupply": {
@@ -3279,7 +3306,7 @@
                         "unitPrice": {
                           "type": "number",
                           "minimum": 0,
-                          "description": "In the main unit of the organization's currency (rupees, dollars), before tax unless its prices include tax."
+                          "description": "In the main unit of the document's currency (rupees, dollars), before tax unless its prices include tax."
                         },
                         "discount": {
                           "description": "\"10%\" or an amount in the main unit.",
@@ -3988,10 +4015,37 @@
                       "address": {
                         "type": "string",
                         "maxLength": 500
+                      },
+                      "country": {
+                        "description": "ISO country, like \"US\", for a customer abroad. Left out: the business's own country.",
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 2,
+                            "maxLength": 2
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
                       }
                     },
                     "required": [
                       "name"
+                    ]
+                  },
+                  "currency": {
+                    "description": "The document's currency; the organization's own when left out. An Indian export in another currency needs an LUT in Settings → Quotes and invoices.",
+                    "type": "string",
+                    "enum": [
+                      "INR",
+                      "USD",
+                      "EUR",
+                      "GBP",
+                      "AED",
+                      "AUD",
+                      "CAD",
+                      "SGD"
                     ]
                   },
                   "placeOfSupply": {
@@ -4048,7 +4102,7 @@
                         "unitPrice": {
                           "type": "number",
                           "minimum": 0,
-                          "description": "In the main unit of the organization's currency (rupees, dollars), before tax unless its prices include tax."
+                          "description": "In the main unit of the document's currency (rupees, dollars), before tax unless its prices include tax."
                         },
                         "discount": {
                           "description": "\"10%\" or an amount in the main unit.",
@@ -10031,6 +10085,7 @@
             "$ref": "#/components/schemas/DocumentParty"
           },
           "placeOfSupply": {
+            "description": "GST state code; \"96\" for a supply outside India.",
             "type": [
               "string",
               "null"
@@ -10041,9 +10096,10 @@
             "enum": [
               "intra",
               "inter",
-              "none"
+              "none",
+              "export"
             ],
-            "description": "India GST only. intra: CGST and SGST; inter: IGST; none: no GST (no supplier GSTIN, or another tax model)."
+            "description": "intra: CGST and SGST; inter: IGST (also an Indian export without an LUT); export: a zero-rated export (India under an LUT, or free of a single-rate tax); none: no tax (no supplier GSTIN, or no tax model)."
           },
           "tax": {
             "type": "object",
@@ -10226,6 +10282,13 @@
           },
           "taxNumber": {
             "description": "Under a single-rate tax: the registration number, like an Australian ABN.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "country": {
+            "description": "ISO country, like \"US\". A customer in a country other than the business's own makes the document an export.",
             "type": [
               "string",
               "null"
