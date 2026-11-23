@@ -288,6 +288,7 @@
           {
             "group": "HR and tasks",
             "pages": [
+              "guides/tasks",
               "guides/payslip-customization"
             ]
           },
