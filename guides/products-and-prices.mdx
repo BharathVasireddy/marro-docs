@@ -4,7 +4,7 @@ sidebarTitle: "Products and prices"
 description: "List what you sell, its price and the parts it is paid in."
 ---
 
-Your list of products or services, with prices, is kept in **Settings → Products and payments → Products and prices**. Quotes, invoices and payment requests pick from it.
+Your list of products or services, with prices, is kept in **Settings → Products and prices**. Quotes, invoices and payment requests pick from it.
 
 ```mermaid
 %%{init: {'theme':'base','flowchart':{'curve':'basis','padding':14,'nodeSpacing':28,'rankSpacing':36},'themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#d1d5db','primaryTextColor':'#1f2937','lineColor':'#9ca3af','fontFamily':'Inter, ui-sans-serif, sans-serif','fontSize':'13px','edgeLabelBackground':'#ffffff'}}}%%
@@ -15,15 +15,35 @@ flowchart LR
   C --> D
 ```
 
+<Frame>
+  <img src="/images/products/list.png" alt="Products and prices: each product with its code, tax and price, and edit and hide on each row" />
+</Frame>
+
+1. **Add product**.
+2. **Import CSV**: many at once (below).
+3. A product paid in parts shows its parts under the name.
+4. Edit it.
+5. Hide it from new payment requests. **Show again** brings it back.
+
 ## Add a product
 
 <Steps>
-  <Step title="Open the list">Choose **Add** in **Products and prices**.</Step>
+  <Step title="Open the list">Choose **Add product** in **Products and prices**.</Step>
   <Step title="Fill it in">**Name** and **Price** are needed. **GST rate** (0, 5, 12, 18 or 28%), **HSN or SAC**, **SKU or code**, **Unit** (hour, pc, month) and **Description** are optional.</Step>
   <Step title="Save">It appears in the list, ready to add to a quote, an invoice or a payment request.</Step>
 </Steps>
 
 You can edit a product, or hide it so it is not offered. Hidden products show as a count above the list. Use the search box to find one once the list is long.
+
+<Frame>
+  <img src="/images/products/add.png" alt="Add a product: name, price and currency, GST rate, HSN or SAC, SKU, unit, description, and paid in parts" />
+</Frame>
+
+1. **Name**.
+2. **Price**, and its currency.
+3. **GST rate**.
+4. **HSN or SAC**.
+5. **Description**, shown on quotes and invoices.
 
 ## Paid in parts
 
