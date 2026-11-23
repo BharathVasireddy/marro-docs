@@ -3,106 +3,78 @@ title: Email campaigns
 description: Write one email, send it to a whole lead list from your organization's address, then see who opened and clicked.
 ---
 
-An email campaign is one email sent to everyone on a lead list: a newsletter, an offer, an announcement. Open **Email → Campaigns**. It comes with **Email sequences** in your plan.
+An email campaign is one email to everyone on a lead list: a newsletter, an offer, an announcement. Open **Email → Campaigns**. It comes with **Email sequences** in your plan, for roles with **Send email campaigns** (Admin always has it).
 
-People whose role has **Send email campaigns** can write and send. Admin always has it, and so does the ready-made Social Media Manager role. Other roles get it when an admin ticks it on **Users → Roles**.
+Before the first one you need a sending address in **Settings → Email sending** (Gmail, Outlook or your own mail server) and a list on **Leads → Lists**.
 
-## Before the first campaign
+## Your campaigns
 
-<CardGroup cols={3}>
-  <Card title="Sending address" icon="envelope">
-    Set in **Settings → Email sending**: Gmail, Outlook or your own mail server. Never a person's own mailbox. Replies come back to it.
-  </Card>
-  <Card title="Postal address" icon="location-dot">
-    The law asks for it at the foot of every marketing email. Add it once under **From** on the campaign page.
-  </Card>
-  <Card title="A lead list" icon="list">
-    Make one on **Leads → Lists**: fixed, or a saved filter. A list's menu has **Email this list…**.
-  </Card>
-</CardGroup>
+<Frame>
+  <img src="/images/email-campaigns/campaigns.png" alt="Email campaigns: each campaign with its status, list and results" />
+</Frame>
+
+1. **New campaign**.
+2. Filter by status, and show them as **Cards** or a **Table**.
+3. Status: *draft*, *scheduled*, *sending*, *paused*, *sent*, *stopped*.
+4. Results: sent, opened, clicked, unsubscribed, bounced.
 
 ## Write it
 
-Press **New campaign** for a checklist. Each card shows a green tick when done. The draft saves itself.
+<Frame>
+  <img src="/images/email-campaigns/builder.png" alt="A campaign's checklist: To, From, Subject, Content, with Send test and Review and send" />
+</Frame>
 
-| Card | What to do |
-| --- | --- |
-| **To** | Choose a list. You see how many get it, and who is left out and why |
-| **From** | The sending address, its daily limit and your postal address |
-| **Subject** | Subject and optional preview text, with inbox preview. **Field** adds the person's first name |
-| **Content** | **Design email** |
-| **Send settings** | **Send now** or **Schedule**, and whether to count opens and clicks |
+1. **To**: a list. You see how many get it, and who is left out and why: no email, your own team, a duplicate address, unsubscribed or bounced before.
+2. **From**: the sending address, its daily limit and your postal address, which the law asks for in every marketing email.
+3. **Subject**, and optional preview text.
+4. **Content**: **Design email**, from a blank page or one of six designs.
+5. **Send test** (up to five addresses, marked [Test]), then **Review and send**. Until everything is ready it reads "N things left".
 
-**Review and send** reads "N things left" until nothing is missing. Click it to see the list.
-
-People left out: no email address, your own team, the same address as another lead, unsubscribed from marketing email, or bounced before.
+The draft saves itself. **Send settings** chooses **Send now** or **Schedule**, and whether opens and clicks are counted.
 
 ## Design the email
 
-**Design email** opens the gallery: start blank, or from one of six designs (newsletter, announcement, offer, event invite, simple letter, two-column update), or **Your recent emails**.
+<Frame>
+  <img src="/images/email-campaigns/editor.png" alt="The email editor: blocks on the left, the email in the middle, settings on the right" />
+</Frame>
 
-| Where | What it holds |
-| --- | --- |
-| Left, **Content** | Blocks: heading, text, image, button, columns, divider, spacer, social links, footer. Click or drag onto the email |
-| Middle | The email as it is sent. Click words to type. **Field** adds first name, full name, lead owner's first name or organization name |
-| Right | The selected block's settings. With nothing selected, the email's style: colours, width, font, logo |
+1. **Content**: heading, text, image, button, columns, divider, spacer, social links, footer. Click to add after the selected block, or drag.
+2. The email as it is sent. Click words to type; **Field** adds the person's name.
+3. The selected block's settings, or the whole email's style: colours, width, font, logo.
+4. **Save and close**. **Send test**, undo and the phone preview are beside it.
 
-Hover a block to move, duplicate or delete it. **Undo**, **Redo**, **Send test** and the computer and phone preview are at the top. Anything that stops sending, such as a button without a link, is outlined in red.
+A block that would stop sending, such as a button without a link, is outlined in red. The footer always carries your organization, its postal address and **Manage your preferences or unsubscribe**.
 
-## Test and review
+## The report
 
-<Steps>
-  <Step title="Send test">
-    Up to five addresses. It is marked [Test], uses sample values, tracks nothing and records nothing on leads. If an address belongs to a lead you must choose **Send anyway**. Limit: 30 tests an hour.
-  </Step>
-  <Step title="Check delivery">
-    Reaches Gmail but not company inboxes? On **From**, a free address (gmail.com, outlook.com, yahoo) often lands in spam at companies: connect an address on your own domain. **Domain authentication → Check** shows SPF, DKIM and DMARC as pass, warning or fail. DNS changes can take a few hours.
-  </Step>
-  <Step title="Review and send">
-    See the email, who gets it, how long it will take and when. Confirm the number of people, the list and the sending address.
-  </Step>
-</Steps>
+<Frame>
+  <img src="/images/email-campaigns/report.png" alt="A sent campaign's report: totals, links, people and the email" />
+</Frame>
 
-In Australia, Canada, the United Kingdom, the United Arab Emirates and Vietnam you confirm, on each campaign, that the people agreed to marketing email from you (or bought from you recently and were given a way to say no).
+1. Status, subject, list and who sent it. **Duplicate** copies it into a new draft.
+2. **Sent**, **Delivered**, **Opened**, **Clicked**, **Unsubscribed**, **Bounced**, **Failed**. Opens are approximate; clicks are firmer.
+3. **Links** and how many clicked each.
+4. **People**, filtered by what happened, with the reason when one failed or was skipped.
+5. The email as it went.
 
-## How fast it goes
+While it sends you can **Pause**, **Carry on** or **Stop**. If every email would fail the same way (the address needs connecting again, the mail server is down) it pauses with the reason and nobody is lost.
 
-| Sending address | Daily limit by default |
+| Sending address | Emails a day, by default |
 | --- | --- |
 | Gmail | 500 |
 | Outlook | 1,000 |
 | Your own mail server | 10,000 |
 
-**Edit** on the **From** card sets your own. Every campaign shares the room. People who unsubscribe, bounce or whose lead is deleted or archived before their turn are skipped.
+<Note>In Australia, Canada, the United Kingdom, the United Arab Emirates and Vietnam you confirm on each campaign that the people agreed to marketing email from you.</Note>
 
-## The report
-
-It updates while the campaign sends.
-
-| Part | Shows |
-| --- | --- |
-| **Sent**, **Delivered**, **Opened**, **Clicked**, **Unsubscribed**, **Bounced** | Shares and counts. Opens are approximate; clicks are firmer |
-| **Links** | Each link and how many clicked |
-| **People** | Everyone it went to, with the reason when one failed or was skipped |
-
-**Pause**, **Carry on** and **Stop** (people not yet sent to are skipped). **Duplicate** copies a campaign into a new draft. A lead's **Campaigns** tab lists what they were sent.
-
-If every email would fail the same way (the sending address needs connecting again, or your mail server is unreachable), the campaign pauses with the reason and nobody is lost. Fix it and press **Carry on**. An address that doesn't exist is never emailed again.
-
-## What every email carries
-
-| Item | Detail |
-| --- | --- |
-| Organization name and postal address | With why the person gets the email |
-| **Manage your preferences or unsubscribe** | Opens their [preference page](/guides/contact-preferences) |
-| One-click unsubscribe | Shown by mail apps such as Gmail beside the sender |
+<Tip>A free address (gmail.com, outlook.com) often lands in spam at companies. Use one on your own domain; **Domain authentication → Check** on **From** shows SPF, DKIM and DMARC.</Tip>
 
 ## Ask Marro
 
 <Card title="Try asking" icon="message-circle">
   *"How did last week's newsletter do?"*
 
-  *"Write a draft offer email for the August list"*
+  *"Write a draft offer email for the November list"*
 
   Marro lists campaigns, shows numbers, writes drafts, sends tests or pauses one. Sending always waits for your approval, even in Auto.
 </Card>
