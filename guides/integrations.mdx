@@ -59,19 +59,15 @@ Meta can find more people like your best leads, not only your cheapest ones, if 
   <Step title="Make a dataset in Meta">
     In Meta Events Manager choose **Connect data sources**, then **CRM**, and create a dataset. Copy its **dataset ID**, then generate an **access token** from that dataset (Settings, Conversions API).
   </Step>
-  <Step title="Connect it in Marro">
-    In **Facebook & Instagram lead ads**, under **Tell Meta which leads turn good**, paste the **Dataset ID** and the **Access token**. The token is stored encrypted and never shown again.
+  <Step title="Turn it on in Marro">
+    In **Facebook & Instagram lead ads**, under **Tell Meta which leads turn good**, turn on **Send lead quality to Meta**. Turning it on confirms your customers agreed to this use of their details. Paste the **Dataset ID** and the **Access token** (stored encrypted, never shown again) and press **Save**.
   </Step>
-  <Step title="Draw your funnel">
-    Name the event for **a lead arrives** (for example "Lead"). Then press **Add a step** for each stage that matters, give it your own name, and choose which of your stages start it. Meta learns best from at least two steps, ideally three, such as Contacted, Qualified and Won. Turn off **Send earlier steps first** for a dead end such as Lost.
-  </Step>
-  <Step title="Choose what is shared">
-    Pick **Every lead form** or only some. **Also send email and phone, scrambled** is on by default: they are hashed, and Meta already has them from its form. Add a **Test event code** from Events Manager to try it first, and remove it to go live.
-  </Step>
-  <Step title="Confirm and turn on">
-    Tick **I confirm** (your customers agreed, and nothing sensitive such as health details is in your step names), turn on **Send lead quality to Meta**, and **Save**.
+  <Step title="Check the connection">
+    Marro asks Meta right away and shows **Connected**, or tells you which of the two to fix.
   </Step>
 </Steps>
+
+That is all it needs. Every stage after the first is sent under its own name, for every lead form, with email and phone scrambled. To change any of it, open **Advanced**: the CRM name, the name of the first event, your own steps and which stages start them (turn off **Send earlier steps first** for a dead end such as Lost), which forms count, whether email and phone are shared, and a **Test event code** to try it first.
 
 In Events Manager, open the dataset and mark the steps that show a good lead as **Positive**. Choose the **earliest** good step, usually Qualified, as the one to optimise for, then run your lead form campaign for it. Meta needs about 200 leads a month and a few weeks to learn.
 
