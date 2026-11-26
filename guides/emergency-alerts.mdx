@@ -1,0 +1,64 @@
+---
+title: "Emergencies and alerts"
+description: "When a caller is in danger, the right person is told fast, the next person if nobody answers, and the caller hears what to do."
+---
+
+import { Flow } from "/snippets/flow.jsx";
+
+A business cannot answer every call, and a caller in danger must never be left waiting. Emergency handling makes sure of three things: the caller hears your safety words, the person on call is alerted straight away, and someone else is alerted if nobody takes it.
+
+<Flow steps={["Caller says a danger phrase", "Safety words spoken", "Person on call alerted", "Backup if nobody taps OK", "Caller told if nobody could be reached"]} />
+
+Everything here is your own setting. Marro does not assume your trade, your country's emergency number or your hours.
+
+<Warning>
+The wording Marro suggests for the safety script and the starter phrase lists is a placeholder. Read it and write your own before you turn emergency handling on for real callers.
+</Warning>
+
+## What happens on a call
+
+- **The voice agent judges, the safety steps are fixed.** The agent listens for danger and rates every call **danger**, **urgent** or **standard**. When a caller says one of your danger phrases, Marro switches to your safety script at once and alerts your people, whether or not the agent noticed. The script is read word for word, never reworded.
+- **The agent gives no repair advice** and, in a danger case, does not ask about fees or after-hours charges and does not book a visit.
+- **The lead shows the urgency**, and an emergency notice with an **OK** button until someone takes it.
+
+## Set it up
+
+<Steps>
+  <Step title="Open Emergency">Go to **Settings** → **Calls** → **Emergency**.</Step>
+  <Step title="Add your danger phrases">One phrase on each line, whole words only. You can add a starter list with one tap and then edit it.</Step>
+  <Step title="Write the safety script">Say what a caller should do. Write {"{emergency_number}"} where the number should be spoken. Leave it empty to use Marro's placeholder wording.</Step>
+  <Step title="Add the numbers">The **Emergency number** is what a caller should dial if anyone is in danger. **Fault numbers** (for example your network's fault line) are given when a problem affects a whole area.</Step>
+  <Step title="Choose who is alerted">Add people in order: the first is the primary, the second is the backup. Give each their working days and hours, or leave the days empty for always on call.</Step>
+  <Step title="Check the timing and turn it on">The plan values are the backup after 2 minutes, a repeat every 5 minutes and giving up after 15. Turn on **Handle emergencies** and save.</Step>
+</Steps>
+
+Turning it on needs an emergency number and at least one person. It also adds a lead stage called **Emergency escalated**.
+
+## Who is alerted, and how
+
+| Time | What happens |
+| --- | --- |
+| At once | The primary is alerted. |
+| After the backup time (2 minutes) | If nobody has tapped OK, the backup is alerted. |
+| Every repeat (5 minutes) | Both are alerted again, until someone taps OK. |
+| At the give-up time (15 minutes) | The caller is texted that nobody could be reached, the owners are told, and the emergency is logged as **Emergency not covered**. |
+
+A person gets an app notification (if they use the Marro app), a WhatsApp message and, when you have switched texts on, a text. **People are rung only inside their working hours.** Outside them they get messages only, and the alert repeats. The on-call list is not exempt from this rule. An emergency that nobody answers at night therefore ends at "not covered", so check that someone has hours that cover the times you take calls.
+
+## Taking an emergency (tap OK)
+
+Any of these takes it: the link in the alert, **OK** on the emergency screen in the Marro app, **OK** on the lead, or telling Ask Marro (the assistant, also on WhatsApp) that you have it. Taking it stops all later alerts and records who and when. Tapping twice is safe. If you tap after "not covered", it still counts and is recorded.
+
+The link opens a page with who is calling and one big button. It needs no sign-in: the link is long and random and is only sent to the people on call.
+
+## Test it without sending anything
+
+**Send a pretend emergency** on the Emergency page runs the whole alert in test mode. Each message appears under **Recent emergencies**, marked **Test, not sent**. Nobody is contacted.
+
+## Text messages
+
+Text messages need a text provider connected for your country. Until then, texts are recorded as test messages and marked **Not sent**, and WhatsApp and app notifications carry the alert.
+
+## Ask Marro
+
+Ask Marro can read and change all of this with an approval card: "Show my emergency settings", "Add Sam as backup, Monday to Friday 8 to 5", "Send a pretend emergency".
