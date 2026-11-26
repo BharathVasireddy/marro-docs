@@ -5,7 +5,7 @@ description: "Tell the AI about your business: products, prices, dates, policies
 
 import { Flow } from "/snippets/flow.jsx";
 
-Business knowledge is what you write down about your business for the AI. The assistant, suggested replies and agents use it. Current prices, subscriptions, payments and appointment times come from their live records. If a fact cannot be confirmed, Marro says so.
+Business knowledge is what you write down about your business for the AI. The assistant, suggested replies and agents use it. Agents check the catalogue first for prices. When it has no matching price, they can quote a price from an active knowledge entry visible to the audience. Include the item, amount, currency and billing period or unit. If the terms conflict or are unclear, the agent asks for clarification. Subscriptions, payments and appointment times come from their live records. If a fact cannot be confirmed, Marro says so.
 
 Open **AI → Knowledge**. Administrators can use it by default; other roles can be given permission. It is part of Marro AI, on every plan. Without AI, what you wrote is kept and returns when AI is on.
 
@@ -95,7 +95,7 @@ Open an entry's menu and choose **Access and validity**.
 | **Replaced by** | Another entry supersedes this one. The old one is excluded from AI |
 | **I reviewed these facts and confirm this revision is accurate** | Records your confirmation. Editing or refreshing the text clears it |
 
-A review does not prove a payment succeeded, an appointment is free or a customer has a subscription. Marro checks live records for those, and quotes listed prices from the current catalogue, not from a customer's agreed quote.
+A review does not prove a payment succeeded, an appointment is free or a customer has a subscription. Marro checks live records for those, and checks a customer’s agreed quote separately from general pricing.
 
 ## Review voice pricing
 
