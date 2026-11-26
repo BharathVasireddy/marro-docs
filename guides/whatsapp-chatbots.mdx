@@ -1,6 +1,6 @@
 ---
 title: "WhatsApp chatbots"
-description: "Build a chatbot that asks questions with buttons and lists, fills in lead details and hands the chat to your team or the AI receptionist."
+description: "Keep a list of chatbots, switch each on or off, and build each one on a canvas of steps joined by lines."
 ---
 
 import { Flow } from "/snippets/flow.jsx";
@@ -9,34 +9,64 @@ A **chatbot** answers customers on WhatsApp step by step. It is part of the Inbo
 
 <Flow steps={["Keyword or first message", "Questions", "Lead fields filled", "Hand over or end"]} />
 
-## Build a chatbot
+## Your chatbots
+
+Open **Inbox → Settings → Chatbots**. Each chatbot is one row:
+
+| Column | What it tells you |
+| --- | --- |
+| **Chatbot** | Its name, how many steps it has and whether it is still a draft |
+| **On** | The switch. Off means customers never get its messages. Turning it off also stops chats it is running |
+| **Starts on** | The keywords, or "new chats" |
+| **Numbers** | The WhatsApp numbers it answers on, or "Every number" |
+| **Used** | How many chats it has started (and how many are still going) |
+| **Completed** | How many ran to the end (and how many were handed to a person or the AI receptionist) |
+| **Last used** | When it last started a chat |
+
+The **⋯** menu on a row has **Edit**, **Duplicate** (a draft copy you can change safely) and **Delete**. You can have as many chatbots as you like. When a customer's message matches several, the first one in the list answers, and a chat only ever runs one chatbot at a time.
+
+## Build a chatbot on the canvas
 
 <Steps>
-  <Step title="Open Chatbots">
-    Open **Inbox → Settings → Chatbots** and choose **New chatbot**. It starts with a small example.
+  <Step title="Create it">
+    Choose **New chatbot**. It opens with a small example: a greeting, three buttons and a hand-over.
   </Step>
   <Step title="Choose when it starts">
-    Type **keywords** separated by commas. A keyword matches a whole word in any case. You can also switch on **First message of a new chat**.
+    Click the **Start** card. Add **keywords** (a keyword matches a whole word in any case), and/or switch on **A new chat's first message**. If you have more than one WhatsApp number, choose which numbers it answers on; with none chosen it answers on all of them.
   </Step>
   <Step title="Add steps">
-    Each step does one thing and says which step comes next. See the table below.
+    Drag a step from the list on the left onto the canvas, or click it to add it. On a phone use **Add a step**. A step added while another step is chosen joins to it automatically.
+  </Step>
+  <Step title="Join them with lines">
+    Drag from the dot on the right of a step to the step that should come next. Let go on empty canvas to add a new step there, already joined. A step with several outcomes (buttons, list options, conditions) has one dot for each. Click a line to cut it, or use the **After this** list in the step's panel, which works well on a phone.
   </Step>
   <Step title="Save and switch on">
-    The page lists anything to fix, such as a step that leads nowhere. **Save and switch on** works once nothing is left.
+    The line under the name says what is left to fix, such as a step with no words or a button over WhatsApp's length. Click an item to jump to it. **Save**, then switch it on.
   </Step>
 </Steps>
+
+Drag the background to move around, pinch or use the zoom buttons to zoom, **Tidy up** lays the steps out again, and Delete removes the chosen step. A map appears in the corner once there are many steps.
 
 ## Step types
 
 | Step | What it does |
 | --- | --- |
-| **Say something** | Sends a message |
-| **Ask with buttons** | Up to three buttons, each leading to its own next step |
-| **Ask with a list** | Up to ten options |
-| **Ask for typed words** | A word, number, email address or phone number. Name the answer to reuse it |
-| **Branch on an answer** | Picks the next step from an earlier answer |
-| **Set a lead field** | Saves an answer, or words you write, into a lead field. A value the field refuses is never saved |
-| **Hand over to a person**, **Hand over to the AI receptionist**, **End the chat** | Finishes the chatbot |
+| **Send a message** | Plain text |
+| **Message with a link button** | A message with one button (up to 20 characters) that opens a web page (https) |
+| **Ask with buttons** | Up to **3** reply buttons (20 characters each), each leading to its own next step |
+| **Ask with a list** | A menu of up to **10** options (24 characters each, optional 72-character description) |
+| **Ask a question** | A typed answer: any words, a number, an email address or a phone number. Name the answer to use it later |
+| **Ask for a location** | The customer taps a button to share a pin, or types an address |
+| **Send a form** | Opens one of your published WhatsApp forms (Flows) and goes on when the customer completes it |
+| **Condition** | Picks the next step from an earlier answer (is exactly / contains) |
+| **Wait** | Pauses from 1 minute to 23 hours, then goes on |
+| **Update the lead** | Saves an answer, or words you write, into a lead field. A value the field refuses is never saved |
+| **Add or remove a tag** | Tags the lead |
+| **Assign to a team member** | Makes someone the lead's owner |
+| **Call a web address** | Sends the answers (a JSON POST) to a public https address. If it fails, the chatbot still goes on |
+| **Hand over to a person**, **Hand over to the AI receptionist**, **End** | Finishes the chatbot |
+
+Choices and limits come from WhatsApp itself, and the builder shows a counter next to every text that has one. Templates and media or document cards are not steps yet: use a link button to open a document.
 
 ## How it behaves
 
@@ -48,14 +78,14 @@ A **chatbot** answers customers on WhatsApp step by step. It is part of the Inbo
     It does not start while a person or the AI receptionist has the chat, and stops when a person sends a message.
   </Card>
   <Card title="24-hour window" icon="clock">
-    It runs only while WhatsApp allows free messages. If the window closes, it ends quietly.
+    It runs only while WhatsApp allows free messages. If the window closes, even during a **Wait**, it ends quietly.
   </Card>
   <Card title="STOP" icon="ban">
     A customer who replies STOP is never messaged again.
   </Card>
 </CardGroup>
 
-If an answer is not accepted, it asks again once. A second miss follows the step's **Unclear answer** choice, or hands the chat to a person.
+If an answer is not accepted, it asks again once. A second miss follows the step's **Not understood twice** line, or hands the chat to a person. While a chatbot is on a **Wait** step, what the customer writes does not change anything, and the AI receptionist and keyword replies stay quiet.
 
 ## See what it did
 
@@ -65,12 +95,20 @@ If an answer is not accepted, it asks again once. A second miss follows the step
 | **Stop** | Ends it so your team can take over |
 | The lead | A note with the collected answers when it hands over or finishes |
 
+## On a phone
+
+The list becomes a stack of cards. The canvas works with touch: drag to move around, pinch to zoom, tap a step to open its panel from the bottom of the screen. The **After this** section of each step lets you choose what comes next without drawing a line.
+
 ## Ask Marro
 
 <Card title="Try asking" icon="message-circle">
-  *"Create a chatbot that asks for budget and saves it on the lead"*
+  *"List my chatbots and how often each was used"*
 
   *"Switch off the price chatbot"*
+
+  *"Copy the admissions chatbot as a draft"*
+
+  *"Create a chatbot that asks for budget and saves it on the lead"*
 
   Marro shows each change for approval. Saving never switches a chatbot on.
 </Card>
